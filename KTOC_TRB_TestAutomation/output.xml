@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.2 (Jython 2.7.1 on java1.8.0_144)" generated="20180924 10:07:08.987">
+<suite source="/Users/roja/eclipse-workspace/KTOC_TRB_TestAutomation" name="KTOC TRB TestAutomation" id="s1">
+<suite source="/Users/roja/eclipse-workspace/KTOC_TRB_TestAutomation/TestSuites" name="TestSuites" id="s1-s1">
+<suite source="/Users/roja/eclipse-workspace/KTOC_TRB_TestAutomation/TestSuites/RegressionTestSuite.robot" name="RegressionTestSuite" id="s1-s1-s1">
+<kw type="setup" library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Launch Browser">
+<msg level="INFO" timestamp="20180924 10:07:11.004">Starting ChromeDriver 2.36.540469 (1881fd7f8641508feb5166b7cae561d87723cfa8) on port 29411
+Only local connections are allowed.
+log4j:WARN No appenders could be found for logger (org.apache.http.client.protocol.RequestAddCookies).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.</msg>
+<status endtime="20180924 10:07:11.011" starttime="20180924 10:07:09.911" status="PASS"></status>
+</kw>
+<test name="Verify Logon To Salesforce" id="s1-s1-s1-t1">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Logon To Salesforce">
+<status endtime="20180924 10:08:08.661" starttime="20180924 10:07:11.024" status="PASS"></status>
+</kw>
+<tags>
+<tag>Regression Test</tag>
+</tags>
+<status critical="yes" endtime="20180924 10:08:08.666" starttime="20180924 10:07:11.018" status="PASS"></status>
+</test>
+<test name="Verify Creating Opportunity and Mapping It With FLTender" id="s1-s1-s1-t2">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Create Opportunity">
+<status endtime="20180924 10:09:12.696" starttime="20180924 10:08:08.675" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Map Contact With Opportunity">
+<status endtime="20180924 10:09:21.567" starttime="20180924 10:09:12.701" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Map Opportunity With FL Tenders">
+<status endtime="20180924 10:09:36.925" starttime="20180924 10:09:21.570" status="PASS"></status>
+</kw>
+<tags>
+<tag>Regression Test</tag>
+</tags>
+<status critical="yes" endtime="20180924 10:09:36.928" starttime="20180924 10:08:08.671" status="PASS"></status>
+</test>
+<status endtime="20180924 10:09:36.935" starttime="20180924 10:07:09.810" status="PASS"></status>
+</suite>
+<status endtime="20180924 10:09:36.956" starttime="20180924 10:07:09.785" status="PASS"></status>
+</suite>
+<status endtime="20180924 10:09:36.976" starttime="20180924 10:07:09.623" status="PASS"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0">Critical Tests</stat>
+<stat pass="2" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="2" fail="0">Regression Test</stat>
+</tag>
+<suite>
+<stat pass="2" fail="0" name="KTOC TRB TestAutomation" id="s1">KTOC TRB TestAutomation</stat>
+<stat pass="2" fail="0" name="TestSuites" id="s1-s1">KTOC TRB TestAutomation.TestSuites</stat>
+<stat pass="2" fail="0" name="RegressionTestSuite" id="s1-s1-s1">KTOC TRB TestAutomation.TestSuites.RegressionTestSuite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
