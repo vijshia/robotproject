@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.2 (Jython 2.7.1 on java1.8.0_144)" generated="20180924 16:02:25.255">
+<suite source="/Users/roja/eclipse-workspace/KTOC_TRB_TestAutomation" name="KTOC TRB TestAutomation" id="s1">
+<suite source="/Users/roja/eclipse-workspace/KTOC_TRB_TestAutomation/TestSuites" name="TestSuites" id="s1-s1">
+<suite source="/Users/roja/eclipse-workspace/KTOC_TRB_TestAutomation/TestSuites/RegressionTestSuite.robot" name="RegressionTestSuite" id="s1-s1-s1">
+<kw type="setup" library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Launch Browser">
+<msg level="INFO" timestamp="20180924 16:02:27.729">Starting ChromeDriver 2.36.540469 (1881fd7f8641508feb5166b7cae561d87723cfa8) on port 15679
+Only local connections are allowed.
+log4j:WARN No appenders could be found for logger (org.apache.http.client.protocol.RequestAddCookies).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.</msg>
+<status endtime="20180924 16:02:27.734" starttime="20180924 16:02:26.477" status="PASS"></status>
+</kw>
+<test name="Verify Logon To Salesforce" id="s1-s1-s1-t1">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Logon To Salesforce">
+<msg level="FAIL" timestamp="20180924 16:03:32.846">NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=69.0.3497.100)
+  (Driver info: chromedriver=2.36.540469 (1881fd7f8641508feb5166b7cae561d87723cfa8),platform=Mac OS X 10.11.6 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1', time: '2016-06-30 17:37:03'
+System info: host: 'GKs-MacBook-Pro.local', ip: '172.31.91.23', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.6', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540469 (1881fd7f8641508feb5166b7cae561d87723cfa8), userDataDir=/var/folders/dv/nnfc_k29377bv7s34kng7qgh0000gn/T/.org.chromium.Chromium.9bv8IH}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=69.0.3497.100, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: f6cb5718e67e4be7aee2a8ba20650249</msg>
+<status endtime="20180924 16:03:32.852" starttime="20180924 16:02:27.745" status="FAIL"></status>
+</kw>
+<tags>
+<tag>Regression Test</tag>
+</tags>
+<status critical="yes" endtime="20180924 16:03:32.862" starttime="20180924 16:02:27.740" status="FAIL">NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=69.0.3497.100)
+  (Driver info: chromedriver=2.36.540469 (1881fd7f8641508feb5166b7cae561d87723cfa8),platform=Mac OS X 10.11.6 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1', time: '2016-06-30 17:37:03'
+System info: host: 'GKs-MacBook-Pro.local', ip: '172.31.91.23', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.6', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540469 (1881fd7f8641508feb5166b7cae561d87723cfa8), userDataDir=/var/folders/dv/nnfc_k29377bv7s34kng7qgh0000gn/T/.org.chromium.Chromium.9bv8IH}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=69.0.3497.100, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: f6cb5718e67e4be7aee2a8ba20650249</status>
+</test>
+<test name="Verify Creating Opportunity and Mapping It With FLTender" id="s1-s1-s1-t2">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Create Opportunity">
+<msg level="FAIL" timestamp="20180924 16:03:32.908">IllegalStateException: failure 'Test Skipped: Failed Logon To Salesforce'</msg>
+<status endtime="20180924 16:03:32.911" starttime="20180924 16:03:32.876" status="FAIL"></status>
+</kw>
+<tags>
+<tag>Regression Test</tag>
+</tags>
+<status critical="yes" endtime="20180924 16:03:32.919" starttime="20180924 16:03:32.871" status="FAIL">IllegalStateException: failure 'Test Skipped: Failed Logon To Salesforce'</status>
+</test>
+<kw type="teardown" library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Close Browser">
+<status endtime="20180924 16:03:32.961" starttime="20180924 16:03:32.928" status="PASS"></status>
+</kw>
+<status endtime="20180924 16:03:32.963" starttime="20180924 16:02:26.362" status="FAIL"></status>
+</suite>
+<status endtime="20180924 16:03:32.993" starttime="20180924 16:02:26.339" status="FAIL"></status>
+</suite>
+<status endtime="20180924 16:03:33.017" starttime="20180924 16:02:26.138" status="FAIL"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2">Critical Tests</stat>
+<stat pass="0" fail="2">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="2">Regression Test</stat>
+</tag>
+<suite>
+<stat pass="0" fail="2" name="KTOC TRB TestAutomation" id="s1">KTOC TRB TestAutomation</stat>
+<stat pass="0" fail="2" name="TestSuites" id="s1-s1">KTOC TRB TestAutomation.TestSuites</stat>
+<stat pass="0" fail="2" name="RegressionTestSuite" id="s1-s1-s1">KTOC TRB TestAutomation.TestSuites.RegressionTestSuite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
