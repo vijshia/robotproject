@@ -1,6 +1,5 @@
 # KTOC-TRB-Automation
 
-nemo-testautomation
 Table of Contents
 
 Introduction
