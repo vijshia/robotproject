@@ -73,16 +73,17 @@ public class KTOCTRBUtils {
 				chromeOptions.addArguments("--disable-gpu");
 				chromeOptions.addArguments("window-size=2000,2000");
 			}
-			driver = new ChromeDriver(chromeOptions);
-		} else if (os.equalsIgnoreCase("windows")) {
-			DesiredCapabilities CHDes = DesiredCapabilities.chrome();
-			ChromeOptions CHOpt = new ChromeOptions();
-			CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
-			File CHPath = new File(CurrentDir+"\\chromedriver.exe"); //C:\Backups\Vijay S\Download Folder\chromedriver_win32 (2.42)
-			System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
-			driver = new ChromeDriver();
-			driver.manage().window().maximize();
+				driver = new ChromeDriver(chromeOptions);
+			} else if (os.equalsIgnoreCase("windows")) {
+				DesiredCapabilities CHDes = DesiredCapabilities.chrome();
+				ChromeOptions CHOpt = new ChromeOptions();
+				CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
+				File CHPath = new File(CurrentDir + "\\chromedriver.exe"); // C:\Backups\Vijay S\Download
+																			// Folder\chromedriver_win32 (2.42)
+				System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
+				driver = new ChromeDriver();
 		}
+		driver.manage().window().maximize();
 	}
 
 	public void SwitchToFrame(String FrameId) {
