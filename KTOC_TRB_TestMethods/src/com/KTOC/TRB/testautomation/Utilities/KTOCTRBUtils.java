@@ -78,8 +78,7 @@ public class KTOCTRBUtils {
 				DesiredCapabilities CHDes = DesiredCapabilities.chrome();
 				ChromeOptions CHOpt = new ChromeOptions();
 				CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
-				File CHPath = new File(CurrentDir + "\\chromedriver.exe"); // C:\Backups\Vijay S\Download
-																			// Folder\chromedriver_win32 (2.42)
+				File CHPath = new File(CurrentDir + "\\chromedriver.exe"); // C:\Backups\Vijay S\DownloadFolder\chromedriver_win32 (2.42)
 				System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
 				driver = new ChromeDriver();
 		}
