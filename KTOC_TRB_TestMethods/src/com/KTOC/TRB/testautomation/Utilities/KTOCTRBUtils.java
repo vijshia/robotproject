@@ -82,7 +82,7 @@ public class KTOCTRBUtils {
 				System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
 				driver = new ChromeDriver();
 		}
-//		driver.manage().window().maximize();
+//		driver.manage().window().maximize(); test
 	}
 
 	public void SwitchToFrame(String FrameId) {
