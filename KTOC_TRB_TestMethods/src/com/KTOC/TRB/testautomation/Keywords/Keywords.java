@@ -1,24 +1,16 @@
 package com.KTOC.TRB.testautomation.Keywords;
 
-//import java.awt.event.KeyEvent;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.support.ui.Wait;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.python.icu.impl.Assert;
-
 import com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils;
 import com.KTOC.TRB.testautomation.ObjectRepository.*;
-/*import com.KTOC.testautomation.ObjectRepository.LogOnPage;
-import com.KTOC.testautomation.ObjectRepository.SalesForceData;
-import com.KTOC.testautomation.ObjectRepository.TenderPage;*/
-import com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils;
+/*import com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils;
 import com.KTOC.TRB.testautomation.Utilities.Xls_Reader;
-import com.KTOC.TRB.testautomation.TestData.*;
+import com.KTOC.TRB.testautomation.TestData.*;*/
 
 
 public class Keywords extends KTOCTRBUtils{
@@ -94,8 +86,6 @@ public class Keywords extends KTOCTRBUtils{
 			ScrollUptoElement("xpath",SalesForceData.AdditionalInformationSection);
 			SelectDropDownValues("xpath",SalesForceData.SalesOrgField,"220");
 
-
-
 		} catch (Exception e) {
 			TestStatus=0;
 			try {
@@ -150,10 +140,8 @@ public class Keywords extends KTOCTRBUtils{
 	{
 			if(TestStatus==1)
 			{
-
 			// Frontline = LogonToSalesforce().;
 			String AccountName = "AutomationKTOC";
-
 			// String OpportunityName=null;
 			OpportunityName = "Wartung" + RandomNumber();
 			WebElement OppoTab = FindTheElement("xpath", SalesForceData.OpportunityTab);
@@ -230,6 +218,7 @@ public class Keywords extends KTOCTRBUtils{
 				Assert.fail("Test Skipped: Opportunity Creation Failed");
 			}
 		}
+	
 		//Map Opportunity to FLTenders - FLTenders Tab
 		public void MapOpportunityWithFLTenders() throws Exception
 		{
@@ -398,7 +387,6 @@ public class Keywords extends KTOCTRBUtils{
 	}
 	
 	//Select Product Platform With The Given Product Name
-	
 	public void SelectProductPlatformWithTheGivenProduct(String ProductName) throws Exception
 	{
 			if(TestStatus==1)
