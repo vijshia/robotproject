@@ -16,7 +16,7 @@ public class testRun {
 			obj1.MapOpportunityWithFLTenders();
 			obj1.SwitchToKTOCApp();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();	
 		}
 	}
 

@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 3.0.2 (Jython 2.7.1 on java1.8.0_144)" name="Generator">
+<meta content="Robot Framework 3.0.4 (Jython 2.7.0 on java1.8.0_181)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJEBoACtnfgA5cYYAERsiAEx2lAAbKkQAcazBACZCVwAcM1cAK0ucAAMDBQAnQncASG+FABkoVQAyWmgA6f8SgvH/Ij99+GLyIinyJfn/Yi//KSLzUy9iZogpIld3/4JVVTkid7vyUjNVNVJEAGOZ6Z7pXwAABpmZkRiLAAAGiJZpmGAAAEEt3SXdxAAATC7o/u3EAAC8MRZpjasAAAY1VVVTYAAABKqqqqpAAAAADKqq4AAAAAAAv4sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMADAADgAwAA4AcAAOAHAADgBwAAwAcAAOAHAADgDwAA8A8AAPg/AAD+fwAA">
 <style media="all" type="text/css">
 /* Generic and misc styles */
@@ -516,7 +516,7 @@ a:link, a:visited {
 .doc pre {
     font-size: 1.1em;
     letter-spacing: 0.05em;
-    background: #f4f4f4;
+    background: #eee;
 }
 .doc code {
     padding: 0 0.2em;
@@ -654,8 +654,6 @@ window.model = (function () {
         };
         suite.searchTestsByTag = function (tag) {
             return suite.searchTests(function (test) {
-                if (tag.info == "critical" || tag.info == "non-critical")
-                    return containsTagPattern(test.tags, tag.label);
                 if (tag.combined)
                     return containsTagPattern(test.tags, tag.combined);
                 return containsTag(test.tags, tag.label);
@@ -1020,16 +1018,8 @@ window.util = function () {
         var base = window.output ? window.output.baseMillis : 0;
         return new Date(base + millis);
     }
-    function createGeneratedString(timestamp) {
-        var date = new Date(timestamp);
-        var dt = dateTimeFromDate(date).slice(0, 17);  // drop millis
-        var offset = date.getTimezoneOffset();
-        var sign = offset > 0 ? '-' : '+';
-        var hours = Math.floor(Math.abs(offset) / 60);
-        var mins = Math.abs(offset) % 60;
-        return dt + ' GMT' + sign + padTo(hours, 2) + ':' + padTo(mins, 2);
-    }
-    function createGeneratedAgoString(timestamp) {
+    function createGeneratedAgoString(generatedMillis) {
+        generatedMillis = timestamp(generatedMillis);
         function timeString(time, shortUnit) {
             var unit = {y: 'year', d: 'day', h: 'hour', m: 'minute',
                         s: 'second'}[shortUnit];
@@ -1040,7 +1030,7 @@ window.util = function () {
             // Not a perfect algorithm but ought to be enough
             return days - Math.floor(years / 4);
         }
-        var generated = Math.round(timestamp / 1000);
+        var generated = Math.round(generatedMillis / 1000);
         var current = Math.round(new Date().getTime() / 1000);
         var elapsed = current - generated;
         var prefix = '';
@@ -1099,7 +1089,6 @@ window.util = function () {
         dateTimeFromDate: dateTimeFromDate,
         formatElapsed: formatElapsed,
         timestamp: timestamp,
-        createGeneratedString: createGeneratedString,
         createGeneratedAgoString: createGeneratedAgoString,
         parseQueryString: parseQueryString
     };
@@ -1400,7 +1389,6 @@ function setTitle(suiteName, type) {
     document.title = util.unescape(title);
 }
 function addHeader() {
-    var generated = util.timestamp(window.output.generated);
     $.tmpl('<h1>${title}</h1>' +
            '<div id="generated">' +
              '<span>Generated<br>${generated}</span><br>' +
@@ -1409,8 +1397,8 @@ function addHeader() {
            '<div id="top-right-header">' +
              '<div id="report-or-log-link"><a href="#"></a></div>' +
            '</div>', {
-        generated: util.createGeneratedString(generated),
-        ago: util.createGeneratedAgoString(generated),
+        generated: window.output.generatedTimestamp,
+        ago: util.createGeneratedAgoString(window.output.generatedMillis),
         title: document.title
     }).appendTo($('#header'));
 }
@@ -1567,22 +1555,22 @@ storage = function () {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[0,0,66879],[[4,5,4,0,[],[0,201,66654],[[6,7,8,0,[],[0,224,66601],[],[[9,0,1,0,[10],[0,1602,65122,11],[]],[12,0,1,0,[10],[0,66733,48,13],[]]],[],[2,0,2,0]]],[],[],[2,0,2,0]]],[],[],[2,0,2,0]];
+window.output["suite"] = [1,2,3,0,[],[0,0,927],[[4,5,4,0,[],[0,354,557],[[6,7,8,0,[],[0,380,506,9],[],[[10,0,1,0,[11],[0,780,11,12],[]],[13,0,1,0,[11],[0,809,9,12],[]]],[],[2,0,2,0]]],[],[],[2,0,2,0]]],[],[],[2,0,2,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*KTOC TRB TestAutomation","*/Users/roja/eclipse-workspace/KTOC_TRB_TestAutomation","*.","*TestSuites","*/Users/roja/eclipse-workspace/KTOC_TRB_TestAutomation/TestSuites","*RegressionTestSuite","*/Users/roja/eclipse-workspace/KTOC_TRB_TestAutomation/TestSuites/RegressionTestSuite.robot","*TestSuites/RegressionTestSuite.robot","*Verify Logon To Salesforce","*Regression Test","eNqdVE1v4zYQvftX8OYESGjJkiXZgA+JE+wG7abFKugWKIpgRI4s1hSpJSk5wWL/e6kPb+OgvVQXSW+Gb2YeH/mo85ZVX4Ti+nj/wrBxQqsNUZpYj5PjENgQB2aPbvolIA0CfyVMaot8Vhpdk1YdlD4qgsZosyFHLEgn8OiZHCl1q/iMkIscrfX8RKhSbwir/ELcJmsa0ChepzQMgss+7c6IDs1ZFh+g7ZJGCV3FQZysyUWYZWHJ0zJL4nAVZCUWqzBJipQBrpKQZ2m6jFgJ2eVVI8GV2tTbT8DILzn5nYQBDUOakJcseU7iS3Lx5ebz48Pjhw15qpBYNH0DXPCh/8boTnAkoF6JdcAOzgDDoT9TQ6/Y5Wyn6xoUJ7w1A0K0IU7UqFu3ITGphZTCItOK29ltKySfxvN17CD5fElXEQ3nV8RgJyYMoqTIih7sufqkIEyug+Q6CkiYbqJ0E0TzWf5qHdYTYaWtrzj/8JO99tPean24/tVoKjUD6XlE44Nh6oUM6Tqky8hj2lIFA/1JnxEEwyoPjhqN0D/tTgp6+C/o4G2AZjR4DuN4PjvbSG32VDeovgK1KFGJtqbj5tLd8BqzZztooBBSOIGW/PENmkYKNmi6A1bhvYJCIt+WIC16sbQD1yMnoNZ+Md7XrRzWvEtX6I7aHHZaKWT/Ep88+e2t634bR/u/5iOtt9Odb/JOmO2iA7MoteSec8G7hVIlez4s11GaFl1qo/ig9unXfRX4Z68WTwvayzZ00+u1O32siy57+Pjd+wIOaD8iNLmCxlbabZ1p/SAN7PFnDTz3XnW4f92q3qvyivBeLrDvday8eSXaG4nG2YmjAvuk/TWQM4OoTpnTTp+fW1/wxxm72V2RwuijH/s/dVZ+czq871D9qAasv35yK3dDC1PiiD4of3Zag2eh3tKDLbRy+OJOFUY2fwHlThuvwjk+Nfbo/b4dN3nScBzyjYK9rS0zonnHzKzNvX+ZZ7fnEYtuvEk/++iEtQpfGv+LfJD2FivohG7N9vufs9N1+HC3IWXCilUaZpikGBeYAuISsgKWQbIKlvH6b8rG7BU=","*Verify Creating Opportunity and Mapping It With FLTender","*IllegalStateException: failure 'Test Skipped: Failed Logon To Salesforce'"]);
+window.output["strings"] = window.output["strings"].concat(["*","*KTOC TRB TestAutomation","*C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestAutomation","*.","*TestSuites","*C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestAutomation\\TestSuites","*RegressionTestSuite","*C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestAutomation\\TestSuites\\RegressionTestSuite.robot","*TestSuites/RegressionTestSuite.robot","eNqdUT1PAzEM3fsrrC5dULKXUgmVIhADQu0f8N35LhFJHCUObf89ubQLE4LNSt7z+/ChWCHIJCXCiNbRsF68OkcTuoOg0P7cUxTLYQ1HQxBRDAiD1HlI9osS0Jn6Itg5Al+yQNfWQXdpoBN1V5zqTWJP6sbKlyzkISaOlORyDyMn8JwIbKijx1nzrm4i2CCYROPD0ojEvNZ6smJKp3r2+kCOgi3+5UPn26hP9tPqXVN7amLL7X+ZG41b1YK72kUNV99yNQY9hjnowKfgGAcaYKysn1ar3jXzrYAsnHAiNTFPjjDa3IzYMNBZGfHu6vPPtNnkYvHoMkNu1xTCNDv77aDzd6mNr54bDnrH2YYJ3o7vO7X6BmaWxNg=","*Verify Logon To Salesforce","*Regression Test","eNqdUTFOAzEQ7POKFU0aZPchREIBBKIAlHxg727vbGF7LXtNkt/jc1JAhaAb2Ts7MztvmCgI5GKFIJOUCCNaR8Nq8ewcTeh2gkIPx56iWA4r2BuCiGJAGKTiIdlPSkBH6otg5wh8yQJdWwfdqQ0dqDvPqd4k9qQurHzKQh5i4khJTjcwcgLPicCGCj3Omtd1E8EawSQab6+MSMwrrScrpnSqZ6935CjY4p/edb5AfbAfVm+b2n0Tu9r8l7nWuFEtuKu3qOHqW67GoMcwBx34EBzjQAOMlfXTatU7Z74cIAsnnEhNzJMjjDY3IzYMdFRGvDv7/DNtNrlY3LnMtZ5vpQphmg3+1uv8Xerhl49tDnrH2YYJXvavW7X8ApXcyiw=","*Verify Creating Opportunity and Mapping It With FLTender"]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:01:05","fail":2,"label":"Critical Tests","pass":0},{"elapsed":"00:01:05","fail":2,"label":"All Tests","pass":0}],[{"elapsed":"00:01:05","fail":2,"label":"Regression Test","pass":0}],[{"elapsed":"00:01:07","fail":2,"id":"s1","label":"KTOC TRB TestAutomation","name":"KTOC TRB TestAutomation","pass":0},{"elapsed":"00:01:07","fail":2,"id":"s1-s1","label":"KTOC TRB TestAutomation.TestSuites","name":"TestSuites","pass":0},{"elapsed":"00:01:07","fail":2,"id":"s1-s1-s1","label":"KTOC TRB TestAutomation.TestSuites.RegressionTestSuite","name":"RegressionTestSuite","pass":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:00","fail":2,"label":"Critical Tests","pass":0},{"elapsed":"00:00:00","fail":2,"label":"All Tests","pass":0}],[{"elapsed":"00:00:00","fail":2,"label":"Regression Test","pass":0}],[{"elapsed":"00:00:01","fail":2,"id":"s1","label":"KTOC TRB TestAutomation","name":"KTOC TRB TestAutomation","pass":0},{"elapsed":"00:00:01","fail":2,"id":"s1-s1","label":"KTOC TRB TestAutomation.TestSuites","name":"TestSuites","pass":0},{"elapsed":"00:00:01","fail":2,"id":"s1-s1-s1","label":"KTOC TRB TestAutomation.TestSuites.RegressionTestSuite","name":"RegressionTestSuite","pass":0}]];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1537785146138;
+window.output["baseMillis"] = 1538110598581;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 67072;
+window.output["generated"] = 1307;
 </script>
 <script type="text/javascript">
 window.settings = {"background":{"fail":"#f66","nonCriticalFail":"#9e9","pass":"#9e9"},"logURL":"log.html","title":""};
