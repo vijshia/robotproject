@@ -13,6 +13,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,25 +27,47 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class testRun_KTOCTRB {
 
-	public static void main(String[] args) {
-		WebDriver driver = null;
+	static WebDriver driver;
+	static WebDriverWait wait;
+	static DecimalFormat roundoff = new DecimalFormat("##.00");
+	public static String opportunity;
+	static String equipmentid;
+//	static String ProductRelease;
+	static String salesoffice;
+	static int MS5HODatetoChange;
+	static String equipmentinService;
+	static String template;
+	static String FirstMaintenance;
+	static String discount;
+	static String tenderPrice;
+	static Boolean istenderPrice;
+	static Float check_showtotal_ITEfactor;
+	static String FreezePrintedVersion;
+	static String SaveandClose;
+	static String StageProbability_Stage;
+	
+	public static void main(String[] args) throws Exception {		
+		
+		testRun_KTOCTRB testClass=new testRun_KTOCTRB();
 		String browser = "ff";
-		String opportunity = "KOFCOL TRB SFA"; // 1723- Automation_Template_001
-		String ProductRelease="1723"; //1813 1723 1713
-		String equipmentid = "10503512"; // 10894788
+		opportunity = "KOFCOL TRB SFA"; // 1723- Automation_Template_001
+		String ProductRelease ="1723"; //1813 1723 1713
+		equipmentid = "10503512"; // 10894788
 		String equipment_ADDorChange = "change";
-		String salesoffice="VB FRPP";// VB FRPC, VB FRPF, VB FRPH, VB FRPP, VB FRRA, VB FRRE, VB FRRM, VB FRRN, VB FRRR, VB FRRS, VB FRRW
-		int MS5HODatetoChange=1;
+		salesoffice="VB FRPP";// VB FRPC, VB FRPF, VB FRPH, VB FRPP, VB FRRA, VB FRRE, VB FRRM, VB FRRN, VB FRRR, VB FRRS, VB FRRW
+		MS5HODatetoChange=2;
+		equipmentinService="DOC Door"; //LIS Elevator, EIS Escalator, Non-Lis Elevator, Non-Lis Escalator, DIS Door, DOC Door, Non DIS/DOC Door
 		String supervisor_ResponsiblePreson="06200428"; //06114080
-		String equipmentinService="DOC Door"; //LIS Elevator, EIS Escalator, Non-Lis Elevator, Non-Lis Escalator, DIS Door, DOC Door, Non DIS/DOC Door
-		String template = "Automation_Template_002";
-		String discount = "10";
-		String FirstMaintenance = "10";
-		Float check_showtotal_ITEfactor=2f;
-		String FreezePrintedVersion="No"; // Yes No
-		String SaveandClose="Yes"; //No Yes
+		template = "Automation_Template_002";
+		FirstMaintenance = "0";
+		discount = "10";
+		tenderPrice = "2001";
+		testRun_KTOCTRB.istenderPrice = false;
+		check_showtotal_ITEfactor=2f;
+		FreezePrintedVersion="No"; // Yes No
+		SaveandClose="Yes"; //No Yes
+		StageProbability_Stage="Budget Price"; //RFQ, Prospecting/Design Assist, Budget Price, Tender/Proposal, Negotiation/Review, Order Agreed
 		String StageProbability_Description="Automation Test Description";
-		String StageProbability_Stage="Budget Price"; //RFQ, Prospecting/Design Assist, Budget Price, Tender/Proposal, Negotiation/Review, Order Agreed
 		String StageProbability_probability="22";
 
 		if (browser.equalsIgnoreCase("ff")) {
@@ -60,485 +83,966 @@ public class testRun_KTOCTRB {
 			System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
 			driver = new ChromeDriver();
 		}
-		WebDriverWait wait = new WebDriverWait(driver, 50000);
-
+		wait = new WebDriverWait(driver, 50000);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
-
 		driver.get("https://test.salesforce.com");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
-		driver.findElement(By.id("username")).sendKeys("Prakash.mercina@kone.com.qa");
-		driver.findElement(By.id("password")).sendKeys("Welcome3");
-		driver.findElement(By.id("Login")).click();
-		// executes in salesforce LIGHTINING
-		// waiting for searchbox appears in homepage
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@title='Search Salesforce']")));
-		// entering Opportunity in homepage searchbox
-		driver.findElement(By.xpath("//*[@title='Search Salesforce']")).sendKeys(opportunity);
-		// waiting for searchbox values to appears in homepage
-		driver.findElement(By.xpath("//*[@title='Search Salesforce']")).sendKeys(Keys.RETURN);
-		// waiting for Opportunity to appear in grid
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//*[@title='"+opportunity+"'])[last()]")));
-		// clicking on Opportunity
-		driver.findElement(By.xpath("(//*[@title='"+opportunity+"'])[last()]")).click();
-		// waiting for FL Tenders header in Opportunity
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@title='FL Tenders' and starts-with(text(),'FL Tenders')]")));
-		// clicking on FL Tenders header in Opportunity
-		driver.findElement(By.xpath("//*[@title='FL Tenders' and starts-with(text(),'FL Tenders')]")).click();
-		// waiting for New FLTenderbutton in FL Tender page
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@title='New FL Tender' and text()='New FL Tender']")));
-		// clicking on New FLTenderbutton in FL Tender page
-		driver.findElement(By.xpath("//*[@title='New FL Tender' and text()='New FL Tender']")).click();
-		// waiting for iframe to appear
-		WebElement switchframe1 = driver.findElement(By.xpath("//iframe[starts-with(@scrolling,'yes') and starts-with(@id,'vfFrameId_')]"));
-		driver.switchTo().frame(switchframe1);
-		WebElement switchframe2 = driver.findElement(By.id("clientTarget"));
-		driver.switchTo().frame(switchframe2);
-			System.out.println("is "+ProductRelease+" displaying:"+ driver.findElement(By.xpath("//*[text()='Product release for "+ProductRelease+"']/..//img[2]")).isDisplayed()+ "/ is OK displaying:"
-						+ driver.findElement(By.xpath("//*[@class='pbn3' and text()='OK']")).isDisplayed());
-		driver.findElement(By.xpath("//*[text()='Product release for "+ProductRelease+"']/..//img[2]")).click();
-			System.out.println("Release "+ProductRelease+" is Selected");
-		WebElement findElement = driver.findElement(By.xpath("//*[@class='pbn3' and text()='OK']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", findElement);
-			System.out.println("scrolled to OK button");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='pbOK']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='pbOK']")).click();
-			System.out.println("Clicked on OK button");
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='CustomerID']")).clear();
-			System.out.println("CustomerID existing value cleared");
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='EquipmentID']")).sendKeys(equipmentid);
-			System.out.println("EquipmentID entered");
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='CustomerID']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-//		driver.findElement(By.xpath("//*[@data-ctcwgtname='CustomerID']")).click();
-		WebElement element_customerID = driver.findElement(By.xpath("//*[@data-ctcwgtname='CustomerID']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element_customerID);
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='EquipmentID']")));
-		WebElement element_EquipmentID = driver.findElement(By.xpath("//*[@data-ctcwgtname='EquipmentID']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element_EquipmentID);
-			System.out.println("EquipmentID clicked");
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='ic:EquipmentID']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-//		driver.findElement(By.xpath("//*[@data-ctcwgtname='ic:EquipmentID']")).click();
-		WebElement element_equipmentID = driver.findElement(By.xpath("//*[@data-ctcwgtname='ic:EquipmentID']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element_equipmentID);
-			System.out.println("Equipment loader clicked");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Add new equipment' or text()='Found no dataset']")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='"+equipmentid+"']/..//img")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[text()='" + equipmentid + "']/..//img")).click();
-		System.out.println("checkbox clicked");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-			if(equipment_ADDorChange.equalsIgnoreCase("add")) {
-			// click on ADD
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='ic:Constant.!IcNew']")));
-				driver.findElement(By.xpath("//*[@data-ctcwgtname='ic:Constant.!IcNew']")).click();
-				System.out.println("ADD button clicked");
-			} else if(equipment_ADDorChange.equalsIgnoreCase("change")) {
-			// click on Change
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='ic:Constant.!IcDynamicForm']")));
-				driver.findElement(By.xpath("//*[@data-ctcwgtname='ic:Constant.!IcDynamicForm']")).click();
-				System.out.println("Change button clicked");
-			}
-		WebElement Elementtoscroll = driver.findElement(By.xpath("//*[text()='" + equipmentid + "']/../..//div/div[text()='Project']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", Elementtoscroll);
-		System.out.println("scroll UP");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[text()='" + equipmentid + "']/../..//div/div[text()='Project']")).click();
-			System.out.println("Project clicked");
-		SimpleDateFormat input_dateformat = new SimpleDateFormat("dd/mm/yyyy");
-		SimpleDateFormat output_dateformat = new SimpleDateFormat("dd/mm/yyyy");
-		String MS5HODate_toChange = null;
-		if(driver.findElement(By.xpath("//*[@data-ctcwgtname='DateHandoverMS5_1']")).getCssValue("background-image").contains("0191f5aaded042c33180d357113667fbefc81b95")) {
-			List<WebElement> elements_InstallationDate=driver.findElements(By.xpath("//div[text()='Project']/..//input"));
-			String getDate = null;
-			Date formatedDate = null;
-				for(WebElement element:elements_InstallationDate) {
-					if(!element.getAttribute("value").isEmpty()) {
-						getDate=element.getAttribute("value");
-						break;
-					}
-				}
-				try {
-					formatedDate=input_dateformat.parse(getDate);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				formatedDate=DateUtils.addDays(formatedDate, MS5HODatetoChange);
-				MS5HODate_toChange=output_dateformat.format(formatedDate);
-				System.out.println("MS5HODatetoChange:"+MS5HODate_toChange);
-		}
-			System.out.println("MS5HODate_Current: "+driver.findElement(By.xpath("//*[@data-ctcwgtname='DateHandoverMS5']/input")).getAttribute("value"));
-		WebElement element_MS5HODate=driver.findElement(By.xpath("//*[@data-ctcwgtname='DateHandoverMS5']/input"));
-		element_MS5HODate.clear();
-			System.out.println("MS5HODate_Current Cleared");
-		wait.until(ExpectedConditions.elementToBeClickable(element_MS5HODate));
-		element_MS5HODate.sendKeys(MS5HODate_toChange);
-			if(element_MS5HODate.getAttribute("value").isEmpty()) {
-				element_MS5HODate.sendKeys(MS5HODate_toChange);
-			}
-			System.out.println("*****MS5HODate Changed to ="+MS5HODate_toChange);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='SalesOffice']/button")).click();
-			System.out.println("SalesOffice drop down clicked");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//div[text()='"+salesoffice+"']")).click();
-		System.out.println("SalesOffice value "+salesoffice+" Selected");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		WebElement element_equipment = driver.findElement(By.xpath("(//*[text()='" + equipmentid + "'])[last()-1]"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element_equipment);
-		System.out.println("Equipment clicked back");
-//	        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='Supervisor_Select']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='Supervisor_Select']")).click();
-		System.out.println("Supervisor drop down clicked");
-		String a[] = salesoffice.split(" ");
-		String dd_SalesOffice=a[1].trim();
-//		System.out.println("dd_SalesOffice: "+dd_SalesOffice);
-//	        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		WebElement element_supervisor = driver.findElement(By.xpath("//div[text()='"+dd_SalesOffice+"']/..//div[text()='"+supervisor_ResponsiblePreson+"']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element_supervisor);
-		System.out.println(supervisor_ResponsiblePreson+" is clicked");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='EquipmentInService']/button")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='EquipmentInService']/button")).click();
-		System.out.println("EquipmentInService drop down clicked");
-//	        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div/div[text()='"+equipmentinService+"']")));
-		driver.findElement(By.xpath("//div/div[text()='"+equipmentinService+"']")).click();
-		System.out.println(equipmentinService+" is clicked in EquipmentInService");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='HydraulicElevCheck' and @data-ctctype='Radiobutton']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='HydraulicElevCheck' and @data-ctctype='Radiobutton']")).click();
-		System.out.println("HydraulicElevCheck clicked (**need to work**)");
-		Actions rightclick_equipment = new Actions(driver).contextClick(element_equipment);
-		rightclick_equipment.build().perform();
-		System.out.println("Rightclick performed in solution");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Open Templates']")));
-		driver.findElement(By.xpath("//div[text()='Open Templates']")).click();
-		System.out.println("open templates clicked in solution");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[@data-ctcwgtname='ic_Constant__Closed'])[last()-1]")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("(//*[@data-ctcwgtname='ic_Constant__Closed'])[last()-1]")).click();
-		System.out.println("Binary Templates: clicked");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='SearchString']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='SearchString']")).clear();
-		System.out.println("clear search field value");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='SearchString']")).sendKeys(template);
-		System.out.println(template + " search field value");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='SearchShared_2']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='SearchShared_2']/div[1]")).click();
-		System.out.println("Shared templates (for all sales orgs.) Clicked");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//*[text()='" + template + "'])[last()]")));
-		WebElement doubleclick_elementTemplate = driver.findElement(By.xpath("(//*[text()='" + template + "'])[last()]"));
-		Actions doubleclick_template = new Actions(driver).doubleClick(doubleclick_elementTemplate);
-		doubleclick_template.build().perform();
-		System.out.println(template+" Template Clicked");
-		List<WebElement> Elements_ConsistencyCheck_1 = driver.findElements(By.xpath("//div/div[text()='Project']/../..//div/div"));
-		for (WebElement Element : Elements_ConsistencyCheck_1) {
-			if (Element.getCssValue("background-image").contains("0191f5aaded042c33180d357113667fbefc81b95")) {
-				System.out.println(Element.getCssValue("background-image"));
-			} else if (Element.getCssValue("background-image").contains("cad9a93f6c879df1ed1373d2853634026ff3224f")) {
-				System.out.println(Element.getCssValue("background-image"));
-			}
-		}
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='EquipmentID']")));
-		WebElement element_pricingicon=driver.findElement(By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[3]/img"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element_pricingicon);
-		System.out.println("scrolled to pricingicon");
-		element_pricingicon.click();
-		System.out.println("pricing icon Clicked");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		WebElement scrollto_Firstmaintenance = driver.findElement(By.xpath("//*[@data-ctcwgtname='FreeMaintenance']/button"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", scrollto_Firstmaintenance);
-		System.out.println("scrolled to Firstmaintenance");
-//	    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='mf' and @class='ca05gp cz009']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='FreeMaintenance']/button")).click();
-		System.out.println("First maintenance: Clicked");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuité ')]")).click();
-		System.out.println("First maintenance: " + FirstMaintenance + " Clicked");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='icGraphic']")));
-		WebElement scrollto_TMP_Discount = driver.findElement(By.xpath("//*[@data-ctcwgtname='icGraphic']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", scrollto_TMP_Discount);
-		System.out.println("scrolled UP to Discount");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='icGraphic']")));
-		WebElement doubleclick_elementDiscount = driver.findElement(By.xpath("//*[text()='Project']/..//div[contains(text(),' %')]"));
-		Actions doubleclick_discount = new Actions(driver).doubleClick(doubleclick_elementDiscount);
-		doubleclick_discount.build().perform();
-		System.out.println("double Clicked on discount");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='TMP_Discount']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='TMP_Discount']")).clear();
-		System.out.println("TMP_Discount cleared");
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='TMP_Discount']")).sendKeys(discount);
-		System.out.println("TMP_Discount entered as: " + discount);
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='pbOK']")).click();
-		System.out.println("Discount pbOK clicked");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Project']/..//div[text()='" + discount + ".00 %']")));
-		List<WebElement> Elements_PriceOverview = driver.findElements(By.xpath("//*[text()='Project']/..//*"));
-		Float arrary[] = new Float[2];
-		Float TargetPrice, Firstmaintenance, Discount = null, TenderPrice = null;
-		for (WebElement Element : Elements_PriceOverview) {
-			if (!Element.getText().isEmpty() || Element.getAttribute("value") != null) {
-				if (Element.getAttribute("value") == null) {
-					if (!Element.getText().contains("Project")) {
-						if (!Element.getText().contains("%")) {
-							String element_readTenderPrice = Element.getText().replaceAll("[€ .]", "");
-							element_readTenderPrice = element_readTenderPrice.replace(",", ".");
-							TenderPrice = Float.valueOf(element_readTenderPrice);
-//							System.out.println("****TenderPrice:" + TenderPrice);
-						} else {
-							String element_readDiscount = Element.getText().replaceAll("[% ]", "");
-							Discount = Float.valueOf(element_readDiscount);
-//							System.out.println("****Discount:" + Discount);
-						}
-					}
-				} else {
-//	        		System.out.println(count1+". Attribute==>"+Element.getAttribute("value"));
-					String element_read = Element.getAttribute("value").replaceAll("[€ .]", "");
-					element_read = element_read.replace(",", ".");
-					Float converted = Float.valueOf(element_read);
-//	        		System.out.println("converted: "+converted);
-					if (arrary[0] == null) {
-						arrary[0] = converted;
-						/*System.out.println("ARRAY 1");
-						System.out.println(arrary[0] = converted);*/
-					} else {
-						arrary[1] = converted;
-						/*System.out.println("ARRAY 2");
-						System.out.println(arrary[1] = converted);*/
-					}
-				}
-			}
-		}
-		if(FirstMaintenance.equals("0")) {
-			arrary[1] = 0f;
-		}
-		if (arrary[0] > arrary[1]) {
-			TargetPrice = arrary[0];
-			Firstmaintenance = arrary[1];
-			System.out.println("**CONDTION_1** TargetPrice: "+TargetPrice);
-//			System.out.println("**CONDTION_1** Firstmaintenance:"+Firstmaintenance);
-		} else {
-			TargetPrice = arrary[1];
-			Firstmaintenance = arrary[0];
-//			System.out.println("**CONDTION_2** TargetPrice: "+TargetPrice);
-//			System.out.println("**CONDTION_2** Firstmaintenance:"+Firstmaintenance);
-		}
-		Float TargetMinusMaintenance = TargetPrice - Firstmaintenance;
-		Float TargetplusDiscount = TargetMinusMaintenance - (TargetMinusMaintenance * (Discount / 100));
-		Float TargetPriceFinal = TargetplusDiscount + Firstmaintenance;
-		DecimalFormat roundoff = new DecimalFormat("##.00");
-		System.out.println("TargetPriceFinal:" + roundoff.format(TargetPriceFinal) + " /TargetMinusMaintenance:"
-				+ roundoff.format(TargetMinusMaintenance) + " /TargetplusDiscount:"
-				+ roundoff.format(TargetplusDiscount));
-		System.out.println(
-				"COmpare TargetFinal: " + roundoff.format(TargetPriceFinal).equals(roundoff.format(TenderPrice)));
-		WebElement scrollto_DetailbreakdownTab = driver.findElement(By.xpath("//*[text()='Detail breakdown']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", scrollto_DetailbreakdownTab);
-		System.out.println("scrolled up to DetailbreakdownTab");
+		
+		testClass.LogonToSalesforce("s.vijay@kone.com.qa", "Vijay1234");
+		testClass.CreateOpportunityORSearchOpportunity();
+		testClass.AddEquipmentIDElevator(ProductRelease, equipment_ADDorChange);
+		testClass.CheckHandOverDateIsGreaterThanInstallationDate();
+		testClass.CheckSalesOfficeisSelected();
+		testClass.SelectSupervisor(supervisor_ResponsiblePreson);
+		testClass.SelectEquipmentInService();
+		testClass.SelectTemplateToBeUploaded();
+		testClass.VerifyTenderConsistency();
+		testClass.GetTenderNo();
+		testClass.pricingIconClick();
+		testClass.CheckTenderPriceAfterDiscountUpdate();
+		testClass.GetTargetPrice();
+		testClass.VerifyDiscountByChangingTheTenderPrice();
+		testClass.GetTargetPrice();
+		testClass.ValidateDetailBreakdownTab();
+		testClass.GoToDocumentsTabandClickTheTender();
+		testClass.VerifySuccessfulMessageDisplayed();
+		testClass.ClickSaveandCloseButton(StageProbability_Description, StageProbability_probability);
+		testClass.GetSalesPriceFromSalesForce();
+		testClass.HandShake();
+		
 		//PricingOverview, additional discount
 		/*wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='nPricingOverview']/div[4]")));
 		driver.findElement(By.xpath("//*[@data-ctcwgtname='nPricingOverview']/div[4]")).click();
 		System.out.println("additional discount CLICKED");*/
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Detail breakdown']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[text()='Detail breakdown']")).click();
-		System.out.println("Detailed breakdown Clicked");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='nCustomComboboxProductSelection']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='nCustomComboboxProductSelection']")).click();
-		System.out.println("Dropdown in DetailedbreakdownTAB Clicked");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Ropes']")));
-		WebElement element_Ropes = driver.findElement(By.xpath("//*[text()='Ropes']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element_Ropes);
-		System.out.println("ROPES CLICKED (**need to work**)");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[text()='Ropes']")));
-		driver.findElement(By.xpath("//*[@src='SMG?i=acdda3ea032315878f95d47164849ea79f364ad3&w=16&h=16']")).click();
-		System.out.println("ShowTotalCostCalculationDetails CLICKED (**need to work**)");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		List<WebElement> Elements_showtotalcostFirstRow = driver.findElements(By.xpath("//*[text()='Subtotal']/..//*"));
-		List<String> ls_TotalCostHeader=new LinkedList<>();
-		List<Float> ls_TotalCostValue=new LinkedList<>();
-		HashMap<String, Float> hm_data = new HashMap<String, Float>();
-		/*for(WebElement Element_showtotalcostHeader:Elements_showtotalcostHeader) {
-			if(!Element_showtotalcostHeader.getText().isEmpty())	{
-				System.out.println("HEADER_Element_showtotalcostHeader:"+Element_showtotalcostHeader.getText());*/
-				ls_TotalCostHeader.add("Target Price");
-				ls_TotalCostHeader.add("Material costs");
-				ls_TotalCostHeader.add("Material cost (SL Currency)");
-				ls_TotalCostHeader.add("Reference hours");
-				ls_TotalCostHeader.add("ITE factor");
-				ls_TotalCostHeader.add("Installation Hours");
-				ls_TotalCostHeader.add("Labour rate");
-				ls_TotalCostHeader.add("Labor Costs");
-				ls_TotalCostHeader.add("Contigency");
-				ls_TotalCostHeader.add("Overhead Recovery");
-				ls_TotalCostHeader.add("Full Costs");
-				ls_TotalCostHeader.add("Total Cost");
-				ls_TotalCostHeader.add("Ratio of Labor");
-				ls_TotalCostHeader.add("Tender Price");
-/*			}
-		}*/
-	Float convertedvalue=null;
-		for(WebElement Element_showtotalcostFirstRow:Elements_showtotalcostFirstRow) {
-			if (Element_showtotalcostFirstRow.getAttribute("value") == null ) {
-				if(!Element_showtotalcostFirstRow.getText().isEmpty())	{
-//					System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
-						if(!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
-							String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h]", "");
-							getvalue = getvalue.replace(",", ".");
-							convertedvalue = Float.valueOf(getvalue);
-							ls_TotalCostValue.add(convertedvalue);
+	}
+	public WebElement enteringValues(By locator, String value) throws Exception{
+		try {
+			driver.findElement(locator).sendKeys(value);
+			return driver.findElement(locator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement enteringValues(By locator, Keys key) throws Exception{
+		try {
+			driver.findElement(locator).sendKeys(key);
+			return driver.findElement(locator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement clickonButton(By locator) throws Exception{
+		try {
+			driver.findElement(locator).click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement waitForVisibilityOfElementLocated(By locator) throws Exception{
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement waitForpresenceOfElementLocated(By locator) throws Exception{
+		try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement waitForElementToBeClickable(By locator) throws Exception{
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(locator));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement waitForinvisibilityOfElementLocated(By locator) throws Exception{
+		try {
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement gettingWebElement(By by) {
+		try {
+			WebElement getwebelement = driver.findElement(by);
+			return getwebelement;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public List<WebElement> gettingWebElementsfromList(By by) {
+		List<WebElement> localvariable = null;
+		try {
+			localvariable = driver.findElements(by);
+			return localvariable;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement switchtoDefaultContentFrame() {
+		try {
+			driver.switchTo().defaultContent();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement switchtoFrame(WebElement frame) {
+		try {
+			driver.switchTo().frame(frame);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement scrollIntoView_Javascript(WebElement element) {
+		try {
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public WebElement click_Javascript(WebElement element) {
+		try {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}	
+	
+	public static By txt_userName = By.id("username");
+	public static By txt_password = By.id("password");
+	public static By btn_login = By.id("Login");
+	public void LogonToSalesforce(String username, String password) throws Exception{
+		try {
+			waitForVisibilityOfElementLocated(txt_userName);
+			enteringValues(txt_userName, username);
+			enteringValues(txt_password, password);
+			clickonButton(btn_login);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By txt_searchBox = By.xpath("//*[@title='Search Salesforce']");
+	public static By header_flTender = By.xpath("//*[@title='FL Tenders' and starts-with(text(),'FL Tenders')]");
+	public static By btn_flTender = By.xpath("//*[@title='New FL Tender' and text()='New FL Tender']");
+	public void CreateOpportunityORSearchOpportunity() throws Exception{
+		try {
+			By lnk_selectOpportunity = By.xpath("(//*[@title='"+opportunity+"'])[last()]");
+			waitForVisibilityOfElementLocated(txt_searchBox);
+			// entering Opportunity in homepage searchbox
+			enteringValues(txt_searchBox, opportunity);
+			System.out.println("Entered "+opportunity+ " in Search box");
+			// waiting for searchbox values to appears in homepage
+			enteringValues(txt_searchBox, Keys.RETURN);
+			// waiting for Opportunity to appear in grid
+			waitForVisibilityOfElementLocated(lnk_selectOpportunity);
+			// clicking on Opportunity
+			clickonButton(lnk_selectOpportunity);
+			System.out.println(opportunity+" has been clicked");
+			// waiting for FL Tenders header in Opportunity
+			waitForElementToBeClickable(header_flTender);
+			// clicking on FL Tenders header in Opportunity
+			clickonButton(header_flTender);
+			System.out.println("clicked on FL Tenders header in Opportunity");
+			// waiting for New FLTenderbutton in FL Tender page
+			waitForVisibilityOfElementLocated(btn_flTender);
+			// clicking on New FLTenderbutton in FL Tender page
+			clickonButton(btn_flTender);
+			System.out.println("clicked on New FLTender button in FL Tender page");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By firstFrame = By.xpath("//iframe[starts-with(@scrolling,'yes') and starts-with(@id,'vfFrameId_')]");
+	public static By secondFrame = By.id("clientTarget");
+	public static By btn_productrelease_OK = By.xpath("//*[@data-ctcname='Product_Release_Version_Ok_B']");
+	public static By elementtoInvisible = By.xpath("//*[@id='gp' and @class='gp']");
+	public static By txt_CustomerID = By.xpath("//*[@data-ctcname='Customer_ID_T']");
+	public static By txt_EquipmentID = By.xpath("//*[@data-ctcname='Equipment_ID_T']");
+	public static By lookup_EquipmentID = By.xpath("//*[@data-ctcname='Equipment_ID_I']");
+	public static By header_AddNewEquipment = By.xpath("//*[text()='Add new equipment' or text()='Found no dataset']");
+	public static By btn_addEquipment = By.xpath("//*[@data-ctcname='Equipment_List_AddEquipmentNo_PopUp_I']");
+	public static By btn_changeEquipment = By.xpath("//*[@data-ctcname='Equipment_List_ChangeEquipmentData_PopUp_I']");
+	public void AddEquipmentIDElevator(String ProductRelease, String equipment_ADDorChange) throws Exception{
+		try {
+			By checkbox_Equipment = By.xpath("//*[text()='"+equipmentid+"']/..//img");
+			By radio_ProductRelease = By.xpath("//*[text()='Product release for "+ProductRelease+"']/..//img[2]");
+			WebElement switchframe1 = gettingWebElement(firstFrame);
+			switchtoFrame(switchframe1);
+			WebElement switchframe2 = gettingWebElement(secondFrame);
+			switchtoFrame(switchframe2);
+			clickonButton(radio_ProductRelease);
+			System.out.println("Release "+ProductRelease+" is Selected");
+			WebElement findElement_Ok = gettingWebElement(btn_productrelease_OK); //*[@data-ctcwgtname='pbOK']
+			scrollIntoView_Javascript(findElement_Ok);
+			System.out.println("scrolled to OK button");
+			wait.until(ExpectedConditions.elementToBeClickable(findElement_Ok));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			click_Javascript(findElement_Ok); 
+			System.out.println("Clicked on OK button");
+			WebElement element_customerID = gettingWebElement(txt_CustomerID); //*[@data-ctcwgtname='CustomerID']
+			element_customerID.clear(); 
+			System.out.println("CustomerID existing value cleared");
+			WebElement element_EquipmentID = gettingWebElement(txt_EquipmentID); //*[@data-ctcwgtname='EquipmentID']
+			element_EquipmentID.clear();
+			element_EquipmentID.sendKeys(equipmentid); 
+			System.out.println(equipmentid+" EquipmentID entered***");
+			wait.until(ExpectedConditions.elementToBeClickable(element_customerID));
+			waitForElementToBeClickable(txt_CustomerID);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(txt_CustomerID);
+			wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentID));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_EquipmentID.click();
+			System.out.println("EquipmentID clicked");
+			wait.until(ExpectedConditions.elementToBeClickable(lookup_EquipmentID)); 
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(lookup_EquipmentID);
+			System.out.println("Equipment loader clicked");
+			waitForVisibilityOfElementLocated(header_AddNewEquipment);
+			waitForVisibilityOfElementLocated(checkbox_Equipment);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(checkbox_Equipment);
+			System.out.println("checkbox clicked");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+				if(equipment_ADDorChange.equalsIgnoreCase("add")) {
+					WebElement element_EquipmentIAddButton = gettingWebElement(btn_addEquipment); //*[@data-ctcwgtname='ic:Constant.!IcNew']
+					wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentIAddButton)); 
+					element_EquipmentIAddButton.click();
+					System.out.println("ADD button clicked");
+				} else if(equipment_ADDorChange.equalsIgnoreCase("change")) {
+					WebElement element_EquipmentIChangeButton = gettingWebElement(btn_changeEquipment); //*[@data-ctcwgtname='ic:Constant.!IcDynamicForm']
+					wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentIChangeButton)); 
+					element_EquipmentIChangeButton.click();
+					System.out.println("Change button clicked");
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static By date_DateHandoverMS5 = By.xpath("//*[@data-ctcwgtname='DateHandoverMS5_1']");
+	public static By txt_DateHandoverMS5 = By.xpath("//*[@data-ctcname='MS5_HandOver_Complete_T']/input");
+	public void CheckHandOverDateIsGreaterThanInstallationDate() throws Exception{
+		try {
+			By tree_project = By.xpath("//*[text()='" + equipmentid + "']/../..//div/div[text()='Project']");
+			WebElement Elementtoscroll = gettingWebElement(tree_project);
+			scrollIntoView_Javascript(Elementtoscroll);
+			System.out.println("scroll UP");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(tree_project);
+			System.out.println("Project clicked");
+			SimpleDateFormat input_dateformat = new SimpleDateFormat("dd/mm/yyyy");
+			SimpleDateFormat output_dateformat = new SimpleDateFormat("dd/mm/yyyy");
+			String MS5HODate_toChange = null;
+			if(gettingWebElement(date_DateHandoverMS5).getCssValue("background-image").contains("0191f5aaded042c33180d357113667fbefc81b95")) {
+				List<WebElement> elements_InstallationDate=driver.findElements(By.xpath("//div[text()='Project']/..//input"));
+				String getDate = null;
+				Date formatedDate = null;
+					for(WebElement element:elements_InstallationDate) {
+						if(!element.getAttribute("value").isEmpty()) {
+							getDate=element.getAttribute("value");
+							break;
 						}
-				}
-			} else if(!Element_showtotalcostFirstRow.getAttribute("value").isEmpty() && Element_showtotalcostFirstRow.getAttribute("value")!=null)	{
-//					System.out.println("1stROW_getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
-					String getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h .]", "");
-					getvalue = getvalue.replace(",", ".");
-					convertedvalue = Float.valueOf(getvalue);
-					ls_TotalCostValue.add(convertedvalue);
-			}
-			/*if (!Element_showtotalcostFirstRow.getText().isEmpty() || Element_showtotalcostFirstRow.getAttribute("value") != null) {
-				if (Element_showtotalcostFirstRow.getAttribute("value") == null) {
-					if (!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
-						System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
 					}
-				} else if (!Element_showtotalcostFirstRow.getAttribute("value").isEmpty()) {
-					System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
+					try {
+						formatedDate=input_dateformat.parse(getDate);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					formatedDate=DateUtils.addDays(formatedDate, MS5HODatetoChange);
+					MS5HODate_toChange=output_dateformat.format(formatedDate);
+					System.out.println("MS5HODatetoChange:"+MS5HODate_toChange);
+			}
+			System.out.println("MS5HODate_Current: "+gettingWebElement(txt_DateHandoverMS5).getAttribute("value"));
+			WebElement element_MS5HODate=gettingWebElement(txt_DateHandoverMS5); //*[@data-ctcwgtname='DateHandoverMS5']/input
+			element_MS5HODate.clear();
+			System.out.println("MS5HODate_Current Cleared");
+			wait.until(ExpectedConditions.elementToBeClickable(element_MS5HODate));
+			element_MS5HODate.sendKeys(MS5HODate_toChange);
+				if(element_MS5HODate.getAttribute("value").isEmpty()) {
+					element_MS5HODate.sendKeys(MS5HODate_toChange);
 				}
+			System.out.println("MS5HODate Changed to ="+MS5HODate_toChange);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By dd_salesOffice = By.xpath("//*[@data-ctcname='SalesOffice_T']/button");
+	public void CheckSalesOfficeisSelected() throws Exception{
+		try {
+			By value_salesOffice = By.xpath("//div[text()='"+salesoffice+"']");
+			clickonButton(dd_salesOffice); //*[@data-ctcwgtname='SalesOffice']/button
+			System.out.println("SalesOffice drop down clicked");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(value_salesOffice);
+			System.out.println("SalesOffice value "+salesoffice+" Selected");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By dd_supervisor = By.xpath("//*[@data-ctcname='Supervisor_C']");
+	public void SelectSupervisor(String supervisor_ResponsiblePreson) throws Exception{
+		try {
+			By tree_equipmentID = By.xpath("(//*[text()='" + equipmentid + "'])[last()-1]");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement element_equipment = gettingWebElement(tree_equipmentID);
+			click_Javascript(element_equipment);
+			System.out.println("Equipment clicked back");
+			WebElement element_Supervisor = gettingWebElement(dd_supervisor); //*[@data-ctcwgtname='Supervisor_Select']
+			wait.until(ExpectedConditions.elementToBeClickable(element_Supervisor)); 
+			element_Supervisor.click();
+			System.out.println("Supervisor drop down clicked");
+			String a[] = salesoffice.split(" ");
+			String dd_SalesOffice=a[1].trim();
+//		System.out.println("dd_SalesOffice: "+dd_SalesOffice);
+//	        waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement element_ResponsiblePreson = driver.findElement(By.xpath("//div[text()='"+dd_SalesOffice+"']/..//div[text()='"+supervisor_ResponsiblePreson+"']"));
+			click_Javascript(element_ResponsiblePreson);
+			System.out.println(supervisor_ResponsiblePreson+" is clicked");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By dd_equipmentinService = By.xpath("//*[@data-ctcname='Equipment_In_Service_C']/button");
+	public static By radio_hydeaulicElevator = By.xpath("//*[@data-ctcname='Hydraulic_Elevator_Check_CB']");
+	public void SelectEquipmentInService() throws Exception{
+		try {
+			By value_equipmentinService = By.xpath("//div/div[text()='"+equipmentinService+"']");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement element_EquipmentInService = gettingWebElement(dd_equipmentinService);
+			wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentInService)); //*[@data-ctcwgtname='EquipmentInService']/button
+			element_EquipmentInService.click();
+			System.out.println("EquipmentInService drop down clicked");
+			waitForElementToBeClickable(value_equipmentinService);
+			clickonButton(value_equipmentinService);
+			System.out.println(equipmentinService+" is clicked in EquipmentInService");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			waitForElementToBeClickable(radio_hydeaulicElevator);
+			clickonButton(radio_hydeaulicElevator);
+			System.out.println("HydraulicElevCheck clicked need to work");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By lnk_openTemplates = By.xpath("//div[text()='Open Templates']");
+	public static By lnk_binaryTemplates = By.xpath("(//*[@data-ctcname='Template_Open_I'])[last()-1]");
+	public static By txt_searchTemplate = By.xpath("//*[@data-ctcname='Template_Search_T']");
+	public static By radio_sharedTemplate = By.xpath("//*[@data-ctcname='Shared_Template_AllOrg_R']");
+	public void SelectTemplateToBeUploaded() throws Exception{
+		try {
+			By tree_equipmentID = By.xpath("//*[text()='" + equipmentid + "']");
+			By lnk_template = By.xpath("(//*[text()='" + template + "'])[last()]");
+			WebElement element_equipment = gettingWebElement(tree_equipmentID); //driver.findElement(By.xpath("//*[text()='" + equipmentid + "']"));
+			System.out.println("Equipment identified for RightClick");
+			Actions rightclick_equipment = new Actions(driver).contextClick(element_equipment);
+			rightclick_equipment.build().perform();
+			System.out.println("Rightclick performed in solution");
+			waitForElementToBeClickable(lnk_openTemplates);
+			clickonButton(lnk_openTemplates);
+			System.out.println("open templates clicked in solution");
+			waitForElementToBeClickable(lnk_binaryTemplates); //(//*[@data-ctcwgtname='ic_Constant__Closed'])[last()-1]
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(lnk_binaryTemplates);
+			System.out.println("Binary Templates: clicked");
+			WebElement element_TemplateSearch = gettingWebElement(txt_searchTemplate);
+			wait.until(ExpectedConditions.visibilityOf(element_TemplateSearch)); //*[@data-ctcwgtname='SearchString']
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_TemplateSearch.clear();
+			System.out.println("clear search field value");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_TemplateSearch.sendKeys(template);
+			System.out.println(template + " search field value");
+			WebElement element_SharedTemplateAllOrg = gettingWebElement(radio_sharedTemplate); //*[@data-ctcwgtname='SearchShared_2']
+			wait.until(ExpectedConditions.visibilityOf(element_SharedTemplateAllOrg)); 
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_SharedTemplateAllOrg.click(); //*[@data-ctcwgtname='SearchShared_2']/div[1]
+			System.out.println("Shared templates (for all sales orgs.) Clicked");
+			waitForVisibilityOfElementLocated(lnk_template);
+			WebElement doubleclick_elementTemplate = gettingWebElement(lnk_template);
+			Actions doubleclick_template = new Actions(driver).doubleClick(doubleclick_elementTemplate);
+			doubleclick_template.build().perform();
+			System.out.println(template+" Template Clicked");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By consistencyCheckElement = By.xpath("//div/div[text()='Project']/../..//div/div");
+	public void VerifyTenderConsistency() throws Exception{
+		try {
+			List<WebElement> Elements_ConsistencyCheck_1 = gettingWebElementsfromList(consistencyCheckElement);
+			for (WebElement Element : Elements_ConsistencyCheck_1) {
+				if (Element.getCssValue("background-image").contains("0191f5aaded042c33180d357113667fbefc81b95")) {
+					System.out.println(Element.getCssValue("background-image"));
+				} else if (Element.getCssValue("background-image").contains("cad9a93f6c879df1ed1373d2853634026ff3224f")) {
+					System.out.println(Element.getCssValue("background-image"));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By text_tenderNumber = By.xpath("//*[@data-ctcname='Document_Number_T']");
+	public void GetTenderNo() throws Exception{
+		String getTenderNo=gettingWebElement(text_tenderNumber).getAttribute("value");
+		System.out.println("Tender # is :"+getTenderNo.trim());
+	}
+	
+	//***reuse pricingIconClick method is the prerequisite for Pricing screen***
+	public void CheckTenderPriceAfterDiscountUpdate() throws Exception{
+		selectingDiscount();
+		selectingFirstMaintenance();
+	}
+	
+	//***reuse pricingIconClick method is the prerequisite for Pricing screen***
+		public void VerifyDiscountByChangingTheTenderPrice() throws Exception{
+			selectingTenderPrice();
+			selectingFirstMaintenance();
+		}
+	
+	public void GetTargetPrice() throws Exception{
+		checkingTargetPrice();
+	}
+	
+	public static By tab_detailBreakDown = By.xpath("//*[text()='Detail breakdown']");
+	public static By dd_selectProject = By.xpath("//*[@data-ctcwgtname='nCustomComboboxProductSelection']");
+	public static By value_ropes = By.xpath("//*[text()='Ropes']");
+	public static By lnk_ShowTotalCostCalculationDetails = By.xpath("//*[@src='SMG?i=acdda3ea032315878f95d47164849ea79f364ad3&w=16&h=16']");
+	public static By gridvalues_SubTotal = By.xpath("//*[text()='Subtotal']/..//*");
+	public void ValidateDetailBreakdownTab() throws Exception{
+		try {
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement scrollto_DetailbreakdownTab = gettingWebElement(tab_detailBreakDown);
+			scrollIntoView_Javascript(scrollto_DetailbreakdownTab);
+			System.out.println("scrolled up to DetailbreakdownTab");
+			waitForVisibilityOfElementLocated(tab_detailBreakDown);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(tab_detailBreakDown);
+			System.out.println("Detailed breakdown Clicked");
+			waitForVisibilityOfElementLocated(dd_selectProject);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(dd_selectProject);
+			System.out.println("Dropdown in DetailedbreakdownTAB Clicked");
+			
+			WebElement element_Ropes = gettingWebElement(value_ropes);
+			/*wait.until(ExpectedConditions.elementToBeClickable(element_Ropes));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_Ropes.click();
+			wait.until(ExpectedConditions.invisibilityOf(element_Ropes));
+			*/
+			waitForVisibilityOfElementLocated(value_ropes);
+			waitForElementToBeClickable(value_ropes);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			System.out.println("ROPES CLICKED (**need to work**)");
+			click_Javascript(element_Ropes);
+			waitForinvisibilityOfElementLocated(value_ropes);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(lnk_ShowTotalCostCalculationDetails);
+			System.out.println("ShowTotalCostCalculationDetails CLICKED (**need to work**)");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			List<WebElement> Elements_showtotalcostFirstRow = gettingWebElementsfromList(gridvalues_SubTotal);
+			List<String> ls_TotalCostHeader=new LinkedList<>();
+			List<Float> ls_TotalCostValue=new LinkedList<>();
+			HashMap<String, Float> hm_data = new HashMap<String, Float>();
+			/*for(WebElement Element_showtotalcostHeader:Elements_showtotalcostHeader) {
+				if(!Element_showtotalcostHeader.getText().isEmpty())	{
+					System.out.println("HEADER_Element_showtotalcostHeader:"+Element_showtotalcostHeader.getText());*/
+					ls_TotalCostHeader.add("Target Price");
+					ls_TotalCostHeader.add("Material costs");
+					ls_TotalCostHeader.add("Material cost (SL Currency)");
+					ls_TotalCostHeader.add("Reference hours");
+					ls_TotalCostHeader.add("ITE factor");
+					ls_TotalCostHeader.add("Installation Hours");
+					ls_TotalCostHeader.add("Labour rate");
+					ls_TotalCostHeader.add("Labor Costs");
+					ls_TotalCostHeader.add("Contigency");
+					ls_TotalCostHeader.add("Overhead Recovery");
+					ls_TotalCostHeader.add("Full Costs");
+					ls_TotalCostHeader.add("Total Cost");
+					ls_TotalCostHeader.add("Ratio of Labor");
+					ls_TotalCostHeader.add("Tender Price");
+/*			}
 			}*/
+Float convertedvalue=null;
+			for(WebElement Element_showtotalcostFirstRow:Elements_showtotalcostFirstRow) {
+				if (Element_showtotalcostFirstRow.getAttribute("value") == null ) {
+					if(!Element_showtotalcostFirstRow.getText().isEmpty())	{
+//					System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
+							if(!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
+								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h]", "");
+								getvalue = getvalue.replace(",", ".");
+								convertedvalue = Float.valueOf(getvalue);
+								ls_TotalCostValue.add(convertedvalue);
+							}
+					}
+				} else if(!Element_showtotalcostFirstRow.getAttribute("value").isEmpty() && Element_showtotalcostFirstRow.getAttribute("value")!=null)	{
+//					System.out.println("1stROW_getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
+						String getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h .]", "");
+						getvalue = getvalue.replace(",", ".");
+						convertedvalue = Float.valueOf(getvalue);
+						ls_TotalCostValue.add(convertedvalue);
+				}
+				/*if (!Element_showtotalcostFirstRow.getText().isEmpty() || Element_showtotalcostFirstRow.getAttribute("value") != null) {
+					if (Element_showtotalcostFirstRow.getAttribute("value") == null) {
+						if (!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
+							System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
+						}
+					} else if (!Element_showtotalcostFirstRow.getAttribute("value").isEmpty()) {
+						System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
+					}
+				}*/
+			}
+			for(int i=0; i<14; i++) {
+				hm_data.put(ls_TotalCostHeader.get(i), ls_TotalCostValue.get(i));
+			}
+			/*Float showtotal_TargetPrice= hm_data.get("Target Price");
+			Float showtotal_Materialcosts= hm_data.get("Material costs");
+			Float showtotal_MaterialcostSLCurrency= hm_data.get("Material cost (SL Currency)");*/
+			Float showtotal_Referencehours= hm_data.get("Reference hours");
+			Float showtotal_ITEfactor= hm_data.get("ITE factor");
+			Float showtotal_InstallationHours= hm_data.get("Installation Hours");
+			Float showtotal_Labourrate= hm_data.get("Labour rate");
+			Float showtotal_LaborCosts= hm_data.get("Labor Costs");
+			/*Float showtotal_Contigency= hm_data.get("Contigency");
+			Float showtotal_OverheadRecovery= hm_data.get("Overhead Recovery");
+			Float showtotal_FullCosts= hm_data.get("Full Costs");
+			Float showtotal_TotalCost= hm_data.get("Total Cost");
+			Float showtotal_RatioofLabor= hm_data.get("Ratio of Labor");
+			Float showtotal_TenderPrice= hm_data.get("Tender Price");*/
+			Float check_showtotal_Referencehours= showtotal_InstallationHours/showtotal_ITEfactor;
+			Float check_showtotal_Labourrate= showtotal_LaborCosts/showtotal_InstallationHours;
+			/*System.out.println("is_showtotal_ITEfactor: "+check_showtotal_ITEfactor+"/"+showtotal_ITEfactor);
+			System.out.println("is_showtotal_LaborCosts "+check_showtotal_Labourrate+"/"+showtotal_Labourrate);
+			System.out.println("is_showtotal_Referencehours "+check_showtotal_Referencehours+"/"+showtotal_Referencehours);*/
+			Boolean is_showtotal_ITEfactor = roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor));
+			Boolean is_showtotal_Referencehours= roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours));
+			Boolean is_showtotal_Labourrate= roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate));
+			System.out.println("is_showtotal_ITEfactor: "+is_showtotal_ITEfactor+" /is_showtotal_Labourrate "+is_showtotal_Labourrate+" /is_showtotal_Referencehours "+is_showtotal_Referencehours);
+			/*for (Entry<String, Float> entry : hm_data.entrySet()) {
+				String key = entry.getKey();
+				Float ValueStored = entry.getValue();
+				System.out.println("key:"+key+" /ValuetoStore:"+ValueStored);
+			}*/
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		for(int i=0; i<14; i++) {
-			hm_data.put(ls_TotalCostHeader.get(i), ls_TotalCostValue.get(i));
+	}
+	
+	public static By lnk_toWord = By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[5]/img");
+	public static By label_KONELogo = By.xpath("//*[text()='Print with KONE Logo']");
+	public static By lnk_templateDOC = By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc')]");
+	public void GoToDocumentsTabandClickTheTender() throws Exception{
+		try {
+			WebElement element_ToWord = gettingWebElement(lnk_toWord);
+			wait.until(ExpectedConditions.elementToBeClickable(element_ToWord));
+			click_Javascript(element_ToWord);
+			System.out.println("ToWord icon clicked");
+			waitForVisibilityOfElementLocated(label_KONELogo);
+			System.out.println("Wating till -Print with KONE Logo- displays");
+			WebElement element_ModularTenderDOC = gettingWebElement(lnk_templateDOC);
+			wait.until(ExpectedConditions.elementToBeClickable(element_ModularTenderDOC));
+			scrollIntoView_Javascript(element_ModularTenderDOC);
+			wait.until(ExpectedConditions.visibilityOf(element_ModularTenderDOC));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_ModularTenderDOC.click();
+			System.out.println("Modular_Tender_Template.doc clicked");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		/*Float showtotal_TargetPrice= hm_data.get("Target Price");
-		Float showtotal_Materialcosts= hm_data.get("Material costs");
-		Float showtotal_MaterialcostSLCurrency= hm_data.get("Material cost (SL Currency)");*/
-		Float showtotal_Referencehours= hm_data.get("Reference hours");
-		Float showtotal_ITEfactor= hm_data.get("ITE factor");
-		Float showtotal_InstallationHours= hm_data.get("Installation Hours");
-		Float showtotal_Labourrate= hm_data.get("Labour rate");
-		Float showtotal_LaborCosts= hm_data.get("Labor Costs");
-		/*Float showtotal_Contigency= hm_data.get("Contigency");
-		Float showtotal_OverheadRecovery= hm_data.get("Overhead Recovery");
-		Float showtotal_FullCosts= hm_data.get("Full Costs");
-		Float showtotal_TotalCost= hm_data.get("Total Cost");
-		Float showtotal_RatioofLabor= hm_data.get("Ratio of Labor");
-		Float showtotal_TenderPrice= hm_data.get("Tender Price");*/
-		Float check_showtotal_Referencehours= showtotal_InstallationHours/showtotal_ITEfactor;
-		Float check_showtotal_Labourrate= showtotal_LaborCosts/showtotal_InstallationHours;
-		/*System.out.println("is_showtotal_ITEfactor: "+check_showtotal_ITEfactor+"/"+showtotal_ITEfactor);
-		System.out.println("is_showtotal_LaborCosts "+check_showtotal_Labourrate+"/"+showtotal_Labourrate);
-		System.out.println("is_showtotal_Referencehours "+check_showtotal_Referencehours+"/"+showtotal_Referencehours);*/
-		Boolean is_showtotal_ITEfactor = roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor));
-		Boolean is_showtotal_Referencehours= roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours));
-		Boolean is_showtotal_Labourrate= roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate));
-		System.out.println("is_showtotal_ITEfactor: "+is_showtotal_ITEfactor+" /is_showtotal_Labourrate "+is_showtotal_Labourrate+" /is_showtotal_Referencehours "+is_showtotal_Referencehours);
-		
-		/*for (Entry<String, Float> entry : hm_data.entrySet()) {
-			String key = entry.getKey();
-			Float ValueStored = entry.getValue();
-			System.out.println("key:"+key+" /ValuetoStore:"+ValueStored);
-		}*/
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[5]/img")));
-		WebElement element_ToWord = driver.findElement(By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[5]/img"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element_ToWord);
-		System.out.println("ToWord icon CLICKED");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Print with KONE Logo']")));
-		System.out.println("Wating till -Print with KONE Logo- displays");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc')]")));
-		WebElement element_ModularTenderDOC = driver.findElement(By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc')]"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element_ModularTenderDOC);
-		wait.until(ExpectedConditions.visibilityOf(element_ModularTenderDOC));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc')]")).click();
-		System.out.println("_Modular_Tender_Template.doc CLICKED");
-		WebElement element_PrintwithKONELogo = driver.findElement(By.xpath("//*[text()='Print with KONE Logo']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element_PrintwithKONELogo);
-		wait.until(ExpectedConditions.visibilityOf(element_PrintwithKONELogo));
-		driver.findElement(By.id("b3520_1")).click();
-		/*WebElement element_CreatePrintOuticon = driver.findElement(By.xpath("//*[@data-ctcwgtname='PrintOut_c' and @data-ctctype='Toolbar']/div/img"));
-		Actions builder = new Actions(driver);
-	     builder.moveToElement( element_CreatePrintOuticon ).click( element_CreatePrintOuticon );
-	     builder.perform();*/
-		System.out.println("Create PrintOut icon CLICKED (**need to work**)");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Do you want to freeze printed version?')]")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='"+FreezePrintedVersion+"']")));
-		driver.findElement(By.xpath("//button[text()='"+FreezePrintedVersion+"']")).click();
-		System.out.println(FreezePrintedVersion+" CLICKED in Do you want to freeze printed version?");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Information have been sent to the document server')]")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='OK']")));
-		driver.findElement(By.xpath("//button[text()='OK']")).click();
-		System.out.println("OK CLICKED");
-		WebElement element_SaveandClose = driver.findElement(By.xpath("//*[@data-ctcwgtname='ToolBar' and @data-ctctype='Toolbar']/div[2]"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element_SaveandClose);
-		wait.until(ExpectedConditions.visibilityOf(element_SaveandClose));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='ToolBar' and @data-ctctype='Toolbar']/div[2]")).click();
-		System.out.println("SaveandClose icon CLICKED");
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='pbYes']")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='pb"+SaveandClose+"']")).click();
-		System.out.println(SaveandClose+" CLICKED in SaveandClose");
-		driver.findElement(By.xpath("//*[text()='Description:']/..//input")).sendKeys(StageProbability_Description);
-		System.out.println(StageProbability_Description+" entered in Description field in stage / Probability window");
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='_TenderVersion.Stage__c']/button")).click();
-		System.out.println("Clicked on Stage dropdown");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//div[text()='"+StageProbability_Stage+"']")).click();
-		System.out.println(StageProbability_Stage+" Clicked in Stage dropdown");
-		driver.findElement(By.xpath("//input[@data-ctcwgtname='_TenderVersion.Probability__c']")).clear();
-		System.out.println("Probability: value Cleared");
-		driver.findElement(By.xpath("//input[@data-ctcwgtname='_TenderVersion.Probability__c']")).sendKeys(StageProbability_probability);
-		System.out.println("value entered in Probability field");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='gp' and @class='gp']")));
-		driver.findElement(By.xpath("//*[text()='OK']")).click();
-		System.out.println("OK Button Clicked");
-		wait.until(elementToBeClickableInFrame(By.tagName("iframe"), By.xpath("//*[@title='Configurator']")));
-		System.out.println("NewWait's Executed");
-		driver.switchTo().defaultContent();
-		System.out.println("switchedTodefaultContent");
-		driver.switchTo().frame(driver.findElement(By.tagName("iframe")));
-		System.out.println("switched to frame");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@title='Configurator']")));
-		System.out.println("Configurator button is visible");
-		WebElement element_Configurator = driver.findElement(By.xpath("//*[@title='Configurator']"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element_Configurator);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element_Configurator);
-		System.out.println("Configurator Clicked");
-		List<WebElement> frames=driver.findElements(By.tagName("iframe"));
-		WebElement secondFrame=null;
-			for(WebElement frame:frames) {
-				if(frame.getAttribute("id").equals("clientTarget"));{
-					secondFrame=frame;
-					System.out.println("secondFrame:"+secondFrame.getAttribute("id"));
+	}
+	
+	public static By icon_printOut = By.xpath("//*[@data-ctcwgtname='PrintOut_c']/div"); //*[@data-ctcname='PrintOut_I']/div
+	public static By text_freezePrint = By.xpath("//*[contains(text(),'Do you want to freeze printed version?')]");
+	public static By text_infotoDocServer = By.xpath("//*[contains(text(),'Information have been sent to the document server')]");
+	public static By btn_infotoDocServer = By.xpath("//button[text()='OK']");
+	public void VerifySuccessfulMessageDisplayed() throws Exception{
+		try {
+			By btn_freezePrint = By.xpath("//button[text()='"+FreezePrintedVersion+"']");
+			WebElement element_PrintwithKONELogo = gettingWebElement(label_KONELogo);
+			scrollIntoView_Javascript(element_PrintwithKONELogo);
+			wait.until(ExpectedConditions.visibilityOf(element_PrintwithKONELogo));
+			WebElement element_PrintOut = gettingWebElement(icon_printOut); //*[@data-ctcwgtname='PrintOut_c']/div  //*[@data-ctcname='PrintOut_I']/div
+			wait.until(ExpectedConditions.visibilityOf(element_PrintOut));
+			wait.until(ExpectedConditions.stalenessOf(element_PrintOut));
+			retryingClick(icon_printOut);
+			System.out.println("Create PrintOut icon clicked");
+			waitForVisibilityOfElementLocated(text_freezePrint);
+			waitForElementToBeClickable(btn_freezePrint);
+			clickonButton(btn_freezePrint);
+			System.out.println(FreezePrintedVersion+" clicked in Do you want to freeze printed version?");
+			waitForVisibilityOfElementLocated(text_infotoDocServer);
+			WebElement element_OkbuttoninInformationtodocumentserver = gettingWebElement(btn_infotoDocServer);
+			wait.until(ExpectedConditions.elementToBeClickable(element_OkbuttoninInformationtodocumentserver));
+			element_OkbuttoninInformationtodocumentserver.click();
+			System.out.println("OK clicked");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By icon_saveandClose = By.xpath("//*[@data-ctcwgtname='ToolBar' and @data-ctctype='Toolbar']/div[2]");
+	public static By txt_stageProbabilityDescription = By.xpath("//*[text()='Description:']/..//input");
+	public static By dd_stage = By.xpath("//*[@data-ctcwgtname='_TenderVersion.Stage__c']/button");
+	public static By txt_probability = By.xpath("//input[@data-ctcwgtname='_TenderVersion.Probability__c']");
+	public static By btn_stageProbability = By.xpath("//*[text()='OK']");
+	public void ClickSaveandCloseButton(String StageProbability_Description, String StageProbability_probability) throws Exception{
+		try {
+			By btn_saveandClose = By.xpath("//*[@data-ctcwgtname='pb"+SaveandClose+"']");
+			By value_stage = By.xpath("//div[text()='"+StageProbability_Stage+"']");
+			WebElement element_SaveandClose = gettingWebElement(icon_saveandClose);
+			scrollIntoView_Javascript(element_SaveandClose);
+			wait.until(ExpectedConditions.visibilityOf(element_SaveandClose));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_SaveandClose.click();
+			System.out.println("SaveandClose icon CLICKED");
+			waitForVisibilityOfElementLocated(btn_saveandClose);
+			clickonButton(btn_saveandClose);
+			System.out.println(SaveandClose+" CLICKED in SaveandClose");
+			enteringValues(txt_stageProbabilityDescription, StageProbability_Description);
+			System.out.println(StageProbability_Description+" entered in Description field in stage / Probability window");
+			clickonButton(dd_stage);
+			System.out.println("Clicked on Stage dropdown");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(value_stage);
+			System.out.println(StageProbability_Stage+" Clicked in Stage dropdown");
+			WebElement element_enderVersionProbability = gettingWebElement(txt_probability);
+			element_enderVersionProbability.clear();
+			System.out.println("Probability: value Cleared");
+			element_enderVersionProbability.sendKeys(StageProbability_probability);
+			System.out.println("value entered in Probability field");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(btn_stageProbability);
+			System.out.println("OK Button Clicked");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By frameforwait = By.tagName("iframe");
+	public static By btn_configurator = By.xpath("//*[@title='Configurator']");
+	public static By btn_NoButtoninNewVersionProduct = By.xpath("//button[text()='No']");
+	public void GetSalesPriceFromSalesForce() throws Exception{
+		try {
+			wait.until(elementToBeClickableInFrame(frameforwait, btn_configurator));
+//			System.out.println("NewWait's Executed");
+			switchtoDefaultContentFrame();
+//			System.out.println("switchedTodefaultContent");
+			switchtoFrame(gettingWebElement(frameforwait));
+//			System.out.println("switched to frame");
+			WebElement element_Configurator = gettingWebElement(btn_configurator);
+			wait.until(ExpectedConditions.visibilityOf(element_Configurator));
+			System.out.println("Configurator button is visible");
+			scrollIntoView_Javascript(element_Configurator);
+			click_Javascript(element_Configurator);
+			System.out.println("Configurator Clicked");
+			List<WebElement> frames=gettingWebElementsfromList(frameforwait);
+			WebElement secondFrame=null;
+				for(WebElement frame:frames) {
+					if(frame.getAttribute("id").equals("clientTarget"));{
+						secondFrame=frame;
+//						System.out.println("secondFrame:"+secondFrame.getAttribute("id"));
+						break;
+					}
+				}
+			switchtoFrame(secondFrame);
+//			System.out.println("Switched to secondFrame");
+			WebElement element_NoButtoninNewVersionProduct = gettingWebElement(btn_NoButtoninNewVersionProduct);
+			wait.until(ExpectedConditions.elementToBeClickable(element_NoButtoninNewVersionProduct));
+			element_NoButtoninNewVersionProduct.click();
+			System.out.println("NO clicked in New Version is available for this product");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static By icon_pricing = By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[3]/img");
+	public static By icon_HandShake = By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[9]/img");
+	public void HandShake() throws Exception{
+		try {
+			waitForVisibilityOfElementLocated(icon_pricing);
+			System.out.println("pricingicon's visible");
+			VerifyTenderConsistency();
+			WebElement element_HandShakeicon=gettingWebElement(icon_HandShake);
+			wait.until(ExpectedConditions.visibilityOf(element_HandShakeicon));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_HandShakeicon.click();
+			System.out.println("isHandShakeiconisEnabled:"+element_HandShakeicon.isEnabled()+" HandShakeicon CLICKED");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//***reuse pricingIconClick method is the prerequisite for Pricing screen***
+	public void pricingIconClick() throws Exception{
+		try {
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			waitForElementToBeClickable(txt_EquipmentID);
+			WebElement element_pricingicon=gettingWebElement(icon_pricing);
+			scrollIntoView_Javascript(element_pricingicon);
+			System.out.println("scrolled to pricingicon****need to work*****");
+			element_pricingicon.click();
+			System.out.println("pricing icon Clicked");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//reuse
+	public static By dd_firstMaintenance = By.xpath("//*[@data-ctcname='FirstMaintenance_D']/button");
+	public static By header_firstMaintenance = By.xpath("//*[text()='First Maintenance']");
+	public void selectingFirstMaintenance() throws Exception{
+		try {
+			By value_firstMaintenance = By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuité ')]");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+//			String tenderPriceBefore =isTargetupdatedafterFirstMaintenance();
+			WebElement scrollto_Firstmaintenance = gettingWebElement(dd_firstMaintenance); //*[@data-ctcwgtname='FreeMaintenance']/buttonS
+			scrollIntoView_Javascript(scrollto_Firstmaintenance);
+			System.out.println("scrolled to Firstmaintenance");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(dd_firstMaintenance);
+			System.out.println("First maintenance: Clicked");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(value_firstMaintenance);
+			System.out.println("First maintenance: " + FirstMaintenance + " Clicked");
+			if(!FirstMaintenance.equals("0")) {
+				waitForVisibilityOfElementLocated(header_firstMaintenance);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String isTargetupdatedafterFirstMaintenance() throws Exception{
+		List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allValues);
+		String element_readTenderPrice = null;
+			for (WebElement Element : Elements_PriceOverview) {
+//				System.out.println(Element.getAttribute("id"));
+				if (!Element.getText().isEmpty() || Element.getAttribute("value") != null) {
+					if (Element.getAttribute("value") == null) {
+						if (!Element.getText().contains("Project")) {
+							if (!Element.getText().contains("%")) {
+								element_readTenderPrice = Element.getText();
+//								System.out.println("****TenderPrice:" + element_readTenderPrice);
+							} 
+						}
+					}
+				}
+			}
+			return element_readTenderPrice;
+	}
+	
+	//reuse
+	public static By btn_discountPencil = By.xpath("//*[@data-ctcname='Discount_Pencil_I']");
+	public static By grid_discount = By.xpath("//*[text()='Project']/..//div[contains(text(),' %')]");
+	public static By txt_discount = By.xpath("//*[@data-ctcname='New_Dicount_T']");
+	public static By btn_discountOK = By.xpath("//*[@data-ctcname='Discount_Ok_B']");
+	public void selectingDiscount() throws Exception{
+		try {
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement scrollto_TMP_Discount = gettingWebElement(btn_discountPencil);
+			wait.until(ExpectedConditions.visibilityOf(scrollto_TMP_Discount)); //*[@data-ctcwgtname='icGraphic']
+			scrollIntoView_Javascript(scrollto_TMP_Discount);
+			System.out.println("scrolled UP to Discount");
+			wait.until(ExpectedConditions.visibilityOf(scrollto_TMP_Discount));
+			WebElement doubleclick_elementDiscount = gettingWebElement(grid_discount);
+			Actions doubleclick_discount = new Actions(driver).doubleClick(doubleclick_elementDiscount);
+			doubleclick_discount.build().perform();
+			System.out.println("double Clicked on discount");
+			WebElement scrollto_NewDicount = gettingWebElement(txt_discount); //*[@data-ctcwgtname='TMP_Discount']
+			wait.until(ExpectedConditions.visibilityOf(scrollto_NewDicount)); 
+			scrollto_NewDicount.clear();
+			System.out.println("TMP_Discount cleared");
+			scrollto_NewDicount.sendKeys(discount);
+			System.out.println("TMP_Discount entered as: " + discount);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(btn_discountOK); //*[@data-ctcwgtname='pbOK']
+			System.out.println("Discount OK clicked");	
+			By grid_discountisApplied = By.xpath("//*[text()='Project']/..//div[text()='"+discount+".00 %']");
+//			System.out.println("grid_discountisApplied:"+gettingWebElement(grid_discountisApplied).getAttribute("id"));
+			waitForpresenceOfElementLocated(grid_discountisApplied);
+			System.out.println("Discount applied to GRID");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//reuse
+	public static By tab_priceOverview = By.xpath("//*[text()='Price overview']");
+	public static By grid_tenderPrice = By.xpath("//*[text()='Project']/..//div");
+	public static By txt_tenderPrice = By.xpath("//*[@data-ctcname='TenderPrice_T']");
+	public static By btn_tenderPriceOK = By.xpath("//*[@data-ctcname='TenderPrice_Ok_B']");
+	public void selectingTenderPrice() throws Exception{
+		try {
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement scrollto_priceOverview = gettingWebElement(tab_priceOverview);
+			wait.until(ExpectedConditions.visibilityOf(scrollto_priceOverview)); 
+			scrollIntoView_Javascript(scrollto_priceOverview);
+			System.out.println("scrolled UP to TenderPrice_T");
+			wait.until(ExpectedConditions.visibilityOf(scrollto_priceOverview));
+			List<WebElement> elements=driver.findElements(grid_tenderPrice);
+			WebElement doubleclick_elementselectingTenderPrice = null;
+			for(WebElement element:elements) {
+				if(element.getText().contains("€ ")) {
+					doubleclick_elementselectingTenderPrice=element;
+//					System.out.println("if:"+doubleclick_elementselectingTenderPrice.getAttribute("id"));
 					break;
 				}
 			}
-		driver.switchTo().frame(secondFrame);
-		System.out.println("Switched to secondFrame");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='No']")));
-		driver.findElement(By.xpath("//button[text()='No']")).click();
-		System.out.println("NO clicked in New Version is available for this product");
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[3]/img"))));
-		System.out.println("pricingicon's visible");
-		List<WebElement> Elements_ConsistencyCheck_2 = driver.findElements(By.xpath("//div/div[text()='Project']/../..//div/div"));
-		for (WebElement Element : Elements_ConsistencyCheck_2) {
-			if (Element.getCssValue("background-image").contains("0191f5aaded042c33180d357113667fbefc81b95")) {
-				System.out.println(Element.getCssValue("background-image"));
-			} else if (Element.getCssValue("background-image").contains("cad9a93f6c879df1ed1373d2853634026ff3224f")) {
-				System.out.println(Element.getCssValue("background-image"));
-			}
+			wait.until(ExpectedConditions.visibilityOf(doubleclick_elementselectingTenderPrice));
+			wait.until(ExpectedConditions.elementToBeClickable(doubleclick_elementselectingTenderPrice));
+			scrollIntoView_Javascript(doubleclick_elementselectingTenderPrice);
+			wait.until(ExpectedConditions.visibilityOf(doubleclick_elementselectingTenderPrice));
+			Actions doubleclick_targetPrice = new Actions(driver).doubleClick(doubleclick_elementselectingTenderPrice);
+			doubleclick_targetPrice.build().perform();
+			System.out.println("double Clicked on selectingTargetPrice");
+			WebElement scrollto_TenderPrice_T = gettingWebElement(txt_tenderPrice); //*[@data-ctcwgtname='TMP_Discount']
+			wait.until(ExpectedConditions.visibilityOf(scrollto_TenderPrice_T)); 
+			scrollto_TenderPrice_T.sendKeys(Keys.chord((Keys.CONTROL+"a")));
+			scrollto_TenderPrice_T.sendKeys((Keys.DELETE));
+			System.out.println("TenderPrice_T cleared");
+			scrollto_TenderPrice_T.sendKeys(tenderPrice);
+			System.out.println("TenderPrice_T entered as: " + tenderPrice);
+			clickonButton(btn_tenderPriceOK); 
+			System.out.println("TenderPrice_T OK clicked");	
+			istenderPrice=true;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		WebElement element_HandShakeicon=driver.findElement(By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[9]/img"));
-		element_HandShakeicon.click();
-		System.out.println("HandShakeicon CLICKED");
+	}
+	
+	//reuse
+	public static By grid_allValues = By.xpath("//*[text()='Project']/..//*");
+	public void checkingTargetPrice() throws Exception{
+		try {
+			waitForVisibilityOfElementLocated(grid_discount);
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Project']/..//div[text()='" + discount + ".00 %']")));
+			List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allValues);
+			Float arrary[] = new Float[2];
+			Float TargetPrice, Firstmaintenance, Discount = null, TenderPrice = null;
+			for (WebElement Element : Elements_PriceOverview) {
+//				System.out.println(Element.getAttribute("id"));
+				if (!Element.getText().isEmpty() || Element.getAttribute("value") != null) {
+					if (Element.getAttribute("value") == null) {
+						if (!Element.getText().contains("Project")) {
+							if (!Element.getText().contains("%")) {
+								String element_readTenderPrice = Element.getText().replaceAll("[€ .]", "");
+								element_readTenderPrice = element_readTenderPrice.replace(",", ".");
+								TenderPrice = Float.valueOf(element_readTenderPrice);
+//							System.out.println("****TenderPrice:" + TenderPrice);
+							} else {
+								String element_readDiscount = Element.getText().replaceAll("[% ]", "");
+								Discount = Float.valueOf(element_readDiscount);
+//							System.out.println("****Discount:" + Discount);
+							}
+						}
+					} else {
+//	        		System.out.println("Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
+						String element_read = Element.getAttribute("value").replaceAll("[€ .]", "");
+						element_read = element_read.replace(",", ".");
+						Float converted = Float.valueOf(element_read);
+//	        		System.out.println("converted: "+converted);
+						if (arrary[0] == null) {
+							arrary[0] = converted;
+							/*System.out.println("ARRAY 1");
+							System.out.println(arrary[0] = converted);*/
+						} else {
+							arrary[1] = converted;
+							/*System.out.println("ARRAY 2");
+							System.out.println(arrary[1] = converted);*/
+						}
+					}
+				}
+			}
+			if(FirstMaintenance.equals("0")) {
+				arrary[1] = 0f;
+			}
+			if (arrary[0] > arrary[1]) {
+				TargetPrice = arrary[0];
+				Firstmaintenance = arrary[1];
+				System.out.println("**CONDTION_1 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
+			} else {
+				TargetPrice = arrary[1];
+				Firstmaintenance = arrary[0];
+			System.out.println("**CONDTION_2 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
+			}
+			if(istenderPrice) {
+				Float DiscountFinal = ((((TargetPrice-Firstmaintenance)-(TenderPrice-Firstmaintenance))/(TargetPrice-Firstmaintenance))*100);
+				System.out.println("DiscountFinal:"+ roundoff.format(DiscountFinal)+"/Current Discount:"+Discount+" /is FinalDiscount & ApplicationDiscount equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount)));
+				System.out.println("is FinalDiscount & ApplicationDiscount equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount)));
+			} else {
+				/*Float TargetMinusMaintenance = TargetPrice - Firstmaintenance;
+				Float TargetplusDiscount = TargetMinusMaintenance - (TargetMinusMaintenance * (Discount / 100));
+				Float TargetPriceFinal = TargetplusDiscount + Firstmaintenance;*/
+				Float TenderPriceFinal = ((TargetPrice-Firstmaintenance)-((TargetPrice-Firstmaintenance)*(Discount/100))+Firstmaintenance);
+				System.out.println("TenderPriceFinal:" + roundoff.format(TenderPriceFinal)+" /CurrentTenderPrice:"+TenderPrice);
+				System.out.println("Compare TenderPriceFinal & ApplicationTenderPrice: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice)));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//reuse
+	public static ExpectedCondition<WebElement> elementToBeClickableInFrame(final By locatorFrame, final By locator) {
+			  return new ExpectedCondition<WebElement>() {
+			    @Override
+			    public WebElement apply(WebDriver driver) {
+			      try {
+			        driver.switchTo().defaultContent();
+			        driver.switchTo().frame(driver.findElement(locatorFrame));
+			        WebElement elem = driver.findElement(locator);
+			        return elem.isDisplayed() && elem.isEnabled() ? elem : null;
+			      } catch (Exception e) {
+			        return null;
+			      }
+			    }
+			    @Override
+			    public String toString() {
+			      return "element located by: " + locator + " in " + locatorFrame;
+			    }
+			  };
+			}
+	
+	//reuse
+	public boolean retryingClick(By by){
+	    boolean result = false;
+	    int attempts = 0;
+	    while(attempts < 2) {
+	        try {
+	        	wait.until(ExpectedConditions.elementToBeClickable(by));
+	            driver.findElement(by).click();
+	            System.out.println("attempts="+attempts);
+	            result = true;
+	            break;
+	        } catch(StaleElementReferenceException e) {
+	        	e.printStackTrace();
+	        }
+	        attempts++;
+	    }
+	    return result;
 	}
 }
