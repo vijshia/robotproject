@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -59,7 +60,7 @@ public class KTOCTRBUtils {
 	 */
 
 	// Instantiate the webdriver and launch the KCC browser
-	public void LaunchBrowser(String os) throws InterruptedException {
+	public void LaunchBrowser(String os, String browser) throws InterruptedException {
 		if (os.equalsIgnoreCase("ios")) {
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.setBinary(new File(CurrentDir));
@@ -75,12 +76,19 @@ public class KTOCTRBUtils {
 			}
 				driver = new ChromeDriver(chromeOptions);
 			} else if (os.equalsIgnoreCase("windows")) {
-				DesiredCapabilities CHDes = DesiredCapabilities.chrome();
-				ChromeOptions CHOpt = new ChromeOptions();
-				CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
-				File CHPath = new File(CurrentDir + "\\chromedriver.exe"); // C:\Backups\Vijay S\DownloadFolder\chromedriver_win32 (2.42)
-				System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
-				driver = new ChromeDriver();
+				if (browser.equalsIgnoreCase("ff")) {
+					System.setProperty("webdriver.gecko.driver",
+							"C:\\Users\\con_svijay02\\Downloads\\geckodriver-v0.23.0-win64\\geckodriver.exe");
+					driver = new FirefoxDriver();
+				} else if (browser.equalsIgnoreCase("ch")) {
+					DesiredCapabilities CHDes = DesiredCapabilities.chrome();
+					ChromeOptions CHOpt = new ChromeOptions();
+					CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
+					File CHPath = new File(
+							"C:\\Backups\\Vijay S\\Download Folder\\chromedriver_win32 (2.42)\\chromedriver.exe");
+					System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
+					driver = new ChromeDriver();
+				}
 		}
 //		driver.manage().window().maximize();
 	}

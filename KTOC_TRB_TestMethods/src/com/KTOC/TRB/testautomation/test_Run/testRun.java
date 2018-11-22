@@ -9,7 +9,7 @@ public class testRun {
 		KTOCTRBUtils obj=new KTOCTRBUtils();
 		Keywords obj1=new Keywords();
 		try {
-			obj.LaunchBrowser("windows");
+			obj.LaunchBrowser("windows", "ff");
 			obj1.LogonToSalesforce();	
 			obj1.CreateOpportunity();
 			obj1.MapContactWithOpportunity();
