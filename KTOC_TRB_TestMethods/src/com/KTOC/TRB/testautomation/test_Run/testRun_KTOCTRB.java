@@ -4,16 +4,22 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,7 +29,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.KTOC.TRB.testautomation.ObjectRepository.SalesForceData;
+
+import junit.framework.Assert;
 
 public class testRun_KTOCTRB {
 
@@ -45,6 +56,8 @@ public class testRun_KTOCTRB {
 	static String discount= "10";
 	static String tenderPrice = "2001";
 	static Boolean istenderPrice = false;
+	static Float regionalDiscount = 5f;
+	static int changeregionalDiscount = 4;
 	static Float check_showtotal_ITEfactor=2f;
 	static String FreezePrintedVersion="No";
 	static String SaveandClose="Yes";
@@ -74,23 +87,23 @@ public class testRun_KTOCTRB {
 		String StageProbability_Description="Automation Test Description";
 		String StageProbability_probability="22";
 
-		testClass.LaunchBrowser("windows", browser);
+		testClass.launchBrowser("windows", browser);
 		//1.LogonToSalesforce
-		testClass.LogonToSalesforce("s.vijay@kone.com.qa", "Vijay1234");
+		testClass.logonToSalesforce("s.vijay@kone.com.qa", "Vijay1234");
 		//2.VerifyCreatingOpportunityandMappingItWithFLTender
-		testClass.CreateOpportunityORSearchOpportunity(opportunity);
+		testClass.createOpportunityORSearchOpportunity("search",opportunity);
 		//3.VerifyTenderCreatedSuccessfully
-		testClass.AddEquipmentIDElevator(ProductRelease, equipment_ADDorChange);
-		testClass.CheckHandOverDateIsGreaterThanInstallationDate();
-		testClass.CheckSalesOfficeisSelected(salesoffice);
-		testClass.SelectSupervisor(supervisor_ResponsiblePerson);
-		testClass.SelectEquipmentInService();
-		testClass.SelectTemplateToBeUploaded(template);
-		testClass.VerifyTenderConsistency();
-		testClass.GetTenderNo();
+		testClass.addEquipmentIDElevator(ProductRelease, equipment_ADDorChange);
+		testClass.checkHandOverDateIsGreaterThanInstallationDate();
+		testClass.checkSalesOfficeisSelected(salesoffice);
+		testClass.selectSupervisor(supervisor_ResponsiblePerson);
+		testClass.selectEquipmentInService();
+		testClass.selectTemplateToBeUploaded(template);
+		testClass.verifyTenderConsistency();
+		testClass.getTenderNo();
 		//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 		testClass.pricingIconClick();
-		testClass.CheckTenderPriceAfterDiscountUpdate(discount, withoutFirstMaintenance);
+		/*testClass.CheckTenderPriceAfterDiscountUpdate(discount, withoutFirstMaintenance);
 		testClass.GetTargetPrice();
 		testClass.VerifyDiscountByChangingTheTenderPrice(tenderPrice, withoutFirstMaintenance);
 		testClass.GetTargetPrice();
@@ -100,33 +113,37 @@ public class testRun_KTOCTRB {
 		testClass.VerifyDiscountByChangingTheTenderPrice(tenderPrice, withFirstMaintenance_1);
 		testClass.GetTargetPrice();
 		testClass.VerifyDiscountByChangingTheTenderPrice(tenderPrice, withFirstMaintenance_2);
-		testClass.GetTargetPrice();
+		testClass.GetTargetPrice();*/
+		//6.CheckRegionalFactorAtSalesOfficeLevel
+		testClass.verifyRegionalDiscountDisplayedCorrectly();
+		testClass.verifyTargetPriceDisplayedCorrectly(withoutFirstMaintenance);
+		//7.CheckRegionalFactorWhenSalesOfficeIsChanged(additionallyforCanada:ITEandlabourrate)
+		testClass.gotoConfigurationPageandChangeTheSalesOffice(changeSalesOffice);
+		testClass.verifyRegionalDiscountDisplayedCorrectly();
+		testClass.verifyTargetPriceDisplayedCorrectly(withoutFirstMaintenance);
 		//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
-		testClass.ValidateDetailBreakdownTab();
-		testClass.GotoConfigurationPageandChangeTheSalesOffice(changeSalesOffice);
-		testClass.ValidateDetailBreakdownTab();
-		//11.CheckTenderLetterIsgeneratedCorrectlyWithAllThecomponents
-		testClass.GoToDocumentsTabandClickTheTender();
-		testClass.VerifySuccessfulMessageDisplayed();
-		//12.CloseKTOC
-		testClass.ClickSaveandCloseButton(StageProbability_Description, StageProbability_probability);
-		//13.VerifyTotalSalesPriceWithSFProductInformation
-		testClass.GetSalesPriceFromSalesForce();
-		testClass.HandShake();
+		testClass.validateDetailBreakdownTab();
+		testClass.gotoConfigurationPageandChangeTheSalesOffice(changeSalesOffice);
+		testClass.validateDetailBreakdownTab();
+		//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Austrlia)
 		
-		//PricingOverview, additional discount
-		/*wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='nPricingOverview']/div[4]")));
-		driver.findElement(By.xpath("//*[@data-ctcwgtname='nPricingOverview']/div[4]")).click();
-		System.out.println("additional discount CLICKED");*/
+		//11.CheckTenderLetterIsgeneratedCorrectlyWithAllThecomponents
+		testClass.goToDocumentsTabandClickTheTender();
+		testClass.verifySuccessfulMessageDisplayed();
+		//12.CloseKTOC
+		testClass.clickSaveandCloseButton(StageProbability_Description, StageProbability_probability);
+		//13.VerifyTotalSalesPriceWithSFProductInformation
+		testClass.getSalesPriceFromSalesForce();
+		testClass.handShake();
 	}
 
 	/**
-	 * 
+	 **Reuse method, it will launch the browser
 	 * @param browser
-	 * @throws Exception
+	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
-	public void LaunchBrowser(String operatingsystem, String browser) throws Exception{
+	public void launchBrowser(String operatingsystem, String browser) throws Exception{
 		if (operatingsystem.equalsIgnoreCase("ios")) {
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.setBinary(new File(System.getProperty("user.dir")));
@@ -143,15 +160,13 @@ public class testRun_KTOCTRB {
 				driver = new ChromeDriver(chromeOptions);
 			} else if (operatingsystem.equalsIgnoreCase("windows")) {
 			if (browser.equalsIgnoreCase("ff")) {
-				System.setProperty("webdriver.gecko.driver",
-						"C:\\Users\\con_svijay02\\Downloads\\geckodriver-v0.23.0-win64\\geckodriver.exe");
+				System.setProperty("webdriver.gecko.driver","C:\\Users\\con_svijay02\\Downloads\\geckodriver-v0.23.0-win64\\geckodriver.exe");
 				driver = new FirefoxDriver();
 			} else if (browser.equalsIgnoreCase("ch")) {
 				DesiredCapabilities CHDes = DesiredCapabilities.chrome();
 				ChromeOptions CHOpt = new ChromeOptions();
 				CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
-				File CHPath = new File(
-						"C:\\Backups\\Vijay S\\Download Folder\\chromedriver_win32 (2.42)\\chromedriver.exe");
+				File CHPath = new File("C:\\Backups\\Vijay S\\Download Folder\\chromedriver_win32 (2.42)\\chromedriver.exe");
 				System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
 				driver = new ChromeDriver();
 			}
@@ -163,61 +178,219 @@ public class testRun_KTOCTRB {
 	}
 	
 	/**
-	 **Reuse method, it will Login to salesforce
-	 *@author CON_SVIJAY02
+	 **Reuse method, it will enter username & password
+	 * @param username: username to be entered
+	 * @param password: password to be entered
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
 	 */
 	public static By txt_userName = By.id("username");
 	public static By txt_password = By.id("password");
 	public static By btn_login = By.id("Login");
-	public void LogonToSalesforce(String username, String password) throws Exception{
+	public void logonToSalesforce(String username, String password) throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(txt_userName);
 			enteringValues(txt_userName, username);
 			enteringValues(txt_password, password);
 			clickonButton(btn_login);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Logon To Salesforce Failed due to: "+e);
 		}
 	}
 	
 	/**
-	 **Reuse method, it will Search Opportunity and click on New FLTender button
+	 **Reuse method, it will CreateOpportunity, MapContactWithOpportunity, MapOpportunityWithFLTenders or Search Opportunity and click on New FLTender button
+	 *@param opportunity: opportunity to be searched
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
-	public static By txt_searchBox = By.xpath("//*[@title='Search Salesforce']");
+	public static By txt_searchBox = By.xpath("//*[@title='Search Salesforce' or @id='phSearchInput']");
+	public static By lnk_toLigntning=By.xpath("//*[@class='switch-to-lightning']");
+	public static By txt_ligtningHomeSearchbox = By.xpath("//*[@title='Search Salesforce']");
+	public static By img_toClassic=By.xpath("(//*[@class='tooltipTrigger tooltip-trigger uiTooltip' and @data-aura-class='uiTooltip'])[last()]");
+	public static By lnk_toClassic=By.xpath("//*[text()='Switch to Salesforce Classic']");
+	public static By txt_classicHomeSearchbox=By.id("phSearchInput");
 	public static By header_flTender = By.xpath("//*[@title='FL Tenders' and starts-with(text(),'FL Tenders')]");
 	public static By btn_flTender = By.xpath("//*[@title='New FL Tender' and text()='New FL Tender']");
-	public void CreateOpportunityORSearchOpportunity(String opportunity) throws Exception{
+	public void createOpportunityORSearchOpportunity(String createorsearch, String opportunity) throws Exception{
 		try {
 			By lnk_selectOpportunity = By.xpath("(//*[@title='"+opportunity+"'])[last()]");
-			waitForVisibilityOfElementLocated(txt_searchBox);
-			// entering Opportunity in homepage searchbox
-			enteringValues(txt_searchBox, opportunity);
-			System.out.println("Entered "+opportunity+ " in Search box");
-			// waiting for searchbox values to appears in homepage
-			enteringValues(txt_searchBox, Keys.RETURN);
-			// waiting for Opportunity to appear in grid
-			waitForVisibilityOfElementLocated(lnk_selectOpportunity);
-			// clicking on Opportunity
-			clickonButton(lnk_selectOpportunity);
-			System.out.println(opportunity+" has been clicked");
-			// waiting for FL Tenders header in Opportunity
-			waitForElementToBeClickable(header_flTender);
-			// clicking on FL Tenders header in Opportunity
-			clickonButton(header_flTender);
-			System.out.println("clicked on FL Tenders header in Opportunity");
-			// waiting for New FLTenderbutton in FL Tender page
-			waitForVisibilityOfElementLocated(btn_flTender);
-			// clicking on New FLTenderbutton in FL Tender page
-			clickonButton(btn_flTender);
-			System.out.println("clicked on New FLTender button in FL Tender page");
+			WebElement searchBox = gettingWebElement(txt_searchBox);
+			wait.until(ExpectedConditions.visibilityOf(searchBox));
+			if(createorsearch.equalsIgnoreCase("search")) {
+				if(!searchBox.getAttribute("title").equals("Search Salesforce")) {
+					waitForVisibilityOfElementLocated(lnk_toLigntning);
+					clickonButton(lnk_toLigntning);
+					waitForVisibilityOfElementLocated(txt_ligtningHomeSearchbox);
+					System.out.println("ligtning HomePage displayed");
+				} 
+				enteringValues(txt_searchBox, opportunity);
+				System.out.println("Entered "+opportunity+ " in Search box");
+				enteringValues(txt_searchBox, Keys.RETURN);
+				waitForVisibilityOfElementLocated(lnk_selectOpportunity);
+				clickonButton(lnk_selectOpportunity);
+				System.out.println(opportunity+" has been clicked");
+				waitForElementToBeClickable(header_flTender);
+				clickonButton(header_flTender);
+				System.out.println("clicked on FL Tenders header in Opportunity");
+				waitForVisibilityOfElementLocated(btn_flTender);
+				clickonButton(btn_flTender);
+				System.out.println("clicked on New FLTender button in FL Tender page");
+			} else {
+				if(!searchBox.getAttribute("title").equals("Search...")) {
+					waitForVisibilityOfElementLocated(img_toClassic);
+					clickonButton(img_toClassic);
+					waitForVisibilityOfElementLocated(lnk_toClassic);
+					clickonButton(lnk_toClassic);
+					waitForVisibilityOfElementLocated(txt_classicHomeSearchbox);
+					System.out.println("Classic HomePage Displayed");
+				}
+				CreateOpportunity();
+				MapContactWithOpportunity();
+				MapOpportunityWithFLTenders();
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("CreateOpportunity OR SearchOpportunity Failed due to: "+e);
 		}
 	}
 	
 	/**
-	 **Reuse method, it will add/change equipment 
+	 * @author Roja
+	 */
+	public static int TestStatus=1;
+	public void ChangeSalesOrg() {
+		TestStatus=1;
+		if(TestStatus==1){
+		try {
+			//Change Sales Organization From SF User Settings Page
+			ClickOnElement("xpath",SalesForceData.LoggedInUserName);
+			ClickOnElement("xpath",SalesForceData.MySettings);
+			ClickOnElement("xpath",SalesForceData.PersonalInfo);
+			ClickOnElement("xpath",SalesForceData.AdvancedUserDetails);
+			ClickOnElement("xpath",SalesForceData.UserEditButton);
+			ClickOnElement("xpath",SalesForceData.UserEditButton);
+			ScrollUptoElement("xpath",SalesForceData.AdditionalInformationSection);
+			SelectDropDownValues("xpath",SalesForceData.SalesOrgField,"220");
+		} catch (Exception e) {
+			TestStatus=0;
+			try {
+				TakeSnapShot("SalesForceLoginPage");
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			Assert.fail("Login Interrupted" + e);
+		}
+		}
+		else {
+			Assert.fail("Test Skipped: Browser Launch Failed");
+		}
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	public static String OpportunityName = null;
+	public static String CreateOpportunity() throws Exception {
+			if(TestStatus==1) {
+			String AccountName = "AutomationKTOC";
+			OpportunityName = "Wartung" + RandomNumber();
+			WebElement OppoTab = FindTheElement("xpath", SalesForceData.OpportunityTab);
+			if (OppoTab.isDisplayed()) {
+				WaitAndClickOnElement("xpath", SalesForceData.OpportunityTab);
+			} else {
+				driver.navigate().refresh();
+				WaitAndClickOnElement("xpath", SalesForceData.OpportunityTab);
+			}
+			WaitAndClickOnElement("xpath", SalesForceData.NewButton);
+			WaitAndClickOnElement("xpath", SalesForceData.ContinueButton);
+			WaitTillClickable("xpath", SalesForceData.BusinessType);
+			SelectDropDownValues("xpath", SalesForceData.BusinessType, "New Equipment (NEB)");
+			WaitTillClickable("xpath", SalesForceData.OpportunityName);
+			Thread.sleep(5000);
+			EnterTextbyChar("xpath", SalesForceData.OpportunityName, OpportunityName, 1);
+			EnterTextbyChar("xpath", SalesForceData.AccountNameField, AccountName, 1);
+			SelectDropDownValues("xpath", SalesForceData.MarketSegment, "Leisure and Education");
+			SelectDropDownValues("xpath", SalesForceData.LeadSource, "Invitation to Tender");
+			EnterValues("xpath", SalesForceData.QuantityField, SalesForceData.QuantityValue);
+			EnterValues("xpath", SalesForceData.AmountField, SalesForceData.Amountvalue);
+			ClickDate(SalesForceData.PriceDueDateField, SalesForceData.PriceDueDateValue);
+			ClickDate(SalesForceData.CloseDateField, SalesForceData.CloseDateValue);
+			SelectDropDownValues("xpath", SalesForceData.Stage, "Tender/Proposal");
+			ScrollUptoElement("xpath", SalesForceData.SiteCountryField);
+			SelectDropDownValues("xpath", SalesForceData.SiteCountryField, SalesForceData.SiteCountryValue);
+			ScrollUptoElement("xpath", SalesForceData.SiteCountyField);
+			SelectDropDownValues("xpath", SalesForceData.SiteCountyField, SalesForceData.SiteCountyValue);
+			ScrollUptoElement("xpath", SalesForceData.StartOnSiteDateField);
+			ClickDate(SalesForceData.StartOnSiteDateField, SalesForceData.StartOnSiteDateValue);
+			ClickDate(SalesForceData.ProjectEndDateField, SalesForceData.ProjectEndDateValue);
+			SelectDropDownText("xpath", SalesForceData.ProjectComplexity,"Small");
+			ScrollUptoElement("xpath", SalesForceData.PageDescription);
+			WaitAndClickOnElement("xpath", SalesForceData.SaveButton);
+			WaitTillElementToBeDisplayed("xpath", SalesForceData.OpportunityDesc);
+			WebElement OpportunityDescription = driver.findElement(By.xpath(SalesForceData.OpportunityDesc));
+			String OppoName = OpportunityDescription.getText();
+			if (OppoName.equalsIgnoreCase(OpportunityName)) {
+			} else {
+				TestStatus=0;
+				Assert.fail("Opportunity creation failed");
+			}
+			}
+			else
+			{
+				Assert.fail("Test Skipped: Failed Logon To Salesforce");
+			}
+			return OpportunityName;
+		}	
+
+	/**
+	 * @author Roja
+	 */
+	public void MapContactWithOpportunity() throws Exception {
+			if(TestStatus==1) {
+			try {
+			Thread.sleep(4000);
+			WaitAndClickOnElement("xpath", SalesForceData.ContactsLink);
+			WaitAndClickOnElement("xpath", SalesForceData.ContactSectionNewButton);
+			WaitAndClickOnElement("xpath", SalesForceData.ContactOption);
+			SelectDropDownText("xpath", SalesForceData.ContactRole,"Decision Maker");
+			WaitAndClickOnElement("xpath", SalesForceData.SaveButton);
+			}
+			catch(Exception e) {
+				TestStatus=0;
+				Assert.fail("Mapping contact with opportunity fails");
+			}
+			}
+			else {
+				Assert.fail("Test Skipped: Opportunity Creation Failed");
+			}
+		}
+	
+		/**
+		 * @author Roja
+		 */
+		public void MapOpportunityWithFLTenders() throws Exception {
+			if(TestStatus==1) {
+			try {
+			WaitAndClickOnElement("xpath", SalesForceData.FLTendersLink);
+			WaitAndClickOnElement("xpath", SalesForceData.FLTendersNewButton);
+			}
+			catch(Exception e) {
+				TestStatus=0;
+				Assert.fail("Failed mapping opportunity with tender.");
+			}
+			}
+			else {
+				Assert.fail("Test Skipped: Opportunity Creation Failed");
+			}
+		}
+	
+	/**
+	 **Reuse method, it will add/change equipment
+	 *@param ProductRelease: Release number of the application
+	 *@param equipment_ADDorChange: equipment to be added or changed
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By firstFrame = By.xpath("//iframe[starts-with(@scrolling,'yes') and starts-with(@id,'vfFrameId_')]");
@@ -230,7 +403,7 @@ public class testRun_KTOCTRB {
 	public static By header_AddNewEquipment = By.xpath("//*[text()='Add new equipment' or text()='Found no dataset']");
 	public static By btn_addEquipment = By.xpath("//*[@data-ctcname='Equipment_List_AddEquipmentNo_PopUp_I']");
 	public static By btn_changeEquipment = By.xpath("//*[@data-ctcname='Equipment_List_ChangeEquipmentData_PopUp_I']");
-	public void AddEquipmentIDElevator(String ProductRelease, String equipment_ADDorChange) throws Exception{
+	public void addEquipmentIDElevator(String ProductRelease, String equipment_ADDorChange) throws Exception{
 		try {
 			By checkbox_Equipment = By.xpath("//*[text()='"+equipmentid+"']/..//img");
 			By radio_ProductRelease = By.xpath("//*[text()='Product release for "+ProductRelease+"']/..//img[2]");
@@ -284,15 +457,17 @@ public class testRun_KTOCTRB {
 					System.out.println("Change button clicked");
 				}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Add EquipmentID in Elevator Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will select Project in projecttree 
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
-	public void SelectProjectTree() throws Exception{
+	public void selectProjectTree() throws Exception{
 		try {
 			By tree_project = By.xpath("//*[text()='" + equipmentid + "']/../..//div/div[text()='Project']");
 			waitForVisibilityOfElementLocated(tree_project);
@@ -303,26 +478,21 @@ public class testRun_KTOCTRB {
 			clickonButton(tree_project);
 			System.out.println("Project clicked");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Select ProjectTree Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will check HandoverMS5date and update handoverdate to greater date 
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By date_DateHandoverMS5 = By.xpath("//*[@data-ctcwgtname='DateHandoverMS5_1']");
 	public static By txt_DateHandoverMS5 = By.xpath("//*[@data-ctcname='MS5_HandOver_Complete_T']/input");
-	public void CheckHandOverDateIsGreaterThanInstallationDate() throws Exception{
+	public void checkHandOverDateIsGreaterThanInstallationDate() throws Exception{
 		try {
-			/*By tree_project = By.xpath("//*[text()='" + equipmentid + "']/../..//div/div[text()='Project']");
-			WebElement Elementtoscroll = gettingWebElement(tree_project);
-			scrollIntoView_Javascript(Elementtoscroll);
-			System.out.println("scroll UP");
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(tree_project);
-			System.out.println("Project clicked");*/
-			SelectProjectTree();
+			selectProjectTree();
 			SimpleDateFormat input_dateformat = new SimpleDateFormat("dd/mm/yyyy");
 			SimpleDateFormat output_dateformat = new SimpleDateFormat("dd/mm/yyyy");
 			String MS5HODate_toChange = null;
@@ -356,16 +526,19 @@ public class testRun_KTOCTRB {
 				}
 			System.out.println("MS5HODate Changed to ="+MS5HODate_toChange);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Check HandOverDate Is Greater than InstallationDate Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will select SalesOffice
+	 *@param salesoffice: salesoffice to be selected
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By dd_salesOffice = By.xpath("//*[@data-ctcname='SalesOffice_T']/button");
-	public void CheckSalesOfficeisSelected(String salesoffice) throws Exception{
+	public void checkSalesOfficeisSelected(String salesoffice) throws Exception{
 		try {
 			By value_salesOffice = By.xpath("//div[text()='"+salesoffice+"']");
 			clickonButton(dd_salesOffice); //*[@data-ctcwgtname='SalesOffice']/button
@@ -374,16 +547,19 @@ public class testRun_KTOCTRB {
 			clickonButton(value_salesOffice);
 			System.out.println("SalesOffice value "+salesoffice+" Selected");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Check SalesOffice is Selected Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will select Supervisor
+	 *@param supervisor_ResponsiblePreson: supervisor to be selected
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By dd_supervisor = By.xpath("//*[@data-ctcname='Supervisor_C']");
-	public void SelectSupervisor(String supervisor_ResponsiblePreson) throws Exception{
+	public void selectSupervisor(String supervisor_ResponsiblePreson) throws Exception{
 		try {
 			By tree_equipmentID = By.xpath("(//*[text()='" + equipmentid + "'])[last()-1]");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -402,17 +578,19 @@ public class testRun_KTOCTRB {
 			click_Javascript(element_ResponsiblePerson);
 			System.out.println(supervisor_ResponsiblePreson+" has been clicked");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Select Supervisor Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will select equipmentinService
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By dd_equipmentinService = By.xpath("//*[@data-ctcname='Equipment_In_Service_C']/button");
 	public static By radio_hydeaulicElevator = By.xpath("//*[@data-ctcname='Hydraulic_Elevator_Check_CB']");
-	public void SelectEquipmentInService() throws Exception{
+	public void selectEquipmentInService() throws Exception{
 		try {
 			By value_equipmentinService = By.xpath("//div/div[text()='"+equipmentinService+"']");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -428,19 +606,22 @@ public class testRun_KTOCTRB {
 			clickonButton(radio_hydeaulicElevator);
 			System.out.println("HydraulicElevCheck clicked");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Select Equipment InService Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will rightclick equipment and click on template and clear existing template name and enter new template name and click on shared template radoi button
+	 *@param template: template to be selected
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By lnk_openTemplates = By.xpath("//div[text()='Open Templates']");
 	public static By lnk_binaryTemplates = By.xpath("(//*[@data-ctcname='Template_Open_I'])[last()-1]");
 	public static By txt_searchTemplate = By.xpath("//*[@data-ctcname='Template_Search_T']");
 	public static By radio_sharedTemplate = By.xpath("//*[@data-ctcname='Shared_Template_AllOrg_R']");
-	public void SelectTemplateToBeUploaded(String template) throws Exception{
+	public void selectTemplateToBeUploaded(String template) throws Exception{
 		try {
 			By tree_equipmentID = By.xpath("//*[text()='" + equipmentid + "']");
 			By lnk_template = By.xpath("(//*[text()='" + template + "'])[last()]");
@@ -475,16 +656,18 @@ public class testRun_KTOCTRB {
 			doubleclick_template.build().perform();
 			System.out.println(template+" Template Clicked");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Select Template to be Uploaded Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will check Tender consistency
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By consistencyCheckElement = By.xpath("//div/div[text()='Project']/../..//div/div");
-	public void VerifyTenderConsistency() throws Exception{
+	public void verifyTenderConsistency() throws Exception{
 		try {
 			List<WebElement> Elements_ConsistencyCheck_1 = gettingWebElementsfromList(consistencyCheckElement);
 			for (WebElement Element : Elements_ConsistencyCheck_1) {
@@ -495,38 +678,179 @@ public class testRun_KTOCTRB {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Verify Tender Consistency Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will get Tender number
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By text_tenderNumber = By.xpath("//*[@data-ctcname='Document_Number_T']");
-	public void GetTenderNo() throws Exception{
+	public void getTenderNo() throws Exception{
 		String getTenderNo=gettingWebElement(text_tenderNumber).getAttribute("value");
 		System.out.println("Tender # is :"+getTenderNo.trim());
 	}
 	
-	//***reuse pricingIconClick method is the prerequisite for Pricing screen***
+	/**
+	 ***pricingIconClick method is the prerequisite for Pricing screen***
+	 **Reuse method, it will select Discount & FirstMaintenance  
+	 * @param discount: discount to be entered
+	 * @param FirstMaintenance: FirstMaintenance to be entered
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
 	public void CheckTenderPriceAfterDiscountUpdate(String discount, String FirstMaintenance) throws Exception{
 		selectingDiscount(discount);
 		selectingFirstMaintenance(FirstMaintenance);
 	}
 	
-	//***reuse pricingIconClick method is the prerequisite for Pricing screen***
-		public void VerifyDiscountByChangingTheTenderPrice(String tenderPrice, String FirstMaintenance) throws Exception{
-			selectingTenderPrice(tenderPrice);
-			selectingFirstMaintenance(FirstMaintenance);
-		}
-	
+	/**
+	 ***pricingIconClick method is the prerequisite for Pricing screen***
+	 **Reuse method, it will select TenderPrice & FirstMaintenance
+	 * @param tenderPrice: tenderPrice to be entered
+	 * @param FirstMaintenance: FirstMaintenance to be entered
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void VerifyDiscountByChangingTheTenderPrice(String tenderPrice, String FirstMaintenance) throws Exception{
+		selectingTenderPrice(tenderPrice);
+		selectingFirstMaintenance(FirstMaintenance);
+	}
+	/**
+	 **Reuse method, it will Get TargetPrice from table
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
 	public void GetTargetPrice() throws Exception{
 		checkingTargetPrice();
 	}
 	
 	/**
+	 **Reuse method, it will click on AdditionalDiscountIcon
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void verifyRegionalDiscountDisplayedCorrectly() throws Exception{
+		clickonAdditionalDiscountIcon();
+	}
+	
+	/**
+	 **Reuse method, it will get regionaldiscount
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void verifyTargetPriceDisplayedCorrectly(String firstMaintenance) throws Exception{
+		getRegionalDiscount(firstMaintenance);
+	}
+	
+	/**
+	 **Reuse method, it will click on AdditionalDiscountIcon
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public static By icon_additionalDiscount = By.xpath("//*[@data-ctcwgtname='nPricingOverview']/div");
+	public static By header_RegionalDiscount = By.xpath("//*[text()='Regional discount on component (%)']");
+	public void clickonAdditionalDiscountIcon() throws Exception{
+		gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
+		System.out.println("Additional Discount Icon CLICKED");
+		waitForVisibilityOfElementLocated(header_RegionalDiscount);
+		System.out.println("header RegionalDiscount is visible");
+	}
+	
+	/**
+	 **Reuse method, it will get RegionalDiscount from table
+	 *@param firstMaintenance: FirstMaintenance to be entered
+	 *@throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public static By grid_RegionalDiscountValues = By.xpath("//*[text()='Regional discount on component (%)']/../../..//div[3]/div/div[1]/*");
+	public void getRegionalDiscount(String firstMaintenance) throws Exception{
+		waitForVisibilityOfElementLocated(grid_RegionalDiscountValues);
+		List<WebElement> element_RegionalDiscountValues=gettingWebElementsfromList(grid_RegionalDiscountValues);
+		List<String> ls_RegionalDiscountHeader=new LinkedList<>();
+		List<Float> ls_RegionalDiscountValue=new LinkedList<>();
+		HashMap<String, Float> hm_data = new HashMap<String, Float>();
+			ls_RegionalDiscountHeader.add("TargetPrice_Base");
+			ls_RegionalDiscountHeader.add("FundingSectorDiscount_Percent");
+			ls_RegionalDiscountHeader.add("FundingSectorDiscount");
+			ls_RegionalDiscountHeader.add("MarketSegmentDiscount_Percent");
+			ls_RegionalDiscountHeader.add("MarketSegmentDiscount");
+			ls_RegionalDiscountHeader.add("BillingPlanDiscount_Percent");
+			ls_RegionalDiscountHeader.add("BillingPlanDiscount");
+			ls_RegionalDiscountHeader.add("SalesOfficeMultiplier_Percent");
+			ls_RegionalDiscountHeader.add("SalesOfficeMultiplier");
+			ls_RegionalDiscountHeader.add("SellingValuePackageDiscount_Percent");
+			ls_RegionalDiscountHeader.add("SellingValuePackageDiscount");
+			ls_RegionalDiscountHeader.add("Regionaldiscountoncomponent_Percent");
+			ls_RegionalDiscountHeader.add("Regionaldiscountoncomponent");
+			ls_RegionalDiscountHeader.add("TargetPrice");
+			ls_RegionalDiscountHeader.add("Discount");
+			ls_RegionalDiscountHeader.add("TenderPrice");
+			ls_RegionalDiscountHeader.add("FirstMaintenance");
+		Float convertedvalue=null;
+		for(WebElement element_RegionalDiscountValue:element_RegionalDiscountValues) {
+			if (element_RegionalDiscountValue.getAttribute("value") == null ) {
+				if(!element_RegionalDiscountValue.getText().isEmpty())	{
+						if(!element_RegionalDiscountValue.getText().contains("Subtotal") && !element_RegionalDiscountValue.getText().contains("Project")) {
+							String getvalue=element_RegionalDiscountValue.getText();
+//							System.out.println("2*"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
+							if(!getvalue.equals("0.00") && !getvalue.contains("%")) {
+								getvalue = getvalue.replace(".", "");
+							}
+							getvalue=getvalue.replaceAll("[€ % h]", "");
+							getvalue = getvalue.replace(",", ".");
+//							System.out.println("2**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
+							convertedvalue = Float.valueOf(getvalue);
+							ls_RegionalDiscountValue.add(convertedvalue);
+//							System.out.println("2***"+element_RegionalDiscountValue.getAttribute("id")+"="+convertedvalue);
+						}
+				}
+			} else if(!element_RegionalDiscountValue.getAttribute("value").isEmpty() && element_RegionalDiscountValue.getAttribute("value")!=null)	{
+					String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[€ % h .]", "");
+					getvalue = getvalue.replace(",", ".");
+//					System.out.println("3**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
+					convertedvalue = Float.valueOf(getvalue);
+					ls_RegionalDiscountValue.add(convertedvalue);
+//					System.out.println("3***"+element_RegionalDiscountValue.getAttribute("id")+"="+convertedvalue);
+			}
+		}
+		int toIterate=16;
+			if(!firstMaintenance.equals("0")){
+				toIterate=toIterate+1;
+			}
+			for(int i=0; i<toIterate; i++) {
+				hm_data.put(ls_RegionalDiscountHeader.get(i), ls_RegionalDiscountValue.get(i));
+			}
+		Float read_TargetPrice_Base=hm_data.get("TargetPrice_Base");
+		/*Float read_FundingSectorDiscount_Percent=hm_data.get("FundingSectorDiscount_Percent");
+		Float read_FundingSectorDiscount=hm_data.get("FundingSectorDiscount");
+		Float read_MarketSegmentDiscount_Percent=hm_data.get("MarketSegmentDiscount_Percent");
+		Float read_MarketSegmentDiscount=hm_data.get("MarketSegmentDiscount");
+		Float read_BillingPlanDiscount_Percent=hm_data.get("BillingPlanDiscount_Percent");
+		Float read_BillingPlanDiscount=hm_data.get("BillingPlanDiscount");
+		Float read_SalesOfficeMultiplier_Percent=hm_data.get("SalesOfficeMultiplier_Percent");
+		Float read_SalesOfficeMultiplier=hm_data.get("SalesOfficeMultiplier");
+		Float read_SellingValuePackageDiscount_Percent=hm_data.get("SellingValuePackageDiscount_Percent");
+		Float read_SellingValuePackageDiscount=hm_data.get("SellingValuePackageDiscount");*/
+		Float read_Regionaldiscountoncomponent_Percent=hm_data.get("Regionaldiscountoncomponent_Percent");
+		Float read_Regionaldiscountoncomponent=hm_data.get("Regionaldiscountoncomponent");
+		Float read_TargetPrice=hm_data.get("TargetPrice");
+		/*Float read_Discount=hm_data.get("Discount");
+		Float read_TenderPrice=hm_data.get("TenderPrice");
+		Float read_FirstMaintenance=hm_data.get("FirstMaintenance");*/	
+		Float final_Regionaldiscountoncomponent=read_TargetPrice_Base-(read_TargetPrice_Base*(regionalDiscount/100));
+		Float final_TenderPrice=read_TargetPrice_Base-final_Regionaldiscountoncomponent;
+		System.out.println("is read_Regionaldiscountoncomponent_Percent vs regionalDiscount equal:"+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount));
+		System.out.println("is final_Regionaldiscountoncomponent vs read_Regionaldiscountoncomponent equal:"+final_Regionaldiscountoncomponent.equals(read_Regionaldiscountoncomponent));
+		System.out.println("is final_TenderPrice vs read_TargetPrice equal:"+final_TenderPrice.equals(read_TargetPrice));
+	}
+	
+	/**
 	 **Reuse method, it will click Detail Breakdown Tab and checks ITE factor, Labour rate, Reference hours
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By tab_detailBreakDown = By.xpath("//*[text()='Detail breakdown']");
@@ -535,7 +859,7 @@ public class testRun_KTOCTRB {
 	public static By lnk_ShowTotalCostCalculationDetails = By.xpath("//*[@src='SMG?i=acdda3ea032315878f95d47164849ea79f364ad3&w=16&h=16']");
 	public static By header_ITEfactor = By.xpath("//*[text()='ITE factor']");
 	public static By gridvalues_SubTotal = By.xpath("//*[text()='Subtotal']/..//*");
-	public void ValidateDetailBreakdownTab() throws Exception{
+	public void validateDetailBreakdownTab() throws Exception{
 		try {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			WebElement scrollto_DetailbreakdownTab = gettingWebElement(tab_detailBreakDown);
@@ -549,13 +873,7 @@ public class testRun_KTOCTRB {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(dd_selectProject);
 			System.out.println("Dropdown in DetailedbreakdownTAB Clicked");
-			
 			WebElement element_Ropes = gettingWebElement(value_ropes);
-			/*wait.until(ExpectedConditions.elementToBeClickable(element_Ropes));
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			element_Ropes.click();
-			wait.until(ExpectedConditions.invisibilityOf(element_Ropes));
-			*/
 			waitForVisibilityOfElementLocated(value_ropes);
 			waitForElementToBeClickable(value_ropes);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -564,20 +882,7 @@ public class testRun_KTOCTRB {
 			System.out.println("ROPES CLICKED");
 			waitForinvisibilityOfElementLocated(value_ropes);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-//			clickonButton(lnk_ShowTotalCostCalculationDetails);
-//			System.out.println("elementShowTotalCostCalculationDetail_toCLICK="+driver.findElements(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).getAttribute("id"));
 			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
-//			System.out.println("elementShowTotalCostCalculationDetail_CLICKED="+driver.findElements(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).getAttribute("id"));
-			/*List<WebElement> element_ShowTotalCostCalculationDetails = gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
-			int count=0;
-			for(WebElement elementShowTotalCostCalculationDetail:element_ShowTotalCostCalculationDetails) {
-			System.out.println(elementShowTotalCostCalculationDetail.getAttribute("id")+"/"+elementShowTotalCostCalculationDetail.getAttribute("style"));
-				count++;
-				if(count==5 && !elementShowTotalCostCalculationDetail.getAttribute("style").contains("122")) {
-					elementShowTotalCostCalculationDetail.click();
-					break;
-				}
-			}*/
 			System.out.println("ShowTotalCostCalculationDetails CLICKED");
 			waitForVisibilityOfElementLocated(header_ITEfactor);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -585,9 +890,6 @@ public class testRun_KTOCTRB {
 			List<String> ls_TotalCostHeader=new LinkedList<>();
 			List<Float> ls_TotalCostValue=new LinkedList<>();
 			HashMap<String, Float> hm_data = new HashMap<String, Float>();
-			/*for(WebElement Element_showtotalcostHeader:Elements_showtotalcostHeader) {
-				if(!Element_showtotalcostHeader.getText().isEmpty())	{
-					System.out.println("HEADER_Element_showtotalcostHeader:"+Element_showtotalcostHeader.getText());*/
 					ls_TotalCostHeader.add("Target Price");
 					ls_TotalCostHeader.add("Material costs");
 					ls_TotalCostHeader.add("Material cost (SL Currency)");
@@ -602,8 +904,6 @@ public class testRun_KTOCTRB {
 					ls_TotalCostHeader.add("Total Cost");
 					ls_TotalCostHeader.add("Ratio of Labor");
 					ls_TotalCostHeader.add("Tender Price");
-/*			}
-			}*/
 			Float convertedvalue=null;
 			for(WebElement Element_showtotalcostFirstRow:Elements_showtotalcostFirstRow) {
 				if (Element_showtotalcostFirstRow.getAttribute("value") == null ) {
@@ -623,15 +923,6 @@ public class testRun_KTOCTRB {
 						convertedvalue = Float.valueOf(getvalue);
 						ls_TotalCostValue.add(convertedvalue);
 				}
-				/*if (!Element_showtotalcostFirstRow.getText().isEmpty() || Element_showtotalcostFirstRow.getAttribute("value") != null) {
-					if (Element_showtotalcostFirstRow.getAttribute("value") == null) {
-						if (!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
-							System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
-						}
-					} else if (!Element_showtotalcostFirstRow.getAttribute("value").isEmpty()) {
-						System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
-					}
-				}*/
 			}
 			for(int i=0; i<14; i++) {
 				hm_data.put(ls_TotalCostHeader.get(i), ls_TotalCostValue.get(i));
@@ -671,16 +962,18 @@ public class testRun_KTOCTRB {
 //			waitForinvisibilityOfElementLocated(header_ITEfactor);
 			System.out.println("header_ITEfactor disabled");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Validate Detail Breakdown Tab Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will click ToConfiguration icon and select Project from projecttree and select SalesOffice and click on Pricing Icon
+ 	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By lnk_toConfiguration = By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[1]/img");
-	public void GotoConfigurationPageandChangeTheSalesOffice(String changeSalesOffice) throws Exception{
+	public void gotoConfigurationPageandChangeTheSalesOffice(String changeSalesOffice) throws Exception{
 		try {
 			WebElement element_toConfiguration = gettingWebElement(lnk_toConfiguration);
 			scrollIntoView_Javascript(element_toConfiguration);
@@ -697,22 +990,24 @@ public class testRun_KTOCTRB {
 				}
 			}
 			System.out.println("ToConfiguration icon clicked");
-			SelectProjectTree();
-			CheckSalesOfficeisSelected(changeSalesOffice);
+			selectProjectTree();
+			checkSalesOfficeisSelected(changeSalesOffice);
 			pricingIconClick();
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will click ToWord icon and click on ModularTenderDOC.doc
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By lnk_toWord = By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[5]/img");
 	public static By label_KONELogo = By.xpath("//*[text()='Print with KONE Logo']");
 	public static By lnk_templateDOC = By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc')]");
-	public void GoToDocumentsTabandClickTheTender() throws Exception{
+	public void goToDocumentsTabandClickTheTender() throws Exception{
 		try {
 			WebElement element_ToWord = gettingWebElement(lnk_toWord);
 			scrollIntoView_Javascript(element_ToWord);
@@ -739,19 +1034,21 @@ public class testRun_KTOCTRB {
 			element_ModularTenderDOC.click();
 			System.out.println("Modular_Tender_Template.doc clicked");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Goto Documents tab and Click Tender Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will click printOut icon in toword screen
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By icon_printOut = By.xpath("//*[@data-ctcname='PrintOut_I']/div"); //*[@data-ctcname='PrintOut_I']/div
 	public static By text_freezePrint = By.xpath("//*[contains(text(),'Do you want to freeze printed version?')]");
 	public static By text_infotoDocServer = By.xpath("//*[contains(text(),'Information have been sent to the document server')]");
 	public static By btn_infotoDocServer = By.xpath("//button[text()='OK']");
-	public void VerifySuccessfulMessageDisplayed() throws Exception{
+	public void verifySuccessfulMessageDisplayed() throws Exception{
 		try {
 			By btn_freezePrint = By.xpath("//button[text()='"+FreezePrintedVersion+"']");
 			WebElement element_PrintwithKONELogo = gettingWebElement(label_KONELogo);
@@ -772,12 +1069,14 @@ public class testRun_KTOCTRB {
 			element_OkbuttoninInformationtodocumentserver.click();
 			System.out.println("OK clicked");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Verify Successful Message Displayed Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will click ClickSave and CloseButton in KTOC-TRB
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By icon_saveandClose = By.xpath("//*[@data-ctcwgtname='ToolBar' and @data-ctctype='Toolbar']/div[2]");
@@ -785,7 +1084,7 @@ public class testRun_KTOCTRB {
 	public static By dd_stage = By.xpath("//*[@data-ctcwgtname='_TenderVersion.Stage__c']/button");
 	public static By txt_probability = By.xpath("//input[@data-ctcwgtname='_TenderVersion.Probability__c']");
 	public static By btn_stageProbability = By.xpath("//*[text()='OK']");
-	public void ClickSaveandCloseButton(String StageProbability_Description, String StageProbability_probability) throws Exception{
+	public void clickSaveandCloseButton(String StageProbability_Description, String StageProbability_probability) throws Exception{
 		try {
 			By btn_saveandClose = By.xpath("//*[@data-ctcwgtname='pb"+SaveandClose+"']");
 			By value_stage = By.xpath("//div[text()='"+StageProbability_Stage+"']");
@@ -814,18 +1113,20 @@ public class testRun_KTOCTRB {
 			clickonButton(btn_stageProbability);
 			System.out.println("OK Button Clicked");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Click Save&Close button Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will click Configurator button and navigate back to frames
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By frameforwait = By.tagName("iframe");
 	public static By btn_configurator = By.xpath("//*[@title='Configurator']");
 	public static By btn_NoButtoninNewVersionProduct = By.xpath("//button[text()='No']");
-	public void GetSalesPriceFromSalesForce() throws Exception{
+	public void getSalesPriceFromSalesForce() throws Exception{
 		try {
 			wait.until(elementToBeClickableInFrame(frameforwait, btn_configurator));
 //			System.out.println("NewWait's Executed");
@@ -855,21 +1156,23 @@ public class testRun_KTOCTRB {
 			element_NoButtoninNewVersionProduct.click();
 			System.out.println("NO clicked in New Version is available for this product");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Get SalesPrice from SalesForce Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will click HandShakeIcon
+	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By icon_pricing = By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[3]/img");
 	public static By icon_HandShake = By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[9]/img");
-	public void HandShake() throws Exception{
+	public void handShake() throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(icon_pricing);
 			System.out.println("pricingicon's visible");
-			VerifyTenderConsistency();
+			verifyTenderConsistency();
 			WebElement element_HandShakeicon=gettingWebElement(icon_HandShake);
 			wait.until(ExpectedConditions.visibilityOf(element_HandShakeicon));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -886,12 +1189,14 @@ public class testRun_KTOCTRB {
 			}*/
 			System.out.println("isHandShakeiconisEnabled:"+element_HandShakeicon.isEnabled()+" HandShakeicon CLICKED");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("HandShake Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will click PriceIcon
+ 	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	//***reuse pricingIconClick method is the prerequisite for Pricing screen***
@@ -915,12 +1220,14 @@ public class testRun_KTOCTRB {
 			}*/
 			System.out.println("pricing icon Clicked");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("PricingIcon Click Failed due to: "+e);
 		}
 	}
 	
 	/**
 	 **Reuse method, it will select FirstMaintenance dropdown value in PriceOverview tab
+ 	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
 	public static By dd_firstMaintenance = By.xpath("//*[@data-ctcname='FirstMaintenance_D']/button");
@@ -943,7 +1250,8 @@ public class testRun_KTOCTRB {
 				waitForVisibilityOfElementLocated(header_firstMaintenance);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Selecting FirstMaintenance Failed due to: "+e);
 		}
 	}
 	
@@ -1006,7 +1314,8 @@ public class testRun_KTOCTRB {
 			waitForpresenceOfElementLocated(grid_discountisApplied);
 			System.out.println("Discount applied to GRID");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Selecting Discount Failed due to: "+e);
 		}
 	}
 	
@@ -1053,7 +1362,8 @@ public class testRun_KTOCTRB {
 			System.out.println("TenderPrice_T OK clicked");	
 			istenderPrice=true;
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Selecting TenderPrice Failed due to: "+e);
 		}
 	}
 	
@@ -1128,7 +1438,8 @@ public class testRun_KTOCTRB {
 				System.out.println("*** is TenderPriceFinal & ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			Assert.fail("Checking TargetPrice Failed due to: "+e);
 		}
 	}
 	
@@ -1380,4 +1691,226 @@ public class testRun_KTOCTRB {
 		}
 		return null;
 	}	
+	
+	/**
+	 * 
+	 * @author Roja
+	 */
+	public static String CurrentDir = System.getProperty("user.dir");
+	public static String ScreenshotPath = CurrentDir.concat("/Screenshots/Screenshots-Failure/\\");
+	public static void TakeSnapShot(String PageName) throws Exception {
+		// Convert web driver object to TakeScreenshot
+		TakesScreenshot scrShot = ((TakesScreenshot) driver);
+		String TimeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+		// Call getScreenshotAs method to create image file
+		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		// Move image file to new destination
+		// File DestFile=new File(ScreenshotPath);
+		// Copy file at destination
+		// FileUtils.copyFile(SrcFile, DestFile);
+		FileUtils.copyFile(SrcFile, new File(ScreenshotPath + '-' + PageName + TimeStamp + ".png"));
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	public static WebElement element = null;
+	private static WebElement getWebElement(String locator, String locatorValue) {
+		if (locator.equalsIgnoreCase("cssSelector")) {
+			element = driver.findElement(By.cssSelector(locatorValue));
+		} else if (locator.equalsIgnoreCase("xpath")) {
+			element = driver.findElement(By.xpath(locatorValue));
+		} else if (locator.equalsIgnoreCase("id"))
+			element = driver.findElement(By.id(locatorValue));
+		return element;
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	protected static void ClickOnElement(String locator, String locatorValue) {
+		element = getWebElement(locator, locatorValue);
+		if (element != null) {
+			element.click();
+		}
+
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	protected static void ScrollUptoElement(String locator, String LocatorValue) {
+		try {
+			element = getWebElement(locator, LocatorValue);
+			if (element.isDisplayed()) {
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+			}
+		} catch (Exception e) {
+			Assert.fail("Scrolling is not successful");
+		}
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	protected static void SelectDropDownValues(String locator, String locatorValue, String value) {
+		Select select = null;
+		if (locator.equalsIgnoreCase("cssSelector")) {
+			select = new Select(driver.findElement(By.cssSelector(locatorValue)));
+		} else if (locator.equalsIgnoreCase("xpath")) {
+			select = new Select(driver.findElement(By.xpath(locatorValue)));
+		} else if (locator.equalsIgnoreCase("id")) {
+			select = new Select(driver.findElement(By.id(locatorValue)));
+		}
+		if (select != null) {
+			select.selectByValue(value);
+			WaitTillElementToBeDisplayed(locator, locatorValue);
+		}
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	private static final int TIME_OUT_IN_SECONDS = 300;
+	protected static void WaitTillElementToBeDisplayed(String locatorType, String locatorVaue) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, TIME_OUT_IN_SECONDS);
+
+			if (locatorType.equalsIgnoreCase("cssSelector")) {
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(locatorVaue)));
+			} else if (locatorType.equalsIgnoreCase("xpath")) {
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorVaue)));
+			} else if (locatorType.equalsIgnoreCase("id")) {
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(locatorVaue)));
+			}
+		} catch (Exception e) {
+			System.out.println("Webdriver Locator Error" + e);
+		}
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	public static int RandomNumber() {
+		Random rand = new Random();
+		return rand.nextInt(10000) + 1;
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	public static WebElement FindTheElement(String locatorType, String locatorValue) {
+		// String TextLink = null;
+		if (locatorType.equalsIgnoreCase("cssSelector")) {
+			element = driver.findElement(By.cssSelector(locatorValue));
+		} else if (locatorType.equalsIgnoreCase("xpath")) {
+			element = driver.findElement(By.xpath(locatorValue));
+		} else if (locatorType.equalsIgnoreCase("id")) {
+			element = driver.findElement(By.id(locatorValue));
+		}
+		return element;
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	protected static void WaitAndClickOnElement(String locatorType, String locatorVaue) {
+		WebDriverWait wait = new WebDriverWait(driver, TIME_OUT_IN_SECONDS);
+		if (locatorType.equalsIgnoreCase("cssSelector")) {
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(locatorVaue))).click();
+		} else if (locatorType.equalsIgnoreCase("xpath")) {
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locatorVaue))).click();
+		} else if (locatorType.equalsIgnoreCase("id")) {
+			wait.until(ExpectedConditions.elementToBeClickable(By.id(locatorVaue))).click();
+		}
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	protected static void WaitTillClickable(String locatorType, String locatorValue) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 10000);
+			if (locatorType.equalsIgnoreCase("cssSelector")) {
+				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(locatorValue)));
+			} else if (locatorType.equalsIgnoreCase("xpath")) {
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locatorValue)));
+			} else if (locatorType.equalsIgnoreCase("id")) {
+				wait.until(ExpectedConditions.elementToBeClickable(By.id(locatorValue)));
+			}
+		} catch (Exception e) {
+			System.out.println("Webdriver Locator Error" + e);
+		}
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	public static void EnterTextbyChar(String locator, String locatorValue, String text, int indexvalue)
+			throws Exception {
+		try {
+			element = getWebElement(locator, locatorValue, indexvalue);
+			if (element != null && element.isEnabled()) {
+				element.clear();
+				for (int i = 0; i < text.length(); i++) {
+					char c = text.charAt(i);
+					String s = String.valueOf(c);
+					element.sendKeys(s);
+				}
+				element.sendKeys(Keys.DOWN);
+			} else {
+			}
+		} catch (Exception e) {
+			Assert.fail("Entering text failed");
+		}
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	private static WebElement getWebElement(String locator, String locatorValue, int indexvalue) {
+		if (locator.equalsIgnoreCase("cssSelector")) {
+			element = driver.findElements(By.cssSelector(locatorValue)).get(indexvalue - 1);
+		} else if (locator.equalsIgnoreCase("xpath")) {
+			element = driver.findElements(By.xpath(locatorValue)).get(indexvalue - 1);
+		} else if (locator.equalsIgnoreCase("id")) {
+			element = driver.findElements(By.id(locatorValue)).get(indexvalue - 1);
+		}
+		return element;
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	protected static void EnterValues(String locator, String locatorValue, String text) {
+		element = getWebElement(locator, locatorValue);
+		if (element != null) {
+			element.sendKeys(text);
+		}
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	protected static void ClickDate(String CalenderField, String GivenValue) {
+		driver.findElement(By.xpath(CalenderField)).click();
+		driver.findElement(By.xpath("//td[text()='" + GivenValue + "']")).click();
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	protected static void SelectDropDownText(String locator, String locatorValue, String value) {
+		WebElement mySelectElement = null;
+		if (locator.equalsIgnoreCase("cssSelector")) {
+			mySelectElement = driver.findElement(By.cssSelector(locatorValue));
+		} else if (locator.equalsIgnoreCase("xpath")) {
+			mySelectElement = driver.findElement(By.xpath(locatorValue));
+		} else if (locator.equalsIgnoreCase("id")) {
+			mySelectElement = driver.findElement(By.id(locatorValue));
+		}
+		Select dropdown = new Select(mySelectElement);
+		dropdown.selectByVisibleText(value);
+	}
 }

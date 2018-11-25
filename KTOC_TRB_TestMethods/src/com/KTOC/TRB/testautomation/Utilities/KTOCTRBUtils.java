@@ -675,7 +675,6 @@ public class KTOCTRBUtils {
 	}
 
 	public static void TakeSnapShot(String PageName) throws Exception {
-
 		// Convert web driver object to TakeScreenshot
 		TakesScreenshot scrShot = ((TakesScreenshot) driver);
 		String TimeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
