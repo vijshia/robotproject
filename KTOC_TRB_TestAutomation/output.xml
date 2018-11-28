@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20181122 15:35:59.958">
+<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20181128 17:30:22.800">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation" name="KTOC TRB TestAutomation" id="s1">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites" name="TestSuites" id="s1-s1">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites\RegressionKTOC_TRB.robot" name="RegressionKTOC TRB" id="s1-s1-s1">
 <kw type="setup" library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Launch Browser">
 <arguments>
+<arg>windows</arg>
 <arg>ff</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:36:12.851">1542881163290	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.aZCKc3X7kgHs"
-1542881165426	Marionette	INFO	Listening on port 54392
-1542881165520	Marionette	WARN	TLS certificate errors will be ignored for this session
-Nov 22, 2018 3:36:05 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+<msg level="INFO" timestamp="20181128 17:30:36.873">1543406426395	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.zMIrkIKSx6p0"
+1543406429470	Marionette	INFO	Listening on port 56637
+1543406429653	Marionette	WARN	TLS certificate errors will be ignored for this session
+Nov 28, 2018 5:30:29 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C</msg>
-<status endtime="20181122 15:36:12.871" starttime="20181122 15:36:01.432" status="PASS"></status>
+<status endtime="20181128 17:30:36.907" starttime="20181128 17:30:24.400" status="PASS"></status>
 </kw>
 <test name="1.Logon To Salesforce" id="s1-s1-s1-t1">
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Logon To Salesforce">
@@ -20,22 +21,21 @@ INFO: Detected dialect: W3C</msg>
 <arg>s.vijay@kone.com.qa</arg>
 <arg>Vijay1234</arg>
 </arguments>
-<status endtime="20181122 15:36:17.338" starttime="20181122 15:36:12.901" status="PASS"></status>
+<status endtime="20181128 17:30:40.772" starttime="20181128 17:30:37.023" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181122 15:36:17.351" starttime="20181122 15:36:12.887" status="PASS"></status>
+<status critical="yes" endtime="20181128 17:30:40.781" starttime="20181128 17:30:36.944" status="PASS"></status>
 </test>
 <test name="2.Verify Creating Opportunity and Mapping It With FLTender" id="s1-s1-s1-t2">
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Create Opportunity OR Search Opportunity">
 <arguments>
+<arg>search</arg>
 <arg>KOFCOL TRB SFA</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:36:50.030">Entered KOFCOL TRB SFA in Search box
-KOFCOL TRB SFA has been clicked
-clicked on FL Tenders header in Opportunity
-clicked on New FLTender button in FL Tender page</msg>
-<status endtime="20181122 15:36:50.043" starttime="20181122 15:36:17.380" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:31:10.874">Entered opportunity name:KOFCOL TRB SFA in Search box
+KOFCOL TRB SFA has been clicked</msg>
+<status endtime="20181128 17:31:10.908" starttime="20181128 17:30:40.811" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181122 15:36:50.058" starttime="20181122 15:36:17.368" status="PASS"></status>
+<status critical="yes" endtime="20181128 17:31:10.935" starttime="20181128 17:30:40.790" status="PASS"></status>
 </test>
 <test name="3.Verify Tender Created Successfully" id="s1-s1-s1-t3">
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Add Equipment ID Elevator">
@@ -43,325 +43,100 @@ clicked on New FLTender button in FL Tender page</msg>
 <arg>1723</arg>
 <arg>change</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:08.851">Release 1723 is Selected
-scrolled to OK button
+<msg level="INFO" timestamp="20181128 17:31:46.848">Release 1723 is Selected
 Clicked on OK button
-CustomerID existing value cleared
-10503512 EquipmentID entered***
-EquipmentID clicked
+10503512 EquipmentID entered
 Equipment loader clicked
 checkbox clicked
-Change button clicked</msg>
-<msg level="INFO" timestamp="20181122 15:37:08.864">org.openqa.selenium.ElementClickInterceptedException: Element &lt;input id="e152" class="cm0sdg4nghnbd0" type="text"&gt; is not clickable at point (436.3333511352539,100.16666412353516) because another element &lt;div id="gp" class="gp"&gt; obscures it
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 14816, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: cd3142f3-63f0-42d7-9780-71095d55fd1f
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
-	at com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB.clickonButton(testRun_KTOCTRB.java:1211)
-	at com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB.AddEquipmentIDElevator(testRun_KTOCTRB.java:244)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.python.core.PyReflectedFunction.__call__(PyReflectedFunction.java:186)
-	at org.python.core.PyObject.__call__(PyObject.java:419)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.running.librarykeywordrunner$py.f$13(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:89)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:124)
-	at org.python.core.PyFunction.__call__(PyFunction.java:403)
-	at robot.running.librarykeywordrunner$py._run_with_signal_monitoring$16(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:103)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run_with_output_captured_and_signal_monitor$15(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:96)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run$8(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:77)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py.run$6(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:56)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.steprunner$py.run_step$4(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:57)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.steprunner$py.run_steps$3(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:47)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.runner$py.visit_test$7(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py:160)
-	at robot.running.runner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testcase$py.visit$7(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py:74)
-	at robot.model.testcase$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.model$py.run$17(C:\jython2.7.0\Lib\site-packages\robot\running\model.py:250)
-	at robot.running.model$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\model.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at org.python.pycode._pyx10.main$3(C:\jython2.7.0\Lib\site-packages\robot\run.py:452)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.utils.application$py._execute$10(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:94)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.utils.application$py.execute_cli$5(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:49)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.pycode._pyx10.run_cli$7(C:\jython2.7.0\Lib\site-packages\robot\run.py:489)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:131)
-	at org.python.core.PyFunction.__call__(PyFunction.java:413)
-	at org.python.pycode._pyx10.f$0(C:\jython2.7.0\Lib\site-packages\robot\run.py:550)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyCode.call(PyCode.java:18)
-	at org.python.core.Py.runCode(Py.java:1386)
-	at org.python.core.Py.exec(Py.java:1430)
-	at runpy$py._run_code$9(C:\jython2.7.0\Lib\runpy.py:73)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyFunction.function___call__(PyFunction.java:471)
-	at org.python.core.PyFunction.__call__(PyFunction.java:466)
-	at org.python.core.PyFunction.__call__(PyFunction.java:456)
-	at runpy$py._run_module_as_main$14(C:\jython2.7.0\Lib\runpy.py:161)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyFunction.__call__(PyFunction.java:418)
-	at org.python.util.jython.runModule(jython.java:199)
-	at org.python.util.jython.runModule(jython.java:191)
-	at org.python.util.jython.run(jython.java:402)
-	at org.python.util.jython.main(jython.java:142)</msg>
-<status endtime="20181122 15:37:08.947" starttime="20181122 15:36:50.114" status="PASS"></status>
+Change button clicked
+CustomerID: A10137873 entered</msg>
+<status endtime="20181128 17:31:46.871" starttime="20181128 17:31:10.970" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Check Hand Over Date Is Greater Than Installation Date">
-<msg level="INFO" timestamp="20181122 15:37:13.076">scroll UP to Project tree
-Project clicked
-MS5HODatetoChange:27/07/2020
-MS5HODate_Current: 25/07/2020
-MS5HODate_Current Cleared
-MS5HODate Changed to =27/07/2020</msg>
-<status endtime="20181122 15:37:13.088" starttime="20181122 15:37:08.956" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:31:48.355">Project clicked
+Current MS5HO Date: 25/07/2020
+MS5HODate Changed to: 27/07/2020</msg>
+<status endtime="20181128 17:31:48.360" starttime="20181128 17:31:46.893" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Check Sales Officeis Selected">
 <arguments>
 <arg>VB FRRW</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:14.311">SalesOffice drop down clicked
-SalesOffice value VB FRRW Selected</msg>
-<status endtime="20181122 15:37:14.322" starttime="20181122 15:37:13.098" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:31:49.605">SalesOffice value VB FRRW Selected</msg>
+<status endtime="20181128 17:31:49.618" starttime="20181128 17:31:48.367" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Select Supervisor">
 <arguments>
 <arg>06114080</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:16.535">Equipment clicked back
-Supervisor drop down clicked
-06114080 has been clicked</msg>
-<status endtime="20181122 15:37:16.542" starttime="20181122 15:37:14.337" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:31:51.436">06114080 selected in Supervisor</msg>
+<status endtime="20181128 17:31:51.441" starttime="20181128 17:31:49.632" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Select Equipment In Service">
-<msg level="INFO" timestamp="20181122 15:37:19.482">EquipmentInService drop down clicked
-DOC Door is clicked in Equipment InService
+<msg level="INFO" timestamp="20181128 17:31:53.498">DOC Door is clicked in Equipment InService
 HydraulicElevCheck clicked</msg>
-<status endtime="20181122 15:37:19.509" starttime="20181122 15:37:16.548" status="PASS"></status>
+<status endtime="20181128 17:31:53.504" starttime="20181128 17:31:51.447" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Select Template To Be Uploaded">
 <arguments>
 <arg>Automation_Template_002</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:23.098">Equipment identified for RightClick
-Rightclick performed in solution
-open templates clicked in solution
-Binary Templates: clicked
-clear search field value
-Automation_Template_002 search field value
+<msg level="INFO" timestamp="20181128 17:31:57.253">Rightclick performed on Equipment
+Open Templates clicked
+Automation_Template_002 Entered in search
 Shared templates radio button Clicked
 Automation_Template_002 Template Clicked</msg>
-<status endtime="20181122 15:37:23.108" starttime="20181122 15:37:19.525" status="PASS"></status>
+<status endtime="20181128 17:31:57.275" starttime="20181128 17:31:53.513" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Tender Consistency">
-<msg level="INFO" timestamp="20181122 15:37:26.660">PASS: Tender is Consistency, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+<msg level="INFO" timestamp="20181128 17:31:59.985">PASS: Tender is Consistency, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistency, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistency, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistency, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistency, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistency, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistency, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")</msg>
-<status endtime="20181122 15:37:26.663" starttime="20181122 15:37:23.121" status="PASS"></status>
+<status endtime="20181128 17:31:59.989" starttime="20181128 17:31:57.284" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Get Tender No">
-<msg level="INFO" timestamp="20181122 15:37:26.693">Tender # is :T-0002464870</msg>
-<status endtime="20181122 15:37:26.697" starttime="20181122 15:37:26.666" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:32:00.034">Tender # is :T-0002465087</msg>
+<status endtime="20181128 17:32:00.038" starttime="20181128 17:31:59.992" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181122 15:37:26.702" starttime="20181122 15:36:50.094" status="PASS"></status>
+<status critical="yes" endtime="20181128 17:32:00.043" starttime="20181128 17:31:10.956" status="PASS"></status>
 </test>
 <test name="4.Validate TenderPrice and Discount Without FirstMaintenance" id="s1-s1-s1-t4">
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Pricing Icon Click">
-<msg level="INFO" timestamp="20181122 15:37:27.089">scrolled to pricingicon
-pricing icon Clicked</msg>
-<status endtime="20181122 15:37:27.099" starttime="20181122 15:37:26.723" status="PASS"></status>
+<status endtime="20181128 17:32:00.383" starttime="20181128 17:32:00.064" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Check Tender Price After Discount Update">
 <arguments>
 <arg>10</arg>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:31.231">Scrolled UP to Discount
-Double Clicked on discount
-TMP_Discount cleared
-TMP_Discount entered as: 10
-Discount OK clicked
-Discount applied to GRID
-scrolled to Firstmaintenance
-First maintenance: Clicked
+<msg level="INFO" timestamp="20181128 17:32:03.793">Discount entered as: 10
 First maintenance: 0 Clicked</msg>
-<status endtime="20181122 15:37:31.239" starttime="20181122 15:37:27.109" status="PASS"></status>
+<status endtime="20181128 17:32:03.808" starttime="20181128 17:32:00.395" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Get Target Price">
-<msg level="INFO" timestamp="20181122 15:37:31.681">TenderPriceFinal:3580.23 / CurrentTenderPrice:3580.23
-*** is TenderPriceFinal &amp; ApplicationTenderPrice Equal: true ***</msg>
-<status endtime="20181122 15:37:31.685" starttime="20181122 15:37:31.252" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:32:04.308">*** TenderPriceFinal:3584.35 / CurrentTenderPrice:3584.35 ***
+is TenderPriceFinal VS ApplicationTenderPrice Equal: true ***</msg>
+<status endtime="20181128 17:32:04.316" starttime="20181128 17:32:03.822" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Discount By Changing The Tender Price">
 <arguments>
 <arg>2001</arg>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:34.077">Scrolled UP to TenderPrice_T
-Double Clicked on selectingTargetPrice
-TenderPrice_T cleared
-TenderPrice_T entered as: 2001
-TenderPrice_T OK clicked
-scrolled to Firstmaintenance
-First maintenance: Clicked
+<msg level="INFO" timestamp="20181128 17:32:06.631">TenderPrice entered as: 2001
 First maintenance: 0 Clicked</msg>
-<status endtime="20181122 15:37:34.091" starttime="20181122 15:37:31.689" status="PASS"></status>
+<status endtime="20181128 17:32:06.641" starttime="20181128 17:32:04.324" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Get Target Price">
-<msg level="INFO" timestamp="20181122 15:37:34.385">DiscountFinal:49.70/Current Discount:49.7
-*** is FinalDiscount &amp; ApplicationDiscount Equal:true ***</msg>
-<status endtime="20181122 15:37:34.388" starttime="20181122 15:37:34.096" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:32:07.010">DiscountFinal:49.76 / Current Discount:49.76
+*** is FinalDiscount VS ApplicationDiscount Equal:true ***</msg>
+<status endtime="20181128 17:32:07.013" starttime="20181128 17:32:06.659" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181122 15:37:34.391" starttime="20181122 15:37:26.710" status="PASS"></status>
+<status critical="yes" endtime="20181128 17:32:07.016" starttime="20181128 17:32:00.053" status="PASS"></status>
 </test>
 <test name="5.Validate TenderPrice and Discount With FirstMaintenance" id="s1-s1-s1-t5">
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Check Tender Price After Discount Update">
@@ -369,160 +144,179 @@ First maintenance: 0 Clicked</msg>
 <arg>11</arg>
 <arg>3</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:37.320">Scrolled UP to Discount
-Double Clicked on discount
-TMP_Discount cleared
-TMP_Discount entered as: 11
-Discount OK clicked
-Discount applied to GRID
-scrolled to Firstmaintenance
-First maintenance: Clicked
+<msg level="INFO" timestamp="20181128 17:32:09.832">Discount entered as: 11
 First maintenance: 3 Clicked</msg>
-<status endtime="20181122 15:37:37.325" starttime="20181122 15:37:34.402" status="PASS"></status>
+<status endtime="20181128 17:32:09.834" starttime="20181128 17:32:07.027" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Get Target Price">
-<msg level="INFO" timestamp="20181122 15:37:37.727">DiscountFinal:9.99/Current Discount:11.0
-*** is FinalDiscount &amp; ApplicationDiscount Equal:false ***</msg>
-<status endtime="20181122 15:37:37.729" starttime="20181122 15:37:37.328" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:32:10.204">DiscountFinal:10.00 / Current Discount:11.0
+*** is FinalDiscount VS ApplicationDiscount Equal:false ***</msg>
+<status endtime="20181128 17:32:10.207" starttime="20181128 17:32:09.837" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Discount By Changing The Tender Price">
 <arguments>
-<arg>3000</arg>
+<arg>2002</arg>
 <arg>3</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:40.295">Scrolled UP to TenderPrice_T
-Double Clicked on selectingTargetPrice
-TenderPrice_T cleared
-TenderPrice_T entered as: 3000
-TenderPrice_T OK clicked
-scrolled to Firstmaintenance
-First maintenance: Clicked
+<msg level="INFO" timestamp="20181128 17:32:12.882">TenderPrice entered as: 2002
 First maintenance: 3 Clicked</msg>
-<status endtime="20181122 15:37:40.300" starttime="20181122 15:37:37.733" status="PASS"></status>
+<status endtime="20181128 17:32:12.896" starttime="20181128 17:32:10.211" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Get Target Price">
-<msg level="INFO" timestamp="20181122 15:37:40.655">DiscountFinal:31.48/Current Discount:34.64
-*** is FinalDiscount &amp; ApplicationDiscount Equal:false ***</msg>
-<status endtime="20181122 15:37:40.658" starttime="20181122 15:37:40.303" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:32:13.259">DiscountFinal:54.32 / Current Discount:59.78
+*** is FinalDiscount VS ApplicationDiscount Equal:false ***</msg>
+<status endtime="20181128 17:32:13.261" starttime="20181128 17:32:12.908" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Discount By Changing The Tender Price">
 <arguments>
-<arg>2500</arg>
+<arg>2003</arg>
 <arg>6</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:43.025">Scrolled UP to TenderPrice_T
-Double Clicked on selectingTargetPrice
-TenderPrice_T cleared
-TenderPrice_T entered as: 2500
-TenderPrice_T OK clicked
-scrolled to Firstmaintenance
-First maintenance: Clicked
+<msg level="INFO" timestamp="20181128 17:32:15.754">TenderPrice entered as: 2003
 First maintenance: 6 Clicked</msg>
-<status endtime="20181122 15:37:43.029" starttime="20181122 15:37:40.660" status="PASS"></status>
+<status endtime="20181128 17:32:15.757" starttime="20181128 17:32:13.263" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Get Target Price">
-<msg level="INFO" timestamp="20181122 15:37:43.446">DiscountFinal:42.90/Current Discount:47.21
-*** is FinalDiscount &amp; ApplicationDiscount Equal:false ***</msg>
-<status endtime="20181122 15:37:43.449" starttime="20181122 15:37:43.035" status="PASS"></status>
+<msg level="FAIL" timestamp="20181128 17:32:16.107">IllegalStateException: failure 'Checking TargetPrice Failed due to: org.openqa.selenium.StaleElementReferenceException: The element reference of &lt;input id="v2416_0" class="cv5tdot1jv528e cvkr530esrf001" type="text"&gt; is stale; either the element is no longer attached to the DOM, it is not in the current frame context, or the document has been refreshed
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
+System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 12168, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: bd2f5a4b-1667-4c17-a96d-6d99f676384c'</msg>
+<status endtime="20181128 17:32:16.112" starttime="20181128 17:32:15.762" status="FAIL"></status>
 </kw>
-<status critical="yes" endtime="20181122 15:37:43.452" starttime="20181122 15:37:34.397" status="PASS"></status>
+<status critical="yes" endtime="20181128 17:32:16.123" starttime="20181128 17:32:07.021" status="FAIL">IllegalStateException: failure 'Checking TargetPrice Failed due to: org.openqa.selenium.StaleElementReferenceException: The element reference of &lt;input id="v2416_0" class="cv5tdot1jv528e cvkr530esrf001" type="text"&gt; is stale; either the element is no longer attached to the DOM, it is not in the current frame context, or the document has been refreshed
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
+System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 12168, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: bd2f5a4b-1667-4c17-a96d-6d99f676384c'</status>
 </test>
-<test name="8 &amp; 9 Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice" id="s1-s1-s1-t6">
+<test name="6.CheckRegionalFactorAtSalesOfficeLevel" id="s1-s1-s1-t6">
+<kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Regional Discount Displayed Correctly">
+<msg level="INFO" timestamp="20181128 17:32:16.927">Additional Discount Icon CLICKED</msg>
+<status endtime="20181128 17:32:16.930" starttime="20181128 17:32:16.139" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Target Price Displayed Correctly">
+<arguments>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20181128 17:32:18.258">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:false *** / read_Regionaldiscountoncomponent_Percent:0.0 / regionalDiscount:5.0
+is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:false *** / final_Regionaldiscountoncomponent:4620.677 / read_Regionaldiscountoncomponent:0.0
+is final_TenderPrice VS read_TargetPrice equal:false *** / final_TenderPrice:243.19336 / read_TargetPrice:4782.61</msg>
+<status endtime="20181128 17:32:18.267" starttime="20181128 17:32:16.932" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181128 17:32:18.279" starttime="20181128 17:32:16.132" status="PASS"></status>
+</test>
+<test name="7.CheckRegionalFactorWhenSalesOfficeIsChanged" id="s1-s1-s1-t7">
+<kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Goto Configuration Pageand Change The Sales Office">
+<arguments>
+<arg>VB FRPP</arg>
+</arguments>
+<msg level="INFO" timestamp="20181128 17:32:22.557">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRPP Selected</msg>
+<status endtime="20181128 17:32:22.566" starttime="20181128 17:32:18.353" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Regional Discount Displayed Correctly">
+<msg level="INFO" timestamp="20181128 17:32:24.334">Additional Discount Icon CLICKED</msg>
+<status endtime="20181128 17:32:24.337" starttime="20181128 17:32:22.576" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Target Price Displayed Correctly">
+<arguments>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20181128 17:32:25.517">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:false *** / read_Regionaldiscountoncomponent_Percent:0.0 / regionalDiscount:5.0
+is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:false *** / final_Regionaldiscountoncomponent:4572.958 / read_Regionaldiscountoncomponent:0.0
+is final_TenderPrice VS read_TargetPrice equal:false *** / final_TenderPrice:240.68213 / read_TargetPrice:4813.64</msg>
+<status endtime="20181128 17:32:25.525" starttime="20181128 17:32:24.341" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181128 17:32:25.530" starttime="20181128 17:32:18.298" status="PASS"></status>
+</test>
+<test name="8 &amp; 9 Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice" id="s1-s1-s1-t8">
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Validate Detail Breakdown Tab">
-<msg level="INFO" timestamp="20181122 15:37:53.121">scrolled up to DetailbreakdownTab
-Detailed breakdown Clicked
-Dropdown in DetailedbreakdownTAB Clicked
+<msg level="INFO" timestamp="20181128 17:32:32.896">Detailed breakdown Clicked
 ROPES CLICKED
-ShowTotalCostCalculationDetails CLICKED
-*** is_showtotal_ITEfactor: true / is_showtotal_Labourrate: true / is_showtotal_Referencehours: true ***
-header_ITEfactor disabled</msg>
-<status endtime="20181122 15:37:53.126" starttime="20181122 15:37:43.465" status="PASS"></status>
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.00 / showtotal_ITEfactor:2.00
+check_showtotal_Referencehours:11.16 / showtotal_Referencehours:11.16
+check_showtotal_Labourrate:61.00 / showtotal_Labourrate:61.00
+*** is_showtotal_ITEfactor: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
+<status endtime="20181128 17:32:32.899" starttime="20181128 17:32:25.542" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Goto Configuration Pageand Change The Sales Office">
 <arguments>
 <arg>VB FRPP</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:37:56.491">ToConfiguration icon clicked
-scroll UP to Project tree
+<msg level="INFO" timestamp="20181128 17:32:35.431">ToConfiguration icon clicked
 Project clicked
-SalesOffice drop down clicked
-SalesOffice value VB FRPP Selected
-scrolled to pricingicon
-pricing icon Clicked</msg>
-<status endtime="20181122 15:37:56.509" starttime="20181122 15:37:53.130" status="PASS"></status>
+SalesOffice value VB FRPP Selected</msg>
+<status endtime="20181128 17:32:35.436" starttime="20181128 17:32:32.903" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Validate Detail Breakdown Tab">
-<msg level="INFO" timestamp="20181122 15:38:11.717">scrolled up to DetailbreakdownTab
-Detailed breakdown Clicked
-Dropdown in DetailedbreakdownTAB Clicked
+<msg level="INFO" timestamp="20181128 17:32:47.600">Detailed breakdown Clicked
 ROPES CLICKED
-ShowTotalCostCalculationDetails CLICKED
-*** is_showtotal_ITEfactor: true / is_showtotal_Labourrate: true / is_showtotal_Referencehours: true ***
-header_ITEfactor disabled</msg>
-<status endtime="20181122 15:38:11.721" starttime="20181122 15:37:56.527" status="PASS"></status>
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.00 / showtotal_ITEfactor:2.00
+check_showtotal_Referencehours:11.16 / showtotal_Referencehours:11.16
+check_showtotal_Labourrate:61.00 / showtotal_Labourrate:61.00
+*** is_showtotal_ITEfactor: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
+<status endtime="20181128 17:32:47.605" starttime="20181128 17:32:35.440" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181122 15:38:11.726" starttime="20181122 15:37:43.459" status="PASS"></status>
+<status critical="yes" endtime="20181128 17:32:47.610" starttime="20181128 17:32:25.537" status="PASS"></status>
 </test>
-<test name="11.Check TenderLetter Is generated Correctly With All The components" id="s1-s1-s1-t7">
+<test name="10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency" id="s1-s1-s1-t9">
+<kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Cost Calculated Successfully">
+<msg level="INFO" timestamp="20181128 17:32:47.634">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
+<status endtime="20181128 17:32:47.637" starttime="20181128 17:32:47.626" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="VerifyPriceCalculatedSuccessfully TobecheckedinFrance">
+<msg level="INFO" timestamp="20181128 17:32:47.646">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
+<status endtime="20181128 17:32:47.649" starttime="20181128 17:32:47.640" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181128 17:32:47.653" starttime="20181128 17:32:47.621" status="PASS"></status>
+</test>
+<test name="11.Check TenderLetter Is generated Correctly With All The components" id="s1-s1-s1-t10">
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Go To Documents Taband Click The Tender">
-<msg level="INFO" timestamp="20181122 15:38:13.701">ToWord icon clicked
-Waiting till -Print with KONE Logo- displays
-Modular_Tender_Template.doc clicked</msg>
-<status endtime="20181122 15:38:13.708" starttime="20181122 15:38:11.745" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:32:49.734">ToWord icon clicked</msg>
+<status endtime="20181128 17:32:49.740" starttime="20181128 17:32:47.686" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Verify Successful Message Displayed">
-<msg level="INFO" timestamp="20181122 15:38:17.238">Create PrintOut icon clicked
-No clicked in Do you want to freeze printed version?
-OK clicked</msg>
-<status endtime="20181122 15:38:17.253" starttime="20181122 15:38:13.718" status="PASS"></status>
+<msg level="INFO" timestamp="20181128 17:32:53.100">Create PrintOut icon clicked
+No clicked in Do you want to freeze printed version?</msg>
+<status endtime="20181128 17:32:53.109" starttime="20181128 17:32:49.747" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181122 15:38:17.260" starttime="20181122 15:38:11.736" status="PASS"></status>
+<status critical="yes" endtime="20181128 17:32:53.116" starttime="20181128 17:32:47.663" status="PASS"></status>
 </test>
-<test name="12.Close KTOC" id="s1-s1-s1-t8">
+<test name="12.Close KTOC" id="s1-s1-s1-t11">
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Click Saveand Close Button">
 <arguments>
 <arg>Automation Test Description</arg>
 <arg>22</arg>
 </arguments>
-<msg level="INFO" timestamp="20181122 15:38:21.163">SaveandClose icon CLICKED
+<msg level="INFO" timestamp="20181128 17:32:56.590">SaveandClose icon CLICKED
 Yes CLICKED in SaveandClose
-Automation Test Description entered in Description field in stage / Probability window
-Clicked on Stage dropdown
-Budget Price Clicked in Stage dropdown
-Probability: value Cleared
-Value entered in Probability field
-OK Button Clicked</msg>
-<status endtime="20181122 15:38:21.170" starttime="20181122 15:38:17.273" status="PASS"></status>
+Automation Test Description entered in Description field in stage / Probability window</msg>
+<status endtime="20181128 17:32:56.593" starttime="20181128 17:32:53.141" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181122 15:38:21.179" starttime="20181122 15:38:17.267" status="PASS"></status>
+<status critical="yes" endtime="20181128 17:32:56.595" starttime="20181128 17:32:53.127" status="PASS"></status>
 </test>
-<test name="13.Verify Total SalesPrice With SF Product Information" id="s1-s1-s1-t9">
+<test name="13.Verify Total SalesPrice With SF Product Information" id="s1-s1-s1-t12">
 <kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Get Sales Price From Sales Force">
-<msg level="INFO" timestamp="20181122 15:38:56.781">Configurator button is visible
+<msg level="INFO" timestamp="20181128 17:35:10.115">Salesforce TenderPrice:EUR 800.00 (INR 63,093.47)
+Tender Price:2003.0 / Final_SalesPrice:800.0
+is TRB TenderPrice VS Salesforce TenderPrice equal:false ***
 Configurator Clicked</msg>
-<msg level="INFO" timestamp="20181122 15:38:56.788">org.openqa.selenium.WebDriverException: Failed to interpret value as array
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 14816, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: cd3142f3-63f0-42d7-9780-71095d55fd1f
-*** Element info: {Using=tag name, value=iframe}
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:344)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementsByTagName(RemoteWebDriver.java:391)
-	at org.openqa.selenium.By$ByTagName.findElements(By.java:312)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:305)
-	at com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB.gettingWebElementsfromList(testRun_KTOCTRB.java:1303)
-	at com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB.GetSalesPriceFromSalesForce(testRun_KTOCTRB.java:826)
+<msg level="INFO" timestamp="20181128 17:35:10.129">java.lang.NullPointerException: null value in entry: id=null
+	at com.google.common.collect.CollectPreconditions.checkEntryNotNull(CollectPreconditions.java:32)
+	at com.google.common.collect.SingletonImmutableBiMap.&lt;init&gt;(SingletonImmutableBiMap.java:42)
+	at com.google.common.collect.ImmutableBiMap.of(ImmutableBiMap.java:70)
+	at com.google.common.collect.ImmutableMap.of(ImmutableMap.java:123)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteTargetLocator.frame(RemoteWebDriver.java:883)
+	at com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB.switchtoFrame(testRun_KTOCTRB.java:1693)
+	at com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB.getSalesPriceFromSalesForce(testRun_KTOCTRB.java:1153)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -701,8 +495,30 @@ Session ID: cd3142f3-63f0-42d7-9780-71095d55fd1f
 	at org.python.util.jython.runModule(jython.java:191)
 	at org.python.util.jython.run(jython.java:402)
 	at org.python.util.jython.main(jython.java:142)
-java.lang.NullPointerException
-	at com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB.GetSalesPriceFromSalesForce(testRun_KTOCTRB.java:828)
+org.openqa.selenium.NoSuchElementException: Unable to locate element: //button[text()='No']
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
+System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 12168, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: bd2f5a4b-1667-4c17-a96d-6d99f676384c
+*** Element info: {Using=xpath, value=//button[text()='No']}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:317)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:419)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:309)
+	at com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB.gettingWebElement(testRun_KTOCTRB.java:1646)
+	at com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB.getSalesPriceFromSalesForce(testRun_KTOCTRB.java:1155)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -881,10 +697,30 @@ java.lang.NullPointerException
 	at org.python.util.jython.runModule(jython.java:191)
 	at org.python.util.jython.run(jython.java:402)
 	at org.python.util.jython.main(jython.java:142)</msg>
-<status endtime="20181122 15:38:56.807" starttime="20181122 15:38:21.216" status="PASS"></status>
+<msg level="FAIL" timestamp="20181128 17:35:10.164">IllegalStateException: failure 'Get SalesPrice from SalesForce Failed due to: java.lang.NullPointerException'</msg>
+<status endtime="20181128 17:35:10.168" starttime="20181128 17:32:56.606" status="FAIL"></status>
 </kw>
-<kw library="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" name="Hand Shake">
+<status critical="yes" endtime="20181128 17:35:10.172" starttime="20181128 17:32:56.600" status="FAIL">IllegalStateException: failure 'Get SalesPrice from SalesForce Failed due to: java.lang.NullPointerException'</status>
+</test>
+<status endtime="20181128 17:35:10.195" starttime="20181128 17:30:24.085" status="FAIL"></status>
+</suite>
+<status endtime="20181128 17:35:10.365" starttime="20181128 17:30:24.057" status="FAIL"></status>
+</suite>
+<status endtime="20181128 17:35:10.449" starttime="20181128 17:30:23.669" status="FAIL"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="10" fail="2">Critical Tests</stat>
+<stat pass="10" fail="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="10" fail="2" name="KTOC TRB TestAutomation" id="s1">KTOC TRB TestAutomation</stat>
+<stat pass="10" fail="2" name="TestSuites" id="s1-s1">KTOC TRB TestAutomation.TestSuites</stat>
+<stat pass="10" fail="2" name="RegressionKTOC TRB" id="s1-s1-s1">KTOC TRB TestAutomation.TestSuites.RegressionKTOC TRB</stat>
+</suite>
+</statistics>
 <errors>
-<msg level="ERROR" timestamp="20181122 15:38:56.821">Execution stopped by user.</msg>
 </errors>
 </robot>

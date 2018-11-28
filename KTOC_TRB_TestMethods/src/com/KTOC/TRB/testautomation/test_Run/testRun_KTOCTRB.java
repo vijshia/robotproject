@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.By;
@@ -31,10 +30,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.python.icu.impl.Assert;
 
 import com.KTOC.TRB.testautomation.ObjectRepository.SalesForceData;
 
-import junit.framework.Assert;
 
 public class testRun_KTOCTRB {
 
@@ -43,13 +42,14 @@ public class testRun_KTOCTRB {
 	static DecimalFormat roundoff = new DecimalFormat("##.00");
 	static String browser;
 	public static String opportunity;
-	static String equipmentid = "10503512"; // 10894788
+	static String equipmentid = "10503512"; // France:10503512 / 10911391, Australia:30493722
+	static String customerid = "A10137873";
 //	static String ProductRelease;
-	static String salesoffice="VB FRRW";// VB FRPC, VB FRPF, VB FRPH, VB FRPP, VB FRRA, VB FRRE, VB FRRM, VB FRRN, VB FRRR, VB FRRS, VB FRRW;
-	static String changeSalesOffice="VB FRPP";
+	static String salesoffice="VB FRRW"; // France: VB FRRW, VB FRPP, Australia: AU21 - Sydney Region;
+	static String changeSalesOffice="VB FRPP"; //France: VB FRPP, Australia: AU22 - Newcastle Region
 	static int MS5HODatetoChange=2;
 	static String equipmentinService="DOC Door"; //LIS Elevator, EIS Escalator, Non-Lis Elevator, Non-Lis Escalator, DIS Door, DOC Door, Non DIS/DOC Door;
-	static String template = "Automation_Template_002";
+	static String template = "Automation_Template_002"; //France: "Automation_Template_002", Australia: AustraliaRopes_For Automation
 	static String withoutFirstMaintenance = "0";
 	static String withFirstMaintenance_1 = "3";
 	static String withFirstMaintenance_2 = "8";
@@ -67,14 +67,14 @@ public class testRun_KTOCTRB {
 		
 		testRun_KTOCTRB testClass=new testRun_KTOCTRB();
 		browser = "ff";
-		opportunity = "KOFCOL TRB SFA"; // 1723- Automation_Template_001
+		opportunity = "KOFCOL TRB SFA"; // france: "KOFCOL TRB SFA", Australia: "KOFCOL TRB 201"
 		String ProductRelease ="1723"; //1813 1723 1713
 //		equipmentid = "10503512"; // 10894788
 		String equipment_ADDorChange = "change";
 //		salesoffice="VB FRPP";// VB FRPC, VB FRPF, VB FRPH, VB FRPP, VB FRRA, VB FRRE, VB FRRM, VB FRRN, VB FRRR, VB FRRS, VB FRRW
 //		MS5HODatetoChange=2;
 //		equipmentinService="DOC Door"; //LIS Elevator, EIS Escalator, Non-Lis Elevator, Non-Lis Escalator, DIS Door, DOC Door, Non DIS/DOC Door
-		String supervisor_ResponsiblePerson="06114080"; //06114080(VB FRRW)
+		String supervisor_ResponsiblePerson="06114080"; //France: 06114080(VB FRRW), Australia: 13012004
 //		template = "Automation_Template_002";
 //		FirstMaintenance = "0";
 //		discount = "10";
@@ -103,7 +103,7 @@ public class testRun_KTOCTRB {
 		testClass.getTenderNo();
 		//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 		testClass.pricingIconClick();
-		/*testClass.CheckTenderPriceAfterDiscountUpdate(discount, withoutFirstMaintenance);
+		testClass.CheckTenderPriceAfterDiscountUpdate(discount, withoutFirstMaintenance);
 		testClass.GetTargetPrice();
 		testClass.VerifyDiscountByChangingTheTenderPrice(tenderPrice, withoutFirstMaintenance);
 		testClass.GetTargetPrice();
@@ -113,7 +113,7 @@ public class testRun_KTOCTRB {
 		testClass.VerifyDiscountByChangingTheTenderPrice(tenderPrice, withFirstMaintenance_1);
 		testClass.GetTargetPrice();
 		testClass.VerifyDiscountByChangingTheTenderPrice(tenderPrice, withFirstMaintenance_2);
-		testClass.GetTargetPrice();*/
+		testClass.GetTargetPrice();
 		//6.CheckRegionalFactorAtSalesOfficeLevel
 		testClass.verifyRegionalDiscountDisplayedCorrectly();
 		testClass.verifyTargetPriceDisplayedCorrectly(withoutFirstMaintenance);
@@ -125,8 +125,9 @@ public class testRun_KTOCTRB {
 		testClass.validateDetailBreakdownTab();
 		testClass.gotoConfigurationPageandChangeTheSalesOffice(changeSalesOffice);
 		testClass.validateDetailBreakdownTab();
-		//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Austrlia)
-		
+		//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Australia)
+		testClass.VerifyCostCalculatedSuccessfully();
+		testClass.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
 		//11.CheckTenderLetterIsgeneratedCorrectlyWithAllThecomponents
 		testClass.goToDocumentsTabandClickTheTender();
 		testClass.verifySuccessfulMessageDisplayed();
@@ -173,7 +174,7 @@ public class testRun_KTOCTRB {
 		}	
 		wait = new WebDriverWait(driver, 50000);
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		driver.get("https://test.salesforce.com");
 	}
 	
@@ -226,17 +227,17 @@ public class testRun_KTOCTRB {
 					System.out.println("ligtning HomePage displayed");
 				} 
 				enteringValues(txt_searchBox, opportunity);
-				System.out.println("Entered "+opportunity+ " in Search box");
+				System.out.println("Entered opportunity name:"+opportunity+ " in Search box");
 				enteringValues(txt_searchBox, Keys.RETURN);
 				waitForVisibilityOfElementLocated(lnk_selectOpportunity);
 				clickonButton(lnk_selectOpportunity);
 				System.out.println(opportunity+" has been clicked");
 				waitForElementToBeClickable(header_flTender);
 				clickonButton(header_flTender);
-				System.out.println("clicked on FL Tenders header in Opportunity");
+//				System.out.println("clicked on FL Tenders header in Opportunity");
 				waitForVisibilityOfElementLocated(btn_flTender);
 				clickonButton(btn_flTender);
-				System.out.println("clicked on New FLTender button in FL Tender page");
+//				System.out.println("clicked on New FLTender button in FL Tender page");
 			} else {
 				if(!searchBox.getAttribute("title").equals("Search...")) {
 					waitForVisibilityOfElementLocated(img_toClassic);
@@ -255,136 +256,6 @@ public class testRun_KTOCTRB {
 			Assert.fail("CreateOpportunity OR SearchOpportunity Failed due to: "+e);
 		}
 	}
-	
-	/**
-	 * @author Roja
-	 */
-	public static int TestStatus=1;
-	public void ChangeSalesOrg() {
-		TestStatus=1;
-		if(TestStatus==1){
-		try {
-			//Change Sales Organization From SF User Settings Page
-			ClickOnElement("xpath",SalesForceData.LoggedInUserName);
-			ClickOnElement("xpath",SalesForceData.MySettings);
-			ClickOnElement("xpath",SalesForceData.PersonalInfo);
-			ClickOnElement("xpath",SalesForceData.AdvancedUserDetails);
-			ClickOnElement("xpath",SalesForceData.UserEditButton);
-			ClickOnElement("xpath",SalesForceData.UserEditButton);
-			ScrollUptoElement("xpath",SalesForceData.AdditionalInformationSection);
-			SelectDropDownValues("xpath",SalesForceData.SalesOrgField,"220");
-		} catch (Exception e) {
-			TestStatus=0;
-			try {
-				TakeSnapShot("SalesForceLoginPage");
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-			Assert.fail("Login Interrupted" + e);
-		}
-		}
-		else {
-			Assert.fail("Test Skipped: Browser Launch Failed");
-		}
-	}
-	
-	/**
-	 * @author Roja
-	 */
-	public static String OpportunityName = null;
-	public static String CreateOpportunity() throws Exception {
-			if(TestStatus==1) {
-			String AccountName = "AutomationKTOC";
-			OpportunityName = "Wartung" + RandomNumber();
-			WebElement OppoTab = FindTheElement("xpath", SalesForceData.OpportunityTab);
-			if (OppoTab.isDisplayed()) {
-				WaitAndClickOnElement("xpath", SalesForceData.OpportunityTab);
-			} else {
-				driver.navigate().refresh();
-				WaitAndClickOnElement("xpath", SalesForceData.OpportunityTab);
-			}
-			WaitAndClickOnElement("xpath", SalesForceData.NewButton);
-			WaitAndClickOnElement("xpath", SalesForceData.ContinueButton);
-			WaitTillClickable("xpath", SalesForceData.BusinessType);
-			SelectDropDownValues("xpath", SalesForceData.BusinessType, "New Equipment (NEB)");
-			WaitTillClickable("xpath", SalesForceData.OpportunityName);
-			Thread.sleep(5000);
-			EnterTextbyChar("xpath", SalesForceData.OpportunityName, OpportunityName, 1);
-			EnterTextbyChar("xpath", SalesForceData.AccountNameField, AccountName, 1);
-			SelectDropDownValues("xpath", SalesForceData.MarketSegment, "Leisure and Education");
-			SelectDropDownValues("xpath", SalesForceData.LeadSource, "Invitation to Tender");
-			EnterValues("xpath", SalesForceData.QuantityField, SalesForceData.QuantityValue);
-			EnterValues("xpath", SalesForceData.AmountField, SalesForceData.Amountvalue);
-			ClickDate(SalesForceData.PriceDueDateField, SalesForceData.PriceDueDateValue);
-			ClickDate(SalesForceData.CloseDateField, SalesForceData.CloseDateValue);
-			SelectDropDownValues("xpath", SalesForceData.Stage, "Tender/Proposal");
-			ScrollUptoElement("xpath", SalesForceData.SiteCountryField);
-			SelectDropDownValues("xpath", SalesForceData.SiteCountryField, SalesForceData.SiteCountryValue);
-			ScrollUptoElement("xpath", SalesForceData.SiteCountyField);
-			SelectDropDownValues("xpath", SalesForceData.SiteCountyField, SalesForceData.SiteCountyValue);
-			ScrollUptoElement("xpath", SalesForceData.StartOnSiteDateField);
-			ClickDate(SalesForceData.StartOnSiteDateField, SalesForceData.StartOnSiteDateValue);
-			ClickDate(SalesForceData.ProjectEndDateField, SalesForceData.ProjectEndDateValue);
-			SelectDropDownText("xpath", SalesForceData.ProjectComplexity,"Small");
-			ScrollUptoElement("xpath", SalesForceData.PageDescription);
-			WaitAndClickOnElement("xpath", SalesForceData.SaveButton);
-			WaitTillElementToBeDisplayed("xpath", SalesForceData.OpportunityDesc);
-			WebElement OpportunityDescription = driver.findElement(By.xpath(SalesForceData.OpportunityDesc));
-			String OppoName = OpportunityDescription.getText();
-			if (OppoName.equalsIgnoreCase(OpportunityName)) {
-			} else {
-				TestStatus=0;
-				Assert.fail("Opportunity creation failed");
-			}
-			}
-			else
-			{
-				Assert.fail("Test Skipped: Failed Logon To Salesforce");
-			}
-			return OpportunityName;
-		}	
-
-	/**
-	 * @author Roja
-	 */
-	public void MapContactWithOpportunity() throws Exception {
-			if(TestStatus==1) {
-			try {
-			Thread.sleep(4000);
-			WaitAndClickOnElement("xpath", SalesForceData.ContactsLink);
-			WaitAndClickOnElement("xpath", SalesForceData.ContactSectionNewButton);
-			WaitAndClickOnElement("xpath", SalesForceData.ContactOption);
-			SelectDropDownText("xpath", SalesForceData.ContactRole,"Decision Maker");
-			WaitAndClickOnElement("xpath", SalesForceData.SaveButton);
-			}
-			catch(Exception e) {
-				TestStatus=0;
-				Assert.fail("Mapping contact with opportunity fails");
-			}
-			}
-			else {
-				Assert.fail("Test Skipped: Opportunity Creation Failed");
-			}
-		}
-	
-		/**
-		 * @author Roja
-		 */
-		public void MapOpportunityWithFLTenders() throws Exception {
-			if(TestStatus==1) {
-			try {
-			WaitAndClickOnElement("xpath", SalesForceData.FLTendersLink);
-			WaitAndClickOnElement("xpath", SalesForceData.FLTendersNewButton);
-			}
-			catch(Exception e) {
-				TestStatus=0;
-				Assert.fail("Failed mapping opportunity with tender.");
-			}
-			}
-			else {
-				Assert.fail("Test Skipped: Opportunity Creation Failed");
-			}
-		}
 	
 	/**
 	 **Reuse method, it will add/change equipment
@@ -415,18 +286,18 @@ public class testRun_KTOCTRB {
 			System.out.println("Release "+ProductRelease+" is Selected");
 			WebElement findElement_Ok = gettingWebElement(btn_productrelease_OK); //*[@data-ctcwgtname='pbOK']
 			scrollIntoView_Javascript(findElement_Ok);
-			System.out.println("scrolled to OK button");
+//			System.out.println("scrolled to OK button");
 			wait.until(ExpectedConditions.elementToBeClickable(findElement_Ok));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			click_Javascript(findElement_Ok); 
 			System.out.println("Clicked on OK button");
 			WebElement element_customerID = gettingWebElement(txt_CustomerID); //*[@data-ctcwgtname='CustomerID']
 			element_customerID.clear(); 
-			System.out.println("CustomerID existing value cleared");
+//			System.out.println("CustomerID existing value cleared");
 			WebElement element_EquipmentID = gettingWebElement(txt_EquipmentID); //*[@data-ctcwgtname='EquipmentID']
 			element_EquipmentID.clear();
 			element_EquipmentID.sendKeys(equipmentid); 
-			System.out.println(equipmentid+" EquipmentID entered***");
+			System.out.println(equipmentid+" EquipmentID entered");
 			wait.until(ExpectedConditions.elementToBeClickable(element_customerID));
 			waitForElementToBeClickable(txt_CustomerID);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -434,7 +305,7 @@ public class testRun_KTOCTRB {
 			wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentID));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			element_EquipmentID.click();
-			System.out.println("EquipmentID clicked");
+//			System.out.println("EquipmentID clicked");
 			wait.until(ExpectedConditions.elementToBeClickable(lookup_EquipmentID)); 
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(lookup_EquipmentID);
@@ -450,12 +321,23 @@ public class testRun_KTOCTRB {
 					wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentIAddButton)); 
 					element_EquipmentIAddButton.click();
 					System.out.println("ADD button clicked");
+					wait.until(ExpectedConditions.invisibilityOf(element_EquipmentIAddButton));
 				} else if(equipment_ADDorChange.equalsIgnoreCase("change")) {
 					WebElement element_EquipmentIChangeButton = gettingWebElement(btn_changeEquipment); //*[@data-ctcwgtname='ic:Constant.!IcDynamicForm']
 					wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentIChangeButton)); 
 					element_EquipmentIChangeButton.click();
 					System.out.println("Change button clicked");
+					wait.until(ExpectedConditions.invisibilityOf(element_EquipmentIChangeButton));
 				}
+				wait.until(ExpectedConditions.elementToBeClickable(element_customerID));
+				if(!element_customerID.getAttribute("value").isEmpty()) {
+					element_customerID.clear();
+					wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(element_customerID, "value")));
+				}
+				wait.until(ExpectedConditions.elementToBeClickable(element_customerID));
+				element_customerID.sendKeys(customerid);
+				element_EquipmentID.click();
+				System.out.println("CustomerID: "+customerid+" entered");
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Add EquipmentID in Elevator Failed due to: "+e);
@@ -473,7 +355,7 @@ public class testRun_KTOCTRB {
 			waitForVisibilityOfElementLocated(tree_project);
 			WebElement Elementtoscroll = gettingWebElement(tree_project);
 			scrollIntoView_Javascript(Elementtoscroll);
-			System.out.println("scroll UP to Project tree");
+//			System.out.println("scroll UP to Project tree");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(tree_project);
 			System.out.println("Project clicked");
@@ -513,18 +395,18 @@ public class testRun_KTOCTRB {
 					}
 					formatedDate=DateUtils.addDays(formatedDate, MS5HODatetoChange);
 					MS5HODate_toChange=output_dateformat.format(formatedDate);
-					System.out.println("MS5HODatetoChange:"+MS5HODate_toChange);
+//					System.out.println("MS5HODatetoChange:"+MS5HODate_toChange);
 			}
-			System.out.println("MS5HODate_Current: "+gettingWebElement(txt_DateHandoverMS5).getAttribute("value"));
+			System.out.println("Current MS5HO Date: "+gettingWebElement(txt_DateHandoverMS5).getAttribute("value"));
 			WebElement element_MS5HODate=gettingWebElement(txt_DateHandoverMS5); //*[@data-ctcwgtname='DateHandoverMS5']/input
 			element_MS5HODate.clear();
-			System.out.println("MS5HODate_Current Cleared");
+//			System.out.println("MS5HODate_Current Cleared");
 			wait.until(ExpectedConditions.elementToBeClickable(element_MS5HODate));
 			element_MS5HODate.sendKeys(MS5HODate_toChange);
 				if(element_MS5HODate.getAttribute("value").isEmpty()) {
 					element_MS5HODate.sendKeys(MS5HODate_toChange);
 				}
-			System.out.println("MS5HODate Changed to ="+MS5HODate_toChange);
+			System.out.println("MS5HODate Changed to: "+MS5HODate_toChange);
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Check HandOverDate Is Greater than InstallationDate Failed due to: "+e);
@@ -541,8 +423,9 @@ public class testRun_KTOCTRB {
 	public void checkSalesOfficeisSelected(String salesoffice) throws Exception{
 		try {
 			By value_salesOffice = By.xpath("//div[text()='"+salesoffice+"']");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(dd_salesOffice); //*[@data-ctcwgtname='SalesOffice']/button
-			System.out.println("SalesOffice drop down clicked");
+//			System.out.println("SalesOffice drop down clicked");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(value_salesOffice);
 			System.out.println("SalesOffice value "+salesoffice+" Selected");
@@ -559,24 +442,27 @@ public class testRun_KTOCTRB {
 	 *@author CON_SVIJAY02
 	 */
 	public static By dd_supervisor = By.xpath("//*[@data-ctcname='Supervisor_C']");
-	public void selectSupervisor(String supervisor_ResponsiblePreson) throws Exception{
+	public void selectSupervisor(String supervisor_ResponsiblePerson) throws Exception{
 		try {
 			By tree_equipmentID = By.xpath("(//*[text()='" + equipmentid + "'])[last()-1]");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			WebElement element_equipment = gettingWebElement(tree_equipmentID);
 			click_Javascript(element_equipment);
-			System.out.println("Equipment clicked back");
+//			System.out.println("Equipment clicked back");
 			WebElement element_Supervisor = gettingWebElement(dd_supervisor); //*[@data-ctcwgtname='Supervisor_Select']
 			wait.until(ExpectedConditions.elementToBeClickable(element_Supervisor)); 
 			element_Supervisor.click();
-			System.out.println("Supervisor drop down clicked");
+//			System.out.println("Supervisor drop down clicked");
 			String a[] = salesoffice.split(" ");
 			String dd_SalesOffice=a[1].trim();
+			if(salesoffice.contains("AU")) {
+				dd_SalesOffice=a[0].trim();
+			}
 //		System.out.println("dd_SalesOffice: "+dd_SalesOffice);
 //	        waitForinvisibilityOfElementLocated(elementtoInvisible);
-			WebElement element_ResponsiblePerson = driver.findElement(By.xpath("//div[text()='"+dd_SalesOffice+"']/..//div[text()='"+supervisor_ResponsiblePreson+"']"));
+			WebElement element_ResponsiblePerson = driver.findElement(By.xpath("//div[text()='"+dd_SalesOffice+"']/..//div[text()='"+supervisor_ResponsiblePerson+"']"));
 			click_Javascript(element_ResponsiblePerson);
-			System.out.println(supervisor_ResponsiblePreson+" has been clicked");
+			System.out.println(supervisor_ResponsiblePerson+" selected in Supervisor");
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Select Supervisor Failed due to: "+e);
@@ -597,14 +483,16 @@ public class testRun_KTOCTRB {
 			WebElement element_EquipmentInService = gettingWebElement(dd_equipmentinService);
 			wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentInService)); //*[@data-ctcwgtname='EquipmentInService']/button
 			element_EquipmentInService.click();
-			System.out.println("EquipmentInService drop down clicked");
+//			System.out.println("EquipmentInService drop down clicked");
 			waitForElementToBeClickable(value_equipmentinService);
 			clickonButton(value_equipmentinService);
 			System.out.println(equipmentinService+" is clicked in Equipment InService");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			waitForElementToBeClickable(radio_hydeaulicElevator);
-			clickonButton(radio_hydeaulicElevator);
-			System.out.println("HydraulicElevCheck clicked");
+			if(!salesoffice.contains("AU")) {
+				waitForElementToBeClickable(radio_hydeaulicElevator);
+				clickonButton(radio_hydeaulicElevator);
+				System.out.println("HydraulicElevCheck clicked");
+			}
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Select Equipment InService Failed due to: "+e);
@@ -626,29 +514,29 @@ public class testRun_KTOCTRB {
 			By tree_equipmentID = By.xpath("//*[text()='" + equipmentid + "']");
 			By lnk_template = By.xpath("(//*[text()='" + template + "'])[last()]");
 			WebElement element_equipment = gettingWebElement(tree_equipmentID); //driver.findElement(By.xpath("//*[text()='" + equipmentid + "']"));
-			System.out.println("Equipment identified for RightClick");
+//			System.out.println("Equipment identified for RightClick");
 			Actions rightclick_equipment = new Actions(driver).contextClick(element_equipment);
 			rightclick_equipment.build().perform();
-			System.out.println("Rightclick performed in solution");
+			System.out.println("Rightclick performed on Equipment");
 			waitForElementToBeClickable(lnk_openTemplates);
 			clickonButton(lnk_openTemplates);
-			System.out.println("open templates clicked in solution");
+			System.out.println("Open Templates clicked");
 			waitForElementToBeClickable(lnk_binaryTemplates); //(//*[@data-ctcwgtname='ic_Constant__Closed'])[last()-1]
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(lnk_binaryTemplates);
-			System.out.println("Binary Templates: clicked");
+//			System.out.println("Binary Templates: clicked");
 			WebElement element_TemplateSearch = gettingWebElement(txt_searchTemplate);
 			wait.until(ExpectedConditions.visibilityOf(element_TemplateSearch)); //*[@data-ctcwgtname='SearchString']
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			element_TemplateSearch.clear();
-			System.out.println("clear search field value");
+//			System.out.println("cleared search field value");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			element_TemplateSearch.sendKeys(template);
-			System.out.println(template + " search field value");
+			System.out.println(template + " Entered in search");
 			WebElement element_SharedTemplateAllOrg = gettingWebElement(radio_sharedTemplate); //*[@data-ctcwgtname='SearchShared_2']
 			wait.until(ExpectedConditions.visibilityOf(element_SharedTemplateAllOrg)); 
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			element_SharedTemplateAllOrg.click(); //*[@data-ctcwgtname='SearchShared_2']/div[1]
+			click_Javascript(element_SharedTemplateAllOrg); //*[@data-ctcwgtname='SearchShared_2']/div[1]
 			System.out.println("Shared templates radio button Clicked");
 			waitForVisibilityOfElementLocated(lnk_template);
 			WebElement doubleclick_elementTemplate = gettingWebElement(lnk_template);
@@ -744,6 +632,82 @@ public class testRun_KTOCTRB {
 	 */
 	public void verifyTargetPriceDisplayedCorrectly(String firstMaintenance) throws Exception{
 		getRegionalDiscount(firstMaintenance);
+		gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
+	}
+	
+	/**
+	 **Reuse method, it will click on CurrenciesTab and get ConversionFactor value
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void VerifyCostCalculatedSuccessfully() throws Exception{
+		if(salesoffice.contains("AU")) {
+			clickonCurrenciesTab();
+			getConversionFactor();
+			Float convertedvalue_conversionFactor=Float.valueOf(conversionFactor);
+			Float showtotal_Materialcosts= hm_DetailBreakdownData.get("Material costs");
+			showtotal_Materialcosts=Float.valueOf(roundoff.format(showtotal_Materialcosts));
+			Float showtotal_MaterialcostSLCurrency= hm_DetailBreakdownData.get("Material cost (SL Currency)");
+			Float check_Materialcosts=showtotal_MaterialcostSLCurrency*convertedvalue_conversionFactor;
+			check_Materialcosts=Float.valueOf(roundoff.format(check_Materialcosts));
+			System.out.println("Calculate Materialcost:"+check_Materialcosts+" / "+"Actual Materialcost:"+showtotal_Materialcosts);
+			String condition=null;
+			if(!check_Materialcosts.equals(showtotal_Materialcosts)) {
+				check_Materialcosts=check_Materialcosts-0.01f;
+				if(check_Materialcosts.equals(showtotal_Materialcosts)) {
+					condition="-0.01";
+				} else {
+				 check_Materialcosts=check_Materialcosts-0.02f;
+				 condition="-0.02";
+				}
+			}
+			System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost is: "+roundoff.format(check_Materialcosts).equals(roundoff.format(showtotal_Materialcosts))+" ***");
+		} else {
+			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
+		}
+	}
+	
+	/**
+	 **Reuse method, it will 
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void VerifyPriceCalculatedSuccessfully_TobecheckedinFrance() throws Exception{
+		if(salesoffice.contains("AU")) {
+		// not fesible at present
+		} else {
+			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
+		}
+	}
+	
+	/**
+	 **Reuse method, it will click on CurrenciesTab
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public static By tab_Currencies = By.xpath("//*[text()='Currencies']");
+	public void clickonCurrenciesTab() throws Exception{
+		waitForinvisibilityOfElementLocated(elementtoInvisible);
+		WebElement scrollto_currenciesTab = gettingWebElement(tab_Currencies);
+		scrollIntoView_Javascript(scrollto_currenciesTab);
+//		System.out.println("scrolled up to CurrenciesTab");
+		waitForinvisibilityOfElementLocated(elementtoInvisible);
+		clickonButton(tab_Currencies);
+		System.out.println("CurrenciesTab Clicked");
+	}
+	
+	/**
+	 **Reuse method, it will get ConversionFactor value
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public static By value_ConversionFactor = By.xpath("//*[text()='Conversion factor']/..//input");
+	public String conversionFactor;
+	public void getConversionFactor() throws Exception{
+		waitForVisibilityOfElementLocated(value_ConversionFactor);
+		WebElement element_ConversionFactor=gettingWebElement(value_ConversionFactor);
+			conversionFactor=element_ConversionFactor.getAttribute("value");
+			System.out.println("Conversion Factor:"+conversionFactor);
 	}
 	
 	/**
@@ -754,10 +718,14 @@ public class testRun_KTOCTRB {
 	public static By icon_additionalDiscount = By.xpath("//*[@data-ctcwgtname='nPricingOverview']/div");
 	public static By header_RegionalDiscount = By.xpath("//*[text()='Regional discount on component (%)']");
 	public void clickonAdditionalDiscountIcon() throws Exception{
+		wait.until(ExpectedConditions.visibilityOf(gettingWebElementsfromList(icon_additionalDiscount).get(3)));
+		scrollIntoView_Javascript(gettingWebElementsfromList(icon_additionalDiscount).get(3));
+		waitForinvisibilityOfElementLocated(elementtoInvisible);
 		gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
+//		System.out.println(gettingWebElementsfromList(icon_additionalDiscount).get(3).getAttribute("id"));
 		System.out.println("Additional Discount Icon CLICKED");
 		waitForVisibilityOfElementLocated(header_RegionalDiscount);
-		System.out.println("header RegionalDiscount is visible");
+//		System.out.println("header RegionalDiscount is visible");
 	}
 	
 	/**
@@ -767,12 +735,13 @@ public class testRun_KTOCTRB {
 	 * @author CON_SVIJAY02
 	 */
 	public static By grid_RegionalDiscountValues = By.xpath("//*[text()='Regional discount on component (%)']/../../..//div[3]/div/div[1]/*");
+	public HashMap<String, Float> hm_RegionalDiscountData;
 	public void getRegionalDiscount(String firstMaintenance) throws Exception{
 		waitForVisibilityOfElementLocated(grid_RegionalDiscountValues);
 		List<WebElement> element_RegionalDiscountValues=gettingWebElementsfromList(grid_RegionalDiscountValues);
 		List<String> ls_RegionalDiscountHeader=new LinkedList<>();
 		List<Float> ls_RegionalDiscountValue=new LinkedList<>();
-		HashMap<String, Float> hm_data = new HashMap<String, Float>();
+		hm_RegionalDiscountData = new HashMap<String, Float>();
 			ls_RegionalDiscountHeader.add("TargetPrice_Base");
 			ls_RegionalDiscountHeader.add("FundingSectorDiscount_Percent");
 			ls_RegionalDiscountHeader.add("FundingSectorDiscount");
@@ -800,7 +769,7 @@ public class testRun_KTOCTRB {
 							if(!getvalue.equals("0.00") && !getvalue.contains("%")) {
 								getvalue = getvalue.replace(".", "");
 							}
-							getvalue=getvalue.replaceAll("[€ % h]", "");
+							getvalue=getvalue.replaceAll("[€ % h $]", "");
 							getvalue = getvalue.replace(",", ".");
 //							System.out.println("2**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
 							convertedvalue = Float.valueOf(getvalue);
@@ -809,7 +778,7 @@ public class testRun_KTOCTRB {
 						}
 				}
 			} else if(!element_RegionalDiscountValue.getAttribute("value").isEmpty() && element_RegionalDiscountValue.getAttribute("value")!=null)	{
-					String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[€ % h .]", "");
+					String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[€ % h . $]", "");
 					getvalue = getvalue.replace(",", ".");
 //					System.out.println("3**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
 					convertedvalue = Float.valueOf(getvalue);
@@ -822,9 +791,9 @@ public class testRun_KTOCTRB {
 				toIterate=toIterate+1;
 			}
 			for(int i=0; i<toIterate; i++) {
-				hm_data.put(ls_RegionalDiscountHeader.get(i), ls_RegionalDiscountValue.get(i));
+				hm_RegionalDiscountData.put(ls_RegionalDiscountHeader.get(i), ls_RegionalDiscountValue.get(i));
 			}
-		Float read_TargetPrice_Base=hm_data.get("TargetPrice_Base");
+		Float read_TargetPrice_Base=hm_RegionalDiscountData.get("TargetPrice_Base");
 		/*Float read_FundingSectorDiscount_Percent=hm_data.get("FundingSectorDiscount_Percent");
 		Float read_FundingSectorDiscount=hm_data.get("FundingSectorDiscount");
 		Float read_MarketSegmentDiscount_Percent=hm_data.get("MarketSegmentDiscount_Percent");
@@ -835,17 +804,17 @@ public class testRun_KTOCTRB {
 		Float read_SalesOfficeMultiplier=hm_data.get("SalesOfficeMultiplier");
 		Float read_SellingValuePackageDiscount_Percent=hm_data.get("SellingValuePackageDiscount_Percent");
 		Float read_SellingValuePackageDiscount=hm_data.get("SellingValuePackageDiscount");*/
-		Float read_Regionaldiscountoncomponent_Percent=hm_data.get("Regionaldiscountoncomponent_Percent");
-		Float read_Regionaldiscountoncomponent=hm_data.get("Regionaldiscountoncomponent");
-		Float read_TargetPrice=hm_data.get("TargetPrice");
+		Float read_Regionaldiscountoncomponent_Percent=hm_RegionalDiscountData.get("Regionaldiscountoncomponent_Percent");
+		Float read_Regionaldiscountoncomponent=hm_RegionalDiscountData.get("Regionaldiscountoncomponent");
+		Float read_TargetPrice=hm_RegionalDiscountData.get("TargetPrice");
 		/*Float read_Discount=hm_data.get("Discount");
 		Float read_TenderPrice=hm_data.get("TenderPrice");
 		Float read_FirstMaintenance=hm_data.get("FirstMaintenance");*/	
 		Float final_Regionaldiscountoncomponent=read_TargetPrice_Base-(read_TargetPrice_Base*(regionalDiscount/100));
 		Float final_TenderPrice=read_TargetPrice_Base-final_Regionaldiscountoncomponent;
-		System.out.println("is read_Regionaldiscountoncomponent_Percent vs regionalDiscount equal:"+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount));
-		System.out.println("is final_Regionaldiscountoncomponent vs read_Regionaldiscountoncomponent equal:"+final_Regionaldiscountoncomponent.equals(read_Regionaldiscountoncomponent));
-		System.out.println("is final_TenderPrice vs read_TargetPrice equal:"+final_TenderPrice.equals(read_TargetPrice));
+		System.out.println("is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:"+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" *** / read_Regionaldiscountoncomponent_Percent:"+read_Regionaldiscountoncomponent_Percent+" / regionalDiscount:"+regionalDiscount);
+		System.out.println("is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:"+final_Regionaldiscountoncomponent.equals(read_Regionaldiscountoncomponent)+" *** / final_Regionaldiscountoncomponent:"+final_Regionaldiscountoncomponent+" / read_Regionaldiscountoncomponent:"+read_Regionaldiscountoncomponent);
+		System.out.println("is final_TenderPrice VS read_TargetPrice equal:"+final_TenderPrice.equals(read_TargetPrice)+" *** / final_TenderPrice:"+final_TenderPrice+" / read_TargetPrice:"+read_TargetPrice);
 	}
 	
 	/**
@@ -859,12 +828,13 @@ public class testRun_KTOCTRB {
 	public static By lnk_ShowTotalCostCalculationDetails = By.xpath("//*[@src='SMG?i=acdda3ea032315878f95d47164849ea79f364ad3&w=16&h=16']");
 	public static By header_ITEfactor = By.xpath("//*[text()='ITE factor']");
 	public static By gridvalues_SubTotal = By.xpath("//*[text()='Subtotal']/..//*");
+	public HashMap<String, Float> hm_DetailBreakdownData;
 	public void validateDetailBreakdownTab() throws Exception{
 		try {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			WebElement scrollto_DetailbreakdownTab = gettingWebElement(tab_detailBreakDown);
 			scrollIntoView_Javascript(scrollto_DetailbreakdownTab);
-			System.out.println("scrolled up to DetailbreakdownTab");
+//			System.out.println("scrolled up to DetailbreakdownTab");
 			waitForVisibilityOfElementLocated(tab_detailBreakDown);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(tab_detailBreakDown);
@@ -872,7 +842,7 @@ public class testRun_KTOCTRB {
 			waitForVisibilityOfElementLocated(dd_selectProject);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(dd_selectProject);
-			System.out.println("Dropdown in DetailedbreakdownTAB Clicked");
+//			System.out.println("Dropdown in DetailedbreakdownTAB Clicked");
 			WebElement element_Ropes = gettingWebElement(value_ropes);
 			waitForVisibilityOfElementLocated(value_ropes);
 			waitForElementToBeClickable(value_ropes);
@@ -883,13 +853,13 @@ public class testRun_KTOCTRB {
 			waitForinvisibilityOfElementLocated(value_ropes);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
-			System.out.println("ShowTotalCostCalculationDetails CLICKED");
+			System.out.println("Show TotalCost Calculation Details CLICKED");
 			waitForVisibilityOfElementLocated(header_ITEfactor);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			List<WebElement> Elements_showtotalcostFirstRow = gettingWebElementsfromList(gridvalues_SubTotal);
 			List<String> ls_TotalCostHeader=new LinkedList<>();
 			List<Float> ls_TotalCostValue=new LinkedList<>();
-			HashMap<String, Float> hm_data = new HashMap<String, Float>();
+			hm_DetailBreakdownData = new HashMap<String, Float>();
 					ls_TotalCostHeader.add("Target Price");
 					ls_TotalCostHeader.add("Material costs");
 					ls_TotalCostHeader.add("Material cost (SL Currency)");
@@ -910,7 +880,7 @@ public class testRun_KTOCTRB {
 					if(!Element_showtotalcostFirstRow.getText().isEmpty())	{
 //			System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
 							if(!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
-								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h]", "");
+								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h $]", "");
 								getvalue = getvalue.replace(",", ".");
 								convertedvalue = Float.valueOf(getvalue);
 								ls_TotalCostValue.add(convertedvalue);
@@ -918,29 +888,36 @@ public class testRun_KTOCTRB {
 					}
 				} else if(!Element_showtotalcostFirstRow.getAttribute("value").isEmpty() && Element_showtotalcostFirstRow.getAttribute("value")!=null)	{
 //			System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
-						String getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h .]", "");
+					String getvalue = null;
+					if(!salesoffice.contains("AU")) {
+						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h .]", "");
 						getvalue = getvalue.replace(",", ".");
+					} else {
+						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h $]", "");
+						getvalue = getvalue.replace(",", "");
+					}
 						convertedvalue = Float.valueOf(getvalue);
 						ls_TotalCostValue.add(convertedvalue);
 				}
 			}
 			for(int i=0; i<14; i++) {
-				hm_data.put(ls_TotalCostHeader.get(i), ls_TotalCostValue.get(i));
+				hm_DetailBreakdownData.put(ls_TotalCostHeader.get(i), ls_TotalCostValue.get(i));
 			}
-			/*Float showtotal_TargetPrice= hm_data.get("Target Price");
-			Float showtotal_Materialcosts= hm_data.get("Material costs");
-			Float showtotal_MaterialcostSLCurrency= hm_data.get("Material cost (SL Currency)");*/
-			Float showtotal_Referencehours= hm_data.get("Reference hours");
-			Float showtotal_ITEfactor= hm_data.get("ITE factor");
-			Float showtotal_InstallationHours= hm_data.get("Installation Hours");
-			Float showtotal_Labourrate= hm_data.get("Labour rate");
-			Float showtotal_LaborCosts= hm_data.get("Labor Costs");
-			/*Float showtotal_Contigency= hm_data.get("Contigency");
-			Float showtotal_OverheadRecovery= hm_data.get("Overhead Recovery");
-			Float showtotal_FullCosts= hm_data.get("Full Costs");
-			Float showtotal_TotalCost= hm_data.get("Total Cost");
-			Float showtotal_RatioofLabor= hm_data.get("Ratio of Labor");
-			Float showtotal_TenderPrice= hm_data.get("Tender Price");*/
+			/*Float showtotal_TargetPrice= hm_DetailBreakdownData.get("Target Price");
+			Float showtotal_Materialcosts= hm_DetailBreakdownData.get("Material costs");
+			Float showtotal_MaterialcostSLCurrency= hm_DetailBreakdownData.get("Material cost (SL Currency)");
+		System.out.println("====="+showtotal_TargetPrice+"/"+showtotal_Materialcosts+"/"+showtotal_MaterialcostSLCurrency);*/
+			Float showtotal_Referencehours= hm_DetailBreakdownData.get("Reference hours");
+			Float showtotal_ITEfactor= hm_DetailBreakdownData.get("ITE factor");
+			Float showtotal_InstallationHours= hm_DetailBreakdownData.get("Installation Hours");
+			Float showtotal_Labourrate= hm_DetailBreakdownData.get("Labour rate");
+			Float showtotal_LaborCosts= hm_DetailBreakdownData.get("Labor Costs");
+			/*Float showtotal_Contigency= hm_DetailBreakdownData.get("Contigency");
+			Float showtotal_OverheadRecovery= hm_DetailBreakdownData.get("Overhead Recovery");
+			Float showtotal_FullCosts= hm_DetailBreakdownData.get("Full Costs");
+			Float showtotal_TotalCost= hm_DetailBreakdownData.get("Total Cost");
+			Float showtotal_RatioofLabor= hm_DetailBreakdownData.get("Ratio of Labor");
+			Float showtotal_TenderPrice= hm_DetailBreakdownData.get("Tender Price");*/
 			Float check_showtotal_Referencehours= showtotal_InstallationHours/showtotal_ITEfactor;
 			Float check_showtotal_Labourrate= showtotal_LaborCosts/showtotal_InstallationHours;
 			/*System.out.println("is_showtotal_ITEfactor: "+check_showtotal_ITEfactor+"/"+showtotal_ITEfactor);
@@ -949,8 +926,11 @@ public class testRun_KTOCTRB {
 			Boolean is_showtotal_ITEfactor = roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor));
 			Boolean is_showtotal_Referencehours= roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours));
 			Boolean is_showtotal_Labourrate= roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate));
-			System.out.println("*** is_showtotal_ITEfactor: "+is_showtotal_ITEfactor+" / is_showtotal_Labourrate: "+is_showtotal_Labourrate+" / is_showtotal_Referencehours: "+is_showtotal_Referencehours+" ***");
-			/*for (Entry<String, Float> entry : hm_data.entrySet()) {
+			System.out.println("check_showtotal_ITEfactor:"+roundoff.format(check_showtotal_ITEfactor)+" / showtotal_ITEfactor:"+roundoff.format(showtotal_ITEfactor));
+			System.out.println("check_showtotal_Referencehours:"+roundoff.format(check_showtotal_Referencehours)+" / showtotal_Referencehours:"+roundoff.format(showtotal_Referencehours));
+			System.out.println("check_showtotal_Labourrate:"+roundoff.format(check_showtotal_Labourrate)+" / showtotal_Labourrate:"+roundoff.format(showtotal_Labourrate));
+			System.out.println("*** is_showtotal_ITEfactor: "+is_showtotal_ITEfactor+" *** / is_showtotal_Labourrate: "+is_showtotal_Labourrate+" *** / is_showtotal_Referencehours: "+is_showtotal_Referencehours+" ***");
+			/*for (Entry<String, Float> entry : hm_DetailBreakdownData.entrySet()) {
 				String key = entry.getKey();
 				Float ValueStored = entry.getValue();
 				System.out.println("key:"+key+" /ValuetoStore:"+ValueStored);
@@ -960,7 +940,7 @@ public class testRun_KTOCTRB {
 //			System.out.println("elementShowTotalCostCalculationDetail_CLICKED*****BACK="+driver.findElements(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).getAttribute("id"));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 //			waitForinvisibilityOfElementLocated(header_ITEfactor);
-			System.out.println("header_ITEfactor disabled");
+//			System.out.println("header_ITEfactor disabled");
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Validate Detail Breakdown Tab Failed due to: "+e);
@@ -985,6 +965,8 @@ public class testRun_KTOCTRB {
 //			System.out.println(elementToWord.getAttribute("id"));
 				count++;
 				if(count==1) {
+					scrollIntoView_Javascript(elementtoConfiguration);
+					wait.until(ExpectedConditions.visibilityOf(elementtoConfiguration));
 					elementtoConfiguration.click();
 					break;
 				}
@@ -1006,7 +988,7 @@ public class testRun_KTOCTRB {
 	 */
 	public static By lnk_toWord = By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[5]/img");
 	public static By label_KONELogo = By.xpath("//*[text()='Print with KONE Logo']");
-	public static By lnk_templateDOC = By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc')]");
+	public static By lnk_templateDOC = By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc') or text()='Tender Letter MOD TRB']");
 	public void goToDocumentsTabandClickTheTender() throws Exception{
 		try {
 			WebElement element_ToWord = gettingWebElement(lnk_toWord);
@@ -1025,14 +1007,14 @@ public class testRun_KTOCTRB {
 			}
 			System.out.println("ToWord icon clicked");
 			waitForVisibilityOfElementLocated(label_KONELogo);
-			System.out.println("Waiting till -Print with KONE Logo- displays");
+//			System.out.println("Waiting till -Print with KONE Logo- displays");
 			WebElement element_ModularTenderDOC = gettingWebElement(lnk_templateDOC);
 			wait.until(ExpectedConditions.elementToBeClickable(element_ModularTenderDOC));
 			scrollIntoView_Javascript(element_ModularTenderDOC);
 			wait.until(ExpectedConditions.visibilityOf(element_ModularTenderDOC));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			element_ModularTenderDOC.click();
-			System.out.println("Modular_Tender_Template.doc clicked");
+//			System.out.println("Modular_Tender_Template.doc clicked");
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Goto Documents tab and Click Tender Failed due to: "+e);
@@ -1059,15 +1041,17 @@ public class testRun_KTOCTRB {
 			wait.until(ExpectedConditions.stalenessOf(element_PrintOut));
 			retryingClick(icon_printOut);
 			System.out.println("Create PrintOut icon clicked");
-			waitForVisibilityOfElementLocated(text_freezePrint);
-			waitForElementToBeClickable(btn_freezePrint);
-			clickonButton(btn_freezePrint);
-			System.out.println(FreezePrintedVersion+" clicked in Do you want to freeze printed version?");
+			if(!salesoffice.contains("AU")) {
+				waitForVisibilityOfElementLocated(text_freezePrint);
+				waitForElementToBeClickable(btn_freezePrint);
+				clickonButton(btn_freezePrint);
+				System.out.println(FreezePrintedVersion+" clicked in Do you want to freeze printed version?");
+			}
 			waitForVisibilityOfElementLocated(text_infotoDocServer);
 			WebElement element_OkbuttoninInformationtodocumentserver = gettingWebElement(btn_infotoDocServer);
 			wait.until(ExpectedConditions.elementToBeClickable(element_OkbuttoninInformationtodocumentserver));
 			element_OkbuttoninInformationtodocumentserver.click();
-			System.out.println("OK clicked");
+//			System.out.println("OK clicked");
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Verify Successful Message Displayed Failed due to: "+e);
@@ -1100,18 +1084,18 @@ public class testRun_KTOCTRB {
 			enteringValues(txt_stageProbabilityDescription, StageProbability_Description);
 			System.out.println(StageProbability_Description+" entered in Description field in stage / Probability window");
 			clickonButton(dd_stage);
-			System.out.println("Clicked on Stage dropdown");
+//			System.out.println("Clicked on Stage dropdown");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(value_stage);
-			System.out.println(StageProbability_Stage+" Clicked in Stage dropdown");
+//			System.out.println(StageProbability_Stage+" Clicked in Stage dropdown");
 			WebElement element_enderVersionProbability = gettingWebElement(txt_probability);
 			element_enderVersionProbability.clear();
-			System.out.println("Probability: value Cleared");
+//			System.out.println("Probability: value Cleared");
 			element_enderVersionProbability.sendKeys(StageProbability_probability);
-			System.out.println("Value entered in Probability field");
+//			System.out.println("Value entered in Probability field");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_stageProbability);
-			System.out.println("OK Button Clicked");
+//			System.out.println("OK Button Clicked");
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Click Save&Close button Failed due to: "+e);
@@ -1126,18 +1110,35 @@ public class testRun_KTOCTRB {
 	public static By frameforwait = By.tagName("iframe");
 	public static By btn_configurator = By.xpath("//*[@title='Configurator']");
 	public static By btn_NoButtoninNewVersionProduct = By.xpath("//button[text()='No']");
+	public Float Final_SalesPrice;
 	public void getSalesPriceFromSalesForce() throws Exception{
 		try {
 			wait.until(elementToBeClickableInFrame(frameforwait, btn_configurator));
-//			System.out.println("NewWait's Executed");
 			switchtoDefaultContentFrame();
-//			System.out.println("switchedTodefaultContent");
 			switchtoFrame(gettingWebElement(frameforwait));
-//			System.out.println("switched to frame");
 			WebElement element_Configurator = gettingWebElement(btn_configurator);
 			wait.until(ExpectedConditions.visibilityOf(element_Configurator));
-			System.out.println("Configurator button is visible");
+//			System.out.println("Configurator button is visible");
 			scrollIntoView_Javascript(element_Configurator);
+			By header_totalSalesPrice=By.xpath("//*[text()='Total Sales Price']/../../../..//tr/td/*"); 
+			List<WebElement>element_totalSalesPrices=gettingWebElementsfromList(header_totalSalesPrice);
+			for(WebElement element_totalSalesPrice:element_totalSalesPrices) {
+				if(!element_totalSalesPrice.getText().isEmpty()) {
+					if(element_totalSalesPrice.getText().contains("(")){
+						String totalsalesprice=element_totalSalesPrice.getText();
+						System.out.println("Salesforce TenderPrice:"+totalsalesprice);
+						String a[] = totalsalesprice.split("\\(");
+						totalsalesprice=a[0].trim();
+						String b[] = totalsalesprice.split(" ");
+						totalsalesprice=b[1].trim();
+						totalsalesprice=totalsalesprice.replaceAll(",", "");
+						Final_SalesPrice=Float.valueOf(totalsalesprice);
+						System.out.println("Tender Price:"+TenderPrice+" / Final_SalesPrice:"+Final_SalesPrice);
+						System.out.println("is TRB TenderPrice VS Salesforce TenderPrice equal:"+TenderPrice.equals(Final_SalesPrice)+" ***");
+						break;
+					}
+				}
+			}
 			click_Javascript(element_Configurator);
 			System.out.println("Configurator Clicked");
 			List<WebElement> frames=gettingWebElementsfromList(frameforwait);
@@ -1171,7 +1172,7 @@ public class testRun_KTOCTRB {
 	public void handShake() throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(icon_pricing);
-			System.out.println("pricingicon's visible");
+//			System.out.println("pricingicon's visible");
 			verifyTenderConsistency();
 			WebElement element_HandShakeicon=gettingWebElement(icon_HandShake);
 			wait.until(ExpectedConditions.visibilityOf(element_HandShakeicon));
@@ -1206,7 +1207,7 @@ public class testRun_KTOCTRB {
 			waitForElementToBeClickable(icon_pricing);
 			WebElement element_pricingicon=gettingWebElement(icon_pricing);
 			scrollIntoView_Javascript(element_pricingicon);
-			System.out.println("scrolled to pricingicon");
+//			System.out.println("scrolled to pricingicon");
 			element_pricingicon.click();
 			/*List<WebElement> element_pricingicons = gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div/img"));
 			int count=0;
@@ -1218,7 +1219,7 @@ public class testRun_KTOCTRB {
 					break;
 				}
 			}*/
-			System.out.println("pricing icon Clicked");
+//			System.out.println("pricing icon Clicked");
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("PricingIcon Click Failed due to: "+e);
@@ -1234,20 +1235,40 @@ public class testRun_KTOCTRB {
 	public static By header_firstMaintenance = By.xpath("//*[text()='First Maintenance']");
 	public void selectingFirstMaintenance(String FirstMaintenance) throws Exception{
 		try {
-			By value_firstMaintenance = By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuité ')]");
+			By value_firstMaintenance = null;
+			if(!salesoffice.contains("AU")) {
+				value_firstMaintenance = By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuité ')]");
+			} else {
+				if(!FirstMaintenance.equals("0")) {
+					value_firstMaintenance = By.xpath("//div[text()='12 Months Free Maintenance']");
+				} else {
+					value_firstMaintenance = By.xpath("//div[text()='No Free Maintenance']");
+				}
+			}
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 //			String tenderPriceBefore =isTargetupdatedafterFirstMaintenance();
 			WebElement scrollto_Firstmaintenance = gettingWebElement(dd_firstMaintenance); //*[@data-ctcwgtname='FreeMaintenance']/buttonS
 			scrollIntoView_Javascript(scrollto_Firstmaintenance);
-			System.out.println("scrolled to Firstmaintenance");
+//			System.out.println("scrolled to Firstmaintenance");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(dd_firstMaintenance);
-			System.out.println("First maintenance: Clicked");
+			click_Javascript(gettingWebElement(dd_firstMaintenance));
+//			System.out.println("First maintenance: Clicked");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(value_firstMaintenance);
 			System.out.println("First maintenance: " + FirstMaintenance + " Clicked");
 			if(!FirstMaintenance.equals("0")) {
 				waitForVisibilityOfElementLocated(header_firstMaintenance);
+			} else if(salesoffice.contains("AU") && FirstMaintenance.equals("0")) {
+				List<WebElement>headers_priceOverview=gettingWebElementsfromList(By.xpath("//*[text()='Discount']/../..//div/div"));
+				for(WebElement header_priceOverview:headers_priceOverview) {
+					if(!header_priceOverview.getText().isEmpty()) {
+//						System.out.println("header_priceOverview="+header_priceOverview.getText());
+						if(header_priceOverview.getText().equals("First Maintenance")) {
+							wait.until(ExpectedConditions.invisibilityOf(header_priceOverview));
+							break;
+						}
+					}
+				}
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
@@ -1294,25 +1315,25 @@ public class testRun_KTOCTRB {
 			WebElement scrollto_TMP_Discount = gettingWebElement(btn_discountPencil);
 			wait.until(ExpectedConditions.visibilityOf(scrollto_TMP_Discount)); //*[@data-ctcwgtname='icGraphic']
 			scrollIntoView_Javascript(scrollto_TMP_Discount);
-			System.out.println("Scrolled UP to Discount");
+//			System.out.println("Scrolled UP to Discount");
 			wait.until(ExpectedConditions.visibilityOf(scrollto_TMP_Discount));
 			WebElement doubleclick_elementDiscount = gettingWebElement(grid_discount);
 			Actions doubleclick_discount = new Actions(driver).doubleClick(doubleclick_elementDiscount);
 			doubleclick_discount.build().perform();
-			System.out.println("Double Clicked on discount");
+//			System.out.println("Double Clicked on discount");
 			WebElement scrollto_NewDicount = gettingWebElement(txt_discount); //*[@data-ctcwgtname='TMP_Discount']
 			wait.until(ExpectedConditions.visibilityOf(scrollto_NewDicount)); 
 			scrollto_NewDicount.clear();
-			System.out.println("TMP_Discount cleared");
+//			System.out.println("TMP_Discount cleared");
 			scrollto_NewDicount.sendKeys(discount);
-			System.out.println("TMP_Discount entered as: " + discount);
+			System.out.println("Discount entered as: " + discount);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_discountOK); //*[@data-ctcwgtname='pbOK']
-			System.out.println("Discount OK clicked");	
+//			System.out.println("Discount OK clicked");	
 			By grid_discountisApplied = By.xpath("//*[text()='Project']/..//div[text()='"+discount+".00 %']");
 //			System.out.println("grid_discountisApplied:"+gettingWebElement(grid_discountisApplied).getAttribute("id"));
 			waitForpresenceOfElementLocated(grid_discountisApplied);
-			System.out.println("Discount applied to GRID");
+//			System.out.println("Discount applied to GRID");
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Selecting Discount Failed due to: "+e);
@@ -1333,14 +1354,15 @@ public class testRun_KTOCTRB {
 			WebElement scrollto_priceOverview = gettingWebElement(tab_priceOverview);
 			wait.until(ExpectedConditions.visibilityOf(scrollto_priceOverview)); 
 			scrollIntoView_Javascript(scrollto_priceOverview);
-			System.out.println("Scrolled UP to TenderPrice_T");
+//		System.out.println("Scrolled UP to TenderPrice_T");
 			wait.until(ExpectedConditions.visibilityOf(scrollto_priceOverview));
 			List<WebElement> elements=driver.findElements(grid_tenderPrice);
 			WebElement doubleclick_elementselectingTenderPrice = null;
 			for(WebElement element:elements) {
-				if(element.getText().contains("€ ")) {
+//		System.out.println(element.getText());
+				if(element.getText().contains("€ ") || element.getText().contains("$")) {
 					doubleclick_elementselectingTenderPrice=element;
-//					System.out.println("if:"+doubleclick_elementselectingTenderPrice.getAttribute("id"));
+//		System.out.println("if:"+doubleclick_elementselectingTenderPrice.getAttribute("id"));
 					break;
 				}
 			}
@@ -1350,19 +1372,19 @@ public class testRun_KTOCTRB {
 			wait.until(ExpectedConditions.visibilityOf(doubleclick_elementselectingTenderPrice));
 			Actions doubleclick_targetPrice = new Actions(driver).doubleClick(doubleclick_elementselectingTenderPrice);
 			doubleclick_targetPrice.build().perform();
-			System.out.println("Double Clicked on selectingTargetPrice");
+//		System.out.println("Double Clicked on selectingTargetPrice");
 			WebElement scrollto_TenderPrice_T = gettingWebElement(txt_tenderPrice); //*[@data-ctcwgtname='TMP_Discount']
 			wait.until(ExpectedConditions.visibilityOf(scrollto_TenderPrice_T)); 
 			scrollto_TenderPrice_T.sendKeys(Keys.chord((Keys.CONTROL+"a")));
 			scrollto_TenderPrice_T.sendKeys((Keys.DELETE));
-			System.out.println("TenderPrice_T cleared");
+//		System.out.println("TenderPrice_T cleared");
 			scrollto_TenderPrice_T.sendKeys(tenderPrice);
-			System.out.println("TenderPrice_T entered as: " + tenderPrice);
+		System.out.println("TenderPrice entered as: " + tenderPrice);
 			clickonButton(btn_tenderPriceOK); 
-			System.out.println("TenderPrice_T OK clicked");	
+//		System.out.println("TenderPrice_T OK clicked");	
 			istenderPrice=true;
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Selecting TenderPrice Failed due to: "+e);
 		}
 	}
@@ -1372,33 +1394,44 @@ public class testRun_KTOCTRB {
 	 *@author CON_SVIJAY02
 	 */
 	public static By grid_allValues = By.xpath("//*[text()='Project']/..//*");
+	public static Float TenderPrice;
 	public void checkingTargetPrice() throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(grid_discount);
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Project']/..//div[text()='" + discount + ".00 %']")));
 			List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allValues);
 			Float arrary[] = new Float[2];
-			Float TargetPrice, Firstmaintenance, Discount = null, TenderPrice = null;
+			Float TargetPrice, Firstmaintenance, Discount = null;
 			for (WebElement Element : Elements_PriceOverview) {
-//				System.out.println(Element.getAttribute("id"));
+//		System.out.println(Element.getAttribute("id"));
 				if (!Element.getText().isEmpty() || Element.getAttribute("value") != null) {
 					if (Element.getAttribute("value") == null) {
 						if (!Element.getText().contains("Project")) {
 							if (!Element.getText().contains("%")) {
-								String element_readTenderPrice = Element.getText().replaceAll("[€ .]", "");
-								element_readTenderPrice = element_readTenderPrice.replace(",", ".");
+								String element_readTenderPrice = Element.getText().replaceAll("[€  $]", "");
+								if(!salesoffice.contains("AU")) {
+									element_readTenderPrice = element_readTenderPrice.replace(".", "");
+									element_readTenderPrice = element_readTenderPrice.replace(",", ".");
+								}  else {
+									element_readTenderPrice = element_readTenderPrice.replace(",", "");
+								}
 								TenderPrice = Float.valueOf(element_readTenderPrice);
-//							System.out.println("****TenderPrice:" + TenderPrice);
+//				System.out.println("****TenderPrice==>" + TenderPrice);
 							} else {
 								String element_readDiscount = Element.getText().replaceAll("[% ]", "");
 								Discount = Float.valueOf(element_readDiscount);
-//							System.out.println("****Discount:" + Discount);
+//				System.out.println("****Discount:" + Discount);
 							}
 						}
 					} else {
-//	        		System.out.println("Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
-						String element_read = Element.getAttribute("value").replaceAll("[€ .]", "");
-						element_read = element_read.replace(",", ".");
+//	        	System.out.println("****Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
+						String element_read = Element.getAttribute("value").replaceAll("[€  $]", "");
+						if(!salesoffice.contains("AU")) {
+							element_read = element_read.replace(".", "");
+							element_read = element_read.replace(",", ".");
+						} else {
+							element_read = element_read.replace(",", "");
+						}
 						Float converted = Float.valueOf(element_read);
 //	        		System.out.println("converted: "+converted);
 						if (arrary[0] == null) {
@@ -1427,15 +1460,15 @@ public class testRun_KTOCTRB {
 			}
 			if(istenderPrice) {
 				Float DiscountFinal = ((((TargetPrice-Firstmaintenance)-(TenderPrice-Firstmaintenance))/(TargetPrice-Firstmaintenance))*100);
-				System.out.println("DiscountFinal:"+ roundoff.format(DiscountFinal)+"/Current Discount:"+Discount);
-				System.out.println("*** is FinalDiscount & ApplicationDiscount Equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
+				System.out.println("DiscountFinal:"+ roundoff.format(DiscountFinal)+" / Current Discount:"+Discount);
+				System.out.println("*** is FinalDiscount VS ApplicationDiscount Equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
 			} else {
 				/*Float TargetMinusMaintenance = TargetPrice - Firstmaintenance;
 				Float TargetplusDiscount = TargetMinusMaintenance - (TargetMinusMaintenance * (Discount / 100));
 				Float TargetPriceFinal = TargetplusDiscount + Firstmaintenance;*/
 				Float TenderPriceFinal = ((TargetPrice-Firstmaintenance)-((TargetPrice-Firstmaintenance)*(Discount/100))+Firstmaintenance);
-				System.out.println("TenderPriceFinal:" + roundoff.format(TenderPriceFinal)+" / CurrentTenderPrice:"+TenderPrice);
-				System.out.println("*** is TenderPriceFinal & ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
+				System.out.println("*** TenderPriceFinal:" + roundoff.format(TenderPriceFinal)+" / CurrentTenderPrice:"+TenderPrice+" ***");
+				System.out.println("is TenderPriceFinal VS ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
@@ -1733,7 +1766,6 @@ public class testRun_KTOCTRB {
 		if (element != null) {
 			element.click();
 		}
-
 	}
 	
 	/**
@@ -1744,7 +1776,6 @@ public class testRun_KTOCTRB {
 			element = getWebElement(locator, LocatorValue);
 			if (element.isDisplayed()) {
 				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-
 			}
 		} catch (Exception e) {
 			Assert.fail("Scrolling is not successful");
@@ -1913,4 +1944,134 @@ public class testRun_KTOCTRB {
 		Select dropdown = new Select(mySelectElement);
 		dropdown.selectByVisibleText(value);
 	}
+	
+	/**
+	 * @author Roja
+	 */
+	public static int TestStatus=1;
+	public void ChangeSalesOrg() {
+		TestStatus=1;
+		if(TestStatus==1){
+		try {
+			//Change Sales Organization From SF User Settings Page
+			ClickOnElement("xpath",SalesForceData.LoggedInUserName);
+			ClickOnElement("xpath",SalesForceData.MySettings);
+			ClickOnElement("xpath",SalesForceData.PersonalInfo);
+			ClickOnElement("xpath",SalesForceData.AdvancedUserDetails);
+			ClickOnElement("xpath",SalesForceData.UserEditButton);
+			ClickOnElement("xpath",SalesForceData.UserEditButton);
+			ScrollUptoElement("xpath",SalesForceData.AdditionalInformationSection);
+			SelectDropDownValues("xpath",SalesForceData.SalesOrgField,"220");
+		} catch (Exception e) {
+			TestStatus=0;
+			try {
+				TakeSnapShot("SalesForceLoginPage");
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			Assert.fail("Login Interrupted" + e);
+		}
+		}
+		else {
+			Assert.fail("Test Skipped: Browser Launch Failed");
+		}
+	}
+	
+	/**
+	 * @author Roja
+	 */
+	public static String OpportunityName = null;
+	public static String CreateOpportunity() throws Exception {
+			if(TestStatus==1) {
+			String AccountName = "AutomationKTOC";
+			OpportunityName = "Wartung" + RandomNumber();
+			WebElement OppoTab = FindTheElement("xpath", SalesForceData.OpportunityTab);
+			if (OppoTab.isDisplayed()) {
+				WaitAndClickOnElement("xpath", SalesForceData.OpportunityTab);
+			} else {
+				driver.navigate().refresh();
+				WaitAndClickOnElement("xpath", SalesForceData.OpportunityTab);
+			}
+			WaitAndClickOnElement("xpath", SalesForceData.NewButton);
+			WaitAndClickOnElement("xpath", SalesForceData.ContinueButton);
+			WaitTillClickable("xpath", SalesForceData.BusinessType);
+			SelectDropDownValues("xpath", SalesForceData.BusinessType, "New Equipment (NEB)");
+			WaitTillClickable("xpath", SalesForceData.OpportunityName);
+			Thread.sleep(5000);
+			EnterTextbyChar("xpath", SalesForceData.OpportunityName, OpportunityName, 1);
+			EnterTextbyChar("xpath", SalesForceData.AccountNameField, AccountName, 1);
+			SelectDropDownValues("xpath", SalesForceData.MarketSegment, "Leisure and Education");
+			SelectDropDownValues("xpath", SalesForceData.LeadSource, "Invitation to Tender");
+			EnterValues("xpath", SalesForceData.QuantityField, SalesForceData.QuantityValue);
+			EnterValues("xpath", SalesForceData.AmountField, SalesForceData.Amountvalue);
+			ClickDate(SalesForceData.PriceDueDateField, SalesForceData.PriceDueDateValue);
+			ClickDate(SalesForceData.CloseDateField, SalesForceData.CloseDateValue);
+			SelectDropDownValues("xpath", SalesForceData.Stage, "Tender/Proposal");
+			ScrollUptoElement("xpath", SalesForceData.SiteCountryField);
+			SelectDropDownValues("xpath", SalesForceData.SiteCountryField, SalesForceData.SiteCountryValue);
+			ScrollUptoElement("xpath", SalesForceData.SiteCountyField);
+			SelectDropDownValues("xpath", SalesForceData.SiteCountyField, SalesForceData.SiteCountyValue);
+			ScrollUptoElement("xpath", SalesForceData.StartOnSiteDateField);
+			ClickDate(SalesForceData.StartOnSiteDateField, SalesForceData.StartOnSiteDateValue);
+			ClickDate(SalesForceData.ProjectEndDateField, SalesForceData.ProjectEndDateValue);
+			SelectDropDownText("xpath", SalesForceData.ProjectComplexity,"Small");
+			ScrollUptoElement("xpath", SalesForceData.PageDescription);
+			WaitAndClickOnElement("xpath", SalesForceData.SaveButton);
+			WaitTillElementToBeDisplayed("xpath", SalesForceData.OpportunityDesc);
+			WebElement OpportunityDescription = driver.findElement(By.xpath(SalesForceData.OpportunityDesc));
+			String OppoName = OpportunityDescription.getText();
+			if (OppoName.equalsIgnoreCase(OpportunityName)) {
+			} else {
+				TestStatus=0;
+				Assert.fail("Opportunity creation failed");
+			}
+			}
+			else
+			{
+				Assert.fail("Test Skipped: Failed Logon To Salesforce");
+			}
+			return OpportunityName;
+		}	
+
+	/**
+	 * @author Roja
+	 */
+	public void MapContactWithOpportunity() throws Exception {
+			if(TestStatus==1) {
+			try {
+			Thread.sleep(4000);
+			WaitAndClickOnElement("xpath", SalesForceData.ContactsLink);
+			WaitAndClickOnElement("xpath", SalesForceData.ContactSectionNewButton);
+			WaitAndClickOnElement("xpath", SalesForceData.ContactOption);
+			SelectDropDownText("xpath", SalesForceData.ContactRole,"Decision Maker");
+			WaitAndClickOnElement("xpath", SalesForceData.SaveButton);
+			}
+			catch(Exception e) {
+				TestStatus=0;
+				Assert.fail("Mapping contact with opportunity fails");
+			}
+			}
+			else {
+				Assert.fail("Test Skipped: Opportunity Creation Failed");
+			}
+		}
+	
+		/**
+		 * @author Roja
+		 */
+		public void MapOpportunityWithFLTenders() throws Exception {
+			if(TestStatus==1) {
+			try {
+			WaitAndClickOnElement("xpath", SalesForceData.FLTendersLink);
+			WaitAndClickOnElement("xpath", SalesForceData.FLTendersNewButton);
+			}
+			catch(Exception e) {
+				TestStatus=0;
+				Assert.fail("Failed mapping opportunity with tender.");
+			}
+			}
+			else {
+				Assert.fail("Test Skipped: Opportunity Creation Failed");
+			}
+		}
 }

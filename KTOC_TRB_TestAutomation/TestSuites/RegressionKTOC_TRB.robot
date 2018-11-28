@@ -24,7 +24,7 @@ ${StageProbabilityProbability}    22
 1.Logon To Salesforce
     Logon To Salesforce    s.vijay@kone.com.qa    Vijay1234
 2.Verify Creating Opportunity and Mapping It With FLTender    
-    Create Opportunity OR Search Opportunity    KOFCOL TRB SFA
+    Create Opportunity OR Search Opportunity    search  KOFCOL TRB SFA
 3.Verify Tender Created Successfully    
     Add Equipment ID Elevator    1723    change
     Check Hand Over Date Is Greater Than Installation Date
@@ -43,21 +43,24 @@ ${StageProbabilityProbability}    22
 5.Validate TenderPrice and Discount With FirstMaintenance    
     Check Tender Price After Discount Update    11    3
     Get Target Price
-    Verify Discount By Changing The Tender Price    3000    3
+    Verify Discount By Changing The Tender Price    2002    3
     Get Target Price    
-    Verify Discount By Changing The Tender Price    2500    6
+    Verify Discount By Changing The Tender Price    2003    6
     Get Target Price    
-# 6.CheckRegionalFactorAtSalesOfficeLevel
-
-# 7.CheckRegionalFactorWhenSalesOfficeIsChanged
-    
+6.CheckRegionalFactorAtSalesOfficeLevel
+    Verify Regional Discount Displayed Correctly
+    Verify Target Price Displayed Correctly    0
+7.CheckRegionalFactorWhenSalesOfficeIsChanged
+    Goto Configuration Pageand Change The Sales Office    VB FRPP
+    Verify Regional Discount Displayed Correctly
+    Verify Target Price Displayed Correctly    0
 8 & 9 Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice    
     Validate Detail Breakdown Tab
     Goto Configuration Pageand Change The Sales Office    VB FRPP
-    Validate Detail Breakdown Tab
-    
-# 10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency
-    
+    Validate Detail Breakdown Tab    
+10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency
+    Verify Cost Calculated Successfully
+    VerifyPriceCalculatedSuccessfully TobecheckedinFrance
 11.Check TenderLetter Is generated Correctly With All The components
     Go To Documents Taband Click The Tender
     Verify Successful Message Displayed
