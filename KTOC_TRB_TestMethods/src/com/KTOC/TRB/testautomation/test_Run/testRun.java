@@ -10,8 +10,8 @@ public class testRun {
 		Keywords obj1=new Keywords();
 		try {
 			obj.LaunchBrowser("windows", "ff");
-			obj1.LogonToSalesforce();	
-			obj1.CreateOpportunity();
+			/*obj1.LogonToSalesforce();	
+			obj1.CreateOpportunity();*/
 			obj1.MapContactWithOpportunity();
 			obj1.MapOpportunityWithFLTenders();
 			obj1.SwitchToKTOCApp();

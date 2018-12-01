@@ -31,74 +31,90 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.python.icu.impl.Assert;
-
 import com.KTOC.TRB.testautomation.ObjectRepository.SalesForceData;
+import com.KTOC.TRB.testautomation.Utilities.ExcelReader;
 
 
 public class testRun_KTOCTRB {
 
-	static WebDriver driver;
-	static WebDriverWait wait;
-	static DecimalFormat roundoff = new DecimalFormat("##.00");
-	static String browser;
+	public static WebDriver driver;
+	public static WebDriverWait wait;
+	public static DecimalFormat roundoff = new DecimalFormat("##.00");
+	public static String operatingSystem;
+	public static String browser;
+	public static String username;
+	public static String password;
 	public static String opportunity;
-	static String equipmentid = "10503512"; // France:10503512 / 10911391, Australia:30493722
-	static String customerid = "A10137873";
-//	static String ProductRelease;
-	static String salesoffice="VB FRRW"; // France: VB FRRW, VB FRPP, Australia: AU21 - Sydney Region;
-	static String changeSalesOffice="VB FRPP"; //France: VB FRPP, Australia: AU22 - Newcastle Region
-	static int MS5HODatetoChange=2;
-	static String equipmentinService="DOC Door"; //LIS Elevator, EIS Escalator, Non-Lis Elevator, Non-Lis Escalator, DIS Door, DOC Door, Non DIS/DOC Door;
-	static String template = "Automation_Template_002"; //France: "Automation_Template_002", Australia: AustraliaRopes_For Automation
-	static String withoutFirstMaintenance = "0";
-	static String withFirstMaintenance_1 = "3";
-	static String withFirstMaintenance_2 = "8";
-	static String discount= "10";
-	static String tenderPrice = "2001";
-	static Boolean istenderPrice = false;
-	static Float regionalDiscount = 5f;
-	static int changeregionalDiscount = 4;
-	static Float check_showtotal_ITEfactor=2f;
-	static String FreezePrintedVersion="No";
-	static String SaveandClose="Yes";
-	static String StageProbability_Stage="Budget Price"; //RFQ, Prospecting/Design Assist, Budget Price, Tender/Proposal, Negotiation/Review, Order Agreed;
+	public static String opportunityCreateorSearch;
+	public static String equipmentid; // France:10503512 / 10911391, Australia:30493722
+	public static String salesoffice; // France: VB FRRW, VB FRPP, Australia: AU21 - Sydney Region;
+	public static String changeSalesOffice; //France: VB FRPP, Australia: AU22 - Newcastle Region
+	public static int MS5HODatetoChange=2;
+	
+	public static String withoutFirstMaintenance;
+	public static String withFirstMaintenance_1;
+	public static String withFirstMaintenance_2;
+	public static String discount;
+	public static String tenderPrice;
+	
+	public static Boolean istenderPrice = false;
+	public static Float regionalDiscount;
+	public static Float check_showtotal_ITEfactor;
+	public static String FreezePrintedVersion="No";
+	public static String SaveandClose="Yes";
+	public static String ProductRelease;
+	public static String customerid;
+	public static String equipment_ADDorChange;
+	public static String equipmentinService;
+	public static String supervisor_ResponsiblePerson;
+	public static String template;
+	public static String StageProbability_Stage;
+	public static String StageProbability_Description;
+	public static String StageProbability_probability;
+	public static String value_seismicArea;
+	public static String weeklyTeamCostforZone;
+	public static String weeklyTeamCostforRoomandBoard;
+	public static String frontlineAssigned;
 	
 	public static void main(String[] args) throws Exception {		
 		
 		testRun_KTOCTRB testClass=new testRun_KTOCTRB();
-		browser = "ff";
-		opportunity = "KOFCOL TRB SFA"; // france: "KOFCOL TRB SFA", Australia: "KOFCOL TRB 201"
+		/*browser = "ff";
+		String opportunity = "KOFCOL TRB SFA"; // france: "KOFCOL TRB SFA", Australia: "KOFCOL TRB 201"
 		String ProductRelease ="1723"; //1813 1723 1713
 //		equipmentid = "10503512"; // 10894788
+		String customerid = "A10137873";
 		String equipment_ADDorChange = "change";
-//		salesoffice="VB FRPP";// VB FRPC, VB FRPF, VB FRPH, VB FRPP, VB FRRA, VB FRRE, VB FRRM, VB FRRN, VB FRRR, VB FRRS, VB FRRW
-//		MS5HODatetoChange=2;
-//		equipmentinService="DOC Door"; //LIS Elevator, EIS Escalator, Non-Lis Elevator, Non-Lis Escalator, DIS Door, DOC Door, Non DIS/DOC Door
+		salesoffice="VB FRPP";// VB FRPC, VB FRPF, VB FRPH, VB FRPP, VB FRRA, VB FRRE, VB FRRM, VB FRRN, VB FRRR, VB FRRS, VB FRRW
+		changeSalesOffice="VB FRPP";
+		String equipmentinService="DOC Door"; //LIS Elevator, EIS Escalator, Non-Lis Elevator, Non-Lis Escalator, DIS Door, DOC Door, Non DIS/DOC Door
 		String supervisor_ResponsiblePerson="06114080"; //France: 06114080(VB FRRW), Australia: 13012004
-//		template = "Automation_Template_002";
-//		FirstMaintenance = "0";
-//		discount = "10";
-//		tenderPrice = "2001";
-//		testRun_KTOCTRB.istenderPrice = false;
-//		check_showtotal_ITEfactor=2f;
-//		FreezePrintedVersion="No"; // Yes No
-//		SaveandClose="Yes"; //No Yes
-//		StageProbability_Stage="Budget Price"; //RFQ, Prospecting/Design Assist, Budget Price, Tender/Proposal, Negotiation/Review, Order Agreed
+		String template = "Automation_Template_002"; //France: "Automation_Template_002", Australia: AustraliaRopes_For Automation
+		withoutFirstMaintenance = "0";
+		withFirstMaintenance_1 = "3";
+		withFirstMaintenance_2 = "8";
+		discount = "10";
+		tenderPrice = "2001";
+		regionalDiscount = 5f;
+		check_showtotal_ITEfactor=2f;
+		String StageProbability_Stage="Budget Price"; //RFQ, Prospecting/Design Assist, Budget Price, Tender/Proposal, Negotiation/Review, Order Agreed;
 		String StageProbability_Description="Automation Test Description";
-		String StageProbability_probability="22";
-
-		testClass.launchBrowser("windows", browser);
+		String StageProbability_probability="22";*/
+		
+		String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
+		testClass.launchBrowser("france", EXCEL_PATH);
 		//1.LogonToSalesforce
-		testClass.logonToSalesforce("s.vijay@kone.com.qa", "Vijay1234");
+		testClass.logonToSalesforce();
 		//2.VerifyCreatingOpportunityandMappingItWithFLTender
-		testClass.createOpportunityORSearchOpportunity("search",opportunity);
+		testClass.createOpportunityORSearchOpportunity();
 		//3.VerifyTenderCreatedSuccessfully
-		testClass.addEquipmentIDElevator(ProductRelease, equipment_ADDorChange);
+		testClass.addEquipmentIDElevator();
 		testClass.checkHandOverDateIsGreaterThanInstallationDate();
-		testClass.checkSalesOfficeisSelected(salesoffice);
-		testClass.selectSupervisor(supervisor_ResponsiblePerson);
+		testClass.checkSalesOfficeisSelected();
+		testClass.additionalfieldsinProjectOverviewforCanada();
+		testClass.selectSupervisor();
 		testClass.selectEquipmentInService();
-		testClass.selectTemplateToBeUploaded(template);
+		testClass.selectTemplateToBeUploaded();
 		testClass.verifyTenderConsistency();
 		testClass.getTenderNo();
 		//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
@@ -118,12 +134,12 @@ public class testRun_KTOCTRB {
 		testClass.verifyRegionalDiscountDisplayedCorrectly();
 		testClass.verifyTargetPriceDisplayedCorrectly(withoutFirstMaintenance);
 		//7.CheckRegionalFactorWhenSalesOfficeIsChanged(additionallyforCanada:ITEandlabourrate)
-		testClass.gotoConfigurationPageandChangeTheSalesOffice(changeSalesOffice);
+		testClass.gotoConfigurationPageandChangeTheSalesOffice();
 		testClass.verifyRegionalDiscountDisplayedCorrectly();
 		testClass.verifyTargetPriceDisplayedCorrectly(withoutFirstMaintenance);
 		//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
 		testClass.validateDetailBreakdownTab();
-		testClass.gotoConfigurationPageandChangeTheSalesOffice(changeSalesOffice);
+		testClass.gotoConfigurationPageandChangeTheSalesOffice();
 		testClass.validateDetailBreakdownTab();
 		//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Australia)
 		testClass.VerifyCostCalculatedSuccessfully();
@@ -132,10 +148,188 @@ public class testRun_KTOCTRB {
 		testClass.goToDocumentsTabandClickTheTender();
 		testClass.verifySuccessfulMessageDisplayed();
 		//12.CloseKTOC
-		testClass.clickSaveandCloseButton(StageProbability_Description, StageProbability_probability);
+		testClass.clickSaveandCloseButton();
 		//13.VerifyTotalSalesPriceWithSFProductInformation
 		testClass.getSalesPriceFromSalesForce();
 		testClass.handShake();
+	}
+	
+//	public static final String TEST_DATA_EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
+	public void readTestData(String frontline, String EXCELPATH) throws Exception{
+		try {
+			String torun="java1";
+			frontline = frontline.toUpperCase();
+			ExcelReader excelReader=new ExcelReader(EXCELPATH);
+			operatingSystem = excelReader.GetData("GeneralData").get("OperatingSystem");
+			browser = excelReader.GetData("GeneralData").get("Browser");
+			username = excelReader.GetData("GeneralData").get("UserName");
+			password = excelReader.GetData("GeneralData").get("Password");
+			/*operatingSystem = "windows";
+			browser = "ff";
+			username = "s.vijay@kone.com.qa";
+			password = "Vijay1234";*/
+//System.out.println("operatingSystem:"+operatingSystem+"/frontline:"+frontline+" /operatingSystem:"+operatingSystem);
+			switch(frontline) {
+			case "FRANCE":
+				opportunityCreateorSearch  = excelReader.GetData("France").get("Opportunity_CreateorSearch");
+				opportunity  = excelReader.GetData("France").get("OpportunityName");
+				ProductRelease  = excelReader.GetData("France").get("ProductRelease");
+				equipmentid  = excelReader.GetData("France").get("EquipmentID");
+				equipment_ADDorChange  = excelReader.GetData("France").get("Equipment_ADDorChange");
+				customerid  = excelReader.GetData("France").get("CustomerID");	
+				salesoffice  = excelReader.GetData("France").get("SalesOffice");
+				changeSalesOffice  = excelReader.GetData("France").get("ChangeSalesOffice");
+				equipmentinService  = excelReader.GetData("France").get("EquipmentinService");
+				supervisor_ResponsiblePerson  = excelReader.GetData("France").get("Supervisor");
+				template  = excelReader.GetData("France").get("TemplateName");
+				if(torun.equalsIgnoreCase("java")) {
+					withoutFirstMaintenance  = excelReader.GetData("France").get("withoutFirstMaintenance");
+					withFirstMaintenance_1 = excelReader.GetData("France").get("withFirstMaintenance1");
+					withFirstMaintenance_2  = excelReader.GetData("France").get("withFirstMaintenance2");
+					discount  = excelReader.GetData("France").get("Discount");
+					tenderPrice  = excelReader.GetData("France").get("TenderPrice");
+				}
+				regionalDiscount = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount"));
+				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("France").get("ITEfactor"));
+				StageProbability_Stage = excelReader.GetData("France").get("StageProbabilityStage");
+				StageProbability_Description = excelReader.GetData("France").get("StageProbabilityDescription");
+				StageProbability_probability = excelReader.GetData("France").get("StageProbabilityProbability");
+				/*opportunityCreateorSearch  = "Search";
+				opportunity  = "KOFCOL TRB SFA";
+				ProductRelease  = "1723";
+				equipmentid  = "10503512";
+				equipment_ADDorChange  = "Change";
+				customerid  = "A10137873";	
+				salesoffice  = "VB FRRW";
+				changeSalesOffice  = "VB FRPP";
+				equipmentinService  = "LIS Elevator";
+				supervisor_ResponsiblePerson  = "06114080";
+				template  = "Automation_Template_002";
+				if(torun.equalsIgnoreCase("java")) {
+					withoutFirstMaintenance  = "0";
+					withFirstMaintenance_1 = "3";
+					withFirstMaintenance_2  = "6";
+					discount  = "10";
+					tenderPrice  = "2001";
+				}
+				regionalDiscount = Float.valueOf(5);
+				check_showtotal_ITEfactor = Float.valueOf(2);
+				StageProbability_Stage = "Budget Price";
+				StageProbability_Description = "Automation Test Description";
+				StageProbability_probability = "22";*/
+				frontlineAssigned=frontline;
+				System.out.println("frontlineAssigned"+frontlineAssigned);
+				break;
+				
+			case "AUSTRALIA":	
+				opportunityCreateorSearch  = excelReader.GetData("Australia").get("Opportunity_CreateorSearch");
+				opportunity  = excelReader.GetData("Australia").get("OpportunityName");
+				ProductRelease  = excelReader.GetData("Australia").get("ProductRelease");
+				equipmentid  = excelReader.GetData("Australia").get("EquipmentID");
+				equipment_ADDorChange  = excelReader.GetData("Australia").get("Equipment_ADDorChange");
+				customerid  = excelReader.GetData("Australia").get("CustomerID");	
+				salesoffice  = excelReader.GetData("Australia").get("SalesOffice");
+				changeSalesOffice  = excelReader.GetData("Australia").get("ChangeSalesOffice");
+				equipmentinService  = excelReader.GetData("Australia").get("EquipmentinService");
+				supervisor_ResponsiblePerson  = excelReader.GetData("Australia").get("Supervisor");
+				template  = excelReader.GetData("Australia").get("TemplateName");
+				if(torun.equalsIgnoreCase("java")) {
+					withoutFirstMaintenance  = excelReader.GetData("Australia").get("withoutFirstMaintenance");
+					withFirstMaintenance_1 = excelReader.GetData("Australia").get("withFirstMaintenance1");
+					withFirstMaintenance_2  = excelReader.GetData("Australia").get("withFirstMaintenance2");
+					discount  = excelReader.GetData("Australia").get("Discount");
+					tenderPrice  = excelReader.GetData("Australia").get("TenderPrice");
+				}
+				regionalDiscount = Float.valueOf(excelReader.GetData("Australia").get("RegionalDiscount"));
+				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Australia").get("ITEfactor"));
+				StageProbability_Stage = excelReader.GetData("Australia").get("StageProbabilityStage");
+				StageProbability_Description = excelReader.GetData("Australia").get("StageProbabilityDescription");
+				StageProbability_probability = excelReader.GetData("Australia").get("StageProbabilityProbability");
+				/*opportunityCreateorSearch  = "Search";
+				opportunity  = "KOFCOL TRB 201";
+				ProductRelease  = "1813";
+				equipmentid  = "30493722";
+				equipment_ADDorChange  = "Change";
+				customerid  = "A10137873";	
+				salesoffice  = "AU21 - Sydney Region";
+				changeSalesOffice  = "AU22 - Newcastle Region";
+				equipmentinService  = "LIS Elevator";
+				supervisor_ResponsiblePerson  = "13012004";
+				template  = "AustraliaRopes_For Automation";
+				if(torun.equalsIgnoreCase("java")) {
+					withoutFirstMaintenance  = "0";
+					withFirstMaintenance_1 = "3";
+					withFirstMaintenance_2  = "6";
+					discount  = "10";
+					tenderPrice  = "2001";
+				}
+				regionalDiscount = Float.valueOf(5);
+				check_showtotal_ITEfactor = Float.valueOf(2);
+				StageProbability_Stage = "Budget Price";
+				StageProbability_Description = "Automation Test Description";
+				StageProbability_probability = "22";*/
+				frontlineAssigned=frontline;
+				break;
+				
+			case "CANADA":	
+				opportunityCreateorSearch  = excelReader.GetData("Canada").get("Opportunity_CreateorSearch");
+				opportunity  = excelReader.GetData("Canada").get("OpportunityName");
+				ProductRelease  = excelReader.GetData("Canada").get("ProductRelease");
+				equipmentid  = excelReader.GetData("Canada").get("EquipmentID");
+				equipment_ADDorChange  = excelReader.GetData("Canada").get("Equipment_ADDorChange");
+				customerid  = excelReader.GetData("Canada").get("CustomerID");	
+				salesoffice  = excelReader.GetData("Canada").get("SalesOffice");
+				value_seismicArea  = excelReader.GetData("Canada").get("SeismicArea");
+				weeklyTeamCostforZone  = excelReader.GetData("Canada").get("WeeklyTeamCostforZone");
+				weeklyTeamCostforRoomandBoard  = excelReader.GetData("Canada").get("WeeklyTeamCostforRoomandBoard");
+				changeSalesOffice  = excelReader.GetData("Canada").get("ChangeSalesOffice");
+				equipmentinService  = excelReader.GetData("Canada").get("EquipmentinService");
+				supervisor_ResponsiblePerson  = excelReader.GetData("Canada").get("Supervisor");
+				template  = excelReader.GetData("Canada").get("TemplateName");
+				if(torun.equalsIgnoreCase("java")) {
+					withoutFirstMaintenance  = excelReader.GetData("Canada").get("withoutFirstMaintenance");
+					withFirstMaintenance_1 = excelReader.GetData("Canada").get("withFirstMaintenance1");
+					withFirstMaintenance_2  = excelReader.GetData("Canada").get("withFirstMaintenance2");
+					discount  = excelReader.GetData("Canada").get("Discount");
+					tenderPrice  = excelReader.GetData("Canada").get("TenderPrice");
+				}
+				regionalDiscount = Float.valueOf(excelReader.GetData("Canada").get("RegionalDiscount"));
+				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Canada").get("ITEfactor"));
+				StageProbability_Stage = excelReader.GetData("Canada").get("StageProbabilityStage");
+				StageProbability_Description = excelReader.GetData("Canada").get("StageProbabilityDescription");
+				StageProbability_probability = excelReader.GetData("Canada").get("StageProbabilityProbability");
+				/*opportunityCreateorSearch  = "Search";
+				opportunity  = "KOFCOL TRB CKE";
+				ProductRelease  = "1723";
+				equipmentid  = "20291426";
+				equipment_ADDorChange  = "Change";
+				customerid  = "N194322";	
+				salesoffice  = "Montréal";
+				changeSalesOffice  = "Québec City";
+				value_seismicArea = "2";
+				weeklyTeamCostforZone = "1";
+				weeklyTeamCostforRoomandBoard = "3";
+				equipmentinService  = "LIS Elevator";
+				supervisor_ResponsiblePerson  = "07006025";
+				template  = "CKE_Automation_Remodelled";
+				if(torun.equalsIgnoreCase("java")) {
+					withoutFirstMaintenance  = "0";
+					withFirstMaintenance_1 = "3";
+					withFirstMaintenance_2  = "6";
+					discount  = "10";
+					tenderPrice  = "2001";
+				}
+				regionalDiscount = Float.valueOf(5);
+				check_showtotal_ITEfactor = Float.valueOf(2);
+				StageProbability_Stage = "Budget Price";
+				StageProbability_Description = "Automation Test Description";
+				StageProbability_probability = "22";*/
+				frontlineAssigned=frontline;
+				break;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -144,8 +338,9 @@ public class testRun_KTOCTRB {
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
-	public void launchBrowser(String operatingsystem, String browser) throws Exception{
-		if (operatingsystem.equalsIgnoreCase("ios")) {
+	public void launchBrowser(String frontline, String EXCELPATH) throws Exception{
+		readTestData(frontline, EXCELPATH);
+		if (operatingSystem.equalsIgnoreCase("ios")) {
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.setBinary(new File(System.getProperty("user.dir")));
 			String headless = System.getProperty("headless");
@@ -159,7 +354,7 @@ public class testRun_KTOCTRB {
 				chromeOptions.addArguments("window-size=2000,2000");
 			}
 				driver = new ChromeDriver(chromeOptions);
-			} else if (operatingsystem.equalsIgnoreCase("windows")) {
+			} else if (operatingSystem.equalsIgnoreCase("windows")) {
 			if (browser.equalsIgnoreCase("ff")) {
 				System.setProperty("webdriver.gecko.driver","C:\\Users\\con_svijay02\\Downloads\\geckodriver-v0.23.0-win64\\geckodriver.exe");
 				driver = new FirefoxDriver();
@@ -188,14 +383,14 @@ public class testRun_KTOCTRB {
 	public static By txt_userName = By.id("username");
 	public static By txt_password = By.id("password");
 	public static By btn_login = By.id("Login");
-	public void logonToSalesforce(String username, String password) throws Exception{
+	public void logonToSalesforce() throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(txt_userName);
 			enteringValues(txt_userName, username);
 			enteringValues(txt_password, password);
 			clickonButton(btn_login);
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Logon To Salesforce Failed due to: "+e);
 		}
 	}
@@ -206,7 +401,7 @@ public class testRun_KTOCTRB {
 	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
-	public static By txt_searchBox = By.xpath("//*[@title='Search Salesforce' or @id='phSearchInput']");
+	public static By txt_searchBox = By.xpath("//*[@title='Search Salesforce' or @id='phSearchInput']"); //*[@title='Search Salesforce' or @id='phSearchInput']
 	public static By lnk_toLigntning=By.xpath("//*[@class='switch-to-lightning']");
 	public static By txt_ligtningHomeSearchbox = By.xpath("//*[@title='Search Salesforce']");
 	public static By img_toClassic=By.xpath("(//*[@class='tooltipTrigger tooltip-trigger uiTooltip' and @data-aura-class='uiTooltip'])[last()]");
@@ -214,12 +409,12 @@ public class testRun_KTOCTRB {
 	public static By txt_classicHomeSearchbox=By.id("phSearchInput");
 	public static By header_flTender = By.xpath("//*[@title='FL Tenders' and starts-with(text(),'FL Tenders')]");
 	public static By btn_flTender = By.xpath("//*[@title='New FL Tender' and text()='New FL Tender']");
-	public void createOpportunityORSearchOpportunity(String createorsearch, String opportunity) throws Exception{
+	public void createOpportunityORSearchOpportunity() throws Exception{
 		try {
 			By lnk_selectOpportunity = By.xpath("(//*[@title='"+opportunity+"'])[last()]");
 			WebElement searchBox = gettingWebElement(txt_searchBox);
 			wait.until(ExpectedConditions.visibilityOf(searchBox));
-			if(createorsearch.equalsIgnoreCase("search")) {
+			if(opportunityCreateorSearch.equalsIgnoreCase("search")) {
 				if(!searchBox.getAttribute("title").equals("Search Salesforce")) {
 					waitForVisibilityOfElementLocated(lnk_toLigntning);
 					clickonButton(lnk_toLigntning);
@@ -227,7 +422,7 @@ public class testRun_KTOCTRB {
 					System.out.println("ligtning HomePage displayed");
 				} 
 				enteringValues(txt_searchBox, opportunity);
-				System.out.println("Entered opportunity name:"+opportunity+ " in Search box");
+				System.out.println("Opportunity Name:"+opportunity+ " entered in Search box");
 				enteringValues(txt_searchBox, Keys.RETURN);
 				waitForVisibilityOfElementLocated(lnk_selectOpportunity);
 				clickonButton(lnk_selectOpportunity);
@@ -252,7 +447,7 @@ public class testRun_KTOCTRB {
 				MapOpportunityWithFLTenders();
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("CreateOpportunity OR SearchOpportunity Failed due to: "+e);
 		}
 	}
@@ -274,7 +469,7 @@ public class testRun_KTOCTRB {
 	public static By header_AddNewEquipment = By.xpath("//*[text()='Add new equipment' or text()='Found no dataset']");
 	public static By btn_addEquipment = By.xpath("//*[@data-ctcname='Equipment_List_AddEquipmentNo_PopUp_I']");
 	public static By btn_changeEquipment = By.xpath("//*[@data-ctcname='Equipment_List_ChangeEquipmentData_PopUp_I']");
-	public void addEquipmentIDElevator(String ProductRelease, String equipment_ADDorChange) throws Exception{
+	public void addEquipmentIDElevator() throws Exception{
 		try {
 			By checkbox_Equipment = By.xpath("//*[text()='"+equipmentid+"']/..//img");
 			By radio_ProductRelease = By.xpath("//*[text()='Product release for "+ProductRelease+"']/..//img[2]");
@@ -282,15 +477,17 @@ public class testRun_KTOCTRB {
 			switchtoFrame(switchframe1);
 			WebElement switchframe2 = gettingWebElement(secondFrame);
 			switchtoFrame(switchframe2);
-			clickonButton(radio_ProductRelease);
-			System.out.println("Release "+ProductRelease+" is Selected");
-			WebElement findElement_Ok = gettingWebElement(btn_productrelease_OK); //*[@data-ctcwgtname='pbOK']
-			scrollIntoView_Javascript(findElement_Ok);
-//			System.out.println("scrolled to OK button");
-			wait.until(ExpectedConditions.elementToBeClickable(findElement_Ok));
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			click_Javascript(findElement_Ok); 
-			System.out.println("Clicked on OK button");
+			if(!frontlineAssigned.equals("CANADA")) {
+				clickonButton(radio_ProductRelease);
+				System.out.println("Release "+ProductRelease+" is Selected");
+				WebElement findElement_Ok = gettingWebElement(btn_productrelease_OK); //*[@data-ctcwgtname='pbOK']
+				scrollIntoView_Javascript(findElement_Ok);
+	//			System.out.println("scrolled to OK button");
+				wait.until(ExpectedConditions.elementToBeClickable(findElement_Ok));
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				click_Javascript(findElement_Ok); 
+				System.out.println("Clicked on OK button");
+			}
 			WebElement element_customerID = gettingWebElement(txt_CustomerID); //*[@data-ctcwgtname='CustomerID']
 			element_customerID.clear(); 
 //			System.out.println("CustomerID existing value cleared");
@@ -339,7 +536,7 @@ public class testRun_KTOCTRB {
 				element_EquipmentID.click();
 				System.out.println("CustomerID: "+customerid+" entered");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Add EquipmentID in Elevator Failed due to: "+e);
 		}
 	}
@@ -360,7 +557,7 @@ public class testRun_KTOCTRB {
 			clickonButton(tree_project);
 			System.out.println("Project clicked");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Select ProjectTree Failed due to: "+e);
 		}
 	}
@@ -408,7 +605,7 @@ public class testRun_KTOCTRB {
 				}
 			System.out.println("MS5HODate Changed to: "+MS5HODate_toChange);
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Check HandOverDate Is Greater than InstallationDate Failed due to: "+e);
 		}
 	}
@@ -420,7 +617,7 @@ public class testRun_KTOCTRB {
 	 *@author CON_SVIJAY02
 	 */
 	public static By dd_salesOffice = By.xpath("//*[@data-ctcname='SalesOffice_T']/button");
-	public void checkSalesOfficeisSelected(String salesoffice) throws Exception{
+	public void checkSalesOfficeisSelected() throws Exception{
 		try {
 			By value_salesOffice = By.xpath("//div[text()='"+salesoffice+"']");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -430,10 +627,41 @@ public class testRun_KTOCTRB {
 			clickonButton(value_salesOffice);
 			System.out.println("SalesOffice value "+salesoffice+" Selected");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Check SalesOffice is Selected Failed due to: "+e);
 		}
 	}
+	
+	/**
+	 **Reuse method, it will enter additional fields in ProjectOverview for Canada
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public static By dd_seismicArea = By.xpath("//*[@data-ctcwgtname='ISeismic Area']/button");
+	public static By txt_weeklyTeamCostforZone = By.xpath("//*[@data-ctcwgtname='ZoneExpense']");
+	public static By txt_weeklyTeamCostforRoomandBoard = By.xpath("//*[@data-ctcwgtname='RoomandBoard']");
+	public void additionalfieldsinProjectOverviewforCanada() throws Exception{
+			try {
+				if(frontlineAssigned.equals("CANADA")) {
+					waitForinvisibilityOfElementLocated(elementtoInvisible);
+					clickonButton(dd_seismicArea);
+					waitForinvisibilityOfElementLocated(elementtoInvisible);
+//					System.out.println(gettingWebElement(By.xpath("//div[text()='"+value_seismicArea+"']")).getAttribute("id"));
+					WebElement element_seismicArea = gettingWebElement(By.xpath("//div[text()='"+value_seismicArea+"']"));
+					click_Javascript(element_seismicArea);
+					System.out.println(value_seismicArea+" value selected in SeismicArea");
+					waitForinvisibilityOfElementLocated(elementtoInvisible);
+					enteringValues(txt_weeklyTeamCostforZone, weeklyTeamCostforZone);
+					System.out.println(weeklyTeamCostforZone+" value entered in weeklyTeamCostforZone");
+					waitForinvisibilityOfElementLocated(elementtoInvisible);
+					enteringValues(txt_weeklyTeamCostforRoomandBoard, weeklyTeamCostforRoomandBoard);
+					System.out.println(weeklyTeamCostforRoomandBoard+" value entered in weeklyTeamCostforRoomandBoard");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				Assert.fail("Additional fields in ProjectOverview for Canada Failed due to: "+e);
+			}
+			}
 	
 	/**
 	 **Reuse method, it will select Supervisor
@@ -442,7 +670,7 @@ public class testRun_KTOCTRB {
 	 *@author CON_SVIJAY02
 	 */
 	public static By dd_supervisor = By.xpath("//*[@data-ctcname='Supervisor_C']");
-	public void selectSupervisor(String supervisor_ResponsiblePerson) throws Exception{
+	public void selectSupervisor() throws Exception{
 		try {
 			By tree_equipmentID = By.xpath("(//*[text()='" + equipmentid + "'])[last()-1]");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -454,9 +682,19 @@ public class testRun_KTOCTRB {
 			element_Supervisor.click();
 //			System.out.println("Supervisor drop down clicked");
 			String a[] = salesoffice.split(" ");
-			String dd_SalesOffice=a[1].trim();
-			if(salesoffice.contains("AU")) {
+			String dd_SalesOffice = null;
+			if(frontlineAssigned.equals("FRANCE")) {
+				dd_SalesOffice=a[1].trim();
+			} else if(frontlineAssigned.equals("AUSTRALIA")) {
 				dd_SalesOffice=a[0].trim();
+			} else if(frontlineAssigned.equals("CANADA")) {
+				if(salesoffice.equals("Montréal")) {
+					dd_SalesOffice="CA25";
+				} else if(salesoffice.equals("Québec City")) {
+					dd_SalesOffice="CA21";
+				} else if(salesoffice.equals("Sherbrooke")) {
+					dd_SalesOffice="CA22";
+				}
 			}
 //		System.out.println("dd_SalesOffice: "+dd_SalesOffice);
 //	        waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -464,7 +702,7 @@ public class testRun_KTOCTRB {
 			click_Javascript(element_ResponsiblePerson);
 			System.out.println(supervisor_ResponsiblePerson+" selected in Supervisor");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Select Supervisor Failed due to: "+e);
 		}
 	}
@@ -482,19 +720,20 @@ public class testRun_KTOCTRB {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			WebElement element_EquipmentInService = gettingWebElement(dd_equipmentinService);
 			wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentInService)); //*[@data-ctcwgtname='EquipmentInService']/button
+			scrollIntoView_Javascript(element_EquipmentInService);
 			element_EquipmentInService.click();
 //			System.out.println("EquipmentInService drop down clicked");
 			waitForElementToBeClickable(value_equipmentinService);
 			clickonButton(value_equipmentinService);
 			System.out.println(equipmentinService+" is clicked in Equipment InService");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			if(!salesoffice.contains("AU")) {
+			if(frontlineAssigned.equals("FRANCE")) {
 				waitForElementToBeClickable(radio_hydeaulicElevator);
 				clickonButton(radio_hydeaulicElevator);
 				System.out.println("HydraulicElevCheck clicked");
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Select Equipment InService Failed due to: "+e);
 		}
 	}
@@ -509,7 +748,7 @@ public class testRun_KTOCTRB {
 	public static By lnk_binaryTemplates = By.xpath("(//*[@data-ctcname='Template_Open_I'])[last()-1]");
 	public static By txt_searchTemplate = By.xpath("//*[@data-ctcname='Template_Search_T']");
 	public static By radio_sharedTemplate = By.xpath("//*[@data-ctcname='Shared_Template_AllOrg_R']");
-	public void selectTemplateToBeUploaded(String template) throws Exception{
+	public void selectTemplateToBeUploaded() throws Exception{
 		try {
 			By tree_equipmentID = By.xpath("//*[text()='" + equipmentid + "']");
 			By lnk_template = By.xpath("(//*[text()='" + template + "'])[last()]");
@@ -544,7 +783,7 @@ public class testRun_KTOCTRB {
 			doubleclick_template.build().perform();
 			System.out.println(template+" Template Clicked");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Select Template to be Uploaded Failed due to: "+e);
 		}
 	}
@@ -566,7 +805,7 @@ public class testRun_KTOCTRB {
 				}
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Verify Tender Consistency Failed due to: "+e);
 		}
 	}
@@ -578,8 +817,13 @@ public class testRun_KTOCTRB {
 	 */
 	public static By text_tenderNumber = By.xpath("//*[@data-ctcname='Document_Number_T']");
 	public void getTenderNo() throws Exception{
-		String getTenderNo=gettingWebElement(text_tenderNumber).getAttribute("value");
-		System.out.println("Tender # is :"+getTenderNo.trim());
+		try {
+			String getTenderNo=gettingWebElement(text_tenderNumber).getAttribute("value");
+			System.out.println("Tender # is :"+getTenderNo.trim());
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Get TenderNo Failed due to:"+e);
+		}
 	}
 	
 	/**
@@ -593,6 +837,10 @@ public class testRun_KTOCTRB {
 	public void CheckTenderPriceAfterDiscountUpdate(String discount, String FirstMaintenance) throws Exception{
 		selectingDiscount(discount);
 		selectingFirstMaintenance(FirstMaintenance);
+		if(FirstMaintenance.equals("0")) {
+			withoutFirstMaintenance = FirstMaintenance;
+//			System.out.println("FirstMaintenance assigned to ****withoutFirstMaintenance");
+		} 
 	}
 	
 	/**
@@ -606,6 +854,10 @@ public class testRun_KTOCTRB {
 	public void VerifyDiscountByChangingTheTenderPrice(String tenderPrice, String FirstMaintenance) throws Exception{
 		selectingTenderPrice(tenderPrice);
 		selectingFirstMaintenance(FirstMaintenance);
+		if(FirstMaintenance.equals("0")) {
+			withoutFirstMaintenance = FirstMaintenance;
+//			System.out.println("FirstMaintenance assigned to ****withoutFirstMaintenance");
+		} 
 	}
 	/**
 	 **Reuse method, it will Get TargetPrice from table
@@ -641,29 +893,34 @@ public class testRun_KTOCTRB {
 	 * @author CON_SVIJAY02
 	 */
 	public void VerifyCostCalculatedSuccessfully() throws Exception{
-		if(salesoffice.contains("AU")) {
-			clickonCurrenciesTab();
-			getConversionFactor();
-			Float convertedvalue_conversionFactor=Float.valueOf(conversionFactor);
-			Float showtotal_Materialcosts= hm_DetailBreakdownData.get("Material costs");
-			showtotal_Materialcosts=Float.valueOf(roundoff.format(showtotal_Materialcosts));
-			Float showtotal_MaterialcostSLCurrency= hm_DetailBreakdownData.get("Material cost (SL Currency)");
-			Float check_Materialcosts=showtotal_MaterialcostSLCurrency*convertedvalue_conversionFactor;
-			check_Materialcosts=Float.valueOf(roundoff.format(check_Materialcosts));
-			System.out.println("Calculate Materialcost:"+check_Materialcosts+" / "+"Actual Materialcost:"+showtotal_Materialcosts);
-			String condition=null;
-			if(!check_Materialcosts.equals(showtotal_Materialcosts)) {
-				check_Materialcosts=check_Materialcosts-0.01f;
-				if(check_Materialcosts.equals(showtotal_Materialcosts)) {
-					condition="-0.01";
-				} else {
-				 check_Materialcosts=check_Materialcosts-0.02f;
-				 condition="-0.02";
+		try {
+			if(frontlineAssigned.equals("AUSTRALIA")) {
+				clickonCurrenciesTab();
+				getConversionFactor();
+				Float convertedvalue_conversionFactor=Float.valueOf(conversionFactor);
+				Float showtotal_Materialcosts= hm_DetailBreakdownData.get("Material costs");
+				showtotal_Materialcosts=Float.valueOf(roundoff.format(showtotal_Materialcosts));
+				Float showtotal_MaterialcostSLCurrency= hm_DetailBreakdownData.get("Material cost (SL Currency)");
+				Float check_Materialcosts=showtotal_MaterialcostSLCurrency*convertedvalue_conversionFactor;
+				check_Materialcosts=Float.valueOf(roundoff.format(check_Materialcosts));
+				System.out.println("Calculate Materialcost:"+check_Materialcosts+" / "+"Actual Materialcost:"+showtotal_Materialcosts);
+				String condition=null;
+				if(!check_Materialcosts.equals(showtotal_Materialcosts)) {
+					check_Materialcosts=check_Materialcosts-0.01f;
+					if(check_Materialcosts.equals(showtotal_Materialcosts)) {
+						condition="-0.01";
+					} else {
+					 check_Materialcosts=check_Materialcosts-0.02f;
+					 condition="-0.02";
+					}
 				}
+				System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost is: "+roundoff.format(check_Materialcosts).equals(roundoff.format(showtotal_Materialcosts))+" ***");
+			} else {
+				System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
 			}
-			System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost is: "+roundoff.format(check_Materialcosts).equals(roundoff.format(showtotal_Materialcosts))+" ***");
-		} else {
-			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Verify Cost Calculated Successfully Falied due to:"+e);
 		}
 	}
 	
@@ -673,7 +930,7 @@ public class testRun_KTOCTRB {
 	 * @author CON_SVIJAY02
 	 */
 	public void VerifyPriceCalculatedSuccessfully_TobecheckedinFrance() throws Exception{
-		if(salesoffice.contains("AU")) {
+		if(frontlineAssigned.equals("AUSTRALIA")) {
 		// not fesible at present
 		} else {
 			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
@@ -687,13 +944,18 @@ public class testRun_KTOCTRB {
 	 */
 	public static By tab_Currencies = By.xpath("//*[text()='Currencies']");
 	public void clickonCurrenciesTab() throws Exception{
-		waitForinvisibilityOfElementLocated(elementtoInvisible);
-		WebElement scrollto_currenciesTab = gettingWebElement(tab_Currencies);
-		scrollIntoView_Javascript(scrollto_currenciesTab);
+		try {
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement scrollto_currenciesTab = gettingWebElement(tab_Currencies);
+			scrollIntoView_Javascript(scrollto_currenciesTab);
 //		System.out.println("scrolled up to CurrenciesTab");
-		waitForinvisibilityOfElementLocated(elementtoInvisible);
-		clickonButton(tab_Currencies);
-		System.out.println("CurrenciesTab Clicked");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(tab_Currencies);
+			System.out.println("CurrenciesTab Clicked");
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Click on Currencies Tab Failed due to:"+e);
+		}
 	}
 	
 	/**
@@ -704,10 +966,15 @@ public class testRun_KTOCTRB {
 	public static By value_ConversionFactor = By.xpath("//*[text()='Conversion factor']/..//input");
 	public String conversionFactor;
 	public void getConversionFactor() throws Exception{
-		waitForVisibilityOfElementLocated(value_ConversionFactor);
-		WebElement element_ConversionFactor=gettingWebElement(value_ConversionFactor);
-			conversionFactor=element_ConversionFactor.getAttribute("value");
-			System.out.println("Conversion Factor:"+conversionFactor);
+		try {
+			waitForVisibilityOfElementLocated(value_ConversionFactor);
+			WebElement element_ConversionFactor=gettingWebElement(value_ConversionFactor);
+				conversionFactor=element_ConversionFactor.getAttribute("value");
+				System.out.println("Conversion Factor:"+conversionFactor);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Get ConversionFactor Failed due to:"+e);
+		}
 	}
 	
 	/**
@@ -718,14 +985,19 @@ public class testRun_KTOCTRB {
 	public static By icon_additionalDiscount = By.xpath("//*[@data-ctcwgtname='nPricingOverview']/div");
 	public static By header_RegionalDiscount = By.xpath("//*[text()='Regional discount on component (%)']");
 	public void clickonAdditionalDiscountIcon() throws Exception{
-		wait.until(ExpectedConditions.visibilityOf(gettingWebElementsfromList(icon_additionalDiscount).get(3)));
-		scrollIntoView_Javascript(gettingWebElementsfromList(icon_additionalDiscount).get(3));
-		waitForinvisibilityOfElementLocated(elementtoInvisible);
-		gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
+		try {
+			wait.until(ExpectedConditions.visibilityOf(gettingWebElementsfromList(icon_additionalDiscount).get(3)));
+			scrollIntoView_Javascript(gettingWebElementsfromList(icon_additionalDiscount).get(3));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
 //		System.out.println(gettingWebElementsfromList(icon_additionalDiscount).get(3).getAttribute("id"));
-		System.out.println("Additional Discount Icon CLICKED");
-		waitForVisibilityOfElementLocated(header_RegionalDiscount);
+			System.out.println("Additional Discount Icon CLICKED");
+			waitForVisibilityOfElementLocated(header_RegionalDiscount);
 //		System.out.println("header RegionalDiscount is visible");
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Click on Additional Discount Icon Failed due to"+e);
+		}
 	}
 	
 	/**
@@ -737,84 +1009,89 @@ public class testRun_KTOCTRB {
 	public static By grid_RegionalDiscountValues = By.xpath("//*[text()='Regional discount on component (%)']/../../..//div[3]/div/div[1]/*");
 	public HashMap<String, Float> hm_RegionalDiscountData;
 	public void getRegionalDiscount(String firstMaintenance) throws Exception{
-		waitForVisibilityOfElementLocated(grid_RegionalDiscountValues);
-		List<WebElement> element_RegionalDiscountValues=gettingWebElementsfromList(grid_RegionalDiscountValues);
-		List<String> ls_RegionalDiscountHeader=new LinkedList<>();
-		List<Float> ls_RegionalDiscountValue=new LinkedList<>();
-		hm_RegionalDiscountData = new HashMap<String, Float>();
-			ls_RegionalDiscountHeader.add("TargetPrice_Base");
-			ls_RegionalDiscountHeader.add("FundingSectorDiscount_Percent");
-			ls_RegionalDiscountHeader.add("FundingSectorDiscount");
-			ls_RegionalDiscountHeader.add("MarketSegmentDiscount_Percent");
-			ls_RegionalDiscountHeader.add("MarketSegmentDiscount");
-			ls_RegionalDiscountHeader.add("BillingPlanDiscount_Percent");
-			ls_RegionalDiscountHeader.add("BillingPlanDiscount");
-			ls_RegionalDiscountHeader.add("SalesOfficeMultiplier_Percent");
-			ls_RegionalDiscountHeader.add("SalesOfficeMultiplier");
-			ls_RegionalDiscountHeader.add("SellingValuePackageDiscount_Percent");
-			ls_RegionalDiscountHeader.add("SellingValuePackageDiscount");
-			ls_RegionalDiscountHeader.add("Regionaldiscountoncomponent_Percent");
-			ls_RegionalDiscountHeader.add("Regionaldiscountoncomponent");
-			ls_RegionalDiscountHeader.add("TargetPrice");
-			ls_RegionalDiscountHeader.add("Discount");
-			ls_RegionalDiscountHeader.add("TenderPrice");
-			ls_RegionalDiscountHeader.add("FirstMaintenance");
-		Float convertedvalue=null;
-		for(WebElement element_RegionalDiscountValue:element_RegionalDiscountValues) {
-			if (element_RegionalDiscountValue.getAttribute("value") == null ) {
-				if(!element_RegionalDiscountValue.getText().isEmpty())	{
-						if(!element_RegionalDiscountValue.getText().contains("Subtotal") && !element_RegionalDiscountValue.getText().contains("Project")) {
-							String getvalue=element_RegionalDiscountValue.getText();
+		try {
+			waitForVisibilityOfElementLocated(grid_RegionalDiscountValues);
+			List<WebElement> element_RegionalDiscountValues=gettingWebElementsfromList(grid_RegionalDiscountValues);
+			List<String> ls_RegionalDiscountHeader=new LinkedList<>();
+			List<Float> ls_RegionalDiscountValue=new LinkedList<>();
+			hm_RegionalDiscountData = new HashMap<String, Float>();
+				ls_RegionalDiscountHeader.add("TargetPrice_Base");
+				ls_RegionalDiscountHeader.add("FundingSectorDiscount_Percent");
+				ls_RegionalDiscountHeader.add("FundingSectorDiscount");
+				ls_RegionalDiscountHeader.add("MarketSegmentDiscount_Percent");
+				ls_RegionalDiscountHeader.add("MarketSegmentDiscount");
+				ls_RegionalDiscountHeader.add("BillingPlanDiscount_Percent");
+				ls_RegionalDiscountHeader.add("BillingPlanDiscount");
+				ls_RegionalDiscountHeader.add("SalesOfficeMultiplier_Percent");
+				ls_RegionalDiscountHeader.add("SalesOfficeMultiplier");
+				ls_RegionalDiscountHeader.add("SellingValuePackageDiscount_Percent");
+				ls_RegionalDiscountHeader.add("SellingValuePackageDiscount");
+				ls_RegionalDiscountHeader.add("Regionaldiscountoncomponent_Percent");
+				ls_RegionalDiscountHeader.add("Regionaldiscountoncomponent");
+				ls_RegionalDiscountHeader.add("TargetPrice");
+				ls_RegionalDiscountHeader.add("Discount");
+				ls_RegionalDiscountHeader.add("TenderPrice");
+				ls_RegionalDiscountHeader.add("FirstMaintenance");
+			Float convertedvalue=null;
+			for(WebElement element_RegionalDiscountValue:element_RegionalDiscountValues) {
+				if (element_RegionalDiscountValue.getAttribute("value") == null ) {
+					if(!element_RegionalDiscountValue.getText().isEmpty())	{
+							if(!element_RegionalDiscountValue.getText().contains("Subtotal") && !element_RegionalDiscountValue.getText().contains("Project")) {
+								String getvalue=element_RegionalDiscountValue.getText();
 //							System.out.println("2*"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
-							if(!getvalue.equals("0.00") && !getvalue.contains("%")) {
-								getvalue = getvalue.replace(".", "");
-							}
-							getvalue=getvalue.replaceAll("[€ % h $]", "");
-							getvalue = getvalue.replace(",", ".");
+								if(!getvalue.equals("0.00") && !getvalue.contains("%")) {
+									getvalue = getvalue.replace(".", "");
+								}
+								getvalue=getvalue.replaceAll("[€ % h $]", "");
+								getvalue = getvalue.replace(",", ".");
 //							System.out.println("2**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
-							convertedvalue = Float.valueOf(getvalue);
-							ls_RegionalDiscountValue.add(convertedvalue);
+								convertedvalue = Float.valueOf(getvalue);
+								ls_RegionalDiscountValue.add(convertedvalue);
 //							System.out.println("2***"+element_RegionalDiscountValue.getAttribute("id")+"="+convertedvalue);
-						}
-				}
-			} else if(!element_RegionalDiscountValue.getAttribute("value").isEmpty() && element_RegionalDiscountValue.getAttribute("value")!=null)	{
-					String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[€ % h . $]", "");
-					getvalue = getvalue.replace(",", ".");
+							}
+					}
+				} else if(!element_RegionalDiscountValue.getAttribute("value").isEmpty() && element_RegionalDiscountValue.getAttribute("value")!=null)	{
+						String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[€ % h . $]", "");
+						getvalue = getvalue.replace(",", ".");
 //					System.out.println("3**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
-					convertedvalue = Float.valueOf(getvalue);
-					ls_RegionalDiscountValue.add(convertedvalue);
+						convertedvalue = Float.valueOf(getvalue);
+						ls_RegionalDiscountValue.add(convertedvalue);
 //					System.out.println("3***"+element_RegionalDiscountValue.getAttribute("id")+"="+convertedvalue);
+				}
 			}
+			int toIterate=16;
+				if(!firstMaintenance.equals("0")){
+					toIterate=toIterate+1;
+				}
+				for(int i=0; i<toIterate; i++) {
+					hm_RegionalDiscountData.put(ls_RegionalDiscountHeader.get(i), ls_RegionalDiscountValue.get(i));
+				}
+			Float read_TargetPrice_Base=hm_RegionalDiscountData.get("TargetPrice_Base");
+			/*Float read_FundingSectorDiscount_Percent=hm_data.get("FundingSectorDiscount_Percent");
+			Float read_FundingSectorDiscount=hm_data.get("FundingSectorDiscount");
+			Float read_MarketSegmentDiscount_Percent=hm_data.get("MarketSegmentDiscount_Percent");
+			Float read_MarketSegmentDiscount=hm_data.get("MarketSegmentDiscount");
+			Float read_BillingPlanDiscount_Percent=hm_data.get("BillingPlanDiscount_Percent");
+			Float read_BillingPlanDiscount=hm_data.get("BillingPlanDiscount");
+			Float read_SalesOfficeMultiplier_Percent=hm_data.get("SalesOfficeMultiplier_Percent");
+			Float read_SalesOfficeMultiplier=hm_data.get("SalesOfficeMultiplier");
+			Float read_SellingValuePackageDiscount_Percent=hm_data.get("SellingValuePackageDiscount_Percent");
+			Float read_SellingValuePackageDiscount=hm_data.get("SellingValuePackageDiscount");*/
+			Float read_Regionaldiscountoncomponent_Percent=hm_RegionalDiscountData.get("Regionaldiscountoncomponent_Percent");
+			Float read_Regionaldiscountoncomponent=hm_RegionalDiscountData.get("Regionaldiscountoncomponent");
+			Float read_TargetPrice=hm_RegionalDiscountData.get("TargetPrice");
+			/*Float read_Discount=hm_data.get("Discount");
+			Float read_TenderPrice=hm_data.get("TenderPrice");
+			Float read_FirstMaintenance=hm_data.get("FirstMaintenance");*/	
+			Float final_Regionaldiscountoncomponent=read_TargetPrice_Base-(read_TargetPrice_Base*(regionalDiscount/100));
+			Float final_TenderPrice=read_TargetPrice_Base-final_Regionaldiscountoncomponent;
+			System.out.println("is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:"+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" *** / read_Regionaldiscountoncomponent_Percent:"+read_Regionaldiscountoncomponent_Percent+" / regionalDiscount:"+regionalDiscount);
+			System.out.println("is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:"+final_Regionaldiscountoncomponent.equals(read_Regionaldiscountoncomponent)+" *** / final_Regionaldiscountoncomponent:"+final_Regionaldiscountoncomponent+" / read_Regionaldiscountoncomponent:"+read_Regionaldiscountoncomponent);
+			System.out.println("is final_TenderPrice VS read_TargetPrice equal:"+final_TenderPrice.equals(read_TargetPrice)+" *** / final_TenderPrice:"+final_TenderPrice+" / read_TargetPrice:"+read_TargetPrice);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Get Regional Discount Failed due to:"+e);
 		}
-		int toIterate=16;
-			if(!firstMaintenance.equals("0")){
-				toIterate=toIterate+1;
-			}
-			for(int i=0; i<toIterate; i++) {
-				hm_RegionalDiscountData.put(ls_RegionalDiscountHeader.get(i), ls_RegionalDiscountValue.get(i));
-			}
-		Float read_TargetPrice_Base=hm_RegionalDiscountData.get("TargetPrice_Base");
-		/*Float read_FundingSectorDiscount_Percent=hm_data.get("FundingSectorDiscount_Percent");
-		Float read_FundingSectorDiscount=hm_data.get("FundingSectorDiscount");
-		Float read_MarketSegmentDiscount_Percent=hm_data.get("MarketSegmentDiscount_Percent");
-		Float read_MarketSegmentDiscount=hm_data.get("MarketSegmentDiscount");
-		Float read_BillingPlanDiscount_Percent=hm_data.get("BillingPlanDiscount_Percent");
-		Float read_BillingPlanDiscount=hm_data.get("BillingPlanDiscount");
-		Float read_SalesOfficeMultiplier_Percent=hm_data.get("SalesOfficeMultiplier_Percent");
-		Float read_SalesOfficeMultiplier=hm_data.get("SalesOfficeMultiplier");
-		Float read_SellingValuePackageDiscount_Percent=hm_data.get("SellingValuePackageDiscount_Percent");
-		Float read_SellingValuePackageDiscount=hm_data.get("SellingValuePackageDiscount");*/
-		Float read_Regionaldiscountoncomponent_Percent=hm_RegionalDiscountData.get("Regionaldiscountoncomponent_Percent");
-		Float read_Regionaldiscountoncomponent=hm_RegionalDiscountData.get("Regionaldiscountoncomponent");
-		Float read_TargetPrice=hm_RegionalDiscountData.get("TargetPrice");
-		/*Float read_Discount=hm_data.get("Discount");
-		Float read_TenderPrice=hm_data.get("TenderPrice");
-		Float read_FirstMaintenance=hm_data.get("FirstMaintenance");*/	
-		Float final_Regionaldiscountoncomponent=read_TargetPrice_Base-(read_TargetPrice_Base*(regionalDiscount/100));
-		Float final_TenderPrice=read_TargetPrice_Base-final_Regionaldiscountoncomponent;
-		System.out.println("is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:"+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" *** / read_Regionaldiscountoncomponent_Percent:"+read_Regionaldiscountoncomponent_Percent+" / regionalDiscount:"+regionalDiscount);
-		System.out.println("is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:"+final_Regionaldiscountoncomponent.equals(read_Regionaldiscountoncomponent)+" *** / final_Regionaldiscountoncomponent:"+final_Regionaldiscountoncomponent+" / read_Regionaldiscountoncomponent:"+read_Regionaldiscountoncomponent);
-		System.out.println("is final_TenderPrice VS read_TargetPrice equal:"+final_TenderPrice.equals(read_TargetPrice)+" *** / final_TenderPrice:"+final_TenderPrice+" / read_TargetPrice:"+read_TargetPrice);
 	}
 	
 	/**
@@ -889,10 +1166,10 @@ public class testRun_KTOCTRB {
 				} else if(!Element_showtotalcostFirstRow.getAttribute("value").isEmpty() && Element_showtotalcostFirstRow.getAttribute("value")!=null)	{
 //			System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
 					String getvalue = null;
-					if(!salesoffice.contains("AU")) {
+					if(frontlineAssigned.equals("FRANCE")) {
 						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h .]", "");
 						getvalue = getvalue.replace(",", ".");
-					} else {
+					} else if(frontlineAssigned.equals("AUSTRALIA")) {
 						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h $]", "");
 						getvalue = getvalue.replace(",", "");
 					}
@@ -942,7 +1219,7 @@ public class testRun_KTOCTRB {
 //			waitForinvisibilityOfElementLocated(header_ITEfactor);
 //			System.out.println("header_ITEfactor disabled");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Validate Detail Breakdown Tab Failed due to: "+e);
 		}
 	}
@@ -953,7 +1230,7 @@ public class testRun_KTOCTRB {
 	 *@author CON_SVIJAY02
 	 */
 	public static By lnk_toConfiguration = By.xpath("//*[@data-ctcwgtname='MainNavigationMenu']/div[1]/img");
-	public void gotoConfigurationPageandChangeTheSalesOffice(String changeSalesOffice) throws Exception{
+	public void gotoConfigurationPageandChangeTheSalesOffice() throws Exception{
 		try {
 			WebElement element_toConfiguration = gettingWebElement(lnk_toConfiguration);
 			scrollIntoView_Javascript(element_toConfiguration);
@@ -973,10 +1250,10 @@ public class testRun_KTOCTRB {
 			}
 			System.out.println("ToConfiguration icon clicked");
 			selectProjectTree();
-			checkSalesOfficeisSelected(changeSalesOffice);
+			checkSalesOfficeisSelected();
 			pricingIconClick();
-		} catch (Exception e) {
-//			e.printStackTrace();
+		} catch (Exception e) {;
+			e.printStackTrace();
 			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: "+e);
 		}
 	}
@@ -1016,7 +1293,7 @@ public class testRun_KTOCTRB {
 			element_ModularTenderDOC.click();
 //			System.out.println("Modular_Tender_Template.doc clicked");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Goto Documents tab and Click Tender Failed due to: "+e);
 		}
 	}
@@ -1041,7 +1318,7 @@ public class testRun_KTOCTRB {
 			wait.until(ExpectedConditions.stalenessOf(element_PrintOut));
 			retryingClick(icon_printOut);
 			System.out.println("Create PrintOut icon clicked");
-			if(!salesoffice.contains("AU")) {
+			if(frontlineAssigned.equals("FRANCE")) {
 				waitForVisibilityOfElementLocated(text_freezePrint);
 				waitForElementToBeClickable(btn_freezePrint);
 				clickonButton(btn_freezePrint);
@@ -1053,7 +1330,7 @@ public class testRun_KTOCTRB {
 			element_OkbuttoninInformationtodocumentserver.click();
 //			System.out.println("OK clicked");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Verify Successful Message Displayed Failed due to: "+e);
 		}
 	}
@@ -1068,7 +1345,7 @@ public class testRun_KTOCTRB {
 	public static By dd_stage = By.xpath("//*[@data-ctcwgtname='_TenderVersion.Stage__c']/button");
 	public static By txt_probability = By.xpath("//input[@data-ctcwgtname='_TenderVersion.Probability__c']");
 	public static By btn_stageProbability = By.xpath("//*[text()='OK']");
-	public void clickSaveandCloseButton(String StageProbability_Description, String StageProbability_probability) throws Exception{
+	public void clickSaveandCloseButton() throws Exception{
 		try {
 			By btn_saveandClose = By.xpath("//*[@data-ctcwgtname='pb"+SaveandClose+"']");
 			By value_stage = By.xpath("//div[text()='"+StageProbability_Stage+"']");
@@ -1097,7 +1374,7 @@ public class testRun_KTOCTRB {
 			clickonButton(btn_stageProbability);
 //			System.out.println("OK Button Clicked");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Click Save&Close button Failed due to: "+e);
 		}
 	}
@@ -1157,7 +1434,7 @@ public class testRun_KTOCTRB {
 			element_NoButtoninNewVersionProduct.click();
 			System.out.println("NO clicked in New Version is available for this product");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Get SalesPrice from SalesForce Failed due to: "+e);
 		}
 	}
@@ -1190,7 +1467,7 @@ public class testRun_KTOCTRB {
 			}*/
 			System.out.println("isHandShakeiconisEnabled:"+element_HandShakeicon.isEnabled()+" HandShakeicon CLICKED");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("HandShake Failed due to: "+e);
 		}
 	}
@@ -1221,7 +1498,7 @@ public class testRun_KTOCTRB {
 			}*/
 //			System.out.println("pricing icon Clicked");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("PricingIcon Click Failed due to: "+e);
 		}
 	}
@@ -1236,9 +1513,9 @@ public class testRun_KTOCTRB {
 	public void selectingFirstMaintenance(String FirstMaintenance) throws Exception{
 		try {
 			By value_firstMaintenance = null;
-			if(!salesoffice.contains("AU")) {
+			if(frontlineAssigned.equals("FRANCE")) {
 				value_firstMaintenance = By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuité ')]");
-			} else {
+			} else if(frontlineAssigned.equals("AUSTRALIA")) {
 				if(!FirstMaintenance.equals("0")) {
 					value_firstMaintenance = By.xpath("//div[text()='12 Months Free Maintenance']");
 				} else {
@@ -1258,7 +1535,8 @@ public class testRun_KTOCTRB {
 			System.out.println("First maintenance: " + FirstMaintenance + " Clicked");
 			if(!FirstMaintenance.equals("0")) {
 				waitForVisibilityOfElementLocated(header_firstMaintenance);
-			} else if(salesoffice.contains("AU") && FirstMaintenance.equals("0")) {
+//			} else if(salesoffice.contains("AU") && FirstMaintenance.equals("0")) {
+			} else if(frontlineAssigned.equals("AUSTRALIA") && FirstMaintenance.equals("0")) {
 				List<WebElement>headers_priceOverview=gettingWebElementsfromList(By.xpath("//*[text()='Discount']/../..//div/div"));
 				for(WebElement header_priceOverview:headers_priceOverview) {
 					if(!header_priceOverview.getText().isEmpty()) {
@@ -1271,7 +1549,7 @@ public class testRun_KTOCTRB {
 				}
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Selecting FirstMaintenance Failed due to: "+e);
 		}
 	}
@@ -1335,7 +1613,7 @@ public class testRun_KTOCTRB {
 			waitForpresenceOfElementLocated(grid_discountisApplied);
 //			System.out.println("Discount applied to GRID");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Selecting Discount Failed due to: "+e);
 		}
 	}
@@ -1409,10 +1687,10 @@ public class testRun_KTOCTRB {
 						if (!Element.getText().contains("Project")) {
 							if (!Element.getText().contains("%")) {
 								String element_readTenderPrice = Element.getText().replaceAll("[€  $]", "");
-								if(!salesoffice.contains("AU")) {
+								if(frontlineAssigned.equals("FRANCE")) {
 									element_readTenderPrice = element_readTenderPrice.replace(".", "");
 									element_readTenderPrice = element_readTenderPrice.replace(",", ".");
-								}  else {
+								} else if(frontlineAssigned.equals("AUSTRALIA")) {
 									element_readTenderPrice = element_readTenderPrice.replace(",", "");
 								}
 								TenderPrice = Float.valueOf(element_readTenderPrice);
@@ -1426,10 +1704,10 @@ public class testRun_KTOCTRB {
 					} else {
 //	        	System.out.println("****Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
 						String element_read = Element.getAttribute("value").replaceAll("[€  $]", "");
-						if(!salesoffice.contains("AU")) {
+						if(frontlineAssigned.equals("FRANCE")) {
 							element_read = element_read.replace(".", "");
 							element_read = element_read.replace(",", ".");
-						} else {
+						} else if(frontlineAssigned.equals("AUSTRALIA")) {
 							element_read = element_read.replace(",", "");
 						}
 						Float converted = Float.valueOf(element_read);
@@ -1452,26 +1730,34 @@ public class testRun_KTOCTRB {
 			if (arrary[0] > arrary[1]) {
 				TargetPrice = arrary[0];
 				Firstmaintenance = arrary[1];
-//				System.out.println("CONDTION_1 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
+//System.out.println("CONDTION_1 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
 			} else {
 				TargetPrice = arrary[1];
 				Firstmaintenance = arrary[0];
 			System.out.println("CONDTION_2 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
 			}
+//System.out.println("istenderPrice=>"+istenderPrice);			
 			if(istenderPrice) {
 				Float DiscountFinal = ((((TargetPrice-Firstmaintenance)-(TenderPrice-Firstmaintenance))/(TargetPrice-Firstmaintenance))*100);
+				System.out.println("TargetPrice:"+TargetPrice);
+				System.out.println("Firstmaintenance:"+Firstmaintenance);
+				System.out.println("TenderPrice:"+TenderPrice);
 				System.out.println("DiscountFinal:"+ roundoff.format(DiscountFinal)+" / Current Discount:"+Discount);
 				System.out.println("*** is FinalDiscount VS ApplicationDiscount Equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
+				istenderPrice = false;
 			} else {
 				/*Float TargetMinusMaintenance = TargetPrice - Firstmaintenance;
 				Float TargetplusDiscount = TargetMinusMaintenance - (TargetMinusMaintenance * (Discount / 100));
 				Float TargetPriceFinal = TargetplusDiscount + Firstmaintenance;*/
 				Float TenderPriceFinal = ((TargetPrice-Firstmaintenance)-((TargetPrice-Firstmaintenance)*(Discount/100))+Firstmaintenance);
+				System.out.println("TargetPrice:"+TargetPrice);
+				System.out.println("Firstmaintenance:"+Firstmaintenance);
+				System.out.println("Discount:"+Discount);
 				System.out.println("*** TenderPriceFinal:" + roundoff.format(TenderPriceFinal)+" / CurrentTenderPrice:"+TenderPrice+" ***");
 				System.out.println("is TenderPriceFinal VS ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Checking TargetPrice Failed due to: "+e);
 		}
 	}

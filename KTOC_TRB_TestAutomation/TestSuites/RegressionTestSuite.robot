@@ -1,7 +1,7 @@
 *** Settings ***
 Default Tags    Regression Test
-Suite Setup    Launch Browser
-Suite Teardown    Close Browser
+#Suite Setup   
+#Suite Teardown    
 Library  com.KTOC.TRB.testautomation.Keywords.Keywords
 Resource  ../CustomKeywords/KTOCTRBCustomKeywords.robot
 *** Test Cases ***

@@ -2,15 +2,22 @@
 <projectConfiguration>
     <configVersion>2</configVersion>
     <relativeTo>WORKSPACE</relativeTo>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.Keywords.Keywords" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/ROBOT_KTOC_TRB.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.CreateProductPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/ROBOT_KTOC_TRB.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.LogOnPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/ROBOT_KTOC_TRB.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.SalesForceData" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/ROBOT_KTOC_TRB.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.TenderPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/ROBOT_KTOC_TRB.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.VersionPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/ROBOT_KTOC_TRB.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/ROBOT_KTOC_TRB.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.test_Run.testRun_KTOCTRB" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR.jar"/>
-    <pythonpath/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.Keywords.Keywords" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.CreateProductPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.LogOnPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_SF_HomePage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_SF_Login" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TBR_HomePage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TBR_PricingPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TRB_DocumentsPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TRB_ProjectOverview" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.SalesForceData" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.TenderPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.VersionPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_1201_TD3.jar"/>
+    <pythonpath>
+        <path location="C:\Python27\Lib\site-packages"/>
+    </pythonpath>
     <classpath>
         <path location="C:\Users\con_svijay02\Downloads\selenium-java-3.12.0\client-combined-3.12.0.jar"/>
         <path location="C:\Users\con_svijay02\Downloads\selenium-java-3.12.0\client-combined-3.12.0-sources.jar"/>
@@ -71,18 +78,26 @@
         <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\json-20171018.jar"/>
         <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\json-simple-1.1.jar"/>
         <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\robotframework-selenium2library-java-1.4.0.8.jar"/>
-        <path location="C:\Users\con_svijay02\.m2\repository\org\apache\poi\poi\3.17\poi-3.17.jar"/>
-        <path location="C:\Users\con_svijay02\.m2\repository\org\apache\poi\poi\3.17\poi-3.17-sources.jar"/>
-        <path location="C:\Users\con_svijay02\.m2\repository\org\apache\poi\poi-ooxml\3.17\poi-ooxml-3.17-sources.jar"/>
-        <path location="C:\Users\con_svijay02\.m2\repository\org\apache\poi\poi-ooxml\3.17\poi-ooxml-3.17.jar"/>
-        <path location="C:\Users\con_svijay02\.m2\repository\org\apache\poi\poi-ooxml-schemas\3.17\poi-ooxml-schemas-3.17.jar"/>
-        <path location="C:\Users\con_svijay02\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar"/>
-        <path location="C:\Users\con_svijay02\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17-sources.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\xmlbeans\xmlbeans\2.6.0\xmlbeans-2.6.0.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\log4j\log4j\1.2.17\log4j-1.2.17-sources.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\log4j\log4j\1.2.17\log4j-1.2.17.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\poi\poi\3.17\poi-3.17-sources.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\poi\poi\3.17\poi-3.17.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\poi\poi-ooxml\3.17\poi-ooxml-3.17-sources.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\poi\poi-ooxml\3.17\poi-ooxml-3.17.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\poi\poi-ooxml-schemas\3.17\poi-ooxml-schemas-3.17.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\commons\commons-collections4\4.1\commons-collections4-4.1-sources.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\commons\commons-collections4\4.1\commons-collections4-4.1.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\commons\commons-exec\1.3\commons-exec-1.3-sources.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\commons\commons-exec\1.3\commons-exec-1.3.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\commons\commons-lang3\3.7\commons-lang3-3.7-sources.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\commons\commons-lang3\3.7\commons-lang3-3.7.jar"/>
+        <path location="C:\Users\con_svijay02\Downloads\Jars-For-Automation\robotframework-2.9.2.jar"/>
     </classpath>
     <excludedForValidation/>
     <isValidatedFileSizeCheckingEnabled>true</isValidatedFileSizeCheckingEnabled>
     <validatedFileMaxSize>1024</validatedFileMaxSize>
-    <isReferencedLibrariesAutoReloadEnabled>false</isReferencedLibrariesAutoReloadEnabled>
-    <isReferencedLibrariesAutoDiscoveringEnabled>false</isReferencedLibrariesAutoDiscoveringEnabled>
-    <isLibrariesAutoDiscoveringSummaryWindowEnabled>false</isLibrariesAutoDiscoveringSummaryWindowEnabled>
+    <isReferencedLibrariesAutoReloadEnabled>true</isReferencedLibrariesAutoReloadEnabled>
+    <isReferencedLibrariesAutoDiscoveringEnabled>true</isReferencedLibrariesAutoDiscoveringEnabled>
+    <isLibrariesAutoDiscoveringSummaryWindowEnabled>true</isLibrariesAutoDiscoveringSummaryWindowEnabled>
 </projectConfiguration>
