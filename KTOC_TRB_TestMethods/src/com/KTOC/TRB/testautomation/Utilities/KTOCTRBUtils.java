@@ -129,11 +129,6 @@ public class KTOCTRBUtils {
 			browser = excelReader.GetData("GeneralData").get("Browser");
 			username = excelReader.GetData("GeneralData").get("UserName");
 			password = excelReader.GetData("GeneralData").get("Password");
-			/*operatingSystem = "windows";
-			browser = "ff";
-			username = "s.vijay@kone.com.qa";
-			password = "Vijay1234";*/
-//System.out.println("operatingSystem:"+operatingSystem+"/frontline:"+frontline+" /operatingSystem:"+operatingSystem);
 			switch(frontline) {
 			case "FRANCE":
 				opportunityCreateorSearch  = excelReader.GetData("France").get("Opportunity_CreateorSearch");
@@ -159,29 +154,6 @@ public class KTOCTRBUtils {
 				StageProbability_Stage = excelReader.GetData("France").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("France").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("France").get("StageProbabilityProbability");
-				/*opportunityCreateorSearch  = "Search";
-				opportunity  = "KOFCOL TRB SFA";
-				ProductRelease  = "1723";
-				equipmentid  = "10503512";
-				equipment_ADDorChange  = "Change";
-				customerid  = "A10137873";	
-				salesoffice  = "VB FRRW";
-				changeSalesOffice  = "VB FRPP";
-				equipmentinService  = "LIS Elevator";
-				supervisor_ResponsiblePerson  = "06114080";
-				template  = "Automation_Template_002";
-				if(torun.equalsIgnoreCase("java")) {
-					withoutFirstMaintenance  = "0";
-					withFirstMaintenance_1 = "3";
-					withFirstMaintenance_2  = "6";
-					discount  = "10";
-					tenderPrice  = "2001";
-				}
-				regionalDiscount = Float.valueOf(5);
-				check_showtotal_ITEfactor = Float.valueOf(2);
-				StageProbability_Stage = "Budget Price";
-				StageProbability_Description = "Automation Test Description";
-				StageProbability_probability = "22";*/
 				frontlineAssigned=frontline;
 				System.out.println("frontlineAssigned"+frontlineAssigned);
 				break;
@@ -210,29 +182,6 @@ public class KTOCTRBUtils {
 				StageProbability_Stage = excelReader.GetData("Australia").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("Australia").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("Australia").get("StageProbabilityProbability");
-				/*opportunityCreateorSearch  = "Search";
-				opportunity  = "KOFCOL TRB 201";
-				ProductRelease  = "1813";
-				equipmentid  = "30493722";
-				equipment_ADDorChange  = "Change";
-				customerid  = "A10137873";	
-				salesoffice  = "AU21 - Sydney Region";
-				changeSalesOffice  = "AU22 - Newcastle Region";
-				equipmentinService  = "LIS Elevator";
-				supervisor_ResponsiblePerson  = "13012004";
-				template  = "AustraliaRopes_For Automation";
-				if(torun.equalsIgnoreCase("java")) {
-					withoutFirstMaintenance  = "0";
-					withFirstMaintenance_1 = "3";
-					withFirstMaintenance_2  = "6";
-					discount  = "10";
-					tenderPrice  = "2001";
-				}
-				regionalDiscount = Float.valueOf(5);
-				check_showtotal_ITEfactor = Float.valueOf(2);
-				StageProbability_Stage = "Budget Price";
-				StageProbability_Description = "Automation Test Description";
-				StageProbability_probability = "22";*/
 				frontlineAssigned=frontline;
 				break;
 				
@@ -263,32 +212,6 @@ public class KTOCTRBUtils {
 				StageProbability_Stage = excelReader.GetData("Canada").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("Canada").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("Canada").get("StageProbabilityProbability");
-				/*opportunityCreateorSearch  = "Search";
-				opportunity  = "KOFCOL TRB CKE";
-				ProductRelease  = "1723";
-				equipmentid  = "20291426";
-				equipment_ADDorChange  = "Change";
-				customerid  = "N194322";	
-				salesoffice  = "Montréal";
-				changeSalesOffice  = "Québec City";
-				value_seismicArea = "2";
-				weeklyTeamCostforZone = "1";
-				weeklyTeamCostforRoomandBoard = "3";
-				equipmentinService  = "LIS Elevator";
-				supervisor_ResponsiblePerson  = "07006025";
-				template  = "CKE_Automation_Remodelled";
-				if(torun.equalsIgnoreCase("java")) {
-					withoutFirstMaintenance  = "0";
-					withFirstMaintenance_1 = "3";
-					withFirstMaintenance_2  = "6";
-					discount  = "10";
-					tenderPrice  = "2001";
-				}
-				regionalDiscount = Float.valueOf(5);
-				check_showtotal_ITEfactor = Float.valueOf(2);
-				StageProbability_Stage = "Budget Price";
-				StageProbability_Description = "Automation Test Description";
-				StageProbability_probability = "22";*/
 				frontlineAssigned=frontline;
 				break;
 			}
