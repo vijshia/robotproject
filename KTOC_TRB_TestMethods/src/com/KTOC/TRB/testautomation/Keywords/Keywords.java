@@ -322,7 +322,6 @@ public class Keywords extends KTOCTRBUtils{
 					dd_SalesOffice="CA22";
 				}
 			}
-//		System.out.println("dd_SalesOffice: "+dd_SalesOffice);
 //	        waitForinvisibilityOfElementLocated(elementtoInvisible);
 			WebElement element_ResponsiblePerson = driver.findElement(By.xpath("//div[text()='"+dd_SalesOffice+"']/..//div[text()='"+supervisor_ResponsiblePerson+"']"));
 			click_Javascript(element_ResponsiblePerson);
@@ -346,7 +345,6 @@ public class Keywords extends KTOCTRBUtils{
 			wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentInService)); //*[@data-ctcwgtname='EquipmentInService']/button
 			scrollIntoView_Javascript(element_EquipmentInService);
 			element_EquipmentInService.click();
-//			System.out.println("EquipmentInService drop down clicked");
 			waitForElementToBeClickable(value_equipmentinService);
 			clickonButton(value_equipmentinService);
 			System.out.println(equipmentinService+" is clicked in Equipment InService");
@@ -383,12 +381,10 @@ public class Keywords extends KTOCTRBUtils{
 			waitForElementToBeClickable(lnk_binaryTemplates); //(//*[@data-ctcwgtname='ic_Constant__Closed'])[last()-1]
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(lnk_binaryTemplates);
-//			System.out.println("Binary Templates: clicked");
 			WebElement element_TemplateSearch = gettingWebElement(txt_searchTemplate);
 			wait.until(ExpectedConditions.visibilityOf(element_TemplateSearch)); //*[@data-ctcwgtname='SearchString']
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			element_TemplateSearch.clear();
-//			System.out.println("cleared search field value");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			element_TemplateSearch.sendKeys(template);
 			System.out.println(template + " Entered in search");
@@ -418,9 +414,9 @@ public class Keywords extends KTOCTRBUtils{
 			List<WebElement> Elements_ConsistencyCheck_1 = gettingWebElementsfromList(consistencyCheckElement);
 			for (WebElement Element : Elements_ConsistencyCheck_1) {
 				if (Element.getCssValue("background-image").contains("0191f5aaded042c33180d357113667fbefc81b95")) {
-					System.out.println("FAIL: Tender is NOT Consistency, value:"+Element.getCssValue("background-image"));
+					System.out.println("FAIL: Tender is NOT Consistent, value:"+Element.getCssValue("background-image"));
 				} else if (Element.getCssValue("background-image").contains("cad9a93f6c879df1ed1373d2853634026ff3224f")) {
-					System.out.println("PASS: Tender is Consistency, value:"+Element.getCssValue("background-image"));
+					System.out.println("PASS: Tender is Consistent, value:"+Element.getCssValue("background-image"));
 				}
 			}
 		} catch (Exception e) {
@@ -457,7 +453,6 @@ public class Keywords extends KTOCTRBUtils{
 		selectingFirstMaintenance(FirstMaintenance);
 		if(FirstMaintenance.equals("0")) {
 			withoutFirstMaintenance = FirstMaintenance;
-//			System.out.println("FirstMaintenance assigned to ****withoutFirstMaintenance");
 		} 
 	}
 	
@@ -474,7 +469,6 @@ public class Keywords extends KTOCTRBUtils{
 		selectingFirstMaintenance(FirstMaintenance);
 		if(FirstMaintenance.equals("0")) {
 			withoutFirstMaintenance = FirstMaintenance;
-//			System.out.println("FirstMaintenance assigned to ****withoutFirstMaintenance");
 		} 
 	}
 	/**
@@ -565,7 +559,6 @@ public class Keywords extends KTOCTRBUtils{
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			WebElement scrollto_currenciesTab = gettingWebElement(tab_Currencies);
 			scrollIntoView_Javascript(scrollto_currenciesTab);
-//		System.out.println("scrolled up to CurrenciesTab");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(tab_Currencies);
 			System.out.println("CurrenciesTab Clicked");
@@ -718,7 +711,6 @@ public class Keywords extends KTOCTRBUtils{
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			WebElement scrollto_DetailbreakdownTab = gettingWebElement(tab_detailBreakDown);
 			scrollIntoView_Javascript(scrollto_DetailbreakdownTab);
-//			System.out.println("scrolled up to DetailbreakdownTab");
 			waitForVisibilityOfElementLocated(tab_detailBreakDown);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(tab_detailBreakDown);
@@ -726,7 +718,6 @@ public class Keywords extends KTOCTRBUtils{
 			waitForVisibilityOfElementLocated(dd_selectProject);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(dd_selectProject);
-//			System.out.println("Dropdown in DetailedbreakdownTAB Clicked");
 			WebElement element_Ropes = gettingWebElement(value_ropes);
 			waitForVisibilityOfElementLocated(value_ropes);
 			waitForElementToBeClickable(value_ropes);
@@ -814,11 +805,6 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("check_showtotal_Referencehours:"+roundoff.format(check_showtotal_Referencehours)+" / showtotal_Referencehours:"+roundoff.format(showtotal_Referencehours));
 			System.out.println("check_showtotal_Labourrate:"+roundoff.format(check_showtotal_Labourrate)+" / showtotal_Labourrate:"+roundoff.format(showtotal_Labourrate));
 			System.out.println("*** is_showtotal_ITEfactor: "+is_showtotal_ITEfactor+" *** / is_showtotal_Labourrate: "+is_showtotal_Labourrate+" *** / is_showtotal_Referencehours: "+is_showtotal_Referencehours+" ***");
-			/*for (Entry<String, Float> entry : hm_DetailBreakdownData.entrySet()) {
-				String key = entry.getKey();
-				Float ValueStored = entry.getValue();
-				System.out.println("key:"+key+" /ValuetoStore:"+ValueStored);
-			}*/
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
 //			System.out.println("elementShowTotalCostCalculationDetail_CLICKED*****BACK="+driver.findElements(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).getAttribute("id"));
@@ -887,7 +873,6 @@ public class Keywords extends KTOCTRBUtils{
 			}
 			System.out.println("ToWord icon clicked");
 			waitForVisibilityOfElementLocated(label_KONELogo);
-//			System.out.println("Waiting till -Print with KONE Logo- displays");
 			WebElement element_ModularTenderDOC = gettingWebElement(lnk_templateDOC);
 			wait.until(ExpectedConditions.elementToBeClickable(element_ModularTenderDOC));
 			scrollIntoView_Javascript(element_ModularTenderDOC);
@@ -927,7 +912,6 @@ public class Keywords extends KTOCTRBUtils{
 			WebElement element_OkbuttoninInformationtodocumentserver = gettingWebElement(btn_infotoDocServer);
 			wait.until(ExpectedConditions.elementToBeClickable(element_OkbuttoninInformationtodocumentserver));
 			element_OkbuttoninInformationtodocumentserver.click();
-//			System.out.println("OK clicked");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Verify Successful Message Displayed Failed due to: "+e);
@@ -955,18 +939,13 @@ public class Keywords extends KTOCTRBUtils{
 			enteringValues(txt_stageProbabilityDescription, StageProbability_Description);
 			System.out.println(StageProbability_Description+" entered in Description field in stage / Probability window");
 			clickonButton(dd_stage);
-//			System.out.println("Clicked on Stage dropdown");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(value_stage);
-//			System.out.println(StageProbability_Stage+" Clicked in Stage dropdown");
 			WebElement element_enderVersionProbability = gettingWebElement(txt_probability);
 			element_enderVersionProbability.clear();
-//			System.out.println("Probability: value Cleared");
 			element_enderVersionProbability.sendKeys(StageProbability_probability);
-//			System.out.println("Value entered in Probability field");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_stageProbability);
-//			System.out.println("OK Button Clicked");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Click Save&Close button Failed due to: "+e);
@@ -1085,7 +1064,7 @@ public class Keywords extends KTOCTRBUtils{
 					break;
 				}
 			}*/
-//			System.out.println("pricing icon Clicked");
+			System.out.println("pricing icon Clicked");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("PricingIcon Click Failed due to: "+e);
@@ -1175,21 +1154,17 @@ public class Keywords extends KTOCTRBUtils{
 			WebElement scrollto_TMP_Discount = gettingWebElement(btn_discountPencil);
 			wait.until(ExpectedConditions.visibilityOf(scrollto_TMP_Discount)); //*[@data-ctcwgtname='icGraphic']
 			scrollIntoView_Javascript(scrollto_TMP_Discount);
-//			System.out.println("Scrolled UP to Discount");
 			wait.until(ExpectedConditions.visibilityOf(scrollto_TMP_Discount));
 			WebElement doubleclick_elementDiscount = gettingWebElement(grid_discount);
 			Actions doubleclick_discount = new Actions(driver).doubleClick(doubleclick_elementDiscount);
 			doubleclick_discount.build().perform();
-//			System.out.println("Double Clicked on discount");
 			WebElement scrollto_NewDicount = gettingWebElement(txt_discount); //*[@data-ctcwgtname='TMP_Discount']
 			wait.until(ExpectedConditions.visibilityOf(scrollto_NewDicount)); 
 			scrollto_NewDicount.clear();
-//			System.out.println("TMP_Discount cleared");
 			scrollto_NewDicount.sendKeys(discount);
 			System.out.println("Discount entered as: " + discount);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_discountOK); //*[@data-ctcwgtname='pbOK']
-//			System.out.println("Discount OK clicked");	
 			By grid_discountisApplied = By.xpath("//*[text()='Project']/..//div[text()='"+discount+".00 %']");
 //			System.out.println("grid_discountisApplied:"+gettingWebElement(grid_discountisApplied).getAttribute("id"));
 			waitForpresenceOfElementLocated(grid_discountisApplied);
@@ -1210,7 +1185,6 @@ public class Keywords extends KTOCTRBUtils{
 			WebElement scrollto_priceOverview = gettingWebElement(tab_priceOverview);
 			wait.until(ExpectedConditions.visibilityOf(scrollto_priceOverview)); 
 			scrollIntoView_Javascript(scrollto_priceOverview);
-//		System.out.println("Scrolled UP to TenderPrice_T");
 			wait.until(ExpectedConditions.visibilityOf(scrollto_priceOverview));
 			List<WebElement> elements=driver.findElements(grid_tenderPrice);
 			WebElement doubleclick_elementselectingTenderPrice = null;
@@ -1233,11 +1207,9 @@ public class Keywords extends KTOCTRBUtils{
 			wait.until(ExpectedConditions.visibilityOf(scrollto_TenderPrice_T)); 
 			scrollto_TenderPrice_T.sendKeys(Keys.chord((Keys.CONTROL+"a")));
 			scrollto_TenderPrice_T.sendKeys((Keys.DELETE));
-//		System.out.println("TenderPrice_T cleared");
 			scrollto_TenderPrice_T.sendKeys(tenderPrice);
 		System.out.println("TenderPrice entered as: " + tenderPrice);
 			clickonButton(btn_tenderPriceOK); 
-//		System.out.println("TenderPrice_T OK clicked");	
 			istenderPrice=true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1253,7 +1225,6 @@ public class Keywords extends KTOCTRBUtils{
 	public void checkingTargetPrice() throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(grid_discount);
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Project']/..//div[text()='" + discount + ".00 %']")));
 			List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allValues);
 			Float arrary[] = new Float[2];
 			Float TargetPrice, Firstmaintenance, Discount = null;
