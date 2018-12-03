@@ -124,11 +124,14 @@ public class KTOCTRBUtils {
 		try {
 			String torun="java1";
 			frontline = frontline.toUpperCase();
-			ExcelReader excelReader=new ExcelReader(EXCELPATH);
+			File path = new File(CurrentDir+EXCELPATH);
+			String location = path.getAbsolutePath();
+			ExcelReader excelReader=new ExcelReader(location);
 			operatingSystem = excelReader.GetData("GeneralData").get("OperatingSystem");
 			browser = excelReader.GetData("GeneralData").get("Browser");
 			username = excelReader.GetData("GeneralData").get("UserName");
 			password = excelReader.GetData("GeneralData").get("Password");
+
 			switch(frontline) {
 			case "FRANCE":
 				opportunityCreateorSearch  = excelReader.GetData("France").get("Opportunity_CreateorSearch");

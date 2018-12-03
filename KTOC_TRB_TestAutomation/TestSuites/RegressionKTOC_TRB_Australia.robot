@@ -1,6 +1,6 @@
 *** Settings ***
 Library    com.KTOC.TRB.testautomation.Keywords.Keywords
-Suite Setup    Launch Browser    australia    C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestAutomation\\TestData\\KTOCTRB_AutomationTestData.xlsx
+Suite Setup    Launch Browser    australia    \\TestData\\KTOCTRB_AutomationTestData.xlsx
 *** Variable ***
 *** Test Cases ***
 1.Logon To Salesforce
