@@ -23,7 +23,7 @@ public class pg_TBR_PricingPage {
 	//validateDetailBreakdownTab
 	public static By tab_detailBreakDown = By.xpath("//*[text()='Detail breakdown']");
 	public static By dd_selectProject = By.xpath("//*[@data-ctcwgtname='nCustomComboboxProductSelection']");
-	public static By value_ropes = By.xpath("//*[text()='Ropes']");
+	public static By value_ropes = By.xpath("//*[text()='Ropes' or text()='KCM831 (controller+electrification+trav. Cables+Wiring Duct) - A process']");
 	public static By lnk_ShowTotalCostCalculationDetails = By.xpath("//*[@src='SMG?i=acdda3ea032315878f95d47164849ea79f364ad3&w=16&h=16']");
 	public static By header_ITEfactor = By.xpath("//*[text()='ITE factor']");
 	public static By gridvalues_SubTotal = By.xpath("//*[text()='Subtotal']/..//*");

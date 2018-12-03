@@ -158,7 +158,7 @@ public class KTOCTRBUtils {
 				StageProbability_Description = excelReader.GetData("France").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("France").get("StageProbabilityProbability");
 				frontlineAssigned=frontline;
-				System.out.println("frontlineAssigned"+frontlineAssigned);
+//				System.out.println("frontlineAssigned"+frontlineAssigned);
 				break;
 				
 			case "AUSTRALIA":	

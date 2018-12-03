@@ -15,7 +15,7 @@ public class testRun_Sample {
 	Keywords Keywords=new Keywords();
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 //	String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
-	Keywords.LaunchBrowser("france", EXCEL_PATH);
+	Keywords.LaunchBrowser("canada", EXCEL_PATH);
 	//1.LogonToSalesforce
 	Keywords.logintoSalesforce();
 	//2.VerifyCreatingOpportunityandMappingItWithFLTender
@@ -37,7 +37,7 @@ public class testRun_Sample {
 	Keywords.VerifyDiscountByChangingTheTenderPrice("2001", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
-	Keywords.CheckTenderPriceAfterDiscountUpdate("10", "3");
+	Keywords.CheckTenderPriceAfterDiscountUpdate("11", "3");
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("2002", "3");
 	Keywords.GetTargetPrice();

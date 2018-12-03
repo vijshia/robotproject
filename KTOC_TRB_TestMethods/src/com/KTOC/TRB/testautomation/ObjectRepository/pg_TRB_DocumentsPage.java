@@ -13,7 +13,7 @@ public class pg_TRB_DocumentsPage {
 	
 	//goToDocumentsTabandClickTheTender
 	public static By label_KONELogo = By.xpath("//*[text()='Print with KONE Logo']");
-	public static By lnk_templateDOC = By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc') or text()='Tender Letter MOD TRB']");
+	public static By lnk_templateDOC = By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc') or text()='Tender Letter MOD TRB' or contains(text(),'CKQ TRB Tender Letter')]");
 	//verifySuccessfulMessageDisplayed
 	public static By icon_printOut = By.xpath("//*[@data-ctcname='PrintOut_I']/div"); //*[@data-ctcname='PrintOut_I']/div
 	public static By text_freezePrint = By.xpath("//*[contains(text(),'Do you want to freeze printed version?')]");

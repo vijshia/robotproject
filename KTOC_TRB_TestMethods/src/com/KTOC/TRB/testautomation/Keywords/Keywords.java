@@ -689,8 +689,10 @@ public class Keywords extends KTOCTRBUtils{
 			/*Float read_Discount=hm_data.get("Discount");
 			Float read_TenderPrice=hm_data.get("TenderPrice");
 			Float read_FirstMaintenance=hm_data.get("FirstMaintenance");*/	
-			Float final_Regionaldiscountoncomponent=read_TargetPrice_Base-(read_TargetPrice_Base*(regionalDiscount/100));
+			Float final_Regionaldiscountoncomponent=read_TargetPrice_Base*(regionalDiscount/100);
+			final_Regionaldiscountoncomponent=Float.valueOf(roundoff.format(final_Regionaldiscountoncomponent));
 			Float final_TenderPrice=read_TargetPrice_Base-final_Regionaldiscountoncomponent;
+			final_TenderPrice=Float.valueOf(roundoff.format(final_TenderPrice));
 			System.out.println("is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:"+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" *** / read_Regionaldiscountoncomponent_Percent:"+read_Regionaldiscountoncomponent_Percent+" / regionalDiscount:"+regionalDiscount);
 			System.out.println("is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:"+final_Regionaldiscountoncomponent.equals(read_Regionaldiscountoncomponent)+" *** / final_Regionaldiscountoncomponent:"+final_Regionaldiscountoncomponent+" / read_Regionaldiscountoncomponent:"+read_Regionaldiscountoncomponent);
 			System.out.println("is final_TenderPrice VS read_TargetPrice equal:"+final_TenderPrice.equals(read_TargetPrice)+" *** / final_TenderPrice:"+final_TenderPrice+" / read_TargetPrice:"+read_TargetPrice);
@@ -879,6 +881,16 @@ public class Keywords extends KTOCTRBUtils{
 			wait.until(ExpectedConditions.visibilityOf(element_ModularTenderDOC));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			element_ModularTenderDOC.click();
+			if(frontlineAssigned.equals("FRANCE")) {
+				By lnk_templateDOC_France = By.xpath("//*[contains(text(),'_Modular_Tender_Template.doc')]");
+				gettingWebElement(lnk_templateDOC_France).click();
+			} else if(frontlineAssigned.equals("CANADA")) {
+				By lnk_templateDOC_Canada = By.xpath("//*[contains(text(),'CKQ TRB Tender Letter')]");
+				gettingWebElement(lnk_templateDOC_Canada).click();
+			} if(frontlineAssigned.equals("AUSTRALIA")) {
+				By lnk_templateDOC_Australia = By.xpath("//*[text()='Tender Letter MOD TRB']");
+				gettingWebElement(lnk_templateDOC_Australia).click();
+			}
 //			System.out.println("Modular_Tender_Template.doc clicked");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -993,7 +1005,7 @@ public class Keywords extends KTOCTRBUtils{
 				for(WebElement frame:frames) {
 					if(frame.getAttribute("id").equals("clientTarget"));{
 						secondFrame=frame;
-//						System.out.println("secondFrame:"+secondFrame.getAttribute("id"));
+		System.out.println("secondFrame:"+secondFrame.getAttribute("id")+"/framesize:"+frames.size());
 						break;
 					}
 				}
@@ -1259,7 +1271,7 @@ public class Keywords extends KTOCTRBUtils{
 							element_read = element_read.replace(",", "");
 						}
 						Float converted = Float.valueOf(element_read);
-//	        		System.out.println("converted: "+converted);
+//	        	System.out.println("converted: "+converted);
 						if (arrary[0] == null) {
 							arrary[0] = converted;
 							/*System.out.println("ARRAY 1");
@@ -1273,7 +1285,9 @@ public class Keywords extends KTOCTRBUtils{
 				}
 			}
 			if(withoutFirstMaintenance.equals("0")) {
-				arrary[1] = 0f;
+				if(arrary[1] == null) {
+					arrary[1] = 0f;
+				}
 			}
 			if (arrary[0] > arrary[1]) {
 				TargetPrice = arrary[0];
