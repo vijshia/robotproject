@@ -1011,10 +1011,12 @@ public class Keywords extends KTOCTRBUtils{
 				}
 			switchtoFrame(secondFrame);
 //			System.out.println("Switched to secondFrame");
-			WebElement element_NoButtoninNewVersionProduct = gettingWebElement(btn_NoButtoninNewVersionProduct);
-			wait.until(ExpectedConditions.elementToBeClickable(element_NoButtoninNewVersionProduct));
-			element_NoButtoninNewVersionProduct.click();
-			System.out.println("NO clicked in New Version is available for this product");
+			if(!frontlineAssigned.equals("CANADA")) {
+				WebElement element_NoButtoninNewVersionProduct = gettingWebElement(btn_NoButtoninNewVersionProduct);
+				wait.until(ExpectedConditions.elementToBeClickable(element_NoButtoninNewVersionProduct));
+				element_NoButtoninNewVersionProduct.click();
+				System.out.println("NO clicked in New Version is available for this product");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Get SalesPrice from SalesForce Failed due to: "+e);
@@ -1316,7 +1318,7 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("Firstmaintenance:"+Firstmaintenance);
 				System.out.println("Discount:"+Discount);
 				System.out.println("*** TenderPriceFinal:" + roundoff.format(TenderPriceFinal)+" / CurrentTenderPrice:"+TenderPrice+" ***");
-				System.out.println("is TenderPriceFinal VS ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
+				System.out.println("is TenderPriceFinal VS ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");	
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1467,7 +1469,7 @@ public class Keywords extends KTOCTRBUtils{
 			WaitAndClickOnElement("xpath", SalesForceData.ContinueButton);
 			//Thread.sleep(10000);
 			WaitTillClickable("xpath", SalesForceData.BusinessType);
-			SelectDropDownValues("xpath", SalesForceData.BusinessType, "New Equipment (NEB)");
+			SelectDropDownValues("xpath", SalesForceData.BusinessType, "Modernization (TRB)");
 			WaitTillClickable("xpath", SalesForceData.OpportunityName);
 			Thread.sleep(5000);
 			EnterTextbyChar("xpath", SalesForceData.OpportunityName, OpportunityName, 1);

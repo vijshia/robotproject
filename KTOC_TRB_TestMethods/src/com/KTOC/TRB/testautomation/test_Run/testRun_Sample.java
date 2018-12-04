@@ -15,7 +15,7 @@ public class testRun_Sample {
 	Keywords Keywords=new Keywords();
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 //	String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
-	Keywords.LaunchBrowser("canada", EXCEL_PATH);
+	Keywords.LaunchBrowser("france", EXCEL_PATH);
 	//1.LogonToSalesforce
 	Keywords.logintoSalesforce();
 	//2.VerifyCreatingOpportunityandMappingItWithFLTender
