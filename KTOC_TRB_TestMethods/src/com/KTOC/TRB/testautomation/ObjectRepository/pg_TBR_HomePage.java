@@ -20,6 +20,11 @@ public class pg_TBR_HomePage {
 	public static By txt_EquipmentID = By.xpath("//*[@data-ctcname='Equipment_ID_T']");
 	public static By lookup_EquipmentID = By.xpath("//*[@data-ctcname='Equipment_ID_I']");
 	public static By header_AddNewEquipment = By.xpath("//*[text()='Add new equipment' or text()='Found no dataset']");
+	public static By header_AddNewGroup = By.xpath("//*[text()='Add new group:']");
+	public static By txt_EquipmentIDPopUpT = By.xpath("//*[@data-ctcname='Equipment_ID_PopUp_T']");
+	public static By lnk_SearchEquipment = By.xpath("//*[text()='Search Equipment']");
+	
+	
 	public static By btn_addEquipment = By.xpath("//*[@data-ctcname='Equipment_List_AddEquipmentNo_PopUp_I']");
 	public static By btn_changeEquipment = By.xpath("//*[@data-ctcname='Equipment_List_ChangeEquipmentData_PopUp_I']");
 	//selectSupervisor

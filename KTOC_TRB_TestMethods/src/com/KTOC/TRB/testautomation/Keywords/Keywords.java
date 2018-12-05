@@ -96,15 +96,12 @@ public class Keywords extends KTOCTRBUtils{
 	}
 	
 	/**
-	 **Reuse method, it will add/change equipment
-	 *@param ProductRelease: Release number of the application
-	 *@param equipment_ADDorChange: equipment to be added or changed
-	 *@throws Exception: For exception handling
-	 *@author CON_SVIJAY02
+	 **Reuse method, it will navigate to KTOCTRB page
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
 	 */
-	public void addEquipmentIDElevator() throws Exception{
+	public void navigatetoKTOCTRB() throws Exception{
 		try {
-			By checkbox_Equipment = By.xpath("//*[text()='"+equipmentid+"']/..//img");
 			By radio_ProductRelease = By.xpath("//*[text()='Product release for "+ProductRelease+"']/..//img[2]");
 			WebElement switchframe1 = gettingWebElement(firstFrame);
 			switchtoFrame(switchframe1);
@@ -121,7 +118,25 @@ public class Keywords extends KTOCTRBUtils{
 				click_Javascript(findElement_Ok); 
 				System.out.println("Clicked on OK button");
 			}
+		} catch (Exception e) {
+		e.printStackTrace();
+		Assert.fail("selectMultipleEquipment Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will add/change equipment
+	 *@param ProductRelease: Release number of the application
+	 *@param equipment_ADDorChange: equipment to be added or changed
+	 *@throws Exception: For exception handling
+	 *@author CON_SVIJAY02
+	 */
+	public void addEquipmentIDElevator() throws Exception{
+		try {
+			By checkbox_Equipment = By.xpath("//*[text()='"+equipmentid+"']/..//img");
+			if(!isMultipleEquipment) {
 			WebElement element_customerID = gettingWebElement(txt_CustomerID); //*[@data-ctcwgtname='CustomerID']
+			wait.until(ExpectedConditions.visibilityOf(element_customerID));
 			element_customerID.clear(); 
 //			System.out.println("CustomerID existing value cleared");
 			WebElement element_EquipmentID = gettingWebElement(txt_EquipmentID); //*[@data-ctcwgtname='EquipmentID']
@@ -147,30 +162,79 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("checkbox clicked");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 				if(equipment_ADDorChange.equalsIgnoreCase("add")) {
-					WebElement element_EquipmentIAddButton = gettingWebElement(btn_addEquipment); //*[@data-ctcwgtname='ic:Constant.!IcNew']
-					wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentIAddButton)); 
-					element_EquipmentIAddButton.click();
-					System.out.println("ADD button clicked");
-					wait.until(ExpectedConditions.invisibilityOf(element_EquipmentIAddButton));
+					addEquipment();
 				} else if(equipment_ADDorChange.equalsIgnoreCase("change")) {
-					WebElement element_EquipmentIChangeButton = gettingWebElement(btn_changeEquipment); //*[@data-ctcwgtname='ic:Constant.!IcDynamicForm']
-					wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentIChangeButton)); 
-					element_EquipmentIChangeButton.click();
-					System.out.println("Change button clicked");
-					wait.until(ExpectedConditions.invisibilityOf(element_EquipmentIChangeButton));
+					changeEquipment();
 				}
-				wait.until(ExpectedConditions.elementToBeClickable(element_customerID));
-				if(!element_customerID.getAttribute("value").isEmpty()) {
-					element_customerID.clear();
-					wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(element_customerID, "value")));
-				}
-				wait.until(ExpectedConditions.elementToBeClickable(element_customerID));
-				element_customerID.sendKeys(customerid);
-				element_EquipmentID.click();
-				System.out.println("CustomerID: "+customerid+" entered");
+			}
+			WebElement element_customerID1 = gettingWebElement(txt_CustomerID);
+			wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
+			if(!element_customerID1.getAttribute("value").isEmpty()) {
+				element_customerID1.clear();
+				wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(element_customerID1, "value")));
+			}
+			wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
+			element_customerID1.sendKeys(customerid);
+			element_customerID1.click();
+			System.out.println("CustomerID: "+customerid+" entered");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Add EquipmentID in Elevator Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will enter equipmentID in Add New Equipment lookup and click search Equipment
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void searchEquipmentinAddNewEquipmentLookup() throws Exception{
+		try {
+			waitForVisibilityOfElementLocated(txt_EquipmentIDPopUpT);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			gettingWebElement(txt_EquipmentIDPopUpT).clear();
+			enteringValues(txt_EquipmentIDPopUpT, equipmentid);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(lnk_SearchEquipment);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("search Equipment in Add New Equipment LookupFailed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will click on add button in Add New equipment lookup
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void addEquipment() throws Exception{
+		try {
+			WebElement element_EquipmentIAddButton = gettingWebElement(btn_addEquipment); //*[@data-ctcwgtname='ic:Constant.!IcNew']
+			wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentIAddButton)); 
+			element_EquipmentIAddButton.click();
+			System.out.println("ADD button clicked");
+			wait.until(ExpectedConditions.invisibilityOf(element_EquipmentIAddButton));
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Add Equipment Failed due to: "+e);
+		}
+	}
+
+	/**
+	 **Reuse method, it will click on change button in Add New equipment lookup
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void changeEquipment() throws Exception{
+		try {
+			WebElement element_EquipmentIChangeButton = gettingWebElement(btn_changeEquipment); //*[@data-ctcwgtname='ic:Constant.!IcDynamicForm']
+			wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentIChangeButton)); 
+			element_EquipmentIChangeButton.click();
+			System.out.println("Change button clicked");
+			wait.until(ExpectedConditions.invisibilityOf(element_EquipmentIChangeButton));
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Change Equipment Failed due to: "+e);
 		}
 	}
 	
@@ -725,7 +789,15 @@ public class Keywords extends KTOCTRBUtils{
 			waitForElementToBeClickable(value_ropes);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			wait.until(ExpectedConditions.visibilityOf(element_Ropes));
-			click_Javascript(element_Ropes);
+			if(isMultipleEquipment) {
+				By checkbox_forMultipleEquipment = By.xpath("//*[text()='MMS Electrification Module']");
+				WebElement element_forMultipleEquipment = gettingWebElement(checkbox_forMultipleEquipment);
+				wait.until(ExpectedConditions.visibilityOf(element_forMultipleEquipment));
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				click_Javascript(element_forMultipleEquipment);
+			} else {
+				click_Javascript(element_Ropes);
+			}
 			System.out.println("ROPES CLICKED");
 			waitForinvisibilityOfElementLocated(value_ropes);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -758,6 +830,7 @@ public class Keywords extends KTOCTRBUtils{
 //			System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
 							if(!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
 								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h $]", "");
+								System.out.println("*********getvalue:"+getvalue);
 								getvalue = getvalue.replace(",", ".");
 								convertedvalue = Float.valueOf(getvalue);
 								ls_TotalCostValue.add(convertedvalue);
@@ -826,6 +899,23 @@ public class Keywords extends KTOCTRBUtils{
 	 */
 	public void gotoConfigurationPageandChangeTheSalesOffice() throws Exception{
 		try {
+			gotoConfigurationPage();
+			selectProjectTree();
+			checkSalesOfficeisSelected();
+			pricingIconClick();
+		} catch (Exception e) {;
+			e.printStackTrace();
+			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will click ToConfiguration icon
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void gotoConfigurationPage() throws Exception{
+		try {
 			WebElement element_toConfiguration = gettingWebElement(lnk_toConfiguration);
 			scrollIntoView_Javascript(element_toConfiguration);
 			wait.until(ExpectedConditions.elementToBeClickable(element_toConfiguration));
@@ -843,15 +933,11 @@ public class Keywords extends KTOCTRBUtils{
 				}
 			}
 			System.out.println("ToConfiguration icon clicked");
-			selectProjectTree();
-			checkSalesOfficeisSelected();
-			pricingIconClick();
 		} catch (Exception e) {;
-			e.printStackTrace();
-			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: "+e);
+		e.printStackTrace();
+		Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: "+e);
 		}
 	}
-	
 	/**
 	 **Reuse method, it will click ToWord icon and click on ModularTenderDOC.doc
 	 *@throws Exception: For exception handling
@@ -969,7 +1055,6 @@ public class Keywords extends KTOCTRBUtils{
 	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
-	public Float Final_SalesPrice;
 	public void compareSalesPricebetweenTenderPageandSalesforce() throws Exception{
 		try {
 			wait.until(elementToBeClickableInFrame(frameforwait, btn_configurator));
@@ -992,11 +1077,17 @@ public class Keywords extends KTOCTRBUtils{
 						totalsalesprice=b[1].trim();
 						totalsalesprice=totalsalesprice.replaceAll(",", "");
 						Final_SalesPrice=Float.valueOf(totalsalesprice);
-						System.out.println("Tender Price:"+TenderPrice+" / Final_SalesPrice:"+Final_SalesPrice);
-						System.out.println("is TRB TenderPrice VS Salesforce TenderPrice equal:"+TenderPrice.equals(Final_SalesPrice)+" ***");
 						break;
 					}
 				}
+			}
+			if(isMultipleEquipment) {
+				addAllTenderPrice();
+				System.out.println("allTender Price:"+allTenderPrice+" / Final_SalesPrice:"+Final_SalesPrice);
+				System.out.println("is TRB allTenderPrice VS Salesforce TenderPrice equal:"+allTenderPrice.equals(Final_SalesPrice)+" ***");
+			} else {
+				System.out.println("Tender Price:"+TenderPrice+" / Final_SalesPrice:"+Final_SalesPrice);
+				System.out.println("is TRB TenderPrice VS Salesforce TenderPrice equal:"+TenderPrice.equals(Final_SalesPrice)+" ***");
 			}
 			click_Javascript(element_Configurator);
 			System.out.println("Configurator Clicked");
@@ -1051,6 +1142,132 @@ public class Keywords extends KTOCTRBUtils{
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("HandShake Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will change data for selecting multiple equipment and navigate to Configuration Page
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void addMultipleEquipments() throws Exception{
+		try {
+			equipmentid = equipmentid_2;
+			allTenderPrice = TenderPrice;
+			template = template_2;
+			TenderPrice = null;
+			isMultipleEquipment = true;
+			equipmentinService = equipmentinService_Escalator;
+			gotoConfigurationPage();
+			addGroups();
+			addEquipmentinGroup();
+/*			equipment_ADDorChange = "Add";
+			By tree_equipment = By.xpath("//*[text()='" + equipmentid + "']");
+			waitForVisibilityOfElementLocated(tree_equipment);
+			WebElement Elementtoscroll = gettingWebElement(tree_equipment);
+			scrollIntoView_Javascript(Elementtoscroll);
+			System.out.println("scroll UP to Equipment in Project tree");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			click_Javascript(gettingWebElement(tree_equipment));
+			System.out.println("Equipment clicked in Project tree");
+			equipmentid = equipmentid_2;
+			equipment_ADDorChange = "Add";
+			allTenderPrice = TenderPrice;
+			template = template_2;
+			TenderPrice = null;
+			isMultipleEquipment = true;*/
+		} catch (Exception e) {
+		e.printStackTrace();
+		Assert.fail("Add Multiple Equipments Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will add group 
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void addGroups() throws Exception{
+		try {
+			By tree_Building1 = By.xpath("//div/div[text()='Building 1']");
+			By radio_EscalatorGroup = By.xpath("//*[@data-ctcname='EscalatorGroup_R']/div[1]");
+			By txt_GroupName = By.xpath("//*[@data-ctcname='GroupName_T']");
+			By lnk_Add = By.xpath("//*[text()='Add:']");
+			By value_GroupName = By.xpath("//*[text()='"+groupName+"']");
+			waitForVisibilityOfElementLocated(tree_Building1);
+			WebElement scrollto_Building1 = gettingWebElement(tree_Building1);
+			scrollIntoView_Javascript(scrollto_Building1);
+			System.out.println("scroll UP to Building1 tree");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			Actions rightclick_Building1 = new Actions(driver).contextClick(gettingWebElement(tree_Building1));
+			rightclick_Building1.build().perform();
+			System.out.println("Rightclick performed on Building1");
+			By lnk_New = By.xpath("//*[text()='New']");
+			waitForVisibilityOfElementLocated(lnk_New);
+			List<WebElement> elements_New=gettingWebElementsfromList(By.xpath("//*[text()='New']"));
+			for(WebElement element_New:elements_New) {
+				if(element_New.getText().equals("New")) {
+					element_New.click();
+				}
+			}
+			waitForVisibilityOfElementLocated(header_AddNewGroup);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(radio_EscalatorGroup);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			enteringValues(txt_GroupName, groupName);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(lnk_Add);
+			waitForVisibilityOfElementLocated(value_GroupName);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Add Groups Failed due to: "+e);
+			}
+		}
+	
+	public void addEquipmentinGroup() throws Exception{
+		try {
+			By tree_GroupName = By.xpath("//*[text()='"+groupName+"']");
+			By checkbox_Equipment = By.xpath("//*[text()='"+equipmentid+"']/..//img");
+			waitForVisibilityOfElementLocated(tree_GroupName);
+			WebElement scrollto_GroupName = gettingWebElement(tree_GroupName);
+			scrollIntoView_Javascript(scrollto_GroupName);
+			System.out.println("scroll UP to Group "+groupName+" tree");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			Actions rightclick_GroupName = new Actions(driver).contextClick(gettingWebElement(tree_GroupName));
+			rightclick_GroupName.build().perform();
+			System.out.println("Rightclick performed on "+groupName+" GroupName");
+			By lnk_releaseAll = By.xpath("//*[text()='Release all']");
+			waitForVisibilityOfElementLocated(lnk_releaseAll);
+			List<WebElement> elements_New=gettingWebElementsfromList(By.xpath("//*[text()='New']"));
+			for(WebElement element_New:elements_New) {
+				if(element_New.getText().equals("New")) {
+					element_New.click();
+				}
+			}
+			searchEquipmentinAddNewEquipmentLookup();
+			waitForVisibilityOfElementLocated(checkbox_Equipment);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(checkbox_Equipment);
+			System.out.println("checkbox clicked");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			addEquipment();
+		} catch (Exception e) {
+		e.printStackTrace();
+		Assert.fail("Add Equipment in Group Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will add multiple equipment's tenderPrice
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void addAllTenderPrice() throws Exception{
+		try {
+			allTenderPrice = allTenderPrice + TenderPrice;
+		} catch (Exception e) {
+		e.printStackTrace();
+		Assert.fail("Add All TenderPrice Failed due to: "+e);
 		}
 	}
 	
@@ -1235,7 +1452,7 @@ public class Keywords extends KTOCTRBUtils{
 	 **Reuse method, it will check TenderPrice & Discount in PriceOverview tab
 	 *@author CON_SVIJAY02
 	 */
-	public static Float TenderPrice;
+	
 	public void checkingTargetPrice() throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(grid_discount);
@@ -1451,7 +1668,8 @@ public class Keywords extends KTOCTRBUtils{
 
 		// Create Opportunity
 	public static String CreateOpportunity() throws Exception 
-	{
+	{		
+		KTOCTRBUtils KTOCTRBUtils=new KTOCTRBUtils();
 			if(TestStatus==1)
 			{
 			// Frontline = LogonToSalesforce().;
@@ -1474,7 +1692,14 @@ public class Keywords extends KTOCTRBUtils{
 			Thread.sleep(5000);
 			EnterTextbyChar("xpath", SalesForceData.OpportunityName, OpportunityName, 1);
 			// WaitTillElementToBeClickable("xpath", SalesForceData.AccountNameField);
-			EnterTextbyChar("xpath", SalesForceData.AccountNameField, AccountName, 1);
+//			EnterTextbyChar("xpath", SalesForceData.AccountNameField, AccountName, 1);
+			
+			By txt_accountName = By.xpath("//*[text()='Account Name']/../..//span/input");
+			By dd_accountName = By.xpath("//*[text()='"+AccountName+"']");
+			KTOCTRBUtils.enteringValues(txt_accountName, AccountName);
+			KTOCTRBUtils.waitForVisibilityOfElementLocated(dd_accountName);
+			KTOCTRBUtils.clickonButton(dd_accountName);
+			
 			SelectDropDownValues("xpath", SalesForceData.MarketSegment, "Leisure and Education");
 			SelectDropDownValues("xpath", SalesForceData.LeadSource, "Invitation to Tender");
 			EnterValues("xpath", SalesForceData.QuantityField, SalesForceData.QuantityValue);

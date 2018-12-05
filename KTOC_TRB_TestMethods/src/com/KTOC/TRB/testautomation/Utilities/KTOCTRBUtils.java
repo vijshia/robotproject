@@ -2,6 +2,7 @@ package com.KTOC.TRB.testautomation.Utilities;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -43,10 +44,13 @@ public class KTOCTRBUtils {
 	public static String opportunity;
 	public static String opportunityCreateorSearch;
 	public static String equipmentid; // France:10503512 / 10911391, Australia:30493722
+	public static String equipmentid_2;
+	public static String groupName;
 	public static String salesoffice; // France: VB FRRW, VB FRPP, Australia: AU21 - Sydney Region;
 	public static String changeSalesOffice; //France: VB FRPP, Australia: AU22 - Newcastle Region
 	public static int MS5HODatetoChange=2;
 	public static Boolean istenderPrice = false;
+	public static Boolean isMultipleEquipment = false;
 	public static Float regionalDiscount;
 	public static Float check_showtotal_ITEfactor;
 	public static String FreezePrintedVersion="No";
@@ -55,8 +59,10 @@ public class KTOCTRBUtils {
 	public static String customerid;
 	public static String equipment_ADDorChange;
 	public static String equipmentinService;
+	public static String equipmentinService_Escalator;
 	public static String supervisor_ResponsiblePerson;
 	public static String template;
+	public static String template_2;
 	public static String StageProbability_Stage;
 	public static String StageProbability_Description;
 	public static String StageProbability_probability;
@@ -64,12 +70,17 @@ public class KTOCTRBUtils {
 	public static String weeklyTeamCostforZone;
 	public static String weeklyTeamCostforRoomandBoard;
 	public static String frontlineAssigned;
+	
+	public Float Final_SalesPrice;
+	public static Float TenderPrice;
+	public static Float allTenderPrice;
 	//----------------------------
 	public static String withoutFirstMaintenance;
 	public static String withFirstMaintenance_1;
 	public static String withFirstMaintenance_2;
 	public static String discount;
-	public static String tenderPrice;
+	public static String read_tenderPrice;
+	public static String read_allTenderPrice;
 	
 	
 	/**
@@ -82,7 +93,7 @@ public class KTOCTRBUtils {
 		readTestData(frontline, excelpath);
 		if (operatingSystem.equalsIgnoreCase("ios")) {
 			ChromeOptions chromeOptions = new ChromeOptions();
-			chromeOptions.setBinary(new File(System.getProperty("user.dir")));
+//			chromeOptions.setBinary(new File(System.getProperty("user.dir")));
 			String headless = System.getProperty("headless");
 			if (headless != null && headless.equalsIgnoreCase("true")) {
 				// String PROXY = "23.23.23.23:3128"; //# IP:PORT or HOST:PORT
@@ -91,9 +102,10 @@ public class KTOCTRBUtils {
 				// chromeOptions.addArguments("--proxy-server=http://%s' % PROXY");
 				chromeOptions.addArguments("--ignore-certificate-errors");
 				chromeOptions.addArguments("--disable-gpu");
-				chromeOptions.addArguments("window-size=2000,2000");
+//				chromeOptions.addArguments("window-size=2000,2000");
 			}
 				driver = new ChromeDriver(chromeOptions);
+				driver.manage().window().setSize(new Dimension(1400,1080));
 			} else if (operatingSystem.equalsIgnoreCase("windows")) {
 			if (browser.equalsIgnoreCase("ff")) {
 				System.setProperty("webdriver.gecko.driver","C:\\Users\\con_svijay02\\Downloads\\geckodriver-v0.23.0-win64\\geckodriver.exe");
@@ -138,6 +150,12 @@ public class KTOCTRBUtils {
 				opportunity  = excelReader.GetData("France").get("OpportunityName");
 				ProductRelease  = excelReader.GetData("France").get("ProductRelease");
 				equipmentid  = excelReader.GetData("France").get("EquipmentID");
+				//-----for multiEquipment-----
+				equipmentid_2 = excelReader.GetData("France").get("EquipmentID_2");
+				groupName = excelReader.GetData("France").get("GroupName");
+				template_2  = excelReader.GetData("France").get("TemplateName2");
+				equipmentinService_Escalator  = excelReader.GetData("France").get("EquipmentinService_Escalator");
+				//-----for multiEquipment-----
 				equipment_ADDorChange  = excelReader.GetData("France").get("Equipment_ADDorChange");
 				customerid  = excelReader.GetData("France").get("CustomerID");	
 				salesoffice  = excelReader.GetData("France").get("SalesOffice");
@@ -150,7 +168,7 @@ public class KTOCTRBUtils {
 					withFirstMaintenance_1 = excelReader.GetData("France").get("withFirstMaintenance1");
 					withFirstMaintenance_2  = excelReader.GetData("France").get("withFirstMaintenance2");
 					discount  = excelReader.GetData("France").get("Discount");
-					tenderPrice  = excelReader.GetData("France").get("TenderPrice");
+					read_tenderPrice  = excelReader.GetData("France").get("TenderPrice");
 				}
 				regionalDiscount = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("France").get("ITEfactor"));
@@ -178,7 +196,7 @@ public class KTOCTRBUtils {
 					withFirstMaintenance_1 = excelReader.GetData("Australia").get("withFirstMaintenance1");
 					withFirstMaintenance_2  = excelReader.GetData("Australia").get("withFirstMaintenance2");
 					discount  = excelReader.GetData("Australia").get("Discount");
-					tenderPrice  = excelReader.GetData("Australia").get("TenderPrice");
+					read_tenderPrice  = excelReader.GetData("Australia").get("TenderPrice");
 				}
 				regionalDiscount = Float.valueOf(excelReader.GetData("Australia").get("RegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Australia").get("ITEfactor"));
@@ -208,7 +226,7 @@ public class KTOCTRBUtils {
 					withFirstMaintenance_1 = excelReader.GetData("Canada").get("withFirstMaintenance1");
 					withFirstMaintenance_2  = excelReader.GetData("Canada").get("withFirstMaintenance2");
 					discount  = excelReader.GetData("Canada").get("Discount");
-					tenderPrice  = excelReader.GetData("Canada").get("TenderPrice");
+					read_tenderPrice  = excelReader.GetData("Canada").get("TenderPrice");
 				}
 				regionalDiscount = Float.valueOf(excelReader.GetData("Canada").get("RegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Canada").get("ITEfactor"));
