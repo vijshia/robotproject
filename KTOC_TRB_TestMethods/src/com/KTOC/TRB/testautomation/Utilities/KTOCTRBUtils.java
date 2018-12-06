@@ -290,6 +290,36 @@ public class KTOCTRBUtils {
 	    }
 	    return result;
 	}
+/**
+ **Reuse method, it will remove multiple dots from price field value. implemented in validateDetailBreakdownTab 
+ * @param value: Value having multiple dots
+ * @return: Value to be returned after removing dots
+ * @throws Exception: For exception handling
+ * @author CON_SVIJAY02
+ */
+	public String removingDot(String value) throws Exception{
+		try {
+			int count=0; 
+			int location=0;
+			StringBuilder stringbuilder=new StringBuilder(value);
+			for(Character chr:value.toCharArray()){
+				if(chr.equals('.')){
+					count++;
+				}
+			}
+			if(count>1){
+				for(int i=0; i<=count; i++){
+				location=value.indexOf(".");
+					if(count>1){
+						value=stringbuilder.deleteCharAt(location).toString();
+						count--;
+					}
+				} return value;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} return value;
+	}
 	/**
 	 **Reuse method, it will enter value in a text box
 	 * @param locator: Locator of the element to be identified

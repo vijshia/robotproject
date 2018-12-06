@@ -830,8 +830,8 @@ public class Keywords extends KTOCTRBUtils{
 //			System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
 							if(!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
 								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h $]", "");
-								System.out.println("*********getvalue:"+getvalue);
 								getvalue = getvalue.replace(",", ".");
+								getvalue=removingDot(getvalue);
 								convertedvalue = Float.valueOf(getvalue);
 								ls_TotalCostValue.add(convertedvalue);
 							}
