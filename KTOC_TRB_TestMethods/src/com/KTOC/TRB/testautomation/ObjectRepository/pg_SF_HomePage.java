@@ -25,5 +25,6 @@ public class pg_SF_HomePage {
 	public static By frameforwait = By.tagName("iframe");
 	public static By btn_configurator = By.xpath("//*[@title='Configurator']");
 	public static By btn_NoButtoninNewVersionProduct = By.xpath("//button[text()='No']");
+	public static By btn_YesButtoninNewVersionProduct = By.xpath("//button[text()='No']");
 
 }

@@ -55,7 +55,9 @@ public class KTOCTRBUtils {
 	public static Float regionalDiscounttoChange;
 	public static Float check_showtotal_ITEfactor;
 	public static Float check_showtotal_ITEfactortoChange;
-	public static String FreezePrintedVersion="No";
+	public static Float LabourRate;
+	public static Float LabourRatetoChange;
+	public static String FreezePrintedVersion="Yes";
 	public static String SaveandClose="Yes";
 	public static String ProductRelease;
 	public static String customerid;
@@ -137,6 +139,7 @@ public class KTOCTRBUtils {
 	 */
 	public HashMap<String, Float> hm_ITEfactorforSalesOfficeData = new HashMap<String, Float>();
 	public HashMap<String, Float> hm_RegionalDiscountforSalesOfficeData  = new HashMap<String, Float>();
+	public HashMap<String, Float> hm_LabourRateforSalesOfficeData  = new HashMap<String, Float>();
 	public void readTestData(String frontline, String EXCELPATH) throws Exception{
 		try {
 			String torun="java1";
@@ -180,6 +183,8 @@ public class KTOCTRBUtils {
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("France").get("ITEfactor"));
 				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("France").get("changeITEfactor"));
+				LabourRate = Float.valueOf(excelReader.GetData("France").get("LabourRate"));
+				LabourRatetoChange = Float.valueOf(excelReader.GetData("France").get("changeLabourRate"));
 				StageProbability_Stage = excelReader.GetData("France").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("France").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("France").get("StageProbabilityProbability");
@@ -211,6 +216,8 @@ public class KTOCTRBUtils {
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Australia").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Australia").get("ITEfactor"));
 				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("Australia").get("changeITEfactor"));
+				LabourRate = Float.valueOf(excelReader.GetData("Australia").get("LabourRate"));
+				LabourRatetoChange = Float.valueOf(excelReader.GetData("Australia").get("changeLabourRate"));
 				StageProbability_Stage = excelReader.GetData("Australia").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("Australia").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("Australia").get("StageProbabilityProbability");
@@ -244,6 +251,8 @@ public class KTOCTRBUtils {
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Canada").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Canada").get("ITEfactor"));
 				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("Canada").get("changeITEfactor"));
+				LabourRate = Float.valueOf(excelReader.GetData("Canada").get("LabourRate"));
+				LabourRatetoChange = Float.valueOf(excelReader.GetData("Canada").get("changeLabourRate"));
 				StageProbability_Stage = excelReader.GetData("Canada").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("Canada").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("Canada").get("StageProbabilityProbability");
@@ -254,6 +263,8 @@ public class KTOCTRBUtils {
 			hm_ITEfactorforSalesOfficeData.put(changeSalesOffice, check_showtotal_ITEfactortoChange);
 			hm_RegionalDiscountforSalesOfficeData.put(salesoffice, regionalDiscount);
 			hm_RegionalDiscountforSalesOfficeData.put(changeSalesOffice, regionalDiscounttoChange);	
+			hm_LabourRateforSalesOfficeData.put(salesoffice, LabourRate);
+			hm_LabourRateforSalesOfficeData.put(changeSalesOffice, LabourRatetoChange);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -515,7 +526,7 @@ public class KTOCTRBUtils {
 	 * @return: null
 	 * @author CON_SVIJAY02
 	 */
-	public WebElement scrollIntoView_Javascript(WebElement element) {
+	public WebElement scrollIntoView_Javascript(WebElement element) throws Exception{
 		try {
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
 		} catch (Exception e) {
@@ -536,7 +547,14 @@ public class KTOCTRBUtils {
 			e.printStackTrace();
 		}
 		return null;
-	}	
+	}
+	/**
+	 **Reuse method, it will take screenshots
+	 * @param screenshotName: screenshot name will be sent into the variable
+	 * @return: for future purposes
+	 * @throws IOException: For exception handling
+	 * @author CON_SVIJAY02
+	 */
 	public String screenshotCapture(String screenshotName) throws IOException {
         String location = null;
         String dateformat = new SimpleDateFormat("ddMMMyyyy_hh_mm_ssaa").format(Calendar.getInstance().getTime());
@@ -549,14 +567,30 @@ public class KTOCTRBUtils {
 			File destination = new File(new_folderLocation+"\\SS_"+dateformat+"_"+screenshotName+".png");
 			location=destination.getAbsolutePath();
 //			System.out.println(location);
-			FileUtils.copyFile(source, destination);	        
+			FileUtils.copyFile(source, destination);	
+			String imagetostring=destination.toString();
+			embedImage(imagetostring);
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 		}
 		return location;
     }
-	
-	
+	/**
+	 **Reuse method, appending failure SS to display in report
+	 * @param Imagep: image to display in report
+	 * @author CON_SVIJAY02/CON_KarthickSairam
+	 */
+	public void embedImage(String Imagep) {
+		logHTML("<a href='" + Imagep + "' target='_blank'><img src='" + Imagep+ "' style='width:80%; height: auto;'/></a>");
+	}
+	/**
+	 **Reuse method, failure SS to display in report
+	 * @param log: 
+	 * @author CON_SVIJAY02/CON_KarthickSairam
+	 */
+	public void logHTML(Object log) {
+		System.out.println("*HTML* " + log);
+	}
 	
 	
 	
