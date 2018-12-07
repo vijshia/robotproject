@@ -311,6 +311,7 @@ public class Keywords extends KTOCTRBUtils{
 	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
+	public String selectedSalesOffice;
 	public void checkSalesOfficeisSelected() throws Exception{
 		try {
 			By value_salesOffice = By.xpath("//div[text()='"+salesoffice+"']");
@@ -319,6 +320,7 @@ public class Keywords extends KTOCTRBUtils{
 //			System.out.println("SalesOffice drop down clicked");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(value_salesOffice);
+			selectedSalesOffice=salesoffice;
 			System.out.println("SalesOffice value "+salesoffice+" Selected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -442,9 +444,11 @@ public class Keywords extends KTOCTRBUtils{
 			waitForElementToBeClickable(lnk_openTemplates);
 			clickonButton(lnk_openTemplates);
 			System.out.println("Open Templates clicked");
-			waitForElementToBeClickable(lnk_binaryTemplates); //(//*[@data-ctcwgtname='ic_Constant__Closed'])[last()-1]
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(lnk_binaryTemplates);
+			if(!isMultipleEquipment) {
+				waitForElementToBeClickable(lnk_binaryTemplates); //(//*[@data-ctcwgtname='ic_Constant__Closed'])[last()-1]
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				clickonButton(lnk_binaryTemplates);
+			}
 			WebElement element_TemplateSearch = gettingWebElement(txt_searchTemplate);
 			wait.until(ExpectedConditions.visibilityOf(element_TemplateSearch)); //*[@data-ctcwgtname='SearchString']
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -753,6 +757,7 @@ public class Keywords extends KTOCTRBUtils{
 			/*Float read_Discount=hm_data.get("Discount");
 			Float read_TenderPrice=hm_data.get("TenderPrice");
 			Float read_FirstMaintenance=hm_data.get("FirstMaintenance");*/	
+				regionalDiscount = hm_RegionalDiscountforSalesOfficeData.get(selectedSalesOffice);
 			Float final_Regionaldiscountoncomponent=read_TargetPrice_Base*(regionalDiscount/100);
 			final_Regionaldiscountoncomponent=Float.valueOf(roundoff.format(final_Regionaldiscountoncomponent));
 			Float final_TenderPrice=read_TargetPrice_Base-final_Regionaldiscountoncomponent;
@@ -760,6 +765,9 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:"+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" *** / read_Regionaldiscountoncomponent_Percent:"+read_Regionaldiscountoncomponent_Percent+" / regionalDiscount:"+regionalDiscount);
 			System.out.println("is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:"+final_Regionaldiscountoncomponent.equals(read_Regionaldiscountoncomponent)+" *** / final_Regionaldiscountoncomponent:"+final_Regionaldiscountoncomponent+" / read_Regionaldiscountoncomponent:"+read_Regionaldiscountoncomponent);
 			System.out.println("is final_TenderPrice VS read_TargetPrice equal:"+final_TenderPrice.equals(read_TargetPrice)+" *** / final_TenderPrice:"+final_TenderPrice+" / read_TargetPrice:"+read_TargetPrice);
+			if(!roundoff.format(read_Regionaldiscountoncomponent_Percent).equals(roundoff.format(regionalDiscount)) || !roundoff.format(final_Regionaldiscountoncomponent).equals(roundoff.format(read_Regionaldiscountoncomponent)) || !roundoff.format(final_TenderPrice).equals(roundoff.format(read_TargetPrice))) {
+				screenshotCapture("VerifyTargetPriceDisplayedCorrectly");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Get Regional Discount Failed due to:"+e);
@@ -873,6 +881,7 @@ public class Keywords extends KTOCTRBUtils{
 			/*System.out.println("is_showtotal_ITEfactor: "+check_showtotal_ITEfactor+"/"+showtotal_ITEfactor);
 			System.out.println("is_showtotal_LaborCosts "+check_showtotal_Labourrate+"/"+showtotal_Labourrate);
 			System.out.println("is_showtotal_Referencehours "+check_showtotal_Referencehours+"/"+showtotal_Referencehours);*/
+				check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get(selectedSalesOffice);
 			Boolean is_showtotal_ITEfactor = roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor));
 			Boolean is_showtotal_Referencehours= roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours));
 			Boolean is_showtotal_Labourrate= roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate));
@@ -880,6 +889,9 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("check_showtotal_Referencehours:"+roundoff.format(check_showtotal_Referencehours)+" / showtotal_Referencehours:"+roundoff.format(showtotal_Referencehours));
 			System.out.println("check_showtotal_Labourrate:"+roundoff.format(check_showtotal_Labourrate)+" / showtotal_Labourrate:"+roundoff.format(showtotal_Labourrate));
 			System.out.println("*** is_showtotal_ITEfactor: "+is_showtotal_ITEfactor+" *** / is_showtotal_Labourrate: "+is_showtotal_Labourrate+" *** / is_showtotal_Referencehours: "+is_showtotal_Referencehours+" ***");
+			if(!roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor)) || !roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours)) || !roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate))) {
+				screenshotCapture("DetailBreakdownTab");
+			}
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
 //			System.out.println("elementShowTotalCostCalculationDetail_CLICKED*****BACK="+driver.findElements(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).getAttribute("id"));
@@ -899,6 +911,26 @@ public class Keywords extends KTOCTRBUtils{
 	 */
 	public void gotoConfigurationPageandChangeTheSalesOffice() throws Exception{
 		try {
+			salesoffice=changeSalesOffice;
+			supervisor_ResponsiblePerson=supervisor_ResponsiblePersontoChange;
+			gotoConfigurationPage();
+			selectProjectTree();
+			checkSalesOfficeisSelected();
+			pricingIconClick();
+		} catch (Exception e) {;
+			e.printStackTrace();
+			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will click ToConfiguration icon and select Project from projecttree and select Primary SalesOffice and click on Pricing Icon
+ 	 *@throws Exception: For exception handling
+	 *@author CON_SVIJAY02
+	 */
+	public void gotoConfigurationPageandChangeThePrimarySalesOffice(String frontline, String EXCELPATH) throws Exception{
+		try {
+			readTestData(frontline, EXCELPATH);
 			gotoConfigurationPage();
 			selectProjectTree();
 			checkSalesOfficeisSelected();
@@ -1448,11 +1480,12 @@ public class Keywords extends KTOCTRBUtils{
 		}
 	}
 	
+	
+	
 	/**
 	 **Reuse method, it will check TenderPrice & Discount in PriceOverview tab
 	 *@author CON_SVIJAY02
 	 */
-	
 	public void checkingTargetPrice() throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(grid_discount);
@@ -1525,6 +1558,9 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("TenderPrice:"+TenderPrice);
 				System.out.println("DiscountFinal:"+ roundoff.format(DiscountFinal)+" / Current Discount:"+Discount);
 				System.out.println("*** is FinalDiscount VS ApplicationDiscount Equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
+				if(!roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
+					screenshotCapture("Discount not equal in VerifyDiscountByChangingTheTenderPrice");
+				}
 				istenderPrice = false;
 			} else {
 				/*Float TargetMinusMaintenance = TargetPrice - Firstmaintenance;
@@ -1535,7 +1571,10 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("Firstmaintenance:"+Firstmaintenance);
 				System.out.println("Discount:"+Discount);
 				System.out.println("*** TenderPriceFinal:" + roundoff.format(TenderPriceFinal)+" / CurrentTenderPrice:"+TenderPrice+" ***");
-				System.out.println("is TenderPriceFinal VS ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");	
+				System.out.println("is TenderPriceFinal VS ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
+				if(!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
+					screenshotCapture("Discount not equal in CheckTenderPriceAfterDiscountUpdate");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

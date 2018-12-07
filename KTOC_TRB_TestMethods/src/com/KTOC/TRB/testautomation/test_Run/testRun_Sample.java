@@ -4,6 +4,7 @@
 package com.KTOC.TRB.testautomation.test_Run;
 
 import com.KTOC.TRB.testautomation.Keywords.Keywords;
+import com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils;
 
 /**
  * @author CON_SVIJAY02
@@ -14,6 +15,7 @@ public class testRun_Sample {
 	public static void main(String[] args) throws Exception {	
 
 	Keywords Keywords=new Keywords();
+	KTOCTRBUtils KTOCTRBUtils=new KTOCTRBUtils();
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 //	String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 	Keywords.LaunchBrowser("france", EXCEL_PATH);
@@ -53,6 +55,7 @@ public class testRun_Sample {
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
 	Keywords.verifyTargetPriceDisplayedCorrectly("0");
 	//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
+	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
 	Keywords.validateDetailBreakdownTab();
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
 	Keywords.validateDetailBreakdownTab();
@@ -61,6 +64,7 @@ public class testRun_Sample {
 	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
 	
 //*****selectMultipleEquipment*************************
+	KTOCTRBUtils.readTestData("france", EXCEL_PATH);
 	Keywords.addMultipleEquipments();
 	Keywords.addEquipmentIDElevator();
 	Keywords.checkHandOverDateIsGreaterThanInstallationDate();
@@ -92,6 +96,7 @@ public class testRun_Sample {
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
 	Keywords.verifyTargetPriceDisplayedCorrectly("0");
 	//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
+	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
 	Keywords.validateDetailBreakdownTab();
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
 	Keywords.validateDetailBreakdownTab();

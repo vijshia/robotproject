@@ -9,9 +9,11 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 2.Verify Creating Opportunity and Mapping It With FLTender
     Create Opportunity OR Search Opportunity
 3.Verify Tender Created Successfully
+    Navigateto KTOCTRB
     Add Equipment ID Elevator
     Check Hand Over Date Is Greater Than Installation Date
     Check Sales Officeis Selected
+    Additionalfieldsin Project Overviewfor Canada
     Select Supervisor
     Select Equipment In Service
     Select Template To Be Uploaded

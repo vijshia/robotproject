@@ -17,9 +17,11 @@ import org.python.icu.impl.Assert;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -28,9 +30,7 @@ public class KTOCTRBUtils {
 	public static final String ROBOT_LIBRARY_SCOPE = "GLOBAL";
 
 	public static WebElement element = null;
-	// public static String
-	// ScreenshotPath="/Users/roja/git/nemo-testautomation/src/main/java/com/nemo/testautomation/Screenshots/Screenshots-Failure/
-	// ";
+	// public static String ScreenshotPath="/Users/roja/git/nemo-testautomation/src/main/java/com/nemo/testautomation/Screenshots/Screenshots-Failure/";
 	public static String CurrentDir = System.getProperty("user.dir");
 	public static String ScreenshotPath = CurrentDir.concat("/Screenshots/Screenshots-Failure/\\");
 	
@@ -52,7 +52,9 @@ public class KTOCTRBUtils {
 	public static Boolean istenderPrice = false;
 	public static Boolean isMultipleEquipment = false;
 	public static Float regionalDiscount;
+	public static Float regionalDiscounttoChange;
 	public static Float check_showtotal_ITEfactor;
+	public static Float check_showtotal_ITEfactortoChange;
 	public static String FreezePrintedVersion="No";
 	public static String SaveandClose="Yes";
 	public static String ProductRelease;
@@ -61,6 +63,7 @@ public class KTOCTRBUtils {
 	public static String equipmentinService;
 	public static String equipmentinService_Escalator;
 	public static String supervisor_ResponsiblePerson;
+	public static String supervisor_ResponsiblePersontoChange;
 	public static String template;
 	public static String template_2;
 	public static String StageProbability_Stage;
@@ -132,6 +135,8 @@ public class KTOCTRBUtils {
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
+	public HashMap<String, Float> hm_ITEfactorforSalesOfficeData = new HashMap<String, Float>();
+	public HashMap<String, Float> hm_RegionalDiscountforSalesOfficeData  = new HashMap<String, Float>();
 	public void readTestData(String frontline, String EXCELPATH) throws Exception{
 		try {
 			String torun="java1";
@@ -162,6 +167,7 @@ public class KTOCTRBUtils {
 				changeSalesOffice  = excelReader.GetData("France").get("ChangeSalesOffice");
 				equipmentinService  = excelReader.GetData("France").get("EquipmentinService");
 				supervisor_ResponsiblePerson  = excelReader.GetData("France").get("Supervisor");
+				supervisor_ResponsiblePersontoChange  = excelReader.GetData("France").get("changeSupervisor");
 				template  = excelReader.GetData("France").get("TemplateName");
 				if(torun.equalsIgnoreCase("java")) {
 					withoutFirstMaintenance  = excelReader.GetData("France").get("withoutFirstMaintenance");
@@ -171,7 +177,9 @@ public class KTOCTRBUtils {
 					read_tenderPrice  = excelReader.GetData("France").get("TenderPrice");
 				}
 				regionalDiscount = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount"));
+				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("France").get("ITEfactor"));
+				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("France").get("changeITEfactor"));
 				StageProbability_Stage = excelReader.GetData("France").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("France").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("France").get("StageProbabilityProbability");
@@ -190,6 +198,7 @@ public class KTOCTRBUtils {
 				changeSalesOffice  = excelReader.GetData("Australia").get("ChangeSalesOffice");
 				equipmentinService  = excelReader.GetData("Australia").get("EquipmentinService");
 				supervisor_ResponsiblePerson  = excelReader.GetData("Australia").get("Supervisor");
+				supervisor_ResponsiblePersontoChange  = excelReader.GetData("Australia").get("changeSupervisor");
 				template  = excelReader.GetData("Australia").get("TemplateName");
 				if(torun.equalsIgnoreCase("java")) {
 					withoutFirstMaintenance  = excelReader.GetData("Australia").get("withoutFirstMaintenance");
@@ -199,7 +208,9 @@ public class KTOCTRBUtils {
 					read_tenderPrice  = excelReader.GetData("Australia").get("TenderPrice");
 				}
 				regionalDiscount = Float.valueOf(excelReader.GetData("Australia").get("RegionalDiscount"));
+				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Australia").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Australia").get("ITEfactor"));
+				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("Australia").get("changeITEfactor"));
 				StageProbability_Stage = excelReader.GetData("Australia").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("Australia").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("Australia").get("StageProbabilityProbability");
@@ -220,6 +231,7 @@ public class KTOCTRBUtils {
 				changeSalesOffice  = excelReader.GetData("Canada").get("ChangeSalesOffice");
 				equipmentinService  = excelReader.GetData("Canada").get("EquipmentinService");
 				supervisor_ResponsiblePerson  = excelReader.GetData("Canada").get("Supervisor");
+				supervisor_ResponsiblePersontoChange  = excelReader.GetData("Canada").get("changeSupervisor");
 				template  = excelReader.GetData("Canada").get("TemplateName");
 				if(torun.equalsIgnoreCase("java")) {
 					withoutFirstMaintenance  = excelReader.GetData("Canada").get("withoutFirstMaintenance");
@@ -229,13 +241,19 @@ public class KTOCTRBUtils {
 					read_tenderPrice  = excelReader.GetData("Canada").get("TenderPrice");
 				}
 				regionalDiscount = Float.valueOf(excelReader.GetData("Canada").get("RegionalDiscount"));
+				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Canada").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Canada").get("ITEfactor"));
+				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("Canada").get("changeITEfactor"));
 				StageProbability_Stage = excelReader.GetData("Canada").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("Canada").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("Canada").get("StageProbabilityProbability");
 				frontlineAssigned=frontline;
 				break;
 			}
+			hm_ITEfactorforSalesOfficeData.put(salesoffice, check_showtotal_ITEfactor);
+			hm_ITEfactorforSalesOfficeData.put(changeSalesOffice, check_showtotal_ITEfactortoChange);
+			hm_RegionalDiscountforSalesOfficeData.put(salesoffice, regionalDiscount);
+			hm_RegionalDiscountforSalesOfficeData.put(changeSalesOffice, regionalDiscounttoChange);	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -519,6 +537,28 @@ public class KTOCTRBUtils {
 		}
 		return null;
 	}	
+	public String screenshotCapture(String screenshotName) throws IOException {
+        String location = null;
+        String dateformat = new SimpleDateFormat("ddMMMyyyy_hh_mm_ssaa").format(Calendar.getInstance().getTime());
+		try {
+			TakesScreenshot takescreenshot = (TakesScreenshot) driver;
+			File source = takescreenshot.getScreenshotAs(OutputType.FILE);
+			File creatFolder=new File(CurrentDir+"\\Screenshots\\"+dateformat);
+			creatFolder.mkdir();
+			String new_folderLocation=creatFolder.getAbsolutePath();
+			File destination = new File(new_folderLocation+"\\SS_"+dateformat+"_"+screenshotName+".png");
+			location=destination.getAbsolutePath();
+//			System.out.println(location);
+			FileUtils.copyFile(source, destination);	        
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+		}
+		return location;
+    }
+	
+	
+	
+	
 	
 	public void SwitchToFramebyID(String FrameId) {
 		driver.switchTo().frame(FrameId);
