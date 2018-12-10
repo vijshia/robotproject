@@ -685,6 +685,12 @@ public class Keywords extends KTOCTRBUtils{
 	public void getRegionalDiscount(String firstMaintenance) throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(grid_RegionalDiscountValues);
+			
+			//--------------------------------------------------------------
+			String xyz=GetAdditionalDiscountGridTargetPriceBaseValues("Solution 2");
+			System.out.println(xyz);
+			System.out.println();
+			//--------------------------------------------------------------
 			List<WebElement> element_RegionalDiscountValues=gettingWebElementsfromList(grid_RegionalDiscountValues);
 			List<String> ls_RegionalDiscountHeader=new LinkedList<>();
 			List<Float> ls_RegionalDiscountValue=new LinkedList<>();
@@ -1584,9 +1590,159 @@ public class Keywords extends KTOCTRBUtils{
 			Assert.fail("Checking TargetPrice Failed due to: "+e);
 		}
 	}
+	/**
+	 * 
+	 * @throws Exception
+	 * @author CON_SVIJAY02
+	 */
+	public void checkingTargetPriceFullGrid() throws Exception{
+		try {
+			waitForVisibilityOfElementLocated(grid_discount);
+			List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allRowallValues);
+			Float arrary[] = new Float[2];
+			Float TargetPrice, Firstmaintenance, Discount = null;
+			for (WebElement Element : Elements_PriceOverview) {
+//		System.out.println(Element.getAttribute("id"));
+				if (!Element.getText().isEmpty() || Element.getAttribute("value") != null) {
+					if (Element.getAttribute("value") == null) {
+						if (!Element.getText().contains("Project")) {
+							if (!Element.getText().contains("%")) {
+								String element_readTenderPrice = Element.getText().replaceAll("[€  $]", "");
+								if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+									element_readTenderPrice = element_readTenderPrice.replace(".", "");
+									element_readTenderPrice = element_readTenderPrice.replace(",", ".");
+								} else if(frontlineAssigned.equals("AUSTRALIA")) {
+									element_readTenderPrice = element_readTenderPrice.replace(",", "");
+								}
+								TenderPrice = Float.valueOf(element_readTenderPrice);
+//				System.out.println("****TenderPrice==>" + TenderPrice);
+							} else {
+								String element_readDiscount = Element.getText().replaceAll("[% ]", "");
+								Discount = Float.valueOf(element_readDiscount);
+//				System.out.println("****Discount:" + Discount);
+							}
+						}
+					} else {
+//	        	System.out.println("****Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
+						String element_read = Element.getAttribute("value").replaceAll("[€  $]", "");
+						if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+							element_read = element_read.replace(".", "");
+							element_read = element_read.replace(",", ".");
+						} else if(frontlineAssigned.equals("AUSTRALIA")) {
+							element_read = element_read.replace(",", "");
+						}
+						Float converted = Float.valueOf(element_read);
+//	        	System.out.println("converted: "+converted);
+						if (arrary[0] == null) {
+							arrary[0] = converted;
+							/*System.out.println("ARRAY 1");
+							System.out.println(arrary[0] = converted);*/
+						} else {
+							arrary[1] = converted;
+							/*System.out.println("ARRAY 2");
+							System.out.println(arrary[1] = converted);*/
+						}
+					}
+				}
+			}
+			if(withoutFirstMaintenance.equals("0")) {
+				if(arrary[1] == null) {
+					arrary[1] = 0f;
+				}
+			}
+			if (arrary[0] > arrary[1]) {
+				TargetPrice = arrary[0];
+				Firstmaintenance = arrary[1];
+//System.out.println("CONDTION_1 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
+			} else {
+				TargetPrice = arrary[1];
+				Firstmaintenance = arrary[0];
+			System.out.println("CONDTION_2 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
+			}
+			HashMap<String, Float> hm_checkingTargetPriceFullGridData  = new HashMap<String, Float>();
+			List<String> ls_checkingTargetPriceFullGridHeader=new LinkedList<>();
+			List<Float> ls_checkingTargetPriceFullGridValue=new LinkedList<>();
+			ls_checkingTargetPriceFullGridHeader.add("Description");
+			ls_checkingTargetPriceFullGridHeader.add("Target Price");
+			ls_checkingTargetPriceFullGridHeader.add("Discount");
+			ls_checkingTargetPriceFullGridHeader.add("Tender Price");
+			ls_checkingTargetPriceFullGridHeader.add("First Maintenance");
+			ls_checkingTargetPriceFullGridValue.add(TargetPrice);
+			ls_checkingTargetPriceFullGridValue.add(Discount);
+			ls_checkingTargetPriceFullGridValue.add(TenderPrice);
+			ls_checkingTargetPriceFullGridValue.add(Firstmaintenance);
+			
+			int toIterate=4;
+			if(!withoutFirstMaintenance.equals("0")){
+				toIterate=toIterate+1;
+			}
+			for(int i=0; i<toIterate; i++) {
+				hm_checkingTargetPriceFullGridData.put(ls_checkingTargetPriceFullGridHeader.get(i), ls_checkingTargetPriceFullGridValue.get(i));
+			}
+//System.out.println("istenderPrice=>"+istenderPrice);			
+			if(istenderPrice) {
+				Float DiscountFinal = ((((TargetPrice-Firstmaintenance)-(TenderPrice-Firstmaintenance))/(TargetPrice-Firstmaintenance))*100);
+				System.out.println("TargetPrice:"+TargetPrice);
+				System.out.println("Firstmaintenance:"+Firstmaintenance);
+				System.out.println("TenderPrice:"+TenderPrice);
+				System.out.println("DiscountFinal:"+ roundoff.format(DiscountFinal)+" / Current Discount:"+Discount);
+				System.out.println("*** is FinalDiscount VS ApplicationDiscount Equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
+				if(!roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
+					screenshotCapture("Discount not equal in VerifyDiscountByChangingTheTenderPrice");
+				}
+				istenderPrice = false;
+			} else {
+				/*Float TargetMinusMaintenance = TargetPrice - Firstmaintenance;
+				Float TargetplusDiscount = TargetMinusMaintenance - (TargetMinusMaintenance * (Discount / 100));
+				Float TargetPriceFinal = TargetplusDiscount + Firstmaintenance;*/
+				Float TenderPriceFinal = ((TargetPrice-Firstmaintenance)-((TargetPrice-Firstmaintenance)*(Discount/100))+Firstmaintenance);
+				System.out.println("TargetPrice:"+TargetPrice);
+				System.out.println("Firstmaintenance:"+Firstmaintenance);
+				System.out.println("Discount:"+Discount);
+				System.out.println("*** TenderPriceFinal:" + roundoff.format(TenderPriceFinal)+" / CurrentTenderPrice:"+TenderPrice+" ***");
+				System.out.println("is TenderPriceFinal VS ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
+				if(!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
+					screenshotCapture("Discount not equal in CheckTenderPriceAfterDiscountUpdate");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Checking TargetPrice Failed due to: "+e);
+		}
+	}
 	
 	
-	
+	public static String GetAdditionalDiscountGridTargetPriceBaseValues(String TreeValue)
+	{
+	int Linevalue = 0;
+	switch(TreeValue)
+	{
+	case"Project":
+	Linevalue=1;
+	break;
+	case"Building":
+	Linevalue=2;
+	break;
+	case"Group":
+	Linevalue=3;
+	break;
+	case"EquipmentId":
+	Linevalue=4;
+	break;
+	case"Solution1":
+	Linevalue=5;
+	break;
+	case"Solution2":
+	Linevalue=6;
+	break;
+	case"EquipmentName":
+	Linevalue=7;
+	break;
+	}
+	element=driver.findElement(By.xpath("//div[text()='Project']/parent::div/parent::div/div["+Linevalue+"]/input[1]"));
+	return element.getAttribute("value");
+	}
+
 	public static final int TIME = 200;
 	public static String Error = null;
 	// public static WebDriver driver;

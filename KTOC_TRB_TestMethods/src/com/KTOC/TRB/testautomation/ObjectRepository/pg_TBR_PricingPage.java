@@ -49,4 +49,5 @@ public class pg_TBR_PricingPage {
 	public static By btn_tenderPriceOK = By.xpath("//*[@data-ctcname='TenderPrice_Ok_B']");
 	//checkingTargetPrice
 	public static By grid_allValues = By.xpath("//*[text()='Project']/..//*");
+	public static By grid_allRowallValues = By.xpath("//*[text()='Project']/../..//*");
 }

@@ -589,7 +589,7 @@ public class KTOCTRBUtils {
 	 * @author CON_SVIJAY02/CON_KarthickSairam
 	 */
 	public void logHTML(Object log) {
-		System.out.println("*HTML* " + log);
+//		System.out.println("*HTML* " + log);
 	}
 	
 	

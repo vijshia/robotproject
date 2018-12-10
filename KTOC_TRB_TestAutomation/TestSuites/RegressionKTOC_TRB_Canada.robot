@@ -47,7 +47,7 @@ Suite Setup    Launch Browser    canada    \\TestData\\KTOCTRB_AutomationTestDat
 10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency for Elevator
     Verify Cost Calculated Successfully
     VerifyPriceCalculatedSuccessfully TobecheckedinFrance
-11.Check TenderLetter Is generated Correctly With All The components for Elevator
+11.Check TenderLetter Is generated Correctly With All The components
     Go To Documents Taband Click The Tender
     Verify Successful Message Displayed
 12.Close KTOC
