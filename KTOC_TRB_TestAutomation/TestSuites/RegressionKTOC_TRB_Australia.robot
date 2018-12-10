@@ -39,7 +39,7 @@ Suite Setup    Launch Browser    australia    \\TestData\\KTOCTRB_AutomationTest
     Verify Regional Discount Displayed Correctly
     Verify Target Price Displayed Correctly    0
 8 & 9 Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator
-    Goto Configuration Pageand Change The Primary Sales Office    france    \\TestData\\KTOCTRB_AutomationTestData.xlsx
+    Goto Configuration Pageand Change The Primary Sales Office    australia    \\TestData\\KTOCTRB_AutomationTestData.xlsx
     Validate Detail Breakdown Tab
     Goto Configuration Pageand Change The Sales Office
     Validate Detail Breakdown Tab
