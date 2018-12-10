@@ -126,7 +126,7 @@ public class KTOCTRBUtils {
 		}	
 		wait = new WebDriverWait(driver, 50000);
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 		driver.get("https://test.salesforce.com");
 	}
 	

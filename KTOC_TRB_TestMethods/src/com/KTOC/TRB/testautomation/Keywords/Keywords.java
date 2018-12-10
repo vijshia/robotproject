@@ -134,6 +134,8 @@ public class Keywords extends KTOCTRBUtils{
 	public void addEquipmentIDElevator() throws Exception{
 		try {
 			By checkbox_Equipment = By.xpath("//*[text()='"+equipmentid+"']/..//img");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(txt_CustomerID);
 			if(!isMultipleEquipment) {
 			WebElement element_customerID = gettingWebElement(txt_CustomerID); //*[@data-ctcwgtname='CustomerID']
 			wait.until(ExpectedConditions.visibilityOf(element_customerID));
@@ -167,15 +169,20 @@ public class Keywords extends KTOCTRBUtils{
 					changeEquipment();
 				}
 			}
+			System.out.println();
 			WebElement element_customerID1 = gettingWebElement(txt_CustomerID);
 			wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
 			if(!element_customerID1.getAttribute("value").isEmpty()) {
 				element_customerID1.clear();
 				wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(element_customerID1, "value")));
 			}
-			wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
-			element_customerID1.sendKeys(customerid);
-			element_customerID1.click();
+			wait.until(ExpectedConditions.elementToBeClickable(txt_CustomerID));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(txt_EquipmentID);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			enteringValues(txt_CustomerID, customerid);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(txt_CustomerID);
 			System.out.println("CustomerID: "+customerid+" entered");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -685,12 +692,11 @@ public class Keywords extends KTOCTRBUtils{
 	public void getRegionalDiscount(String firstMaintenance) throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(grid_RegionalDiscountValues);
-			
-			//--------------------------------------------------------------
+			/*--------------------------------------------------------------
 			String xyz=GetAdditionalDiscountGridTargetPriceBaseValues("Solution 2");
 			System.out.println(xyz);
 			System.out.println();
-			//--------------------------------------------------------------
+			--------------------------------------------------------------*/
 			List<WebElement> element_RegionalDiscountValues=gettingWebElementsfromList(grid_RegionalDiscountValues);
 			List<String> ls_RegionalDiscountHeader=new LinkedList<>();
 			List<Float> ls_RegionalDiscountValue=new LinkedList<>();
