@@ -169,7 +169,6 @@ public class Keywords extends KTOCTRBUtils{
 					changeEquipment();
 				}
 			}
-			System.out.println();
 			WebElement element_customerID1 = gettingWebElement(txt_CustomerID);
 			wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
 			if(!element_customerID1.getAttribute("value").isEmpty()) {
@@ -178,11 +177,11 @@ public class Keywords extends KTOCTRBUtils{
 			}
 			wait.until(ExpectedConditions.elementToBeClickable(txt_CustomerID));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(txt_EquipmentID);
+			click_Javascript(gettingWebElement(txt_EquipmentID));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			enteringValues(txt_CustomerID, customerid);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(txt_CustomerID);
+			click_Javascript(gettingWebElement(txt_CustomerID));
 			System.out.println("CustomerID: "+customerid+" entered");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -422,7 +421,7 @@ public class Keywords extends KTOCTRBUtils{
 			clickonButton(value_equipmentinService);
 			System.out.println(equipmentinService+" is clicked in Equipment InService");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			if(frontlineAssigned.equals("FRANCE")) {
+			if(frontlineAssigned.equals("FRANCE") && !equipmentinService.contains("Escalator") ) {
 				waitForElementToBeClickable(radio_hydeaulicElevator);
 				clickonButton(radio_hydeaulicElevator);
 				System.out.println("HydraulicElevCheck clicked");

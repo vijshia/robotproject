@@ -1,0 +1,939 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20181210 17:35:20.551">
+<suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation" name="KTOC TRB TestAutomation" id="s1">
+<suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites" name="TestSuites" id="s1-s1">
+<suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites\RegressionKTOC_TRB_France_MultipleEquipment.robot" name="RegressionKTOC TRB France MultipleEquipment" id="s1-s1-s1">
+<kw type="setup" library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Launch Browser">
+<arguments>
+<arg>france</arg>
+<arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
+</arguments>
+<msg level="INFO" timestamp="20181210 17:35:34.745">1544443526106	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.zHQrGlevhBVY"
+1544443528551	Marionette	INFO	Listening on port 59573
+1544443528837	Marionette	WARN	TLS certificate errors will be ignored for this session
+Dec 10, 2018 5:35:28 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C</msg>
+<status endtime="20181210 17:35:34.772" starttime="20181210 17:35:22.922" status="PASS"></status>
+</kw>
+<test name="1.Logon To Salesforce" id="s1-s1-s1-t1">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Loginto Salesforce">
+<status endtime="20181210 17:35:39.642" starttime="20181210 17:35:34.813" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:35:39.647" starttime="20181210 17:35:34.800" status="PASS"></status>
+</test>
+<test name="2.Verify Creating Opportunity and Mapping It With FLTender" id="s1-s1-s1-t2">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Create Opportunity OR Search Opportunity">
+<msg level="INFO" timestamp="20181210 17:36:03.970">Opportunity Name:KOFCOL TRB SFA entered in Search box
+KOFCOL TRB SFA has been clicked</msg>
+<status endtime="20181210 17:36:03.978" starttime="20181210 17:35:39.667" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:36:03.992" starttime="20181210 17:35:39.659" status="PASS"></status>
+</test>
+<test name="3.Verify Tender Created Successfully for Elevator" id="s1-s1-s1-t3">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Navigateto KTOCTRB">
+<msg level="INFO" timestamp="20181210 17:36:11.218">Release 1723 is Selected
+Clicked on OK button</msg>
+<status endtime="20181210 17:36:11.223" starttime="20181210 17:36:04.019" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Equipment ID Elevator">
+<msg level="INFO" timestamp="20181210 17:36:31.593">10503512 EquipmentID entered
+Equipment loader clicked
+checkbox clicked
+Change button clicked
+
+CustomerID: A10137873 entered</msg>
+<msg level="INFO" timestamp="20181210 17:36:31.607">org.openqa.selenium.ElementClickInterceptedException: Element &lt;input id="e152" class="cm0sdg4nghnbd0" type="text"&gt; is not clickable at point (436.3333511352539,100.16666412353516) because another element &lt;div id="gp" class="gp"&gt; obscures it
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
+System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 6124, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 0bbdd5ec-bfc7-4781-af43-d2b321468597
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils.clickonButton(KTOCTRBUtils.java:395)
+	at com.KTOC.TRB.testautomation.Keywords.Keywords.addEquipmentIDElevator(Keywords.java:151)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.python.core.PyReflectedFunction.__call__(PyReflectedFunction.java:186)
+	at org.python.core.PyObject.__call__(PyObject.java:419)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.core.PyMethod.__call__(PyMethod.java:223)
+	at org.python.core.PyObject._callextra(PyObject.java:601)
+	at robot.running.librarykeywordrunner$py.f$13(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:89)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:124)
+	at org.python.core.PyFunction.__call__(PyFunction.java:403)
+	at robot.running.librarykeywordrunner$py._run_with_signal_monitoring$16(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:103)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py._run_with_output_captured_and_signal_monitor$15(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:96)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py._run$8(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:77)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py.run$6(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:56)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.steprunner$py.run_step$4(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:57)
+	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.steprunner$py.run_steps$3(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:47)
+	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.runner$py.visit_test$7(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py:160)
+	at robot.running.runner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testcase$py.visit$7(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py:74)
+	at robot.model.testcase$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.model$py.run$17(C:\jython2.7.0\Lib\site-packages\robot\running\model.py:250)
+	at robot.running.model$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\model.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at org.python.pycode._pyx10.main$3(C:\jython2.7.0\Lib\site-packages\robot\run.py:452)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
+	at org.python.core.PyFunction.__call__(PyFunction.java:482)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.core.PyMethod.__call__(PyMethod.java:223)
+	at org.python.core.PyObject._callextra(PyObject.java:601)
+	at robot.utils.application$py._execute$10(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:94)
+	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.utils.application$py.execute_cli$5(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:49)
+	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
+	at org.python.core.PyFunction.__call__(PyFunction.java:482)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.pycode._pyx10.run_cli$7(C:\jython2.7.0\Lib\site-packages\robot\run.py:489)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:131)
+	at org.python.core.PyFunction.__call__(PyFunction.java:413)
+	at org.python.pycode._pyx10.f$0(C:\jython2.7.0\Lib\site-packages\robot\run.py:550)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyCode.call(PyCode.java:18)
+	at org.python.core.Py.runCode(Py.java:1386)
+	at org.python.core.Py.exec(Py.java:1430)
+	at runpy$py._run_code$9(C:\jython2.7.0\Lib\runpy.py:73)
+	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyFunction.function___call__(PyFunction.java:471)
+	at org.python.core.PyFunction.__call__(PyFunction.java:466)
+	at org.python.core.PyFunction.__call__(PyFunction.java:456)
+	at runpy$py._run_module_as_main$14(C:\jython2.7.0\Lib\runpy.py:161)
+	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyFunction.__call__(PyFunction.java:418)
+	at org.python.util.jython.runModule(jython.java:199)
+	at org.python.util.jython.runModule(jython.java:191)
+	at org.python.util.jython.run(jython.java:402)
+	at org.python.util.jython.main(jython.java:142)</msg>
+<status endtime="20181210 17:36:31.631" starttime="20181210 17:36:11.231" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Hand Over Date Is Greater Than Installation Date">
+<msg level="INFO" timestamp="20181210 17:36:32.388">Project clicked
+Current MS5HO Date: 25/07/2020
+MS5HODate Changed to: 27/07/2020</msg>
+<status endtime="20181210 17:36:32.395" starttime="20181210 17:36:31.641" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Sales Officeis Selected">
+<msg level="INFO" timestamp="20181210 17:36:33.448">SalesOffice value VB FRRW Selected</msg>
+<status endtime="20181210 17:36:33.451" starttime="20181210 17:36:32.399" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Additionalfieldsin Project Overviewfor Canada">
+<status endtime="20181210 17:36:33.459" starttime="20181210 17:36:33.455" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Supervisor">
+<msg level="INFO" timestamp="20181210 17:36:37.788">06114080 selected in Supervisor</msg>
+<status endtime="20181210 17:36:37.799" starttime="20181210 17:36:33.463" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Equipment In Service">
+<msg level="INFO" timestamp="20181210 17:36:39.774">LIS Elevator is clicked in Equipment InService
+HydraulicElevCheck clicked</msg>
+<status endtime="20181210 17:36:39.779" starttime="20181210 17:36:37.807" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Template To Be Uploaded">
+<msg level="INFO" timestamp="20181210 17:36:42.505">Rightclick performed on Equipment
+Open Templates clicked
+Automation_Template_002 Entered in search
+Shared templates radio button Clicked
+Automation_Template_002 Template Clicked</msg>
+<status endtime="20181210 17:36:42.508" starttime="20181210 17:36:39.783" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Tender Consistency">
+<msg level="INFO" timestamp="20181210 17:36:45.157">PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")</msg>
+<status endtime="20181210 17:36:45.161" starttime="20181210 17:36:42.517" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Tender Number">
+<msg level="INFO" timestamp="20181210 17:36:45.189">Tender # is :T-0002465451</msg>
+<status endtime="20181210 17:36:45.192" starttime="20181210 17:36:45.165" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:36:45.195" starttime="20181210 17:36:04.006" status="PASS"></status>
+</test>
+<test name="4.Validate TenderPrice and Discount Without FirstMaintenance for Elevator" id="s1-s1-s1-t4">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Pricing Icon Click">
+<msg level="INFO" timestamp="20181210 17:36:45.516">pricing icon Clicked</msg>
+<status endtime="20181210 17:36:45.520" starttime="20181210 17:36:45.206" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
+<arguments>
+<arg>10</arg>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20181210 17:36:49.506">Discount entered as: 10
+First maintenance: 0 Clicked</msg>
+<status endtime="20181210 17:36:49.517" starttime="20181210 17:36:45.526" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20181210 17:36:49.844">TargetPrice:3779.41
+Firstmaintenance:0.0
+Discount:10.0
+*** TenderPriceFinal:3401.47 / CurrentTenderPrice:3401.47 ***
+is TenderPriceFinal VS ApplicationTenderPrice Equal: true ***</msg>
+<status endtime="20181210 17:36:49.847" starttime="20181210 17:36:49.523" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
+<arguments>
+<arg>2001</arg>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20181210 17:36:51.944">TenderPrice entered as: 2001
+First maintenance: 0 Clicked</msg>
+<status endtime="20181210 17:36:51.950" starttime="20181210 17:36:49.850" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20181210 17:36:52.221">TargetPrice:3779.41
+Firstmaintenance:0.0
+TenderPrice:2001.0
+DiscountFinal:47.06 / Current Discount:47.06
+*** is FinalDiscount VS ApplicationDiscount Equal:true ***</msg>
+<status endtime="20181210 17:36:52.224" starttime="20181210 17:36:51.953" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:36:52.228" starttime="20181210 17:36:45.200" status="PASS"></status>
+</test>
+<test name="5.Validate TenderPrice and Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t5">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
+<arguments>
+<arg>11</arg>
+<arg>3</arg>
+</arguments>
+<msg level="INFO" timestamp="20181210 17:36:54.535">Discount entered as: 11
+First maintenance: 3 Clicked</msg>
+<status endtime="20181210 17:36:54.538" starttime="20181210 17:36:52.239" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20181210 17:36:55.085">TargetPrice:4179.41
+Firstmaintenance:400.0
+Discount:11.0
+*** TenderPriceFinal:3763.68 / CurrentTenderPrice:3763.67 ***
+is TenderPriceFinal VS ApplicationTenderPrice Equal: false ***</msg>
+<status endtime="20181210 17:36:55.087" starttime="20181210 17:36:54.541" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
+<arguments>
+<arg>2002</arg>
+<arg>3</arg>
+</arguments>
+<msg level="INFO" timestamp="20181210 17:36:57.335">TenderPrice entered as: 2002
+First maintenance: 3 Clicked</msg>
+<status endtime="20181210 17:36:57.338" starttime="20181210 17:36:55.091" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20181210 17:36:57.667">TargetPrice:4179.41
+Firstmaintenance:400.0
+TenderPrice:2002.0
+DiscountFinal:57.61 / Current Discount:57.61
+*** is FinalDiscount VS ApplicationDiscount Equal:true ***</msg>
+<status endtime="20181210 17:36:57.669" starttime="20181210 17:36:57.342" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
+<arguments>
+<arg>2003</arg>
+<arg>6</arg>
+</arguments>
+<msg level="INFO" timestamp="20181210 17:36:59.626">TenderPrice entered as: 2003
+First maintenance: 6 Clicked</msg>
+<status endtime="20181210 17:36:59.628" starttime="20181210 17:36:57.671" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20181210 17:36:59.944">TargetPrice:4179.41
+Firstmaintenance:400.0
+TenderPrice:2003.0
+DiscountFinal:57.59 / Current Discount:57.59
+*** is FinalDiscount VS ApplicationDiscount Equal:true ***</msg>
+<status endtime="20181210 17:36:59.948" starttime="20181210 17:36:59.631" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:36:59.951" starttime="20181210 17:36:52.234" status="PASS"></status>
+</test>
+<test name="6.CheckRegionalFactorAtSalesOfficeLevel for Elevator" id="s1-s1-s1-t6">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
+<msg level="INFO" timestamp="20181210 17:37:00.511">Additional Discount Icon CLICKED</msg>
+<status endtime="20181210 17:37:00.514" starttime="20181210 17:36:59.959" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
+<arguments>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20181210 17:37:01.917">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:false *** / read_Regionaldiscountoncomponent_Percent:4.18 / regionalDiscount:4.0
+is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:false *** / final_Regionaldiscountoncomponent:194.55 / read_Regionaldiscountoncomponent:203.19
+is final_TenderPrice VS read_TargetPrice equal:false *** / final_TenderPrice:4669.32 / read_TargetPrice:4579.41</msg>
+<status endtime="20181210 17:37:01.922" starttime="20181210 17:37:00.517" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:37:01.926" starttime="20181210 17:36:59.955" status="PASS"></status>
+</test>
+<test name="7.CheckRegionalFactorWhenSalesOfficeIsChanged for Elevator" id="s1-s1-s1-t7">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
+<msg level="INFO" timestamp="20181210 17:37:05.256">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRPP Selected
+pricing icon Clicked</msg>
+<status endtime="20181210 17:37:05.262" starttime="20181210 17:37:01.951" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
+<msg level="INFO" timestamp="20181210 17:37:06.852">Additional Discount Icon CLICKED</msg>
+<status endtime="20181210 17:37:06.856" starttime="20181210 17:37:05.267" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
+<arguments>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20181210 17:37:08.318">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:false *** / read_Regionaldiscountoncomponent_Percent:-3.34 / regionalDiscount:-5.0
+is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:false *** / final_Regionaldiscountoncomponent:-240.68 / read_Regionaldiscountoncomponent:-160.55
+is final_TenderPrice VS read_TargetPrice equal:false *** / final_TenderPrice:5054.32 / read_TargetPrice:4974.19</msg>
+<status endtime="20181210 17:37:08.323" starttime="20181210 17:37:06.859" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:37:08.329" starttime="20181210 17:37:01.932" status="PASS"></status>
+</test>
+<test name="8 &amp; 9 Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator" id="s1-s1-s1-t8">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Primary Sales Office">
+<arguments>
+<arg>france</arg>
+<arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
+</arguments>
+<msg level="INFO" timestamp="20181210 17:37:11.067">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRRW Selected
+pricing icon Clicked</msg>
+<status endtime="20181210 17:37:11.070" starttime="20181210 17:37:08.345" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
+<msg level="INFO" timestamp="20181210 17:37:18.429">Detailed breakdown Clicked
+ROPES CLICKED
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.00 / showtotal_ITEfactor:2.00
+check_showtotal_Referencehours:11.16 / showtotal_Referencehours:11.16
+check_showtotal_Labourrate:61.90 / showtotal_Labourrate:61.90
+LabourRate:61.90 / showtotal_Labourrate:61.90
+*** is_showtotal_ITEfactor: true *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
+<status endtime="20181210 17:37:18.439" starttime="20181210 17:37:11.074" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
+<msg level="INFO" timestamp="20181210 17:37:21.090">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRPP Selected
+pricing icon Clicked</msg>
+<status endtime="20181210 17:37:21.092" starttime="20181210 17:37:18.441" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
+<msg level="INFO" timestamp="20181210 17:37:29.147">Detailed breakdown Clicked
+ROPES CLICKED
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.75 / showtotal_ITEfactor:2.00
+check_showtotal_Referencehours:11.16 / showtotal_Referencehours:11.16
+check_showtotal_Labourrate:61.00 / showtotal_Labourrate:61.00
+LabourRate:61.00 / showtotal_Labourrate:61.00
+*** is_showtotal_ITEfactor: false *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
+<status endtime="20181210 17:37:29.153" starttime="20181210 17:37:21.096" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:37:29.157" starttime="20181210 17:37:08.339" status="PASS"></status>
+</test>
+<test name="10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency for Elevator" id="s1-s1-s1-t9">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Cost Calculated Successfully">
+<msg level="INFO" timestamp="20181210 17:37:29.177">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
+<status endtime="20181210 17:37:29.180" starttime="20181210 17:37:29.168" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="VerifyPriceCalculatedSuccessfully TobecheckedinFrance">
+<msg level="INFO" timestamp="20181210 17:37:29.189">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
+<status endtime="20181210 17:37:29.191" starttime="20181210 17:37:29.183" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:37:29.195" starttime="20181210 17:37:29.162" status="PASS"></status>
+</test>
+<test name="11.TestData for Escalator" id="s1-s1-s1-t10">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Read Test Data">
+<arguments>
+<arg>france</arg>
+<arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
+</arguments>
+<status endtime="20181210 17:37:29.304" starttime="20181210 17:37:29.205" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Multiple Equipments">
+<msg level="INFO" timestamp="20181210 17:37:48.142">ToConfiguration icon clicked
+scroll UP to Building1 tree
+Rightclick performed on Building1
+scroll UP to Group Automation_GroupName tree
+Rightclick performed on Automation_GroupName GroupName
+checkbox clicked
+ADD button clicked</msg>
+<status endtime="20181210 17:37:48.143" starttime="20181210 17:37:29.307" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20181210 17:37:48.146" starttime="20181210 17:37:29.200" status="PASS"></status>
+</test>
+<test name="12.Verify Tender Created Successfully for Escalator" id="s1-s1-s1-t11">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Equipment ID Elevator">
+<msg level="INFO" timestamp="20181210 17:37:50.137">CustomerID: A10137873 entered</msg>
+<status endtime="20181210 17:37:50.140" starttime="20181210 17:37:48.155" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Hand Over Date Is Greater Than Installation Date">
+<msg level="INFO" timestamp="20181210 17:37:51.641">Project clicked
+Current MS5HO Date: 27/07/2020
+MS5HODate Changed to: null</msg>
+<status endtime="20181210 17:37:51.642" starttime="20181210 17:37:50.168" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Sales Officeis Selected">
+<msg level="INFO" timestamp="20181210 17:37:52.204">SalesOffice value VB FRRW Selected</msg>
+<status endtime="20181210 17:37:52.210" starttime="20181210 17:37:51.645" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Additionalfieldsin Project Overviewfor Canada">
+<status endtime="20181210 17:37:52.223" starttime="20181210 17:37:52.214" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Supervisor">
+<msg level="INFO" timestamp="20181210 17:37:54.596">06114080 selected in Supervisor</msg>
+<status endtime="20181210 17:37:54.599" starttime="20181210 17:37:52.226" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Equipment In Service">
+<msg level="INFO" timestamp="20181210 17:45:14.806">EIS Escalator is clicked in Equipment InService
+HydraulicElevCheck clicked</msg>
+<msg level="INFO" timestamp="20181210 17:45:14.811">org.openqa.selenium.WebDriverException: Failed to interpret value as array
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
+System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 6124, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 0bbdd5ec-bfc7-4781-af43-d2b321468597
+*** Element info: {Using=xpath, value=//*[@data-ctcname='Hydraulic_Elevator_Check_CB']}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:344)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementsByXPath(RemoteWebDriver.java:423)
+	at org.openqa.selenium.By$ByXPath.findElements(By.java:348)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:305)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:895)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:44)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:206)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:202)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:657)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:654)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:248)
+	at com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils.waitForElementToBeClickable(KTOCTRBUtils.java:440)
+	at com.KTOC.TRB.testautomation.Keywords.Keywords.selectEquipmentInService(Keywords.java:426)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.python.core.PyReflectedFunction.__call__(PyReflectedFunction.java:186)
+	at org.python.core.PyObject.__call__(PyObject.java:419)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.core.PyMethod.__call__(PyMethod.java:223)
+	at org.python.core.PyObject._callextra(PyObject.java:601)
+	at robot.running.librarykeywordrunner$py.f$13(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:89)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:124)
+	at org.python.core.PyFunction.__call__(PyFunction.java:403)
+	at robot.running.librarykeywordrunner$py._run_with_signal_monitoring$16(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:103)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py._run_with_output_captured_and_signal_monitor$15(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:96)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py._run$8(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:77)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py.run$6(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:56)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.steprunner$py.run_step$4(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:57)
+	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.steprunner$py.run_steps$3(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:47)
+	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.runner$py.visit_test$7(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py:160)
+	at robot.running.runner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testcase$py.visit$7(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py:74)
+	at robot.model.testcase$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.model$py.run$17(C:\jython2.7.0\Lib\site-packages\robot\running\model.py:250)
+	at robot.running.model$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\model.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at org.python.pycode._pyx10.main$3(C:\jython2.7.0\Lib\site-packages\robot\run.py:452)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
+	at org.python.core.PyFunction.__call__(PyFunction.java:482)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.core.PyMethod.__call__(PyMethod.java:223)
+	at org.python.core.PyObject._callextra(PyObject.java:601)
+	at robot.utils.application$py._execute$10(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:94)
+	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.utils.application$py.execute_cli$5(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:49)
+	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
+	at org.python.core.PyFunction.__call__(PyFunction.java:482)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.pycode._pyx10.run_cli$7(C:\jython2.7.0\Lib\site-packages\robot\run.py:489)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:131)
+	at org.python.core.PyFunction.__call__(PyFunction.java:413)
+	at org.python.pycode._pyx10.f$0(C:\jython2.7.0\Lib\site-packages\robot\run.py:550)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyCode.call(PyCode.java:18)
+	at org.python.core.Py.runCode(Py.java:1386)
+	at org.python.core.Py.exec(Py.java:1430)
+	at runpy$py._run_code$9(C:\jython2.7.0\Lib\runpy.py:73)
+	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyFunction.function___call__(PyFunction.java:471)
+	at org.python.core.PyFunction.__call__(PyFunction.java:466)
+	at org.python.core.PyFunction.__call__(PyFunction.java:456)
+	at runpy$py._run_module_as_main$14(C:\jython2.7.0\Lib\runpy.py:161)
+	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyFunction.__call__(PyFunction.java:418)
+	at org.python.util.jython.runModule(jython.java:199)
+	at org.python.util.jython.runModule(jython.java:191)
+	at org.python.util.jython.run(jython.java:402)
+	at org.python.util.jython.main(jython.java:142)
+org.openqa.selenium.NoSuchWindowException: Browsing context has been discarded
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
+System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 6124, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 0bbdd5ec-bfc7-4781-af43-d2b321468597
+*** Element info: {Using=xpath, value=//*[@data-ctcname='Hydraulic_Elevator_Check_CB']}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:317)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:419)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:309)
+	at com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils.clickonButton(KTOCTRBUtils.java:395)
+	at com.KTOC.TRB.testautomation.Keywords.Keywords.selectEquipmentInService(Keywords.java:427)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.python.core.PyReflectedFunction.__call__(PyReflectedFunction.java:186)
+	at org.python.core.PyObject.__call__(PyObject.java:419)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.core.PyMethod.__call__(PyMethod.java:223)
+	at org.python.core.PyObject._callextra(PyObject.java:601)
+	at robot.running.librarykeywordrunner$py.f$13(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:89)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:124)
+	at org.python.core.PyFunction.__call__(PyFunction.java:403)
+	at robot.running.librarykeywordrunner$py._run_with_signal_monitoring$16(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:103)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py._run_with_output_captured_and_signal_monitor$15(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:96)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py._run$8(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:77)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py.run$6(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:56)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.steprunner$py.run_step$4(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:57)
+	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.steprunner$py.run_steps$3(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:47)
+	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.runner$py.visit_test$7(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py:160)
+	at robot.running.runner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testcase$py.visit$7(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py:74)
+	at robot.model.testcase$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.model$py.run$17(C:\jython2.7.0\Lib\site-packages\robot\running\model.py:250)
+	at robot.running.model$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\model.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at org.python.pycode._pyx10.main$3(C:\jython2.7.0\Lib\site-packages\robot\run.py:452)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
+	at org.python.core.PyFunction.__call__(PyFunction.java:482)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.core.PyMethod.__call__(PyMethod.java:223)
+	at org.python.core.PyObject._callextra(PyObject.java:601)
+	at robot.utils.application$py._execute$10(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:94)
+	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.utils.application$py.execute_cli$5(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:49)
+	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
+	at org.python.core.PyFunction.__call__(PyFunction.java:482)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.pycode._pyx10.run_cli$7(C:\jython2.7.0\Lib\site-packages\robot\run.py:489)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:131)
+	at org.python.core.PyFunction.__call__(PyFunction.java:413)
+	at org.python.pycode._pyx10.f$0(C:\jython2.7.0\Lib\site-packages\robot\run.py:550)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyCode.call(PyCode.java:18)
+	at org.python.core.Py.runCode(Py.java:1386)
+	at org.python.core.Py.exec(Py.java:1430)
+	at runpy$py._run_code$9(C:\jython2.7.0\Lib\runpy.py:73)
+	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyFunction.function___call__(PyFunction.java:471)
+	at org.python.core.PyFunction.__call__(PyFunction.java:466)
+	at org.python.core.PyFunction.__call__(PyFunction.java:456)
+	at runpy$py._run_module_as_main$14(C:\jython2.7.0\Lib\runpy.py:161)
+	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyFunction.__call__(PyFunction.java:418)
+	at org.python.util.jython.runModule(jython.java:199)
+	at org.python.util.jython.runModule(jython.java:191)
+	at org.python.util.jython.run(jython.java:402)
+	at org.python.util.jython.main(jython.java:142)</msg>
+<status endtime="20181210 17:45:14.841" starttime="20181210 17:37:54.602" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Template To Be Uploaded">
+<errors>
+<msg level="ERROR" timestamp="20181210 17:45:14.857">Execution stopped by user.</msg>
+</errors>
+</robot>
