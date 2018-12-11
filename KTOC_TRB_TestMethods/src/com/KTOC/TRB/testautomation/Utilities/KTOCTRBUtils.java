@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.python.icu.impl.Assert;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -126,7 +125,7 @@ public class KTOCTRBUtils {
 		}	
 		wait = new WebDriverWait(driver, 50000);
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(240, TimeUnit.SECONDS);
 		driver.get("https://test.salesforce.com");
 	}
 	
@@ -589,7 +588,7 @@ public class KTOCTRBUtils {
 	 * @author CON_SVIJAY02/CON_KarthickSairam
 	 */
 	public void logHTML(Object log) {
-//		System.out.println("*HTML* " + log);
+		System.out.println("*HTML* " + log);
 	}
 	
 	

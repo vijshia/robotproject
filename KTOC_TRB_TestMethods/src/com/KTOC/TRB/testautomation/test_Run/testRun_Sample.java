@@ -43,9 +43,9 @@ public class testRun_Sample {
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("11", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("2002", "3");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("1002", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("2003", "6");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("1003", "6");
 	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();

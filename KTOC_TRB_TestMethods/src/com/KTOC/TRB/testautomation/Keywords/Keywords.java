@@ -169,7 +169,7 @@ public class Keywords extends KTOCTRBUtils{
 					changeEquipment();
 				}
 			}
-			WebElement element_customerID1 = gettingWebElement(txt_CustomerID);
+			/*WebElement element_customerID1 = gettingWebElement(txt_CustomerID);
 			wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
 			if(!element_customerID1.getAttribute("value").isEmpty()) {
 				element_customerID1.clear();
@@ -182,7 +182,7 @@ public class Keywords extends KTOCTRBUtils{
 			enteringValues(txt_CustomerID, customerid);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			click_Javascript(gettingWebElement(txt_CustomerID));
-			System.out.println("CustomerID: "+customerid+" entered");
+			System.out.println("CustomerID: "+customerid+" entered");*/
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Add EquipmentID in Elevator Failed due to: "+e);
@@ -375,6 +375,13 @@ public class Keywords extends KTOCTRBUtils{
 			WebElement element_equipment = gettingWebElement(tree_equipmentID);
 			click_Javascript(element_equipment);
 //			System.out.println("Equipment clicked back");
+			WebElement element_customerID1 = gettingWebElement(txt_CustomerID);
+			wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_customerID1.clear();
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			enteringValues(txt_CustomerID, customerid);
+			System.out.println("CustomerID: "+customerid+" entered");
 			WebElement element_Supervisor = gettingWebElement(dd_supervisor); //*[@data-ctcwgtname='Supervisor_Select']
 			wait.until(ExpectedConditions.elementToBeClickable(element_Supervisor)); 
 			element_Supervisor.click();
@@ -467,6 +474,11 @@ public class Keywords extends KTOCTRBUtils{
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			click_Javascript(element_SharedTemplateAllOrg); //*[@data-ctcwgtname='SearchShared_2']/div[1]
 			System.out.println("Shared templates radio button Clicked");
+			if(isMultipleEquipment) {
+				waitForElementToBeClickable(txt_searchTemplate);
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				clickonButton(txt_searchTemplate);
+			}
 			waitForVisibilityOfElementLocated(lnk_template);
 			WebElement doubleclick_elementTemplate = gettingWebElement(lnk_template);
 			Actions doubleclick_template = new Actions(driver).doubleClick(doubleclick_elementTemplate);
@@ -691,11 +703,41 @@ public class Keywords extends KTOCTRBUtils{
 	public void getRegionalDiscount(String firstMaintenance) throws Exception{
 		try {
 			waitForVisibilityOfElementLocated(grid_RegionalDiscountValues);
-			/*--------------------------------------------------------------
-			String xyz=GetAdditionalDiscountGridTargetPriceBaseValues("Solution 2");
-			System.out.println(xyz);
-			System.out.println();
-			--------------------------------------------------------------*/
+			
+			//--------------------------------------------------------------
+			/*String Project=GetAdditionalDiscountGridTargetPriceBaseValues("Project");
+			Project=Project.replaceAll("[€ % h . $]", "");
+			Project=Project.replace(",", ".");
+			Float TargetPriceBaseValues_Project=Float.valueOf(Project);
+			System.out.println(TargetPriceBaseValues_Project);
+			
+			String Solution=GetAdditionalDiscountGridTargetPriceBaseValues("Solution 2");
+			Solution=Solution.replaceAll("[€ % h . $]", "");
+			Solution=Solution.replace(",", ".");
+			Float TargetPriceBaseValues_Solution=Float.valueOf(Solution);
+			System.out.println(TargetPriceBaseValues_Solution);
+			
+			String Project_TargetPriceBase=gettingWebElement(By.xpath("//div[text()='Project']/parent::div/parent::div/div[1]/input[1]")).getAttribute("value");
+			Project_TargetPriceBase=Project_TargetPriceBase.replaceAll("[€ % h . $]", "");
+			Project_TargetPriceBase = Project_TargetPriceBase.replace(",", ".");
+			Float TargetPriceBaseValues_Project1 = Float.valueOf(Project_TargetPriceBase);
+			System.out.println(TargetPriceBaseValues_Project1);
+			
+			String project_Regionaldiscountoncomponent=gettingWebElement(By.xpath("//div[text()='Project']/parent::div/parent::div/div[1]/input[7]")).getAttribute("value");
+			project_Regionaldiscountoncomponent=project_Regionaldiscountoncomponent.replaceAll("[€ % h . $]", "");
+			project_Regionaldiscountoncomponent = project_Regionaldiscountoncomponent.replace(",", ".");
+			Float Regionaldiscountoncomponent_Project1=Float.valueOf(project_Regionaldiscountoncomponent);
+			System.out.println(Regionaldiscountoncomponent_Project1);
+			
+			String project_Regionaldiscountoncomponent_Percent=gettingWebElement(By.xpath("//div[text()='Project']/parent::div/parent::div/div[1]/input[7]")).getAttribute("value");
+			project_Regionaldiscountoncomponent_Percent=project_Regionaldiscountoncomponent_Percent.replaceAll("[€ % h . $]", "");
+			project_Regionaldiscountoncomponent_Percent = project_Regionaldiscountoncomponent_Percent.replace(",", ".");
+			Float Regionaldiscountoncomponent_Percent_Project=Float.valueOf(project_Regionaldiscountoncomponent_Percent);
+			System.out.println(Regionaldiscountoncomponent_Percent_Project);
+			
+			HashMap<String, Float> hm_GetAdditionalDiscountData = new HashMap<String, Float>();*/
+			//--------------------------------------------------------------
+			
 			List<WebElement> element_RegionalDiscountValues=gettingWebElementsfromList(grid_RegionalDiscountValues);
 			List<String> ls_RegionalDiscountHeader=new LinkedList<>();
 			List<Float> ls_RegionalDiscountValue=new LinkedList<>();
@@ -771,12 +813,12 @@ public class Keywords extends KTOCTRBUtils{
 				regionalDiscount = hm_RegionalDiscountforSalesOfficeData.get(selectedSalesOffice);
 			Float final_Regionaldiscountoncomponent=read_TargetPrice_Base*(regionalDiscount/100);
 			final_Regionaldiscountoncomponent=Float.valueOf(roundoff.format(final_Regionaldiscountoncomponent));
-			Float final_TenderPrice=read_TargetPrice_Base-final_Regionaldiscountoncomponent;
-			final_TenderPrice=Float.valueOf(roundoff.format(final_TenderPrice));
+			Float final_TargetPrice=read_TargetPrice_Base-final_Regionaldiscountoncomponent;
+			final_TargetPrice=Float.valueOf(roundoff.format(final_TargetPrice));
 			System.out.println("is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:"+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" *** / read_Regionaldiscountoncomponent_Percent:"+read_Regionaldiscountoncomponent_Percent+" / regionalDiscount:"+regionalDiscount);
 			System.out.println("is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:"+final_Regionaldiscountoncomponent.equals(read_Regionaldiscountoncomponent)+" *** / final_Regionaldiscountoncomponent:"+final_Regionaldiscountoncomponent+" / read_Regionaldiscountoncomponent:"+read_Regionaldiscountoncomponent);
-			System.out.println("is final_TenderPrice VS read_TargetPrice equal:"+final_TenderPrice.equals(read_TargetPrice)+" *** / final_TenderPrice:"+final_TenderPrice+" / read_TargetPrice:"+read_TargetPrice);
-			if(!roundoff.format(read_Regionaldiscountoncomponent_Percent).equals(roundoff.format(regionalDiscount)) || !roundoff.format(final_Regionaldiscountoncomponent).equals(roundoff.format(read_Regionaldiscountoncomponent)) || !roundoff.format(final_TenderPrice).equals(roundoff.format(read_TargetPrice))) {
+			System.out.println("is final_TenderPrice VS read_TargetPrice equal:"+final_TargetPrice.equals(read_TargetPrice)+" *** / final_TenderPrice:"+final_TargetPrice+" / read_TargetPrice:"+read_TargetPrice);
+			if(!roundoff.format(read_Regionaldiscountoncomponent_Percent).equals(roundoff.format(regionalDiscount)) || !roundoff.format(final_Regionaldiscountoncomponent).equals(roundoff.format(read_Regionaldiscountoncomponent)) || !roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
 				screenshotCapture("VerifyTargetPriceDisplayedCorrectly");
 			}
 		} catch (Exception e) {
@@ -1049,13 +1091,16 @@ public class Keywords extends KTOCTRBUtils{
 			if(frontlineAssigned.equals("FRANCE")) {
 				waitForVisibilityOfElementLocated(text_freezePrint);
 				waitForElementToBeClickable(btn_freezePrint);
-				clickonButton(btn_freezePrint);
+				click_Javascript(gettingWebElement(btn_freezePrint));
+//				clickonButton(btn_freezePrint);
 				System.out.println(FreezePrintedVersion+" clicked in Do you want to freeze printed version?");
 			}
 			waitForVisibilityOfElementLocated(text_infotoDocServer);
 			WebElement element_OkbuttoninInformationtodocumentserver = gettingWebElement(btn_infotoDocServer);
 			wait.until(ExpectedConditions.elementToBeClickable(element_OkbuttoninInformationtodocumentserver));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			element_OkbuttoninInformationtodocumentserver.click();
+			wait.until(ExpectedConditions.invisibilityOf(element_OkbuttoninInformationtodocumentserver));
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Verify Successful Message Displayed Failed due to: "+e);
@@ -1074,22 +1119,42 @@ public class Keywords extends KTOCTRBUtils{
 			WebElement element_SaveandClose = gettingWebElement(icon_saveandClose);
 			scrollIntoView_Javascript(element_SaveandClose);
 			wait.until(ExpectedConditions.visibilityOf(element_SaveandClose));
+			wait.until(ExpectedConditions.elementToBeClickable(element_SaveandClose));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			element_SaveandClose.click();
-			System.out.println("SaveandClose icon CLICKED");
-			waitForVisibilityOfElementLocated(btn_saveandClose);
-			click_Javascript(gettingWebElement(btn_saveandClose));
-			System.out.println(SaveandClose+" CLICKED in SaveandClose");
-			enteringValues(txt_stageProbabilityDescription, StageProbability_Description);
-			System.out.println(StageProbability_Description+" entered in Description field in stage / Probability window");
-			clickonButton(dd_stage);
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(value_stage);
-			WebElement element_enderVersionProbability = gettingWebElement(txt_probability);
-			element_enderVersionProbability.clear();
-			element_enderVersionProbability.sendKeys(StageProbability_probability);
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(btn_stageProbability);
+			WebElement activeElement_StageProbability=driver.switchTo().activeElement();
+			if(activeElement_StageProbability.getAttribute("data-ctcwgtname").equals("close")) {
+				enteringValues(txt_stageProbabilityDescription, StageProbability_Description);
+				System.out.println(StageProbability_Description+" entered in Description field in stage / Probability window");
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				clickonButton(dd_stage);
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				clickonButton(value_stage);
+				WebElement element_enderVersionProbability = gettingWebElement(txt_probability);
+				element_enderVersionProbability.clear();
+				element_enderVersionProbability.sendKeys(StageProbability_probability);
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				clickonButton(btn_stageProbability);
+				WebElement activeElement_SFupdateFailed=driver.switchTo().activeElement();
+				if(activeElement_SFupdateFailed.getText().contains("OK")) {
+					By btn_updateFailedOK = By.xpath("//*[text()='OK']");
+					waitForinvisibilityOfElementLocated(elementtoInvisible);
+					clickonButton(btn_updateFailedOK);
+					System.out.println("OK clicked in SalesForce.com update failed! Pop-up");
+				}
+				By icon_Close = By.xpath("//*[@data-ctcwgtname='ToolBar' and @data-ctctype='Toolbar']/div[1]");
+				waitForVisibilityOfElementLocated(icon_Close);
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				clickonButton(icon_Close);
+				System.out.println("Close icon CLICKED");
+			} else {
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				clickonButton(icon_saveandClose);
+				//element_SaveandClose.click();
+				System.out.println("SaveandClose icon CLICKED");
+				waitForVisibilityOfElementLocated(btn_saveandClose);
+				click_Javascript(gettingWebElement(btn_saveandClose));
+				System.out.println(SaveandClose+" CLICKED in SaveandClose");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Click Save&Close button Failed due to: "+e);
@@ -1131,9 +1196,15 @@ public class Keywords extends KTOCTRBUtils{
 				addAllTenderPrice();
 				System.out.println("allTender Price:"+allTenderPrice+" / Final_SalesPrice:"+Final_SalesPrice);
 				System.out.println("is TRB allTenderPrice VS Salesforce TenderPrice equal:"+allTenderPrice.equals(Final_SalesPrice)+" ***");
+				if(!allTenderPrice.equals(Final_SalesPrice)) {
+					screenshotCapture("TenderPrice not equal in compareSalesPricebetweenTenderPageandSalesforce for MultipleEquipment");
+				}
 			} else {
 				System.out.println("Tender Price:"+TenderPrice+" / Final_SalesPrice:"+Final_SalesPrice);
 				System.out.println("is TRB TenderPrice VS Salesforce TenderPrice equal:"+TenderPrice.equals(Final_SalesPrice)+" ***");
+				if(!TenderPrice.equals(Final_SalesPrice)) {
+					screenshotCapture("TenderPrice not equal in compareSalesPricebetweenTenderPageandSalesforce for SingleEquipment");
+				}
 			}
 			click_Javascript(element_Configurator);
 			System.out.println("Configurator Clicked");

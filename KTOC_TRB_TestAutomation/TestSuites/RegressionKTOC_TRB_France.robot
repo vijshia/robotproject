@@ -28,9 +28,9 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 5.Validate TenderPrice and Discount With FirstMaintenance for Elevator
     Check Tender Price After Discount Update    11    3
     Get Target Price
-    Verify Discount By Changing The Tender Price    2002    3
+    Verify Discount By Changing The Tender Price    1002    3
     Get Target Price
-    Verify Discount By Changing The Tender Price    2003    6
+    Verify Discount By Changing The Tender Price    1003    6
     Get Target Price
 6.CheckRegionalFactorAtSalesOfficeLevel for Elevator
     Verify Regional Discount Displayed Correctly

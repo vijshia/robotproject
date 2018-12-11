@@ -23,14 +23,14 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
     Pricing Icon Click
     Check Tender Price After Discount Update    10    0
     Get Target Price
-    Verify Discount By Changing The Tender Price    2001    0
+    Verify Discount By Changing The Tender Price    1001    0
     Get Target Price
 5.Validate TenderPrice and Discount With FirstMaintenance for Elevator
     Check Tender Price After Discount Update    11    3
     Get Target Price
-    Verify Discount By Changing The Tender Price    2002    3
+    Verify Discount By Changing The Tender Price    1004    3
     Get Target Price
-    Verify Discount By Changing The Tender Price    2003    6
+    Verify Discount By Changing The Tender Price    1005    6
     Get Target Price
 6.CheckRegionalFactorAtSalesOfficeLevel for Elevator
     Verify Regional Discount Displayed Correctly
@@ -64,14 +64,14 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
     Pricing Icon Click
     Check Tender Price After Discount Update    10    0
     Get Target Price
-    Verify Discount By Changing The Tender Price    2001    0
+    Verify Discount By Changing The Tender Price    1011    0
     Get Target Price
 14.Validate TenderPrice and Discount With FirstMaintenance for Escalator
     Check Tender Price After Discount Update    11    3
     Get Target Price
-    Verify Discount By Changing The Tender Price    2002    3
+    Verify Discount By Changing The Tender Price    1012    3
     Get Target Price
-    Verify Discount By Changing The Tender Price    2003    6
+    Verify Discount By Changing The Tender Price    1013    6
     Get Target Price
 15.CheckRegionalFactorAtSalesOfficeLevel for Escalator
     Verify Regional Discount Displayed Correctly
