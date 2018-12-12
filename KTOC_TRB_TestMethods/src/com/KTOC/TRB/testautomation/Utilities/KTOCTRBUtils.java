@@ -2,67 +2,102 @@ package com.KTOC.TRB.testautomation.Utilities;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.python.icu.impl.Assert;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class KTOCTRBUtils {
 	private static final int TIME_OUT_IN_SECONDS = 300;
-	protected static WebDriver driver;
 	public static final String ROBOT_LIBRARY_SCOPE = "GLOBAL";
 
 	public static WebElement element = null;
-	// public static String
-	// ScreenshotPath="/Users/roja/git/nemo-testautomation/src/main/java/com/nemo/testautomation/Screenshots/Screenshots-Failure/
-	// ";
+	// public static String ScreenshotPath="/Users/roja/git/nemo-testautomation/src/main/java/com/nemo/testautomation/Screenshots/Screenshots-Failure/";
 	public static String CurrentDir = System.getProperty("user.dir");
 	public static String ScreenshotPath = CurrentDir.concat("/Screenshots/Screenshots-Failure/\\");
-	// public static WebDriverWait wait = new WebDriverWait(driver,
-	// TIME_OUT_IN_SECONDS);
-
-	// private final static Logger logger =
-	// Logger.getLogger(String.valueOf(KTOCNEBUtils.class));
-	// Launch Browser
-
-	// Custom Reporting
-	/*
-	 * public void StartReporting(String Testcase){ DateTimeFormatter dtf =
-	 * DateTimeFormatter.ofPattern("HH:mm:ss"); LocalDateTime now =
-	 * LocalDateTime.now(); String time = Testcase+dtf.format(now).toString();
-	 * report=new ExtentReports("C:\\Report\\"+Testcase+".html");
-	 * logger=report.startTest(Testcase); }
-	 * 
-	 * public void EndReport(){ report.endTest(logger); report.flush(); }
-	 * 
-	 * 
-	 * public void MainReport(String Reportname) { System.out.println(Reportname); }
-	 * 
-	 * public void StartReporting(String Testcase) { DateTimeFormatter dtf =
-	 * DateTimeFormatter.ofPattern("HH:mm:ss"); LocalDateTime now =
-	 * LocalDateTime.now(); String time = Testcase + dtf.format(now); }
-	 * 
-	 * public void EndReport() { }
+	
+	public static WebDriver driver;
+	public static WebDriverWait wait;
+	public static DecimalFormat roundoff = new DecimalFormat("##.00");
+	public static String operatingSystem;
+	public static String browser;
+	public static String username;
+	public static String password;
+	public static String opportunity;
+	public static String opportunityCreateorSearch;
+	public static String equipmentid; // France:10503512 / 10911391, Australia:30493722
+	public static String equipmentid_2;
+	public static String groupName;
+	public static String salesoffice; // France: VB FRRW, VB FRPP, Australia: AU21 - Sydney Region;
+	public static String changeSalesOffice; //France: VB FRPP, Australia: AU22 - Newcastle Region
+	public static int MS5HODatetoChange=2;
+	public static Boolean istenderPrice = false;
+	public static Boolean isMultipleEquipment = false;
+	public static Float regionalDiscount;
+	public static Float regionalDiscounttoChange;
+	public static Float check_showtotal_ITEfactor;
+	public static Float check_showtotal_ITEfactortoChange;
+	public static Float LabourRate;
+	public static Float LabourRatetoChange;
+	public static String FreezePrintedVersion="Yes";
+	public static String SaveandClose="Yes";
+	public static String ProductRelease;
+	public static String customerid;
+	public static String equipment_ADDorChange;
+	public static String equipmentinService;
+	public static String equipmentinService_Escalator;
+	public static String supervisor_ResponsiblePerson;
+	public static String supervisor_ResponsiblePersontoChange;
+	public static String template;
+	public static String template_2;
+	public static String StageProbability_Stage;
+	public static String StageProbability_Description;
+	public static String StageProbability_probability;
+	public static String value_seismicArea;
+	public static String weeklyTeamCostforZone;
+	public static String weeklyTeamCostforRoomandBoard;
+	public static String frontlineAssigned;
+	
+	public Float Final_SalesPrice;
+	public static Float TenderPrice;
+	public static Float allTenderPrice;
+	//----------------------------
+	public static String withoutFirstMaintenance;
+	public static String withFirstMaintenance_1;
+	public static String withFirstMaintenance_2;
+	public static String discount;
+	public static String read_tenderPrice;
+	public static String read_allTenderPrice;
+	
+	
+	/**
+	 **Reuse method, it will launch the browser
+	 * @param browser
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
 	 */
-
-	// Instantiate the webdriver and launch the KCC browser
-	public void LaunchBrowser(String os) throws InterruptedException {
-		if (os.equalsIgnoreCase("ios")) {
+	public void LaunchBrowser(String frontline, String excelpath) throws Exception {
+		readTestData(frontline, excelpath);
+		if (operatingSystem.equalsIgnoreCase("ios")) {
 			ChromeOptions chromeOptions = new ChromeOptions();
-			chromeOptions.setBinary(new File(CurrentDir));
+//			chromeOptions.setBinary(new File(System.getProperty("user.dir")));
 			String headless = System.getProperty("headless");
 			if (headless != null && headless.equalsIgnoreCase("true")) {
 				// String PROXY = "23.23.23.23:3128"; //# IP:PORT or HOST:PORT
@@ -71,22 +106,494 @@ public class KTOCTRBUtils {
 				// chromeOptions.addArguments("--proxy-server=http://%s' % PROXY");
 				chromeOptions.addArguments("--ignore-certificate-errors");
 				chromeOptions.addArguments("--disable-gpu");
-				chromeOptions.addArguments("window-size=2000,2000");
+//				chromeOptions.addArguments("window-size=2000,2000");
 			}
 				driver = new ChromeDriver(chromeOptions);
-			} else if (os.equalsIgnoreCase("windows")) {
+				driver.manage().window().setSize(new Dimension(1400,1080));
+			} else if (operatingSystem.equalsIgnoreCase("windows")) {
+			if (browser.equalsIgnoreCase("ff")) {
+				System.setProperty("webdriver.gecko.driver","C:\\Users\\con_svijay02\\Downloads\\geckodriver-v0.23.0-win64\\geckodriver.exe");
+				driver = new FirefoxDriver();
+			} else if (browser.equalsIgnoreCase("ch")) {
 				DesiredCapabilities CHDes = DesiredCapabilities.chrome();
 				ChromeOptions CHOpt = new ChromeOptions();
 				CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
-				File CHPath = new File(CurrentDir + "\\chromedriver.exe"); // C:\Backups\Vijay S\Download
-																			// Folder\chromedriver_win32 (2.42)
+				File CHPath = new File("C:\\Backups\\Vijay S\\Download Folder\\chromedriver_win32 (2.42)\\chromedriver.exe");
 				System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
 				driver = new ChromeDriver();
-		}
+			}
+		}	
+		wait = new WebDriverWait(driver, 50000);
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(240, TimeUnit.SECONDS);
+		driver.get("https://test.salesforce.com");
+	}
+	
+	/**
+	 * 
+	 * @param frontline: Frontline to getdata
+	 * @param EXCELPATH: Path of the testdata file
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public HashMap<String, Float> hm_ITEfactorforSalesOfficeData = new HashMap<String, Float>();
+	public HashMap<String, Float> hm_RegionalDiscountforSalesOfficeData  = new HashMap<String, Float>();
+	public HashMap<String, Float> hm_LabourRateforSalesOfficeData  = new HashMap<String, Float>();
+	public void readTestData(String frontline, String EXCELPATH) throws Exception{
+		try {
+			String torun="java1";
+			frontline = frontline.toUpperCase();
+			File path = new File(CurrentDir+EXCELPATH);
+			String location = path.getAbsolutePath();
+			ExcelReader excelReader=new ExcelReader(location);
+			operatingSystem = excelReader.GetData("GeneralData").get("OperatingSystem");
+			browser = excelReader.GetData("GeneralData").get("Browser");
+			username = excelReader.GetData("GeneralData").get("UserName");
+			password = excelReader.GetData("GeneralData").get("Password");
+
+			switch(frontline) {
+			case "FRANCE":
+				opportunityCreateorSearch  = excelReader.GetData("France").get("Opportunity_CreateorSearch");
+				opportunity  = excelReader.GetData("France").get("OpportunityName");
+				ProductRelease  = excelReader.GetData("France").get("ProductRelease");
+				equipmentid  = excelReader.GetData("France").get("EquipmentID");
+				//-----for multiEquipment-----
+				equipmentid_2 = excelReader.GetData("France").get("EquipmentID_2");
+				groupName = excelReader.GetData("France").get("GroupName");
+				template_2  = excelReader.GetData("France").get("TemplateName2");
+				equipmentinService_Escalator  = excelReader.GetData("France").get("EquipmentinService_Escalator");
+				//-----for multiEquipment-----
+				equipment_ADDorChange  = excelReader.GetData("France").get("Equipment_ADDorChange");
+				customerid  = excelReader.GetData("France").get("CustomerID");	
+				salesoffice  = excelReader.GetData("France").get("SalesOffice");
+				changeSalesOffice  = excelReader.GetData("France").get("ChangeSalesOffice");
+				equipmentinService  = excelReader.GetData("France").get("EquipmentinService");
+				supervisor_ResponsiblePerson  = excelReader.GetData("France").get("Supervisor");
+				supervisor_ResponsiblePersontoChange  = excelReader.GetData("France").get("changeSupervisor");
+				template  = excelReader.GetData("France").get("TemplateName");
+				if(torun.equalsIgnoreCase("java")) {
+					withoutFirstMaintenance  = excelReader.GetData("France").get("withoutFirstMaintenance");
+					withFirstMaintenance_1 = excelReader.GetData("France").get("withFirstMaintenance1");
+					withFirstMaintenance_2  = excelReader.GetData("France").get("withFirstMaintenance2");
+					discount  = excelReader.GetData("France").get("Discount");
+					read_tenderPrice  = excelReader.GetData("France").get("TenderPrice");
+				}
+				regionalDiscount = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount"));
+				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount"));
+				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("France").get("ITEfactor"));
+				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("France").get("changeITEfactor"));
+				LabourRate = Float.valueOf(excelReader.GetData("France").get("LabourRate"));
+				LabourRatetoChange = Float.valueOf(excelReader.GetData("France").get("changeLabourRate"));
+				StageProbability_Stage = excelReader.GetData("France").get("StageProbabilityStage");
+				StageProbability_Description = excelReader.GetData("France").get("StageProbabilityDescription");
+				StageProbability_probability = excelReader.GetData("France").get("StageProbabilityProbability");
+				frontlineAssigned=frontline;
+//				System.out.println("frontlineAssigned"+frontlineAssigned);
+				break;
+				
+			case "AUSTRALIA":	
+				opportunityCreateorSearch  = excelReader.GetData("Australia").get("Opportunity_CreateorSearch");
+				opportunity  = excelReader.GetData("Australia").get("OpportunityName");
+				ProductRelease  = excelReader.GetData("Australia").get("ProductRelease");
+				equipmentid  = excelReader.GetData("Australia").get("EquipmentID");
+				equipment_ADDorChange  = excelReader.GetData("Australia").get("Equipment_ADDorChange");
+				customerid  = excelReader.GetData("Australia").get("CustomerID");	
+				salesoffice  = excelReader.GetData("Australia").get("SalesOffice");
+				changeSalesOffice  = excelReader.GetData("Australia").get("ChangeSalesOffice");
+				equipmentinService  = excelReader.GetData("Australia").get("EquipmentinService");
+				supervisor_ResponsiblePerson  = excelReader.GetData("Australia").get("Supervisor");
+				supervisor_ResponsiblePersontoChange  = excelReader.GetData("Australia").get("changeSupervisor");
+				template  = excelReader.GetData("Australia").get("TemplateName");
+				if(torun.equalsIgnoreCase("java")) {
+					withoutFirstMaintenance  = excelReader.GetData("Australia").get("withoutFirstMaintenance");
+					withFirstMaintenance_1 = excelReader.GetData("Australia").get("withFirstMaintenance1");
+					withFirstMaintenance_2  = excelReader.GetData("Australia").get("withFirstMaintenance2");
+					discount  = excelReader.GetData("Australia").get("Discount");
+					read_tenderPrice  = excelReader.GetData("Australia").get("TenderPrice");
+				}
+				regionalDiscount = Float.valueOf(excelReader.GetData("Australia").get("RegionalDiscount"));
+				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Australia").get("changeRegionalDiscount"));
+				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Australia").get("ITEfactor"));
+				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("Australia").get("changeITEfactor"));
+				LabourRate = Float.valueOf(excelReader.GetData("Australia").get("LabourRate"));
+				LabourRatetoChange = Float.valueOf(excelReader.GetData("Australia").get("changeLabourRate"));
+				StageProbability_Stage = excelReader.GetData("Australia").get("StageProbabilityStage");
+				StageProbability_Description = excelReader.GetData("Australia").get("StageProbabilityDescription");
+				StageProbability_probability = excelReader.GetData("Australia").get("StageProbabilityProbability");
+				frontlineAssigned=frontline;
+				break;
+				
+			case "CANADA":	
+				opportunityCreateorSearch  = excelReader.GetData("Canada").get("Opportunity_CreateorSearch");
+				opportunity  = excelReader.GetData("Canada").get("OpportunityName");
+				ProductRelease  = excelReader.GetData("Canada").get("ProductRelease");
+				equipmentid  = excelReader.GetData("Canada").get("EquipmentID");
+				equipment_ADDorChange  = excelReader.GetData("Canada").get("Equipment_ADDorChange");
+				customerid  = excelReader.GetData("Canada").get("CustomerID");	
+				salesoffice  = excelReader.GetData("Canada").get("SalesOffice");
+				value_seismicArea  = excelReader.GetData("Canada").get("SeismicArea");
+				weeklyTeamCostforZone  = excelReader.GetData("Canada").get("WeeklyTeamCostforZone");
+				weeklyTeamCostforRoomandBoard  = excelReader.GetData("Canada").get("WeeklyTeamCostforRoomandBoard");
+				changeSalesOffice  = excelReader.GetData("Canada").get("ChangeSalesOffice");
+				equipmentinService  = excelReader.GetData("Canada").get("EquipmentinService");
+				supervisor_ResponsiblePerson  = excelReader.GetData("Canada").get("Supervisor");
+				supervisor_ResponsiblePersontoChange  = excelReader.GetData("Canada").get("changeSupervisor");
+				template  = excelReader.GetData("Canada").get("TemplateName");
+				if(torun.equalsIgnoreCase("java")) {
+					withoutFirstMaintenance  = excelReader.GetData("Canada").get("withoutFirstMaintenance");
+					withFirstMaintenance_1 = excelReader.GetData("Canada").get("withFirstMaintenance1");
+					withFirstMaintenance_2  = excelReader.GetData("Canada").get("withFirstMaintenance2");
+					discount  = excelReader.GetData("Canada").get("Discount");
+					read_tenderPrice  = excelReader.GetData("Canada").get("TenderPrice");
+				}
+				regionalDiscount = Float.valueOf(excelReader.GetData("Canada").get("RegionalDiscount"));
+				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Canada").get("changeRegionalDiscount"));
+				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Canada").get("ITEfactor"));
+				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("Canada").get("changeITEfactor"));
+				LabourRate = Float.valueOf(excelReader.GetData("Canada").get("LabourRate"));
+				LabourRatetoChange = Float.valueOf(excelReader.GetData("Canada").get("changeLabourRate"));
+				StageProbability_Stage = excelReader.GetData("Canada").get("StageProbabilityStage");
+				StageProbability_Description = excelReader.GetData("Canada").get("StageProbabilityDescription");
+				StageProbability_probability = excelReader.GetData("Canada").get("StageProbabilityProbability");
+				frontlineAssigned=frontline;
+				break;
+			}
+			hm_ITEfactorforSalesOfficeData.put(salesoffice, check_showtotal_ITEfactor);
+			hm_ITEfactorforSalesOfficeData.put(changeSalesOffice, check_showtotal_ITEfactortoChange);
+			hm_RegionalDiscountforSalesOfficeData.put(salesoffice, regionalDiscount);
+			hm_RegionalDiscountforSalesOfficeData.put(changeSalesOffice, regionalDiscounttoChange);	
+			hm_LabourRateforSalesOfficeData.put(salesoffice, LabourRate);
+			hm_LabourRateforSalesOfficeData.put(changeSalesOffice, LabourRatetoChange);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void SwitchToFrame(String FrameId) {
+	/**
+	 **Reuse method, it will wait till the element identified by switching in to frame 
+	 * @param locatorFrame: Locator of the frame to be identified
+	 * @param locator: Locator of the element to be identified
+	 * @return: null
+	 * @author CON_SVIJAY02
+	 */
+	public static ExpectedCondition<WebElement> elementToBeClickableInFrame(final By locatorFrame, final By locator) {
+			  return new ExpectedCondition<WebElement>() {
+			    @Override
+			    public WebElement apply(WebDriver driver) {
+			      try {
+			        driver.switchTo().defaultContent();
+			        driver.switchTo().frame(driver.findElement(locatorFrame));
+			        WebElement elem = driver.findElement(locator);
+			        return elem.isDisplayed() && elem.isEnabled() ? elem : null;
+			      } catch (Exception e) {
+			        return null;
+			      }
+			    }
+			    @Override
+			    public String toString() {
+			      return "element located by: " + locator + " in " + locatorFrame;
+			    }
+			  };
+			}
+	/**
+	 **Reuse method, it will try continuously till element is clicked
+	 * @param locator: Locator of the element to be identified
+	 * @return: returns true if element is clicked
+	 * @author CON_SVIJAY02
+	 */
+	public boolean retryingClick(By locator){
+	    boolean result = false;
+	    int attempts = 0;
+	    while(attempts < 2) {
+	        try {
+	        	wait.until(ExpectedConditions.elementToBeClickable(locator));
+	            driver.findElement(locator).click();
+//	            System.out.println("attempts="+attempts);
+	            result = true;
+	            break;
+	        } catch(StaleElementReferenceException e) {
+	        	e.printStackTrace();
+	        }
+	        attempts++;
+	    }
+	    return result;
+	}
+/**
+ **Reuse method, it will remove multiple dots from price field value. implemented in validateDetailBreakdownTab 
+ * @param value: Value having multiple dots
+ * @return: Value to be returned after removing dots
+ * @throws Exception: For exception handling
+ * @author CON_SVIJAY02
+ */
+	public String removingDot(String value) throws Exception{
+		try {
+			int count=0; 
+			int location=0;
+			StringBuilder stringbuilder=new StringBuilder(value);
+			for(Character chr:value.toCharArray()){
+				if(chr.equals('.')){
+					count++;
+				}
+			}
+			if(count>1){
+				for(int i=0; i<=count; i++){
+				location=value.indexOf(".");
+					if(count>1){
+						value=stringbuilder.deleteCharAt(location).toString();
+						count--;
+					}
+				} return value;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} return value;
+	}
+	/**
+	 **Reuse method, it will enter value in a text box
+	 * @param locator: Locator of the element to be identified
+	 * @param value: Value to be entered in the field
+	 * @return: Returning the locator for future purposes
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement enteringValues(By locator, String value) throws Exception{
+		try {
+			driver.findElement(locator).sendKeys(value);
+			return driver.findElement(locator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it's for Key actions
+	 * @param locator: Locator of the element to be identified 
+	 * @param key: Key action to be performed. For Example, Keys.RETURN will perform Keyboard "Enter" action
+	 * @return: Returning the locator for future purposes
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement enteringValues(By locator, Keys key) throws Exception{
+		try {
+			driver.findElement(locator).sendKeys(key);
+			return driver.findElement(locator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will perform click action over the element
+	 * @param locator: Locator of the element to be identified 
+	 * @return: null
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement clickonButton(By locator) throws Exception{
+		try {
+			driver.findElement(locator).click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will wait till the element is visible in DOM
+	 * @param locator: Locator of the element to be identified 
+	 * @return: null
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement waitForVisibilityOfElementLocated(By locator) throws Exception{
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will wait till presence of the element in DOM
+	 * @param locator: Locator of the element to be identified 
+	 * @return: null
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement waitForpresenceOfElementLocated(By locator) throws Exception{
+		try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will wait till the element is clickable in DOM
+	 * @param locator: Locator of the element to be identified 
+	 * @return: null
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement waitForElementToBeClickable(By locator) throws Exception{
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(locator));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will wait till the element is invisible in DOM
+	 * @param locator: Locator of the element to be identified 
+	 * @return: null
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement waitForinvisibilityOfElementLocated(By locator) throws Exception{
+		try {
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will retrive webelement
+	 * @param locator: Locator of the element to be identified 
+	 * @return: webelement
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement gettingWebElement(By locator) throws Exception{
+		try {
+			WebElement localvariable = driver.findElement(locator);
+			return localvariable;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will retrive list of webelements
+	 * @param locator: Locator of the element to be identified 
+	 * @return: list of webelements
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public List<WebElement> gettingWebElementsfromList(By locator) throws Exception{
+		List<WebElement> localvariable = null;
+		try {
+			localvariable = driver.findElements(locator);
+			return localvariable;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will switch to default frame 
+	 * @return: null
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement switchtoDefaultContentFrame() throws Exception{
+		try {
+			driver.switchTo().defaultContent();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will switch to frame 
+	 * @param frame: Frame to switch
+	 * @return: null
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement switchtoFrame(WebElement frame) throws Exception{
+		try {
+			driver.switchTo().frame(frame);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will scroll to the element by JavascriptExecutor
+	 * @param element: Scrolled to the webelement 
+	 * @return: null
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement scrollIntoView_Javascript(WebElement element) throws Exception{
+		try {
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will click on the element by JavascriptExecutor
+	 * @param element: Webelement to perform click 
+	 * @return: null
+	 * @author CON_SVIJAY02
+	 */
+	public WebElement click_Javascript(WebElement element) {
+		try {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 **Reuse method, it will take screenshots
+	 * @param screenshotName: screenshot name will be sent into the variable
+	 * @return: for future purposes
+	 * @throws IOException: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public String screenshotCapture(String screenshotName) throws IOException {
+        String location = null;
+        String dateformat = new SimpleDateFormat("ddMMMyyyy_hh_mm_ssaa").format(Calendar.getInstance().getTime());
+		try {
+			TakesScreenshot takescreenshot = (TakesScreenshot) driver;
+			File source = takescreenshot.getScreenshotAs(OutputType.FILE);
+			File creatFolder=new File(CurrentDir+"\\Screenshots\\"+dateformat);
+			creatFolder.mkdir();
+			String new_folderLocation=creatFolder.getAbsolutePath();
+			File destination = new File(new_folderLocation+"\\SS_"+dateformat+"_"+screenshotName+".png");
+			location=destination.getAbsolutePath();
+//			System.out.println(location);
+			FileUtils.copyFile(source, destination);	
+			String imagetostring=destination.toString();
+			embedImage(imagetostring);
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+		}
+		return location;
+    }
+	/**
+	 **Reuse method, appending failure SS to display in report
+	 * @param Imagep: image to display in report
+	 * @author CON_SVIJAY02/CON_KarthickSairam
+	 */
+	public void embedImage(String Imagep) {
+		logHTML("<a href='" + Imagep + "' target='_blank'><img src='" + Imagep+ "' style='width:80%; height: auto;'/></a>");
+	}
+	/**
+	 **Reuse method, failure SS to display in report
+	 * @param log: 
+	 * @author CON_SVIJAY02/CON_KarthickSairam
+	 */
+	public void logHTML(Object log) {
+		System.out.println("*HTML* " + log);
+	}
+	
+	
+	
+	public void SwitchToFramebyID(String FrameId) {
 		driver.switchTo().frame(FrameId);
 	}
 
@@ -668,7 +1175,6 @@ public class KTOCTRBUtils {
 	}
 
 	public static void TakeSnapShot(String PageName) throws Exception {
-
 		// Convert web driver object to TakeScreenshot
 		TakesScreenshot scrShot = ((TakesScreenshot) driver);
 		String TimeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());

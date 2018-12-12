@@ -1,8 +1,8 @@
 *** Settings ***
 Library  com.KTOC.TRB.testautomation.Keywords.Keywords
 *** Variable ***
-${Tender}
+#${Tender}
 *** Keyword ***
-Get Tender Number
-  ${Tender}=  Get Tender No
-  Log  ${Tender}
+#Get Tender Number
+#  ${Tender}=  Get Tender No
+ # Log  ${Tender}

@@ -1,6 +1,5 @@
 package com.KTOC.TRB.testautomation.Utilities;
 
-import org.apache.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;

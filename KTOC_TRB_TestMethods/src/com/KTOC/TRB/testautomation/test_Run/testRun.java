@@ -9,14 +9,14 @@ public class testRun {
 		KTOCTRBUtils obj=new KTOCTRBUtils();
 		Keywords obj1=new Keywords();
 		try {
-			obj.LaunchBrowser("windows");
-			obj1.LogonToSalesforce();	
-			obj1.CreateOpportunity();
+			obj.LaunchBrowser("windows", "ff");
+			/*obj1.LogonToSalesforce();	
+			obj1.CreateOpportunity();*/
 			obj1.MapContactWithOpportunity();
 			obj1.MapOpportunityWithFLTenders();
 			obj1.SwitchToKTOCApp();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();	
 		}
 	}
 
