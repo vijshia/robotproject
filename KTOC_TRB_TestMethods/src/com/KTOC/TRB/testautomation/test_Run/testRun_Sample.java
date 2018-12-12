@@ -18,7 +18,7 @@ public class testRun_Sample {
 	KTOCTRBUtils KTOCTRBUtils=new KTOCTRBUtils();
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 //	String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
-	Keywords.LaunchBrowser("france", EXCEL_PATH);
+	Keywords.LaunchBrowser("canada", EXCEL_PATH);
 	//1.LogonToSalesforce
 	Keywords.logintoSalesforce();
 	//2.VerifyCreatingOpportunityandMappingItWithFLTender
@@ -55,7 +55,7 @@ public class testRun_Sample {
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
 	Keywords.verifyTargetPriceDisplayedCorrectly("0");
 	//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
-	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
+	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("canada", EXCEL_PATH);
 	Keywords.validateDetailBreakdownTab();
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
 	Keywords.validateDetailBreakdownTab();
