@@ -4,7 +4,7 @@
 package com.KTOC.TRB.testautomation.ObjectRepository;
 
 import org.openqa.selenium.By;
-
+import static com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils.NewVersionProduct;
 /**
  * @author CON_SVIJAY02
  *
@@ -24,7 +24,6 @@ public class pg_SF_HomePage {
 	//getSalesPriceFromSalesForce
 	public static By frameforwait = By.tagName("iframe");
 	public static By btn_configurator = By.xpath("//*[@title='Configurator']");
-	public static By btn_NoButtoninNewVersionProduct = By.xpath("//button[text()='No']");
-	public static By btn_YesButtoninNewVersionProduct = By.xpath("//button[text()='No']");
+	public static By btn_ButtoninNewVersionProduct = By.xpath("//button[text()='"+NewVersionProduct+"']");
 
 }

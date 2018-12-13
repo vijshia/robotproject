@@ -56,7 +56,8 @@ public class KTOCTRBUtils {
 	public static Float check_showtotal_ITEfactortoChange;
 	public static Float LabourRate;
 	public static Float LabourRatetoChange;
-	public static String FreezePrintedVersion="Yes";
+	public static String FreezePrintedVersion="No";
+	public static String NewVersionProduct="No"; //No
 	public static String SaveandClose="Yes";
 	public static String ProductRelease;
 	public static String customerid;
