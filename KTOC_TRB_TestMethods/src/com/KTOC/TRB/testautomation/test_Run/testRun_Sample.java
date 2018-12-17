@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.KTOC.TRB.testautomation.test_Run;
 
 import com.KTOC.TRB.testautomation.Keywords.Keywords;
