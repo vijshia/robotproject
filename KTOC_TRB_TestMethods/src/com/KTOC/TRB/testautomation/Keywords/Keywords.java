@@ -785,7 +785,7 @@ public class Keywords extends KTOCTRBUtils{
 								ls_RegionalDiscountValue.add(convertedvalue);
 //							System.out.println("2***"+element_RegionalDiscountValue.getAttribute("id")+"="+convertedvalue);
 							}
-					}
+					} 
 				} else if(!element_RegionalDiscountValue.getAttribute("value").isEmpty() && element_RegionalDiscountValue.getAttribute("value")!=null)	{
 						String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[€ % h . $]", "");
 						getvalue = getvalue.replace(",", ".");
@@ -1651,6 +1651,7 @@ public class Keywords extends KTOCTRBUtils{
 			for (WebElement Element : Elements_PriceOverview) {
 //		System.out.println(Element.getAttribute("id"));
 				if (!Element.getText().isEmpty() || Element.getAttribute("value") != null) {
+					wait.until(ExpectedConditions.visibilityOf(Element));
 					if (Element.getAttribute("value") == null) {
 						if (!Element.getText().contains("Project")) {
 							if (!Element.getText().contains("%")) {

@@ -40,10 +40,10 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
     Verify Discount By Changing The Tender Price    1003    6
 13.Check Changed Discount With FirstMaintenance for Elevator    
     Get Target Price
-14.CheckRegionalFactorAtSalesOfficeLevel for Elevator
+14.Check Regional Factor At SalesOffice Level for Elevator
     Verify Regional Discount Displayed Correctly
     Verify Target Price Displayed Correctly    0
-15.CheckRegionalFactorWhenSalesOfficeIsChanged for Elevator
+15.Check Regional Factor When SalesOffice Is Changed for Elevator
     Goto Configuration Pageand Change The Sales Office
     Verify Regional Discount Displayed Correctly
     Verify Target Price Displayed Correctly    0
@@ -53,7 +53,7 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 17 Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator
     Goto Configuration Pageand Change The Sales Office
     Validate Detail Breakdown Tab
-18.Check Coste Calculated CorrectlyW hen The Tender Currency Is Different From SLCurrency for Elevator
+18.Check Cost Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator
     Verify Cost Calculated Successfully
 19.Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator    
     VerifyPriceCalculatedSuccessfully TobecheckedinFrance
@@ -65,4 +65,4 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 22.Verify Total SalesPrice With SF Product Information
     Compare Sales Pricebetween Tender Pageand Salesforce
     Hand Shake
-# 14.VerifyOrderCreatedSuccessfullyForElevator
+#23.VerifyOrderCreatedSuccessfullyForElevator
