@@ -397,9 +397,9 @@ public class Keywords extends KTOCTRBUtils{
 			} else if(frontlineAssigned.equals("AUSTRALIA")) {
 				dd_SalesOffice=a[0].trim();
 			} else if(frontlineAssigned.equals("CANADA")) {
-				if(salesoffice.equals("Montréal")) {
+				if(salesoffice.equals("MontrÃ©al")) {
 					dd_SalesOffice="CA25";
-				} else if(salesoffice.equals("Québec City")) {
+				} else if(salesoffice.equals("QuÃ©bec City")) {
 					dd_SalesOffice="CA21";
 				} else if(salesoffice.equals("Sherbrooke")) {
 					dd_SalesOffice="CA22";
@@ -715,31 +715,31 @@ public class Keywords extends KTOCTRBUtils{
 			
 			//--------------------------------------------------------------
 			/*String Project=GetAdditionalDiscountGridTargetPriceBaseValues("Project");
-			Project=Project.replaceAll("[€ % h . $]", "");
+			Project=Project.replaceAll("[ï¿½ % h . $]", "");
 			Project=Project.replace(",", ".");
 			Float TargetPriceBaseValues_Project=Float.valueOf(Project);
 			System.out.println(TargetPriceBaseValues_Project);
 			
 			String Solution=GetAdditionalDiscountGridTargetPriceBaseValues("Solution 2");
-			Solution=Solution.replaceAll("[€ % h . $]", "");
+			Solution=Solution.replaceAll("[ï¿½ % h . $]", "");
 			Solution=Solution.replace(",", ".");
 			Float TargetPriceBaseValues_Solution=Float.valueOf(Solution);
 			System.out.println(TargetPriceBaseValues_Solution);
 			
 			String Project_TargetPriceBase=gettingWebElement(By.xpath("//div[text()='Project']/parent::div/parent::div/div[1]/input[1]")).getAttribute("value");
-			Project_TargetPriceBase=Project_TargetPriceBase.replaceAll("[€ % h . $]", "");
+			Project_TargetPriceBase=Project_TargetPriceBase.replaceAll("[ï¿½ % h . $]", "");
 			Project_TargetPriceBase = Project_TargetPriceBase.replace(",", ".");
 			Float TargetPriceBaseValues_Project1 = Float.valueOf(Project_TargetPriceBase);
 			System.out.println(TargetPriceBaseValues_Project1);
 			
 			String project_Regionaldiscountoncomponent=gettingWebElement(By.xpath("//div[text()='Project']/parent::div/parent::div/div[1]/input[7]")).getAttribute("value");
-			project_Regionaldiscountoncomponent=project_Regionaldiscountoncomponent.replaceAll("[€ % h . $]", "");
+			project_Regionaldiscountoncomponent=project_Regionaldiscountoncomponent.replaceAll("[ï¿½ % h . $]", "");
 			project_Regionaldiscountoncomponent = project_Regionaldiscountoncomponent.replace(",", ".");
 			Float Regionaldiscountoncomponent_Project1=Float.valueOf(project_Regionaldiscountoncomponent);
 			System.out.println(Regionaldiscountoncomponent_Project1);
 			
 			String project_Regionaldiscountoncomponent_Percent=gettingWebElement(By.xpath("//div[text()='Project']/parent::div/parent::div/div[1]/input[7]")).getAttribute("value");
-			project_Regionaldiscountoncomponent_Percent=project_Regionaldiscountoncomponent_Percent.replaceAll("[€ % h . $]", "");
+			project_Regionaldiscountoncomponent_Percent=project_Regionaldiscountoncomponent_Percent.replaceAll("[ï¿½ % h . $]", "");
 			project_Regionaldiscountoncomponent_Percent = project_Regionaldiscountoncomponent_Percent.replace(",", ".");
 			Float Regionaldiscountoncomponent_Percent_Project=Float.valueOf(project_Regionaldiscountoncomponent_Percent);
 			System.out.println(Regionaldiscountoncomponent_Percent_Project);
@@ -778,7 +778,7 @@ public class Keywords extends KTOCTRBUtils{
 								if(!getvalue.equals("0.00") && !getvalue.contains("%")) {
 									getvalue = getvalue.replace(".", "");
 								}
-								getvalue=getvalue.replaceAll("[€ % h $]", "");
+								getvalue=getvalue.replaceAll("[ï¿½ % h $]", "");
 								getvalue = getvalue.replace(",", ".");
 //							System.out.println("2**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
 								convertedvalue = Float.valueOf(getvalue);
@@ -787,7 +787,7 @@ public class Keywords extends KTOCTRBUtils{
 							}
 					} 
 				} else if(!element_RegionalDiscountValue.getAttribute("value").isEmpty() && element_RegionalDiscountValue.getAttribute("value")!=null)	{
-						String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[€ % h . $]", "");
+						String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[ï¿½ % h . $]", "");
 						getvalue = getvalue.replace(",", ".");
 //					System.out.println("3**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
 						convertedvalue = Float.valueOf(getvalue);
@@ -911,7 +911,7 @@ public class Keywords extends KTOCTRBUtils{
 					if(!Element_showtotalcostFirstRow.getText().isEmpty())	{
 //			System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
 							if(!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
-								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h $]", "");
+								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[ï¿½ % h $]", "");
 								getvalue = getvalue.replace(",", ".");
 								getvalue=removingDot(getvalue);
 								convertedvalue = Float.valueOf(getvalue);
@@ -922,10 +922,10 @@ public class Keywords extends KTOCTRBUtils{
 //			System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
 					String getvalue = null;
 					if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
-						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h .]", "");
+						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[ï¿½ % h .]", "");
 						getvalue = getvalue.replace(",", ".");
 					} else if(frontlineAssigned.equals("AUSTRALIA")) {
-						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h $]", "");
+						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[ï¿½ % h $]", "");
 						getvalue = getvalue.replace(",", "");
 					}
 						convertedvalue = Float.valueOf(getvalue);
@@ -1499,7 +1499,7 @@ public class Keywords extends KTOCTRBUtils{
 		try {
 			By value_firstMaintenance = null;
 			if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
-				value_firstMaintenance = By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuité ')]");
+				value_firstMaintenance = By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuitï¿½ ')]");
 			} else if(frontlineAssigned.equals("AUSTRALIA")) {
 				if(!FirstMaintenance.equals("0")) {
 					value_firstMaintenance = By.xpath("//div[text()='12 Months Free Maintenance']");
@@ -1609,7 +1609,7 @@ public class Keywords extends KTOCTRBUtils{
 			WebElement doubleclick_elementselectingTenderPrice = null;
 			for(WebElement element:elements) {
 //		System.out.println(element.getText());
-				if(element.getText().contains("€ ") || element.getText().contains("$")) {
+				if(element.getText().contains("ï¿½ ") || element.getText().contains("$")) {
 					doubleclick_elementselectingTenderPrice=element;
 //		System.out.println("if:"+doubleclick_elementselectingTenderPrice.getAttribute("id"));
 					break;
@@ -1655,7 +1655,7 @@ public class Keywords extends KTOCTRBUtils{
 					if (Element.getAttribute("value") == null) {
 						if (!Element.getText().contains("Project")) {
 							if (!Element.getText().contains("%")) {
-								String element_readTenderPrice = Element.getText().replaceAll("[€  $]", "");
+								String element_readTenderPrice = Element.getText().replaceAll("[ï¿½  $]", "");
 								if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 									element_readTenderPrice = element_readTenderPrice.replace(".", "");
 									element_readTenderPrice = element_readTenderPrice.replace(",", ".");
@@ -1672,7 +1672,7 @@ public class Keywords extends KTOCTRBUtils{
 						}
 					} else {
 //	        	System.out.println("****Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
-						String element_read = Element.getAttribute("value").replaceAll("[€  $]", "");
+						String element_read = Element.getAttribute("value").replaceAll("[ï¿½  $]", "");
 						if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 							element_read = element_read.replace(".", "");
 							element_read = element_read.replace(",", ".");
@@ -1779,7 +1779,7 @@ public class Keywords extends KTOCTRBUtils{
 	
 	private Float getFloatFromString(String value) {
 		String replaced = value;
-		if (replaced.contains("€")) {
+		if (replaced.contains("ï¿½")) {
 			replaced = replaced.replaceAll("[.]", "").replaceAll(",", "."); // hd it wk
 		}
 		replaced = replaced.replaceAll("[^0-9.]", "");
@@ -1863,7 +1863,7 @@ public class Keywords extends KTOCTRBUtils{
 			List<WebElement> Elements_Description = gettingWebElementsfromList(grid_allRowallValues);						
 			int DescriptiontoIterate=0;
 			for(WebElement Element_Description:Elements_Description) {
-				if(!Element_Description.getText().isEmpty() && !Element_Description.getText().contains("€") && !Element_Description.getText().contains("$") && !Element_Description.getText().contains("%")) {
+				if(!Element_Description.getText().isEmpty() && !Element_Description.getText().contains("ï¿½") && !Element_Description.getText().contains("$") && !Element_Description.getText().contains("%")) {
 				System.out.println(Element_Description.getText());
 				ls_rowHeader.add(Element_Description.getText());
 				DescriptiontoIterate++;
@@ -1882,7 +1882,7 @@ System.out.println("Elements_PriceOverviewsize:"+Elements_PriceOverview.size());
 						if (Element.getAttribute("value") == null) {
 							if (!ls_rowHeader.contains(Element.getText())) {
 								if (!Element.getText().contains("%")) {
-									String element_readTenderPrice = Element.getText().replaceAll("[€  $]", "");
+									String element_readTenderPrice = Element.getText().replaceAll("[ï¿½  $]", "");
 				System.out.println("element_readTenderPrice:"+Element.getAttribute("id")+"/"+Element.getText());
 									if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 										element_readTenderPrice = element_readTenderPrice.replace(".", "");
@@ -1901,7 +1901,7 @@ System.out.println("Elements_PriceOverviewsize:"+Elements_PriceOverview.size());
 
 						} else {
 		        System.out.println("****Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
-							String element_read = Element.getAttribute("value").replaceAll("[€  $]", "");
+							String element_read = Element.getAttribute("value").replaceAll("[ï¿½  $]", "");
 							if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 								element_read = element_read.replace(".", "");
 								element_read = element_read.replace(",", ".");
