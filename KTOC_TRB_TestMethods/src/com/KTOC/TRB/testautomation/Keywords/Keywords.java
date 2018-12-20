@@ -619,7 +619,8 @@ public class Keywords extends KTOCTRBUtils{
 				}
 				System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost is: "+roundoff.format(check_Materialcosts).equals(roundoff.format(showtotal_Materialcosts))+" ***");
 				if(!roundoff.format(check_Materialcosts).equals(roundoff.format(showtotal_Materialcosts))) {
-					screenshotCapture("MaterialCost not equal in VerifyCostCalculatedSuccessfully");					
+					screenshotCapture("MaterialCost not equal in VerifyCostCalculatedSuccessfully");		
+					Assert.fail("MaterialCost not equal in VerifyCostCalculatedSuccessfully");
 				}
 			} else {
 				System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");

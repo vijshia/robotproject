@@ -53,15 +53,16 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 17 Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator
     Goto Configuration Pageand Change The Sales Office
     Validate Detail Breakdown Tab
-18.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency for Elevator
+18.Check Coste Calculated CorrectlyW hen The Tender Currency Is Different From SLCurrency for Elevator
     Verify Cost Calculated Successfully
+19.Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator    
     VerifyPriceCalculatedSuccessfully TobecheckedinFrance
-19.Check TenderLetter Is generated Correctly With All The components
+20.Check TenderLetter Is generated Correctly With All The components
     Go To Documents Taband Click The Tender
     Verify Successful Message Displayed
-20.Close KTOC
+21.Close KTOC
     Click Saveand Close Button
-21.Verify Total SalesPrice With SF Product Information
+22.Verify Total SalesPrice With SF Product Information
     Compare Sales Pricebetween Tender Pageand Salesforce
     Hand Shake
 # 14.VerifyOrderCreatedSuccessfullyForElevator

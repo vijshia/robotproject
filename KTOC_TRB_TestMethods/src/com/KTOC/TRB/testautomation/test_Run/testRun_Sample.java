@@ -35,6 +35,9 @@ public class testRun_Sample {
 	Keywords.pricingIconClick();
 	Keywords.CheckTenderPriceAfterDiscountUpdate("10", "0");
 	
+	Keywords.checkingTargetPriceFullGrid1();
+//	Keywords.checkingTargetPriceFullGrid();
+	
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("2001", "0");
 	Keywords.GetTargetPrice();
