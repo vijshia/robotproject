@@ -778,7 +778,7 @@ public class Keywords extends KTOCTRBUtils{
 								if(!getvalue.equals("0.00") && !getvalue.contains("%")) {
 									getvalue = getvalue.replace(".", "");
 								}
-								getvalue=getvalue.replaceAll("[� % h $]", "");
+								getvalue=getvalue.replaceAll("[€ % h $]", "");
 								getvalue = getvalue.replace(",", ".");
 //							System.out.println("2**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
 								convertedvalue = Float.valueOf(getvalue);
@@ -787,7 +787,7 @@ public class Keywords extends KTOCTRBUtils{
 							}
 					} 
 				} else if(!element_RegionalDiscountValue.getAttribute("value").isEmpty() && element_RegionalDiscountValue.getAttribute("value")!=null)	{
-						String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[� % h . $]", "");
+						String getvalue=element_RegionalDiscountValue.getAttribute("value").replaceAll("[€ % h . $]", "");
 						getvalue = getvalue.replace(",", ".");
 //					System.out.println("3**"+element_RegionalDiscountValue.getAttribute("id")+"="+getvalue);
 						convertedvalue = Float.valueOf(getvalue);
@@ -911,7 +911,7 @@ public class Keywords extends KTOCTRBUtils{
 					if(!Element_showtotalcostFirstRow.getText().isEmpty())	{
 //			System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
 							if(!Element_showtotalcostFirstRow.getText().contains("Subtotal")) {
-								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[� % h $]", "");
+								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h $]", "");
 								getvalue = getvalue.replace(",", ".");
 								getvalue=removingDot(getvalue);
 								convertedvalue = Float.valueOf(getvalue);
@@ -922,10 +922,10 @@ public class Keywords extends KTOCTRBUtils{
 //			System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
 					String getvalue = null;
 					if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
-						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[� % h .]", "");
+						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h .]", "");
 						getvalue = getvalue.replace(",", ".");
 					} else if(frontlineAssigned.equals("AUSTRALIA")) {
-						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[� % h $]", "");
+						getvalue=Element_showtotalcostFirstRow.getAttribute("value").replaceAll("[€ % h $]", "");
 						getvalue = getvalue.replace(",", "");
 					}
 						convertedvalue = Float.valueOf(getvalue);
@@ -1499,7 +1499,7 @@ public class Keywords extends KTOCTRBUtils{
 		try {
 			By value_firstMaintenance = null;
 			if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
-				value_firstMaintenance = By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuit� ')]");
+				value_firstMaintenance = By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuité ')]");
 			} else if(frontlineAssigned.equals("AUSTRALIA")) {
 				if(!FirstMaintenance.equals("0")) {
 					value_firstMaintenance = By.xpath("//div[text()='12 Months Free Maintenance']");
@@ -1609,7 +1609,7 @@ public class Keywords extends KTOCTRBUtils{
 			WebElement doubleclick_elementselectingTenderPrice = null;
 			for(WebElement element:elements) {
 //		System.out.println(element.getText());
-				if(element.getText().contains("� ") || element.getText().contains("$")) {
+				if(element.getText().contains("€ ") || element.getText().contains("$")) {
 					doubleclick_elementselectingTenderPrice=element;
 //		System.out.println("if:"+doubleclick_elementselectingTenderPrice.getAttribute("id"));
 					break;
@@ -1655,7 +1655,7 @@ public class Keywords extends KTOCTRBUtils{
 					if (Element.getAttribute("value") == null) {
 						if (!Element.getText().contains("Project")) {
 							if (!Element.getText().contains("%")) {
-								String element_readTenderPrice = Element.getText().replaceAll("[�  $]", "");
+								String element_readTenderPrice = Element.getText().replaceAll("[€  $]", "");
 								if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 									element_readTenderPrice = element_readTenderPrice.replace(".", "");
 									element_readTenderPrice = element_readTenderPrice.replace(",", ".");
@@ -1672,7 +1672,8 @@ public class Keywords extends KTOCTRBUtils{
 						}
 					} else {
 //	        	System.out.println("****Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
-						String element_read = Element.getAttribute("value").replaceAll("[�  $]", "");
+						wait.until(ExpectedConditions.visibilityOf(Element));
+						String element_read = Element.getAttribute("value").replaceAll("[€  $]", "");
 						if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 							element_read = element_read.replace(".", "");
 							element_read = element_read.replace(",", ".");
@@ -1860,10 +1861,11 @@ public class Keywords extends KTOCTRBUtils{
 			ls_checkingTargetPriceFullGridHeader.add("Discount");
 			ls_checkingTargetPriceFullGridHeader.add("Tender Price");
 			ls_checkingTargetPriceFullGridHeader.add("First Maintenance");
-			List<WebElement> Elements_Description = gettingWebElementsfromList(grid_allRowallValues);						
+			List<WebElement> Elements_Description = gettingWebElementsfromList(grid_allRowallValues);
+			List<Float> ls_checkingTargetPriceFullGridValue = null;
 			int DescriptiontoIterate=0;
 			for(WebElement Element_Description:Elements_Description) {
-				if(!Element_Description.getText().isEmpty() && !Element_Description.getText().contains("�") && !Element_Description.getText().contains("$") && !Element_Description.getText().contains("%")) {
+				if(!Element_Description.getText().isEmpty() && !Element_Description.getText().contains("€") && !Element_Description.getText().contains("$") && !Element_Description.getText().contains("%")) {
 				System.out.println(Element_Description.getText());
 				ls_rowHeader.add(Element_Description.getText());
 				DescriptiontoIterate++;
@@ -1873,16 +1875,16 @@ public class Keywords extends KTOCTRBUtils{
 			List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allValues);
 			Float arrary[] = new Float[2];
 			Float TargetPrice = null, Firstmaintenance = null, Discount = null;
-System.out.println("Elements_PriceOverviewsize:"+Elements_PriceOverview.size());
+//System.out.println("Elements_PriceOverviewsize:"+Elements_PriceOverview.size());
 			int indexvalue=0;
 				for (WebElement Element : Elements_PriceOverview) {
-					List<Float> ls_checkingTargetPriceFullGridValue=new LinkedList<>();
+					ls_checkingTargetPriceFullGridValue=new LinkedList<>();
 				System.out.println(Element.getAttribute("id"));
 					if (!Element.getText().isEmpty() || Element.getAttribute("value") != null) {
 						if (Element.getAttribute("value") == null) {
 							if (!ls_rowHeader.contains(Element.getText())) {
 								if (!Element.getText().contains("%")) {
-									String element_readTenderPrice = Element.getText().replaceAll("[�  $]", "");
+									String element_readTenderPrice = Element.getText().replaceAll("[€  $]", "");
 				System.out.println("element_readTenderPrice:"+Element.getAttribute("id")+"/"+Element.getText());
 									if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 										element_readTenderPrice = element_readTenderPrice.replace(".", "");
@@ -1898,10 +1900,11 @@ System.out.println("Elements_PriceOverviewsize:"+Elements_PriceOverview.size());
 				System.out.println("****Discount:" + Discount);
 								}
 							}
-
+							ls_checkingTargetPriceFullGridValue.add(Discount);
+							ls_checkingTargetPriceFullGridValue.add(TenderPrice);
 						} else {
 		        System.out.println("****Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
-							String element_read = Element.getAttribute("value").replaceAll("[�  $]", "");
+							String element_read = Element.getAttribute("value").replaceAll("[€  $]", "");
 							if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 								element_read = element_read.replace(".", "");
 								element_read = element_read.replace(",", ".");
@@ -1935,7 +1938,7 @@ System.out.println("Elements_PriceOverviewsize:"+Elements_PriceOverview.size());
 							}
 							ls_checkingTargetPriceFullGridValue.add(TargetPrice);
 							ls_checkingTargetPriceFullGridValue.add(Firstmaintenance);
-							ls_checkingTargetPriceFullGridValue.add(Discount);
+						/*	ls_checkingTargetPriceFullGridValue.add(Discount);
 							ls_checkingTargetPriceFullGridValue.add(TenderPrice);
 							int toIterate=4;
 							if(!withoutFirstMaintenance.equals("0")){
@@ -1946,13 +1949,23 @@ System.out.println("Elements_PriceOverviewsize:"+Elements_PriceOverview.size());
 								hm_checkingTargetPriceFullGridData.put(ls_rowHeader.get(indexvalue)+"_"+ls_checkingTargetPriceFullGridHeader.get(i), ls_checkingTargetPriceFullGridValue.get(i));
 							}
 							hm_mappingRowData.put(ls_rowHeader.get(indexvalue), hm_checkingTargetPriceFullGridData);
-				System.out.println(ls_rowHeader.get(indexvalue)+"/"+hm_checkingTargetPriceFullGridData.entrySet());
+				System.out.println(ls_rowHeader.get(indexvalue)+"/"+hm_checkingTargetPriceFullGridData.entrySet());*/
 							arrary[0] =null;
 							indexvalue++;
 						} //--
+
 					}
 				}
-				
+				int toIterate=4;
+				if(!withoutFirstMaintenance.equals("0")){
+					toIterate=toIterate+1;
+				}
+	System.out.println("line1856:"+hm_checkingTargetPriceFullGridData.size());
+				for(int i=0; i<ls_checkingTargetPriceFullGridValue.size(); i++) {
+					hm_checkingTargetPriceFullGridData.put(ls_rowHeader.get(indexvalue)+"_"+ls_checkingTargetPriceFullGridHeader.get(i), ls_checkingTargetPriceFullGridValue.get(i));
+				}
+				hm_mappingRowData.put(ls_rowHeader.get(indexvalue), hm_checkingTargetPriceFullGridData);
+	System.out.println(ls_rowHeader.get(indexvalue)+"/"+hm_checkingTargetPriceFullGridData.entrySet());	
 				/*if(withoutFirstMaintenance.equals("0")) {
 					if(arrary[1] == null) {
 						arrary[1] = 0f;
