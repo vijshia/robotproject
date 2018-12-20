@@ -34,6 +34,7 @@ public class testRun_Sample {
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
 	Keywords.CheckTenderPriceAfterDiscountUpdate("10", "0");
+	
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("2001", "0");
 	Keywords.GetTargetPrice();
