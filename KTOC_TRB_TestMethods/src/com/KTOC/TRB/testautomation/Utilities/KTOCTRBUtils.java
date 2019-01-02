@@ -96,38 +96,42 @@ public class KTOCTRBUtils {
 	 */
 	public void LaunchBrowser(String frontline, String excelpath) throws Exception {
 		readTestData(frontline, excelpath);
-		if (operatingSystem.equalsIgnoreCase("ios")) {
-			ChromeOptions chromeOptions = new ChromeOptions();
+		try {
+			if (operatingSystem.equalsIgnoreCase("ios")) {
+				ChromeOptions chromeOptions = new ChromeOptions();
 //			chromeOptions.setBinary(new File(System.getProperty("user.dir")));
-			String headless = System.getProperty("headless");
-			if (headless != null && headless.equalsIgnoreCase("true")) {
-				// String PROXY = "23.23.23.23:3128"; //# IP:PORT or HOST:PORT
-				chromeOptions.addArguments("--headless");
-				chromeOptions.addArguments("--no-proxy-server");
-				// chromeOptions.addArguments("--proxy-server=http://%s' % PROXY");
-				chromeOptions.addArguments("--ignore-certificate-errors");
-				chromeOptions.addArguments("--disable-gpu");
+				String headless = System.getProperty("headless");
+				if (headless != null && headless.equalsIgnoreCase("true")) {
+					// String PROXY = "23.23.23.23:3128"; //# IP:PORT or HOST:PORT
+					chromeOptions.addArguments("--headless");
+					chromeOptions.addArguments("--no-proxy-server");
+					// chromeOptions.addArguments("--proxy-server=http://%s' % PROXY");
+					chromeOptions.addArguments("--ignore-certificate-errors");
+					chromeOptions.addArguments("--disable-gpu");
 //				chromeOptions.addArguments("window-size=2000,2000");
-			}
-				driver = new ChromeDriver(chromeOptions);
-				driver.manage().window().setSize(new Dimension(1400,1080));
-			} else if (operatingSystem.equalsIgnoreCase("windows")) {
-			if (browser.equalsIgnoreCase("ff")) {
-				System.setProperty("webdriver.gecko.driver","C:\\Users\\con_svijay02\\Downloads\\geckodriver-v0.23.0-win64\\geckodriver.exe");
-				driver = new FirefoxDriver();
-			} else if (browser.equalsIgnoreCase("ch")) {
-				DesiredCapabilities CHDes = DesiredCapabilities.chrome();
-				ChromeOptions CHOpt = new ChromeOptions();
-				CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
-				File CHPath = new File("C:\\Backups\\Vijay S\\Download Folder\\chromedriver_win32 (2.42)\\chromedriver.exe");
-				System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
-				driver = new ChromeDriver();
-			}
-		}	
-		wait = new WebDriverWait(driver, 150000);
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(360, TimeUnit.SECONDS);
-		driver.get("https://test.salesforce.com");
+				}
+					driver = new ChromeDriver(chromeOptions);
+					driver.manage().window().setSize(new Dimension(1400,1080));
+				} else if (operatingSystem.equalsIgnoreCase("windows")) {
+				if (browser.equalsIgnoreCase("ff")) {
+					System.setProperty("webdriver.gecko.driver","C:\\Users\\con_svijay02\\Downloads\\geckodriver-v0.23.0-win64\\geckodriver.exe");
+					driver = new FirefoxDriver();
+				} else if (browser.equalsIgnoreCase("ch")) {
+					DesiredCapabilities CHDes = DesiredCapabilities.chrome();
+					ChromeOptions CHOpt = new ChromeOptions();
+					CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
+					File CHPath = new File("C:\\Backups\\Vijay S\\Download Folder\\chromedriver_win32 (2.42)\\chromedriver.exe");
+					System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
+					driver = new ChromeDriver();
+				}
+			}	
+			wait = new WebDriverWait(driver, 2000000);
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(420, TimeUnit.SECONDS);
+			driver.get("https://test.salesforce.com");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
