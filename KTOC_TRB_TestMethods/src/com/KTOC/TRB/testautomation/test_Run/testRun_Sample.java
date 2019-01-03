@@ -35,7 +35,7 @@ public class testRun_Sample {
 	Keywords.pricingIconClick();
 	Keywords.CheckTenderPriceAfterDiscountUpdate("10", "0");
 	
-//	Keywords.checkingTargetPriceFullGrid();
+	Keywords.checkingTargetPriceFullGrid();
 	
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("2001", "0");
@@ -43,7 +43,7 @@ public class testRun_Sample {
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("11", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("1002", "3");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("1002", "0");
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("1003", "6");
 	Keywords.GetTargetPrice();

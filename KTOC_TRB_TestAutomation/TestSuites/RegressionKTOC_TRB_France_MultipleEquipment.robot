@@ -33,7 +33,7 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 9.Check TenderPrice With FirstMaintenance for Elevator    
     Get Target Price
 10.Validate Discount With FirstMaintenance for Elevator    
-    Verify Discount By Changing The Tender Price    1004    3
+    Verify Discount By Changing The Tender Price    1004    0
 11.Check Discount With FirstMaintenance for Elevator    
     Get Target Price
 12.Change and Validate Discount With FirstMaintenance for Elevator    

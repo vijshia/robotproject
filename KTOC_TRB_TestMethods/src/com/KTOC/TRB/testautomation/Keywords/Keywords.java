@@ -380,13 +380,15 @@ public class Keywords extends KTOCTRBUtils{
 			WebElement element_equipment = gettingWebElement(tree_equipmentID);
 			click_Javascript(element_equipment);
 //			System.out.println("Equipment clicked back");
-			WebElement element_customerID1 = gettingWebElement(txt_CustomerID);
-			wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			element_customerID1.clear();
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			enteringValues(txt_CustomerID, customerid);
-			System.out.println("CustomerID: "+customerid+" entered");
+			if(frontlineAssigned.equals("AUSTRALIA")) {
+				WebElement element_customerID1 = gettingWebElement(txt_CustomerID);
+				wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				element_customerID1.clear();
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				enteringValues(txt_CustomerID, customerid);
+				System.out.println("CustomerID: "+customerid+" entered");
+			}
 			WebElement element_Supervisor = gettingWebElement(dd_supervisor); //*[@data-ctcwgtname='Supervisor_Select']
 			wait.until(ExpectedConditions.elementToBeClickable(element_Supervisor)); 
 			element_Supervisor.click();
@@ -1584,8 +1586,10 @@ public class Keywords extends KTOCTRBUtils{
 			clickonButton(value_firstMaintenance);
 			System.out.println("First maintenance: " + FirstMaintenance + " Clicked");
 			if(!FirstMaintenance.equals("0") && !frontlineAssigned.equals("CANADA")) {
+				System.out.println("HI----");
 				waitForVisibilityOfElementLocated(header_firstMaintenance);
-			} else if(frontlineAssigned.equals("AUSTRALIA") && FirstMaintenance.equals("0")) {
+				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(grid_allValues));
+			} else if(FirstMaintenance.equals("0")) { //frontlineAssigned.equals("AUSTRALIA") && 
 				List<WebElement>headers_priceOverview=gettingWebElementsfromList(By.xpath("//*[text()='Discount']/../..//div/div"));
 				wait.until(ExpectedConditions.visibilityOfAllElements(headers_priceOverview));
 				for(WebElement header_priceOverview:headers_priceOverview) {
@@ -1717,7 +1721,6 @@ public class Keywords extends KTOCTRBUtils{
 			waitForVisibilityOfElementLocated(grid_discount);
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(grid_allValues));
 			List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allValues);
-			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_PriceOverview));
 			for (WebElement Element : Elements_PriceOverview) {
 				wait.until(ExpectedConditions.visibilityOf(Element));
 //		System.out.println(Element.getAttribute("id"));
@@ -1929,9 +1932,9 @@ public class Keywords extends KTOCTRBUtils{
 			List<String> ls_checkingTargetPriceFullGridHeader=new LinkedList<>();
 //		List<Float> ls_checkingTargetPriceFullGridValue=new LinkedList<>();
 //			ls_checkingTargetPriceFullGridHeader.add("Description");
+			ls_checkingTargetPriceFullGridHeader.add("Tender Price");
 			ls_checkingTargetPriceFullGridHeader.add("Target Price");
 			ls_checkingTargetPriceFullGridHeader.add("Discount");
-			ls_checkingTargetPriceFullGridHeader.add("Tender Price");
 			ls_checkingTargetPriceFullGridHeader.add("First Maintenance");
 			List<Float> ls_checkingTargetPriceFullGridValue = null;
 			int DescriptiontoIterate=0;
@@ -1944,15 +1947,16 @@ public class Keywords extends KTOCTRBUtils{
 				DescriptiontoIterate++;
 				}
 			}
-			System.out.println("DescriptiontoIterate"+DescriptiontoIterate);
+			System.out.println("DescriptiontoIterate:"+DescriptiontoIterate);
 			Float arrary[] = new Float[2];
 			Float TargetPrice = null, Firstmaintenance = null, Discount = null;
 //System.out.println("Elements_PriceOverviewsize:"+Elements_PriceOverview.size());
 			int indexvalue=0;
 			List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allValues);
 			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_PriceOverview));
+			ls_checkingTargetPriceFullGridValue=new LinkedList<>();
 				for (WebElement Element : Elements_PriceOverview) {
-					ls_checkingTargetPriceFullGridValue=new LinkedList<>();
+
 				System.out.println(Element.getAttribute("id"));
 					if (!Element.getText().isEmpty() || Element.getAttribute("value") != null) {
 						if (Element.getAttribute("value") == null) {
@@ -1967,15 +1971,17 @@ public class Keywords extends KTOCTRBUtils{
 										element_readTenderPrice = element_readTenderPrice.replace(",", "");
 									}
 									TenderPrice = Float.valueOf(element_readTenderPrice);
+									ls_checkingTargetPriceFullGridValue.add(TenderPrice);
 				System.out.println("****TenderPrice==>" + TenderPrice);
 								} else {
 									String element_readDiscount = Element.getText().replaceAll("[% ]", "");
 									Discount = Float.valueOf(element_readDiscount);
+									ls_checkingTargetPriceFullGridValue.add(Discount);
 				System.out.println("****Discount:" + Discount);
 								}
 							}
-							ls_checkingTargetPriceFullGridValue.add(Discount);
-							ls_checkingTargetPriceFullGridValue.add(TenderPrice);
+//							ls_checkingTargetPriceFullGridValue.add(Discount);
+//							ls_checkingTargetPriceFullGridValue.add(TenderPrice);
 						} else {
 		        System.out.println("****Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
 							String element_read = Element.getAttribute("value").replaceAll("[€  $]", "");
@@ -2004,14 +2010,16 @@ public class Keywords extends KTOCTRBUtils{
 							if (arrary[0] > arrary[1]) {
 								TargetPrice = arrary[0];
 								Firstmaintenance = arrary[1];
+								ls_checkingTargetPriceFullGridValue.add(TargetPrice);
+								ls_checkingTargetPriceFullGridValue.add(Firstmaintenance);
 				System.out.println("CONDTION_1 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
 							} else {
 								TargetPrice = arrary[1];
 								Firstmaintenance = arrary[0];
 				System.out.println("CONDTION_2 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
 							}
-							ls_checkingTargetPriceFullGridValue.add(TargetPrice);
-							ls_checkingTargetPriceFullGridValue.add(Firstmaintenance);
+//							ls_checkingTargetPriceFullGridValue.add(TargetPrice);
+//							ls_checkingTargetPriceFullGridValue.add(Firstmaintenance);
 						/*	ls_checkingTargetPriceFullGridValue.add(Discount);
 							ls_checkingTargetPriceFullGridValue.add(TenderPrice);
 							int toIterate=4;
