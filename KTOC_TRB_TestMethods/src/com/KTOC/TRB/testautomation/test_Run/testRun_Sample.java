@@ -46,19 +46,22 @@ public class testRun_Sample {
 	Keywords.VerifyDiscountByChangingTheTenderPrice("1002", "0");
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("1003", "6");
-	Keywords.GetTargetPrice();*/
+	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
 	
-	Keywords.getRegionalDiscountFullGrid("0");//fullGrid
+//	Keywords.getRegionalDiscountFullGrid();//fullGrid
 	
 	Keywords.verifyTargetPriceDisplayedCorrectly("0");
 	//7.CheckRegionalFactorWhenSalesOfficeIsChanged(additionallyforCanada:ITEandlabourrate)
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
-	Keywords.verifyTargetPriceDisplayedCorrectly("0");
+	Keywords.verifyTargetPriceDisplayedCorrectly("0");*/
 	//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
 	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
+	
+	Keywords.validateDetailBreakdownTabFullGrid();//fullGrid
+	
 	Keywords.validateDetailBreakdownTab();
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
 	Keywords.validateDetailBreakdownTab();
