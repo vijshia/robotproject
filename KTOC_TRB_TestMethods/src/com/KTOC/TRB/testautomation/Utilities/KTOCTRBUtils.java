@@ -300,6 +300,15 @@ public class KTOCTRBUtils {
 			    }
 			  };
 			}
+	
+	public boolean isSiblingPresent(WebElement element, By by) {
+	    try {
+	    	element.findElements(by);
+	        return true;
+	    } catch (NoSuchElementException e) {
+	        return false;
+	    }
+	}
 	/**
 	 **Reuse method, it will try continuously till element is clicked
 	 * @param locator: Locator of the element to be identified

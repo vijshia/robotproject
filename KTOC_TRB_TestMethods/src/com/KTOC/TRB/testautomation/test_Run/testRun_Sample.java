@@ -35,9 +35,9 @@ public class testRun_Sample {
 	Keywords.pricingIconClick();
 	Keywords.CheckTenderPriceAfterDiscountUpdate("10", "0");
 	
-	Keywords.checkingTargetPriceFullGrid();
+//	Keywords.checkingTargetPriceFullGrid(); //fullGrid
 	
-	Keywords.GetTargetPrice();
+	/*Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("2001", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
@@ -46,9 +46,12 @@ public class testRun_Sample {
 	Keywords.VerifyDiscountByChangingTheTenderPrice("1002", "0");
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("1003", "6");
-	Keywords.GetTargetPrice();
+	Keywords.GetTargetPrice();*/
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
+	
+	Keywords.getRegionalDiscountFullGrid("0");//fullGrid
+	
 	Keywords.verifyTargetPriceDisplayedCorrectly("0");
 	//7.CheckRegionalFactorWhenSalesOfficeIsChanged(additionallyforCanada:ITEandlabourrate)
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();

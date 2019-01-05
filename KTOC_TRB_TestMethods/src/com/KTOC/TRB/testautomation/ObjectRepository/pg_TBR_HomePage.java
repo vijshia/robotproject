@@ -12,7 +12,7 @@ import org.openqa.selenium.By;
 public class pg_TBR_HomePage {
 	
 	//KTOC-TRB HomePage, addEquipmentIDElevator
-	public static By firstFrame = By.xpath("//iframe[starts-with(@scrolling,'yes') and starts-with(@id,'vfFrameId_')]");
+	public static By firstFrame = By.xpath("//iframe[starts-with(@scrolling,'yes')]"); // and starts-with(@id,'vfFrameId_')
 	public static By secondFrame = By.id("clientTarget");
 	public static By btn_productrelease_OK = By.xpath("//*[@data-ctcname='Product_Release_Version_Ok_B']");
 	public static By elementtoInvisible = By.xpath("//*[@id='gp' and @class='gp']");
