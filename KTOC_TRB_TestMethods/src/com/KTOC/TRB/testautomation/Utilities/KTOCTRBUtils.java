@@ -50,6 +50,7 @@ public class KTOCTRBUtils {
 	public static int MS5HODatetoChange=2;
 	public static Boolean istenderPrice = false;
 	public static Boolean isMultipleEquipment = false;
+	public static int showInstallationCalculation=0;
 	public static Float regionalDiscount;
 	public static Float regionalDiscounttoChange;
 	public static Float check_showtotal_ITEfactor;

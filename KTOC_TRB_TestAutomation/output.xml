@@ -1,1403 +1,1393 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20181222 00:52:25.995">
+<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20190109 13:52:49.569">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation" name="KTOC TRB TestAutomation" id="s1">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites" name="TestSuites" id="s1-s1">
-<suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites\RegressionKTOC_TRB_France_MultipleEquipment.robot" name="RegressionKTOC TRB France MultipleEquipment" id="s1-s1-s1">
+<suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites\RegressionKTOC_TRB_France.robot" name="RegressionKTOC TRB France" id="s1-s1-s1">
 <kw type="setup" library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Launch Browser">
 <arguments>
 <arg>france</arg>
 <arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
 </arguments>
-<msg level="INFO" timestamp="20181222 00:52:39.772">1545420151157	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.23srBCaCmiv6"
-1545420153629	Marionette	INFO	Listening on port 55268
-1545420153899	Marionette	WARN	TLS certificate errors will be ignored for this session
-Dec 22, 2018 12:52:34 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+<msg level="INFO" timestamp="20190109 13:53:05.800">1547022175984	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.hIhR1dkAMCYN"
+1547022178769	Marionette	INFO	Listening on port 49651
+1547022179213	Marionette	WARN	TLS certificate errors will be ignored for this session
+Jan 09, 2019 1:52:59 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C</msg>
-<status endtime="20181222 00:52:39.803" starttime="20181222 00:52:27.568" status="PASS"></status>
+<status endtime="20190109 13:53:05.820" starttime="20190109 13:52:52.338" status="PASS"></status>
 </kw>
 <test name="1.Logon To Salesforce" id="s1-s1-s1-t1">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Loginto Salesforce">
-<status endtime="20181222 00:52:43.745" starttime="20181222 00:52:39.852" status="PASS"></status>
+<status endtime="20190109 13:53:10.379" starttime="20190109 13:53:05.863" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:52:43.756" starttime="20181222 00:52:39.827" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:53:10.388" starttime="20190109 13:53:05.842" status="PASS"></status>
 </test>
 <test name="2.Verify Creating Opportunity and Mapping It With FLTender" id="s1-s1-s1-t2">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Create Opportunity OR Search Opportunity">
-<msg level="INFO" timestamp="20181222 00:53:06.811">Opportunity Name:KOFCOL TRB SFA entered in Search box
+<msg level="INFO" timestamp="20190109 13:53:38.517">Opportunity Name:KOFCOL TRB SFA entered in Search box
 KOFCOL TRB SFA has been clicked</msg>
-<status endtime="20181222 00:53:06.816" starttime="20181222 00:52:43.793" status="PASS"></status>
+<status endtime="20190109 13:53:38.526" starttime="20190109 13:53:10.408" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:53:06.823" starttime="20181222 00:52:43.777" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:53:38.537" starttime="20190109 13:53:10.398" status="PASS"></status>
 </test>
 <test name="3.Verify Tender Created Successfully for Elevator" id="s1-s1-s1-t3">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Navigateto KTOCTRB">
-<msg level="INFO" timestamp="20181222 00:53:18.410">Release 1723 is Selected
+<msg level="INFO" timestamp="20190109 13:53:48.059">Release 1723 is Selected
 Clicked on OK button</msg>
-<status endtime="20181222 00:53:18.416" starttime="20181222 00:53:06.845" status="PASS"></status>
+<status endtime="20190109 13:53:48.066" starttime="20190109 13:53:38.579" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Equipment ID Elevator">
-<msg level="INFO" timestamp="20181222 00:53:31.541">10503512 EquipmentID entered
+<msg level="INFO" timestamp="20190109 13:54:17.789">10503512 EquipmentID entered
 Equipment loader clicked
 checkbox clicked
 Change button clicked</msg>
-<status endtime="20181222 00:53:31.544" starttime="20181222 00:53:18.422" status="PASS"></status>
+<status endtime="20190109 13:54:17.792" starttime="20190109 13:53:48.079" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Hand Over Date Is Greater Than Installation Date">
-<msg level="INFO" timestamp="20181222 00:53:33.221">Project clicked
+<msg level="INFO" timestamp="20190109 13:54:18.760">Project clicked
 Current MS5HO Date: 25/07/2020
 MS5HODate Changed to: 27/07/2020</msg>
-<status endtime="20181222 00:53:33.230" starttime="20181222 00:53:31.549" status="PASS"></status>
+<status endtime="20190109 13:54:18.767" starttime="20190109 13:54:17.796" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Sales Officeis Selected">
-<msg level="INFO" timestamp="20181222 00:53:34.416">SalesOffice value VB FRRW Selected</msg>
-<status endtime="20181222 00:53:34.424" starttime="20181222 00:53:33.236" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:54:19.431">SalesOffice value VB FRRW Selected</msg>
+<status endtime="20190109 13:54:19.445" starttime="20190109 13:54:18.771" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Additionalfieldsin Project Overviewfor Canada">
-<status endtime="20181222 00:53:34.443" starttime="20181222 00:53:34.431" status="PASS"></status>
+<status endtime="20190109 13:54:19.484" starttime="20190109 13:54:19.463" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Supervisor">
-<msg level="INFO" timestamp="20181222 00:53:36.875">CustomerID: A10137873 entered
-06114080 selected in Supervisor</msg>
-<status endtime="20181222 00:53:36.881" starttime="20181222 00:53:34.447" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:54:20.741">06114080 selected in Supervisor</msg>
+<status endtime="20190109 13:54:20.751" starttime="20190109 13:54:19.502" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Equipment In Service">
-<msg level="INFO" timestamp="20181222 00:53:38.922">LIS Elevator is clicked in Equipment InService
+<msg level="INFO" timestamp="20190109 13:54:23.321">LIS Elevator is clicked in Equipment InService
 HydraulicElevCheck clicked</msg>
-<status endtime="20181222 00:53:38.932" starttime="20181222 00:53:36.893" status="PASS"></status>
+<status endtime="20190109 13:54:23.325" starttime="20190109 13:54:20.763" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Template To Be Uploaded">
-<msg level="INFO" timestamp="20181222 00:53:42.284">Rightclick performed on Equipment
+<msg level="INFO" timestamp="20190109 13:54:26.648">Rightclick performed on Equipment
 Open Templates clicked
 Automation_Template_002 Entered in search
 Shared templates radio button Clicked
 Automation_Template_002 Template Clicked</msg>
-<status endtime="20181222 00:53:42.289" starttime="20181222 00:53:38.944" status="PASS"></status>
+<status endtime="20190109 13:54:26.660" starttime="20190109 13:54:23.329" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Tender Consistency">
-<msg level="INFO" timestamp="20181222 00:53:46.166">PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+<msg level="INFO" timestamp="20190109 13:54:30.486">PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")</msg>
-<status endtime="20181222 00:53:46.168" starttime="20181222 00:53:42.296" status="PASS"></status>
+<status endtime="20190109 13:54:30.492" starttime="20190109 13:54:26.671" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Tender Number">
-<msg level="INFO" timestamp="20181222 00:53:46.203">Tender # is :T-0002465828</msg>
-<status endtime="20181222 00:53:46.206" starttime="20181222 00:53:46.173" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:54:30.536">Tender # is :T-0002466231</msg>
+<status endtime="20190109 13:54:30.539" starttime="20190109 13:54:30.497" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:53:46.211" starttime="20181222 00:53:06.837" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:30.546" starttime="20190109 13:53:38.556" status="PASS"></status>
 </test>
-<test name="4.Validate TenderPrice and Discount Without FirstMaintenance for Elevator" id="s1-s1-s1-t4">
+<test name="4.Validate TenderPrice Without FirstMaintenance for Elevator" id="s1-s1-s1-t4">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Pricing Icon Click">
-<msg level="INFO" timestamp="20181222 00:53:46.660">pricing icon Clicked</msg>
-<status endtime="20181222 00:53:46.666" starttime="20181222 00:53:46.236" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:54:30.886">pricing icon Clicked</msg>
+<status endtime="20190109 13:54:30.893" starttime="20190109 13:54:30.561" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
 <arguments>
 <arg>10</arg>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20181222 00:53:51.268">Discount entered as: 10
+<msg level="INFO" timestamp="20190109 13:54:34.927">Discount entered as: 10
 First maintenance: 0 Clicked</msg>
-<status endtime="20181222 00:53:51.280" starttime="20181222 00:53:46.675" status="PASS"></status>
+<status endtime="20190109 13:54:34.934" starttime="20190109 13:54:30.903" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:53:51.301" starttime="20181222 00:53:46.221" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:34.938" starttime="20190109 13:54:30.554" status="PASS"></status>
 </test>
 <test name="5.Check TenderPrice Without FirstMaintenance for Elevator" id="s1-s1-s1-t5">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:53:51.753">TargetPrice:3779.41
+<msg level="INFO" timestamp="20190109 13:54:35.760">TargetPrice:3779.41
 Firstmaintenance:0.0
 Discount:10.0
 *** TenderPriceFinal:3401.47 / CurrentTenderPrice:3401.47 ***
 is TenderPriceFinal VS ApplicationTenderPrice Equal: true ***
 null Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: true ***</msg>
-<status endtime="20181222 00:53:51.757" starttime="20181222 00:53:51.353" status="PASS"></status>
+<status endtime="20190109 13:54:35.763" starttime="20190109 13:54:34.949" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:53:51.760" starttime="20181222 00:53:51.325" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:35.766" starttime="20190109 13:54:34.944" status="PASS"></status>
 </test>
 <test name="6.Validate Discount Without FirstMaintenance for Elevator" id="s1-s1-s1-t6">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
 <arguments>
-<arg>1001</arg>
+<arg>2001</arg>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20181222 00:53:54.134">TenderPrice entered as: 1001
+<msg level="INFO" timestamp="20190109 13:54:38.811">TenderPrice entered as: 2001
 First maintenance: 0 Clicked</msg>
-<status endtime="20181222 00:53:54.149" starttime="20181222 00:53:51.771" status="PASS"></status>
+<status endtime="20190109 13:54:38.814" starttime="20190109 13:54:35.779" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:53:54.157" starttime="20181222 00:53:51.765" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:38.818" starttime="20190109 13:54:35.771" status="PASS"></status>
 </test>
 <test name="7.Check Discount Without FirstMaintenance for Elevator" id="s1-s1-s1-t7">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:53:54.541">TargetPrice:3779.41
+<msg level="INFO" timestamp="20190109 13:54:39.643">TargetPrice:3779.41
 Firstmaintenance:0.0
-TenderPrice:1001.0
-DiscountFinal:73.51 / Discount shown in Application:73.51
+TenderPrice:2001.0
+DiscountFinal:47.06 / Discount shown in Application:47.06
 *** is FinalDiscount VS ApplicationDiscount Equal:true ***
 null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
-<status endtime="20181222 00:53:54.545" starttime="20181222 00:53:54.179" status="PASS"></status>
+<status endtime="20190109 13:54:39.646" starttime="20190109 13:54:38.832" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:53:54.555" starttime="20181222 00:53:54.169" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:39.650" starttime="20190109 13:54:38.825" status="PASS"></status>
 </test>
-<test name="8.Validate TenderPrice and Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t8">
+<test name="8.Validate TenderPrice With FirstMaintenance for Elevator" id="s1-s1-s1-t8">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
 <arguments>
 <arg>11</arg>
 <arg>3</arg>
 </arguments>
-<msg level="INFO" timestamp="20181222 00:53:57.534">Discount entered as: 11
+<msg level="INFO" timestamp="20190109 13:54:42.891">Discount entered as: 11
 First maintenance: 3 Clicked</msg>
-<status endtime="20181222 00:53:57.538" starttime="20181222 00:53:54.566" status="PASS"></status>
+<status endtime="20190109 13:54:42.897" starttime="20190109 13:54:39.661" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:53:57.540" starttime="20181222 00:53:54.560" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:42.905" starttime="20190109 13:54:39.656" status="PASS"></status>
 </test>
 <test name="9.Check TenderPrice With FirstMaintenance for Elevator" id="s1-s1-s1-t9">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:53:58.157">TargetPrice:4179.41
+<msg level="INFO" timestamp="20190109 13:54:43.941">TargetPrice:4179.41
 Firstmaintenance:400.0
 Discount:11.0
 *** TenderPriceFinal:3763.68 / CurrentTenderPrice:3763.67 ***
 is TenderPriceFinal VS ApplicationTenderPrice Equal: false ***
 -0.01 Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: true ***</msg>
-<status endtime="20181222 00:53:58.159" starttime="20181222 00:53:57.551" status="PASS"></status>
+<status endtime="20190109 13:54:43.945" starttime="20190109 13:54:42.923" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:53:58.162" starttime="20181222 00:53:57.546" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:43.950" starttime="20190109 13:54:42.914" status="PASS"></status>
 </test>
 <test name="10.Validate Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t10">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
 <arguments>
-<arg>1004</arg>
-<arg>3</arg>
+<arg>1002</arg>
+<arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20181222 00:54:00.704">TenderPrice entered as: 1004
-First maintenance: 3 Clicked</msg>
-<status endtime="20181222 00:54:00.707" starttime="20181222 00:53:58.171" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:54:48.061">TenderPrice entered as: 1002
+First maintenance: 0 Clicked</msg>
+<status endtime="20190109 13:54:48.064" starttime="20190109 13:54:43.961" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:00.711" starttime="20181222 00:53:58.167" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:48.067" starttime="20190109 13:54:43.955" status="PASS"></status>
 </test>
 <test name="11.Check Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t11">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:54:01.048">TargetPrice:4179.41
-Firstmaintenance:400.0
-TenderPrice:1004.0
-DiscountFinal:84.02 / Discount shown in Application:84.02
+<msg level="INFO" timestamp="20190109 13:54:48.918">TargetPrice:3779.41
+Firstmaintenance:0.0
+TenderPrice:602.0
+DiscountFinal:84.07 / Discount shown in Application:84.07
 *** is FinalDiscount VS ApplicationDiscount Equal:true ***
 null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
-<status endtime="20181222 00:54:01.050" starttime="20181222 00:54:00.718" status="PASS"></status>
+<status endtime="20190109 13:54:48.923" starttime="20190109 13:54:48.079" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:01.053" starttime="20181222 00:54:00.714" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:48.926" starttime="20190109 13:54:48.074" status="PASS"></status>
 </test>
 <test name="12.Change and Validate Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t12">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
 <arguments>
-<arg>1005</arg>
+<arg>1003</arg>
 <arg>6</arg>
 </arguments>
-<msg level="INFO" timestamp="20181222 00:54:03.476">TenderPrice entered as: 1005
+<msg level="INFO" timestamp="20190109 13:54:52.929">TenderPrice entered as: 1003
 First maintenance: 6 Clicked</msg>
-<status endtime="20181222 00:54:03.478" starttime="20181222 00:54:01.060" status="PASS"></status>
+<status endtime="20190109 13:54:52.933" starttime="20190109 13:54:48.934" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:03.481" starttime="20181222 00:54:01.056" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:52.939" starttime="20190109 13:54:48.930" status="PASS"></status>
 </test>
 <test name="13.Check Changed Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t13">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:54:03.823">TargetPrice:4179.41
-Firstmaintenance:400.0
-TenderPrice:1005.0
-DiscountFinal:83.99 / Discount shown in Application:83.99
+<msg level="INFO" timestamp="20190109 13:54:54.230">TargetPrice:4579.41
+Firstmaintenance:800.0
+TenderPrice:1803.0
+DiscountFinal:73.46 / Discount shown in Application:73.46
 *** is FinalDiscount VS ApplicationDiscount Equal:true ***
 null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
-<status endtime="20181222 00:54:03.829" starttime="20181222 00:54:03.489" status="PASS"></status>
+<status endtime="20190109 13:54:54.233" starttime="20190109 13:54:52.951" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:03.831" starttime="20181222 00:54:03.484" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:54.235" starttime="20190109 13:54:52.945" status="PASS"></status>
 </test>
 <test name="14.Check Regional Factor At SalesOffice Level for Elevator" id="s1-s1-s1-t14">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
-<msg level="INFO" timestamp="20181222 00:54:05.247">Additional Discount Icon CLICKED</msg>
-<status endtime="20181222 00:54:05.249" starttime="20181222 00:54:03.838" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:54:55.017">Additional Discount Icon CLICKED</msg>
+<status endtime="20190109 13:54:55.021" starttime="20190109 13:54:54.249" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
 <arguments>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20181222 00:54:06.805">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:false *** / read_Regionaldiscountoncomponent_Percent:4.18 / regionalDiscount:4.0
-is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:false *** / final_Regionaldiscountoncomponent:194.55 / read_Regionaldiscountoncomponent:203.19
-is final_TargetPrice VS read_TargetPrice equal:false *** / final_TargetPrice:4669.32 / read_TargetPrice:4579.41
--0.02 Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: false ***</msg>
-<msg level="INFO" html="yes" timestamp="20181222 00:54:06.806">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Dec2018_12_54_06AM\SS_22Dec2018_12_54_06AM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Dec2018_12_54_06AM\SS_22Dec2018_12_54_06AM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
-<status endtime="20181222 00:54:06.829" starttime="20181222 00:54:05.252" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:54:56.729">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:true *** / read_Regionaldiscountoncomponent_Percent:4.18 / regionalDiscount:4.18
+is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:false *** / final_Regionaldiscountoncomponent:203.31 / read_Regionaldiscountoncomponent:203.19
+is final_TargetPrice VS read_TargetPrice equal:false *** / final_TargetPrice:4660.56 / read_TargetPrice:4579.41
+null Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: true ***</msg>
+<msg level="INFO" html="yes" timestamp="20190109 13:54:56.730">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\09Jan2019_01_54_56PM\SS_09Jan2019_01_54_56PM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\09Jan2019_01_54_56PM\SS_09Jan2019_01_54_56PM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
+<status endtime="20190109 13:54:56.748" starttime="20190109 13:54:55.025" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:06.841" starttime="20181222 00:54:03.834" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:54:56.760" starttime="20190109 13:54:54.241" status="PASS"></status>
 </test>
 <test name="15.Check Regional Factor When SalesOffice Is Changed for Elevator" id="s1-s1-s1-t15">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
-<msg level="INFO" timestamp="20181222 00:54:11.455">ToConfiguration icon clicked
+<msg level="INFO" timestamp="20190109 13:55:00.943">ToConfiguration icon clicked
 Project clicked
 SalesOffice value VB FRPP Selected
 pricing icon Clicked</msg>
-<status endtime="20181222 00:54:11.462" starttime="20181222 00:54:06.873" status="PASS"></status>
+<status endtime="20190109 13:55:00.950" starttime="20190109 13:54:56.780" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
-<msg level="INFO" timestamp="20181222 00:54:13.547">Additional Discount Icon CLICKED</msg>
-<status endtime="20181222 00:54:13.549" starttime="20181222 00:54:11.481" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:55:03.677">Additional Discount Icon CLICKED</msg>
+<status endtime="20190109 13:55:03.680" starttime="20190109 13:55:00.956" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
 <arguments>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20181222 00:54:14.983">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:false *** / read_Regionaldiscountoncomponent_Percent:-3.34 / regionalDiscount:-5.0
+<msg level="INFO" timestamp="20190109 13:55:05.659">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:false *** / read_Regionaldiscountoncomponent_Percent:-3.34 / regionalDiscount:-5.0
 is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:false *** / final_Regionaldiscountoncomponent:-240.68 / read_Regionaldiscountoncomponent:-160.55
 is final_TargetPrice VS read_TargetPrice equal:false *** / final_TargetPrice:5054.32 / read_TargetPrice:4974.19
 -0.02 Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: false ***</msg>
-<msg level="INFO" html="yes" timestamp="20181222 00:54:14.985">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Dec2018_12_54_14AM\SS_22Dec2018_12_54_14AM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Dec2018_12_54_14AM\SS_22Dec2018_12_54_14AM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
-<status endtime="20181222 00:54:15.000" starttime="20181222 00:54:13.553" status="PASS"></status>
+<msg level="INFO" html="yes" timestamp="20190109 13:55:05.660">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\09Jan2019_01_55_05PM\SS_09Jan2019_01_55_05PM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\09Jan2019_01_55_05PM\SS_09Jan2019_01_55_05PM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
+<status endtime="20190109 13:55:05.669" starttime="20190109 13:55:03.684" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:15.009" starttime="20181222 00:54:06.859" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:55:05.674" starttime="20190109 13:54:56.768" status="PASS"></status>
 </test>
-<test name="16.Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator" id="s1-s1-s1-t16">
+<test name="16 Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator" id="s1-s1-s1-t16">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Primary Sales Office">
 <arguments>
 <arg>france</arg>
 <arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
 </arguments>
-<msg level="INFO" timestamp="20181222 00:54:18.513">ToConfiguration icon clicked
+<msg level="INFO" timestamp="20190109 13:55:09.081">ToConfiguration icon clicked
 Project clicked
 SalesOffice value VB FRRW Selected
 pricing icon Clicked</msg>
-<status endtime="20181222 00:54:18.519" starttime="20181222 00:54:15.036" status="PASS"></status>
+<status endtime="20190109 13:55:09.088" starttime="20190109 13:55:05.685" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
-<msg level="INFO" timestamp="20181222 00:54:26.738">Detailed breakdown Clicked
+<msg level="INFO" timestamp="20190109 13:55:20.387">Detailed breakdown Clicked
 ROPES CLICKED
-Show TotalCost Calculation Details CLICKED</msg>
-<msg level="INFO" timestamp="20181222 00:54:26.746">org.openqa.selenium.StaleElementReferenceException: The element reference of &lt;div id="v6054_0" class="caofsd6s6gj807 cvkr530esrf001"&gt; is stale; either the element is no longer attached to the DOM, it is not in the current frame context, or the document has been refreshed
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '172.20.10.3', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 5032, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
-	at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:128)
-	at com.KTOC.TRB.testautomation.Keywords.Keywords.validateDetailBreakdownTab(Keywords.java:953)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.python.core.PyReflectedFunction.__call__(PyReflectedFunction.java:186)
-	at org.python.core.PyObject.__call__(PyObject.java:419)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.running.librarykeywordrunner$py.f$13(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:89)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:124)
-	at org.python.core.PyFunction.__call__(PyFunction.java:403)
-	at robot.running.librarykeywordrunner$py._run_with_signal_monitoring$16(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:103)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run_with_output_captured_and_signal_monitor$15(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:96)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run$8(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:77)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py.run$6(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:56)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.steprunner$py.run_step$4(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:57)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.steprunner$py.run_steps$3(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:47)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.runner$py.visit_test$7(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py:160)
-	at robot.running.runner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testcase$py.visit$7(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py:74)
-	at robot.model.testcase$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.model$py.run$17(C:\jython2.7.0\Lib\site-packages\robot\running\model.py:250)
-	at robot.running.model$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\model.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at org.python.pycode._pyx10.main$3(C:\jython2.7.0\Lib\site-packages\robot\run.py:452)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.utils.application$py._execute$10(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:94)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.utils.application$py.execute_cli$5(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:49)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.pycode._pyx10.run_cli$7(C:\jython2.7.0\Lib\site-packages\robot\run.py:489)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:131)
-	at org.python.core.PyFunction.__call__(PyFunction.java:413)
-	at org.python.pycode._pyx10.f$0(C:\jython2.7.0\Lib\site-packages\robot\run.py:550)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyCode.call(PyCode.java:18)
-	at org.python.core.Py.runCode(Py.java:1386)
-	at org.python.core.Py.exec(Py.java:1430)
-	at runpy$py._run_code$9(C:\jython2.7.0\Lib\runpy.py:73)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyFunction.function___call__(PyFunction.java:471)
-	at org.python.core.PyFunction.__call__(PyFunction.java:466)
-	at org.python.core.PyFunction.__call__(PyFunction.java:456)
-	at runpy$py._run_module_as_main$14(C:\jython2.7.0\Lib\runpy.py:161)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyFunction.__call__(PyFunction.java:418)
-	at org.python.util.jython.runModule(jython.java:199)
-	at org.python.util.jython.runModule(jython.java:191)
-	at org.python.util.jython.run(jython.java:402)
-	at org.python.util.jython.main(jython.java:142)</msg>
-<msg level="FAIL" timestamp="20181222 00:54:26.805">IllegalStateException: failure 'Validate Detail Breakdown Tab Failed due to: org.openqa.selenium.StaleElementReferenceException: The element reference of &lt;div id="v6054_0" class="caofsd6s6gj807 cvkr530esrf001"&gt; is stale; either the element is no longer attached to the DOM, it is not in the current frame context, or the document has been refreshed
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '172.20.10.3', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 5032, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840'</msg>
-<status endtime="20181222 00:54:26.810" starttime="20181222 00:54:18.528" status="FAIL"></status>
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.00 / showtotal_ITEfactor:2.00
+check_showtotal_Referencehours:11.16 / showtotal_Referencehours:11.16
+check_showtotal_Labourrate:61.90 / showtotal_Labourrate:61.90
+LabourRate:61.90 / showtotal_Labourrate:61.90
+*** is_showtotal_ITEfactor: true *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
+<status endtime="20190109 13:55:20.391" starttime="20190109 13:55:09.097" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:26.818" starttime="20181222 00:54:15.023" status="FAIL">IllegalStateException: failure 'Validate Detail Breakdown Tab Failed due to: org.openqa.selenium.StaleElementReferenceException: The element reference of &lt;div id="v6054_0" class="caofsd6s6gj807 cvkr530esrf001"&gt; is stale; either the element is no longer attached to the DOM, it is not in the current frame context, or the document has been refreshed
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '172.20.10.3', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 5032, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840'</status>
+<status critical="yes" endtime="20190109 13:55:20.396" starttime="20190109 13:55:05.680" status="PASS"></status>
 </test>
 <test name="17 Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator" id="s1-s1-s1-t17">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
-<msg level="INFO" timestamp="20181222 00:54:30.135">ToConfiguration icon clicked
+<msg level="INFO" timestamp="20190109 13:55:24.865">ToConfiguration icon clicked
 Project clicked
 SalesOffice value VB FRPP Selected
 pricing icon Clicked</msg>
-<status endtime="20181222 00:54:30.144" starttime="20181222 00:54:26.841" status="PASS"></status>
+<status endtime="20190109 13:55:24.870" starttime="20190109 13:55:20.407" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
-<msg level="INFO" timestamp="20181222 00:54:37.094">Detailed breakdown Clicked
+<msg level="INFO" timestamp="20190109 13:55:36.713">Detailed breakdown Clicked
 ROPES CLICKED
-Show TotalCost Calculation Details CLICKED</msg>
-<msg level="INFO" timestamp="20181222 00:54:37.101">java.lang.IndexOutOfBoundsException: Index: 4, Size: 4
-	at java.util.LinkedList.checkElementIndex(LinkedList.java:555)
-	at java.util.LinkedList.get(LinkedList.java:476)
-	at com.KTOC.TRB.testautomation.Keywords.Keywords.validateDetailBreakdownTab(Keywords.java:982)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.python.core.PyReflectedFunction.__call__(PyReflectedFunction.java:186)
-	at org.python.core.PyObject.__call__(PyObject.java:419)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.running.librarykeywordrunner$py.f$13(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:89)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:124)
-	at org.python.core.PyFunction.__call__(PyFunction.java:403)
-	at robot.running.librarykeywordrunner$py._run_with_signal_monitoring$16(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:103)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run_with_output_captured_and_signal_monitor$15(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:96)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run$8(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:77)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py.run$6(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:56)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.steprunner$py.run_step$4(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:57)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.steprunner$py.run_steps$3(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:47)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.runner$py.visit_test$7(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py:160)
-	at robot.running.runner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testcase$py.visit$7(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py:74)
-	at robot.model.testcase$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.model$py.run$17(C:\jython2.7.0\Lib\site-packages\robot\running\model.py:250)
-	at robot.running.model$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\model.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at org.python.pycode._pyx10.main$3(C:\jython2.7.0\Lib\site-packages\robot\run.py:452)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.utils.application$py._execute$10(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:94)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.utils.application$py.execute_cli$5(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:49)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.pycode._pyx10.run_cli$7(C:\jython2.7.0\Lib\site-packages\robot\run.py:489)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:131)
-	at org.python.core.PyFunction.__call__(PyFunction.java:413)
-	at org.python.pycode._pyx10.f$0(C:\jython2.7.0\Lib\site-packages\robot\run.py:550)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyCode.call(PyCode.java:18)
-	at org.python.core.Py.runCode(Py.java:1386)
-	at org.python.core.Py.exec(Py.java:1430)
-	at runpy$py._run_code$9(C:\jython2.7.0\Lib\runpy.py:73)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyFunction.function___call__(PyFunction.java:471)
-	at org.python.core.PyFunction.__call__(PyFunction.java:466)
-	at org.python.core.PyFunction.__call__(PyFunction.java:456)
-	at runpy$py._run_module_as_main$14(C:\jython2.7.0\Lib\runpy.py:161)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyFunction.__call__(PyFunction.java:418)
-	at org.python.util.jython.runModule(jython.java:199)
-	at org.python.util.jython.runModule(jython.java:191)
-	at org.python.util.jython.run(jython.java:402)
-	at org.python.util.jython.main(jython.java:142)</msg>
-<msg level="FAIL" timestamp="20181222 00:54:37.127">IllegalStateException: failure 'Validate Detail Breakdown Tab Failed due to: java.lang.IndexOutOfBoundsException: Index: 4, Size: 4'</msg>
-<status endtime="20181222 00:54:37.132" starttime="20181222 00:54:30.151" status="FAIL"></status>
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.75 / showtotal_ITEfactor:2.00
+check_showtotal_Referencehours:11.16 / showtotal_Referencehours:11.16
+check_showtotal_Labourrate:61.00 / showtotal_Labourrate:61.00
+LabourRate:61.00 / showtotal_Labourrate:61.00
+*** is_showtotal_ITEfactor: false *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***
+-0.02 Added in ITEfactor hence CalculatedITEfactor VS ActualITEfactor shown in Application is: false ***</msg>
+<msg level="INFO" html="yes" timestamp="20190109 13:55:36.714">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\09Jan2019_01_55_34PM\SS_09Jan2019_01_55_34PM_DetailBreakdownTab.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\09Jan2019_01_55_34PM\SS_09Jan2019_01_55_34PM_DetailBreakdownTab.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
+<status endtime="20190109 13:55:36.723" starttime="20190109 13:55:24.879" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:37.137" starttime="20181222 00:54:26.832" status="FAIL">IllegalStateException: failure 'Validate Detail Breakdown Tab Failed due to: java.lang.IndexOutOfBoundsException: Index: 4, Size: 4'</status>
+<status critical="yes" endtime="20190109 13:55:36.728" starttime="20190109 13:55:20.401" status="PASS"></status>
 </test>
 <test name="18.Check Cost Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator" id="s1-s1-s1-t18">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Cost Calculated Successfully">
-<msg level="INFO" timestamp="20181222 00:54:37.167">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
-<status endtime="20181222 00:54:37.169" starttime="20181222 00:54:37.158" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:55:36.748">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
+<status endtime="20190109 13:55:36.751" starttime="20190109 13:55:36.740" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:37.171" starttime="20181222 00:54:37.151" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:55:36.754" starttime="20190109 13:55:36.734" status="PASS"></status>
 </test>
 <test name="19.Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator" id="s1-s1-s1-t19">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="VerifyPriceCalculatedSuccessfully TobecheckedinFrance">
-<msg level="INFO" timestamp="20181222 00:54:37.183">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
-<status endtime="20181222 00:54:37.186" starttime="20181222 00:54:37.180" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:57:19.003">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***
+Show TotalCost Calculation Details CLICKED
+1. Elevator roping /size:25
+-----------------------------------------------
+ 1.Elevator roping_Target Price=0.0
+ 2.Elevator roping_Base price=0.0
+ 3.Elevator roping_Per Service1=0.0
+ 4.Elevator roping_per travel [m]1=0.0
+ 5.Elevator roping_Each1=0.0
+ 6.Elevator roping_Base cost=2.0
+ 7.Elevator roping_Per Service2=0.0
+ 8.Elevator roping_per travel [m]2=61.0
+ 9.Elevator roping_Each2=0.0
+ 10.Elevator roping_Material costs=0.0
+ 11.Elevator roping_Material cost (SL Currency)=0.0
+ 12.Elevator roping_Base hours=0.0
+ 13.Elevator roping_Per Service3=0.0
+ 14.Elevator roping_per travel [m]3=0.0
+ 15.Elevator roping_Each3=0.0
+ 16.Elevator roping_Reference hours=0.0
+ 17.Elevator roping_ITE factor=0.0
+ 18.Elevator roping_Installation Hours=0.0
+ 19.Elevator roping_Labour rate=0.0
+ 20.Elevator roping_Labor Costs=0.0
+ 21.Elevator roping_Contingency=0.0
+ 22.Elevator roping_Overhead Recovery=0.0
+ 23.Elevator roping_Full Costs=0.0
+ 24.Elevator roping_Total Cost=0.0
+ 25.Elevator roping_Tender Price=0.0
+2. Rope grip type OSG /size:25
+-----------------------------------------------
+ 1.Rope grip type OSG_Target Price=0.0
+ 2.Rope grip type OSG_Base price=0.0
+ 3.Rope grip type OSG_Per Service1=0.0
+ 4.Rope grip type OSG_per travel [m]1=0.0
+ 5.Rope grip type OSG_Each1=0.0
+ 6.Rope grip type OSG_Base cost=2.0
+ 7.Rope grip type OSG_Per Service2=0.0
+ 8.Rope grip type OSG_per travel [m]2=61.0
+ 9.Rope grip type OSG_Each2=0.0
+ 10.Rope grip type OSG_Material costs=0.0
+ 11.Rope grip type OSG_Material cost (SL Currency)=0.0
+ 12.Rope grip type OSG_Base hours=0.0
+ 13.Rope grip type OSG_Per Service3=0.0
+ 14.Rope grip type OSG_per travel [m]3=0.0
+ 15.Rope grip type OSG_Each3=0.0
+ 16.Rope grip type OSG_Reference hours=0.0
+ 17.Rope grip type OSG_ITE factor=0.0
+ 18.Rope grip type OSG_Installation Hours=0.0
+ 19.Rope grip type OSG_Labour rate=0.0
+ 20.Rope grip type OSG_Labor Costs=0.0
+ 21.Rope grip type OSG_Contingency=0.0
+ 22.Rope grip type OSG_Overhead Recovery=0.0
+ 23.Rope grip type OSG_Full Costs=0.0
+ 24.Rope grip type OSG_Total Cost=0.0
+ 25.Rope grip type OSG_Tender Price=0.0
+3. Rope grip type, CAR /size:25
+-----------------------------------------------
+ 1.Rope grip type, CAR_Target Price=0.0
+ 2.Rope grip type, CAR_Base price=0.0
+ 3.Rope grip type, CAR_Per Service1=0.0
+ 4.Rope grip type, CAR_per travel [m]1=0.0
+ 5.Rope grip type, CAR_Each1=0.0
+ 6.Rope grip type, CAR_Base cost=2.0
+ 7.Rope grip type, CAR_Per Service2=0.0
+ 8.Rope grip type, CAR_per travel [m]2=61.0
+ 9.Rope grip type, CAR_Each2=0.0
+ 10.Rope grip type, CAR_Material costs=0.0
+ 11.Rope grip type, CAR_Material cost (SL Currency)=0.0
+ 12.Rope grip type, CAR_Base hours=0.0
+ 13.Rope grip type, CAR_Per Service3=0.0
+ 14.Rope grip type, CAR_per travel [m]3=0.0
+ 15.Rope grip type, CAR_Each3=0.0
+ 16.Rope grip type, CAR_Reference hours=0.0
+ 17.Rope grip type, CAR_ITE factor=0.0
+ 18.Rope grip type, CAR_Installation Hours=0.0
+ 19.Rope grip type, CAR_Labour rate=0.0
+ 20.Rope grip type, CAR_Labor Costs=0.0
+ 21.Rope grip type, CAR_Contingency=0.0
+ 22.Rope grip type, CAR_Overhead Recovery=0.0
+ 23.Rope grip type, CAR_Full Costs=0.0
+ 24.Rope grip type, CAR_Total Cost=0.0
+ 25.Rope grip type, CAR_Tender Price=0.0
+4. Rope grip type /size:25
+-----------------------------------------------
+ 1.Rope grip type_Target Price=0.0
+ 2.Rope grip type_Base price=0.0
+ 3.Rope grip type_Per Service1=0.0
+ 4.Rope grip type_per travel [m]1=0.0
+ 5.Rope grip type_Each1=0.0
+ 6.Rope grip type_Base cost=2.0
+ 7.Rope grip type_Per Service2=0.0
+ 8.Rope grip type_per travel [m]2=61.0
+ 9.Rope grip type_Each2=0.0
+ 10.Rope grip type_Material costs=0.0
+ 11.Rope grip type_Material cost (SL Currency)=0.0
+ 12.Rope grip type_Base hours=7.65
+ 13.Rope grip type_Per Service3=7.65
+ 14.Rope grip type_per travel [m]3=5.28
+ 15.Rope grip type_Each3=19.9
+ 16.Rope grip type_Reference hours=0.0
+ 17.Rope grip type_ITE factor=0.0
+ 18.Rope grip type_Installation Hours=0.0
+ 19.Rope grip type_Labour rate=0.0
+ 20.Rope grip type_Labor Costs=0.0
+ 21.Rope grip type_Contingency=0.0
+ 22.Rope grip type_Overhead Recovery=0.0
+ 23.Rope grip type_Full Costs=2.55
+ 24.Rope grip type_Total Cost=7.65
+ 25.Rope grip type_Tender Price=7.65
+5. Protection gloves type /size:25
+-----------------------------------------------
+ 1.Protection gloves type_Target Price=0.0
+ 2.Protection gloves type_Base price=0.0
+ 3.Protection gloves type_Per Service1=0.0
+ 4.Protection gloves type_per travel [m]1=0.0
+ 5.Protection gloves type_Each1=0.0
+ 6.Protection gloves type_Base cost=2.0
+ 7.Protection gloves type_Per Service2=0.0
+ 8.Protection gloves type_per travel [m]2=61.0
+ 9.Protection gloves type_Each2=0.0
+ 10.Protection gloves type_Material costs=0.0
+ 11.Protection gloves type_Material cost (SL Currency)=0.0
+ 12.Protection gloves type_Base hours=0.0
+ 13.Protection gloves type_Per Service3=0.0
+ 14.Protection gloves type_per travel [m]3=0.0
+ 15.Protection gloves type_Each3=0.0
+ 16.Protection gloves type_Reference hours=0.0
+ 17.Protection gloves type_ITE factor=0.0
+ 18.Protection gloves type_Installation Hours=0.0
+ 19.Protection gloves type_Labour rate=0.0
+ 20.Protection gloves type_Labor Costs=0.0
+ 21.Protection gloves type_Contingency=0.0
+ 22.Protection gloves type_Overhead Recovery=0.0
+ 23.Protection gloves type_Full Costs=0.0
+ 24.Protection gloves type_Total Cost=0.0
+ 25.Protection gloves type_Tender Price=0.0
+6. Package type /size:25
+-----------------------------------------------
+ 1.Package type_Target Price=0.0
+ 2.Package type_Base price=0.0
+ 3.Package type_Per Service1=0.0
+ 4.Package type_per travel [m]1=0.0
+ 5.Package type_Each1=0.0
+ 6.Package type_Base cost=2.0
+ 7.Package type_Per Service2=0.0
+ 8.Package type_per travel [m]2=61.0
+ 9.Package type_Each2=0.0
+ 10.Package type_Material costs=0.0
+ 11.Package type_Material cost (SL Currency)=0.0
+ 12.Package type_Base hours=0.0
+ 13.Package type_Per Service3=0.0
+ 14.Package type_per travel [m]3=0.0
+ 15.Package type_Each3=0.0
+ 16.Package type_Reference hours=0.0
+ 17.Package type_ITE factor=0.0
+ 18.Package type_Installation Hours=0.0
+ 19.Package type_Labour rate=0.0
+ 20.Package type_Labor Costs=0.0
+ 21.Package type_Contingency=0.0
+ 22.Package type_Overhead Recovery=0.0
+ 23.Package type_Full Costs=0.0
+ 24.Package type_Total Cost=0.0
+ 25.Package type_Tender Price=0.0
+7. Rope sleeve type /size:25
+-----------------------------------------------
+ 1.Rope sleeve type_Target Price=0.0
+ 2.Rope sleeve type_Base price=0.0
+ 3.Rope sleeve type_Per Service1=0.0
+ 4.Rope sleeve type_per travel [m]1=0.0
+ 5.Rope sleeve type_Each1=0.0
+ 6.Rope sleeve type_Base cost=2.0
+ 7.Rope sleeve type_Per Service2=0.0
+ 8.Rope sleeve type_per travel [m]2=61.0
+ 9.Rope sleeve type_Each2=0.0
+ 10.Rope sleeve type_Material costs=0.0
+ 11.Rope sleeve type_Material cost (SL Currency)=0.0
+ 12.Rope sleeve type_Base hours=0.0
+ 13.Rope sleeve type_Per Service3=0.0
+ 14.Rope sleeve type_per travel [m]3=0.0
+ 15.Rope sleeve type_Each3=0.0
+ 16.Rope sleeve type_Reference hours=0.0
+ 17.Rope sleeve type_ITE factor=0.0
+ 18.Rope sleeve type_Installation Hours=0.0
+ 19.Rope sleeve type_Labour rate=0.0
+ 20.Rope sleeve type_Labor Costs=0.0
+ 21.Rope sleeve type_Contingency=0.0
+ 22.Rope sleeve type_Overhead Recovery=0.0
+ 23.Rope sleeve type_Full Costs=0.0
+ 24.Rope sleeve type_Total Cost=0.0
+ 25.Rope sleeve type_Tender Price=0.0
+8. Hoist rope gauge type /size:25
+-----------------------------------------------
+ 1.Hoist rope gauge type_Target Price=0.0
+ 2.Hoist rope gauge type_Base price=0.0
+ 3.Hoist rope gauge type_Per Service1=0.0
+ 4.Hoist rope gauge type_per travel [m]1=0.0
+ 5.Hoist rope gauge type_Each1=0.0
+ 6.Hoist rope gauge type_Base cost=2.0
+ 7.Hoist rope gauge type_Per Service2=0.0
+ 8.Hoist rope gauge type_per travel [m]2=61.0
+ 9.Hoist rope gauge type_Each2=0.0
+ 10.Hoist rope gauge type_Material costs=0.0
+ 11.Hoist rope gauge type_Material cost (SL Currency)=0.0
+ 12.Hoist rope gauge type_Base hours=0.0
+ 13.Hoist rope gauge type_Per Service3=0.0
+ 14.Hoist rope gauge type_per travel [m]3=0.0
+ 15.Hoist rope gauge type_Each3=0.0
+ 16.Hoist rope gauge type_Reference hours=0.0
+ 17.Hoist rope gauge type_ITE factor=0.0
+ 18.Hoist rope gauge type_Installation Hours=0.0
+ 19.Hoist rope gauge type_Labour rate=0.0
+ 20.Hoist rope gauge type_Labor Costs=0.0
+ 21.Hoist rope gauge type_Contingency=0.0
+ 22.Hoist rope gauge type_Overhead Recovery=0.0
+ 23.Hoist rope gauge type_Full Costs=0.0
+ 24.Hoist rope gauge type_Total Cost=0.0
+ 25.Hoist rope gauge type_Tender Price=0.0
+9. Rope fixing kit type /size:25
+-----------------------------------------------
+ 1.Rope fixing kit type_Target Price=0.0
+ 2.Rope fixing kit type_Base price=0.0
+ 3.Rope fixing kit type_Per Service1=0.0
+ 4.Rope fixing kit type_per travel [m]1=0.0
+ 5.Rope fixing kit type_Each1=0.0
+ 6.Rope fixing kit type_Base cost=2.0
+ 7.Rope fixing kit type_Per Service2=0.0
+ 8.Rope fixing kit type_per travel [m]2=61.0
+ 9.Rope fixing kit type_Each2=0.0
+ 10.Rope fixing kit type_Material costs=0.0
+ 11.Rope fixing kit type_Material cost (SL Currency)=0.0
+ 12.Rope fixing kit type_Base hours=0.0
+ 13.Rope fixing kit type_Per Service3=0.0
+ 14.Rope fixing kit type_per travel [m]3=0.0
+ 15.Rope fixing kit type_Each3=0.0
+ 16.Rope fixing kit type_Reference hours=0.0
+ 17.Rope fixing kit type_ITE factor=0.0
+ 18.Rope fixing kit type_Installation Hours=0.0
+ 19.Rope fixing kit type_Labour rate=0.0
+ 20.Rope fixing kit type_Labor Costs=0.0
+ 21.Rope fixing kit type_Contingency=0.0
+ 22.Rope fixing kit type_Overhead Recovery=0.0
+ 23.Rope fixing kit type_Full Costs=0.0
+ 24.Rope fixing kit type_Total Cost=0.0
+ 25.Rope fixing kit type_Tender Price=0.0
+10. Hoist rope anchor type /size:25
+-----------------------------------------------
+ 1.Hoist rope anchor type_Target Price=0.0
+ 2.Hoist rope anchor type_Base price=0.0
+ 3.Hoist rope anchor type_Per Service1=0.0
+ 4.Hoist rope anchor type_per travel [m]1=0.0
+ 5.Hoist rope anchor type_Each1=0.0
+ 6.Hoist rope anchor type_Base cost=2.0
+ 7.Hoist rope anchor type_Per Service2=0.0
+ 8.Hoist rope anchor type_per travel [m]2=61.0
+ 9.Hoist rope anchor type_Each2=0.0
+ 10.Hoist rope anchor type_Material costs=0.0
+ 11.Hoist rope anchor type_Material cost (SL Currency)=0.0
+ 12.Hoist rope anchor type_Base hours=0.0
+ 13.Hoist rope anchor type_Per Service3=0.0
+ 14.Hoist rope anchor type_per travel [m]3=0.0
+ 15.Hoist rope anchor type_Each3=0.0
+ 16.Hoist rope anchor type_Reference hours=0.0
+ 17.Hoist rope anchor type_ITE factor=0.0
+ 18.Hoist rope anchor type_Installation Hours=0.0
+ 19.Hoist rope anchor type_Labour rate=0.0
+ 20.Hoist rope anchor type_Labor Costs=0.0
+ 21.Hoist rope anchor type_Contingency=0.0
+ 22.Hoist rope anchor type_Overhead Recovery=0.0
+ 23.Hoist rope anchor type_Full Costs=0.0
+ 24.Hoist rope anchor type_Total Cost=0.0
+ 25.Hoist rope anchor type_Tender Price=0.0
+11. Hoisting Rope type /size:25
+-----------------------------------------------
+ 1.Hoisting Rope type_Target Price=0.0
+ 2.Hoisting Rope type_Base price=0.0
+ 3.Hoisting Rope type_Per Service1=0.0
+ 4.Hoisting Rope type_per travel [m]1=0.0
+ 5.Hoisting Rope type_Each1=0.0
+ 6.Hoisting Rope type_Base cost=2.0
+ 7.Hoisting Rope type_Per Service2=0.0
+ 8.Hoisting Rope type_per travel [m]2=61.0
+ 9.Hoisting Rope type_Each2=0.0
+ 10.Hoisting Rope type_Material costs=0.0
+ 11.Hoisting Rope type_Material cost (SL Currency)=0.0
+ 12.Hoisting Rope type_Base hours=76.52
+ 13.Hoisting Rope type_Per Service3=76.52
+ 14.Hoisting Rope type_per travel [m]3=52.8
+ 15.Hoisting Rope type_Each3=198.95
+ 16.Hoisting Rope type_Reference hours=0.0
+ 17.Hoisting Rope type_ITE factor=0.0
+ 18.Hoisting Rope type_Installation Hours=0.0
+ 19.Hoisting Rope type_Labour rate=0.0
+ 20.Hoisting Rope type_Labor Costs=0.0
+ 21.Hoisting Rope type_Contingency=0.0
+ 22.Hoisting Rope type_Overhead Recovery=0.0
+ 23.Hoisting Rope type_Full Costs=56.68
+ 24.Hoisting Rope type_Total Cost=76.52
+ 25.Hoisting Rope type_Tender Price=76.52
+12. Elevator country code /size:25
+-----------------------------------------------
+ 1.Elevator country code_Target Price=0.0
+ 2.Elevator country code_Base price=0.0
+ 3.Elevator country code_Per Service1=0.0
+ 4.Elevator country code_per travel [m]1=0.0
+ 5.Elevator country code_Each1=0.0
+ 6.Elevator country code_Base cost=2.0
+ 7.Elevator country code_Per Service2=0.0
+ 8.Elevator country code_per travel [m]2=61.0
+ 9.Elevator country code_Each2=0.0
+ 10.Elevator country code_Material costs=0.0
+ 11.Elevator country code_Material cost (SL Currency)=0.0
+ 12.Elevator country code_Base hours=0.0
+ 13.Elevator country code_Per Service3=0.0
+ 14.Elevator country code_per travel [m]3=0.0
+ 15.Elevator country code_Each3=0.0
+ 16.Elevator country code_Reference hours=0.0
+ 17.Elevator country code_ITE factor=0.0
+ 18.Elevator country code_Installation Hours=0.0
+ 19.Elevator country code_Labour rate=0.0
+ 20.Elevator country code_Labor Costs=0.0
+ 21.Elevator country code_Contingency=0.0
+ 22.Elevator country code_Overhead Recovery=0.0
+ 23.Elevator country code_Full Costs=0.0
+ 24.Elevator country code_Total Cost=0.0
+ 25.Elevator country code_Tender Price=0.0
+13. Compensation rope fixing kit type /size:25
+-----------------------------------------------
+ 1.Compensation rope fixing kit type_Target Price=0.0
+ 2.Compensation rope fixing kit type_Base price=0.0
+ 3.Compensation rope fixing kit type_Per Service1=0.0
+ 4.Compensation rope fixing kit type_per travel [m]1=0.0
+ 5.Compensation rope fixing kit type_Each1=0.0
+ 6.Compensation rope fixing kit type_Base cost=2.0
+ 7.Compensation rope fixing kit type_Per Service2=0.0
+ 8.Compensation rope fixing kit type_per travel [m]2=61.0
+ 9.Compensation rope fixing kit type_Each2=0.0
+ 10.Compensation rope fixing kit type_Material costs=0.0
+ 11.Compensation rope fixing kit type_Material cost (SL Currency)=0.0
+ 12.Compensation rope fixing kit type_Base hours=0.0
+ 13.Compensation rope fixing kit type_Per Service3=0.0
+ 14.Compensation rope fixing kit type_per travel [m]3=0.0
+ 15.Compensation rope fixing kit type_Each3=0.0
+ 16.Compensation rope fixing kit type_Reference hours=0.0
+ 17.Compensation rope fixing kit type_ITE factor=0.0
+ 18.Compensation rope fixing kit type_Installation Hours=0.0
+ 19.Compensation rope fixing kit type_Labour rate=0.0
+ 20.Compensation rope fixing kit type_Labor Costs=0.0
+ 21.Compensation rope fixing kit type_Contingency=0.0
+ 22.Compensation rope fixing kit type_Overhead Recovery=0.0
+ 23.Compensation rope fixing kit type_Full Costs=0.0
+ 24.Compensation rope fixing kit type_Total Cost=0.0
+ 25.Compensation rope fixing kit type_Tender Price=0.0
+14. Comp rope anchor type /size:25
+-----------------------------------------------
+ 1.Comp rope anchor type_Target Price=0.0
+ 2.Comp rope anchor type_Base price=0.0
+ 3.Comp rope anchor type_Per Service1=0.0
+ 4.Comp rope anchor type_per travel [m]1=0.0
+ 5.Comp rope anchor type_Each1=0.0
+ 6.Comp rope anchor type_Base cost=2.0
+ 7.Comp rope anchor type_Per Service2=0.0
+ 8.Comp rope anchor type_per travel [m]2=61.0
+ 9.Comp rope anchor type_Each2=0.0
+ 10.Comp rope anchor type_Material costs=0.0
+ 11.Comp rope anchor type_Material cost (SL Currency)=0.0
+ 12.Comp rope anchor type_Base hours=0.0
+ 13.Comp rope anchor type_Per Service3=0.0
+ 14.Comp rope anchor type_per travel [m]3=0.0
+ 15.Comp rope anchor type_Each3=0.0
+ 16.Comp rope anchor type_Reference hours=0.0
+ 17.Comp rope anchor type_ITE factor=0.0
+ 18.Comp rope anchor type_Installation Hours=0.0
+ 19.Comp rope anchor type_Labour rate=0.0
+ 20.Comp rope anchor type_Labor Costs=0.0
+ 21.Comp rope anchor type_Contingency=0.0
+ 22.Comp rope anchor type_Overhead Recovery=0.0
+ 23.Comp rope anchor type_Full Costs=0.0
+ 24.Comp rope anchor type_Total Cost=0.0
+ 25.Comp rope anchor type_Tender Price=0.0
+15. Compensation chain type 2 /size:25
+-----------------------------------------------
+ 1.Compensation chain type 2_Target Price=0.0
+ 2.Compensation chain type 2_Base price=0.0
+ 3.Compensation chain type 2_Per Service1=0.0
+ 4.Compensation chain type 2_per travel [m]1=0.0
+ 5.Compensation chain type 2_Each1=0.0
+ 6.Compensation chain type 2_Base cost=2.0
+ 7.Compensation chain type 2_Per Service2=0.0
+ 8.Compensation chain type 2_per travel [m]2=61.0
+ 9.Compensation chain type 2_Each2=0.0
+ 10.Compensation chain type 2_Material costs=0.0
+ 11.Compensation chain type 2_Material cost (SL Currency)=0.0
+ 12.Compensation chain type 2_Base hours=0.0
+ 13.Compensation chain type 2_Per Service3=0.0
+ 14.Compensation chain type 2_per travel [m]3=0.0
+ 15.Compensation chain type 2_Each3=0.0
+ 16.Compensation chain type 2_Reference hours=0.0
+ 17.Compensation chain type 2_ITE factor=0.0
+ 18.Compensation chain type 2_Installation Hours=0.0
+ 19.Compensation chain type 2_Labour rate=0.0
+ 20.Compensation chain type 2_Labor Costs=0.0
+ 21.Compensation chain type 2_Contingency=0.0
+ 22.Compensation chain type 2_Overhead Recovery=0.0
+ 23.Compensation chain type 2_Full Costs=0.0
+ 24.Compensation chain type 2_Total Cost=0.0
+ 25.Compensation chain type 2_Tender Price=0.0
+16. Compensation chain type /size:25
+-----------------------------------------------
+ 1.Compensation chain type_Target Price=0.0
+ 2.Compensation chain type_Base price=0.0
+ 3.Compensation chain type_Per Service1=0.0
+ 4.Compensation chain type_per travel [m]1=0.0
+ 5.Compensation chain type_Each1=0.0
+ 6.Compensation chain type_Base cost=2.0
+ 7.Compensation chain type_Per Service2=0.0
+ 8.Compensation chain type_per travel [m]2=61.0
+ 9.Compensation chain type_Each2=0.0
+ 10.Compensation chain type_Material costs=0.0
+ 11.Compensation chain type_Material cost (SL Currency)=0.0
+ 12.Compensation chain type_Base hours=0.0
+ 13.Compensation chain type_Per Service3=0.0
+ 14.Compensation chain type_per travel [m]3=0.0
+ 15.Compensation chain type_Each3=0.0
+ 16.Compensation chain type_Reference hours=0.0
+ 17.Compensation chain type_ITE factor=0.0
+ 18.Compensation chain type_Installation Hours=0.0
+ 19.Compensation chain type_Labour rate=0.0
+ 20.Compensation chain type_Labor Costs=0.0
+ 21.Compensation chain type_Contingency=0.0
+ 22.Compensation chain type_Overhead Recovery=0.0
+ 23.Compensation chain type_Full Costs=0.0
+ 24.Compensation chain type_Total Cost=0.0
+ 25.Compensation chain type_Tender Price=0.0
+17. Compensation Rope type /size:25
+-----------------------------------------------
+ 1.Compensation Rope type_Target Price=0.0
+ 2.Compensation Rope type_Base price=0.0
+ 3.Compensation Rope type_Per Service1=0.0
+ 4.Compensation Rope type_per travel [m]1=0.0
+ 5.Compensation Rope type_Each1=0.0
+ 6.Compensation Rope type_Base cost=2.0
+ 7.Compensation Rope type_Per Service2=0.0
+ 8.Compensation Rope type_per travel [m]2=61.0
+ 9.Compensation Rope type_Each2=0.0
+ 10.Compensation Rope type_Material costs=0.0
+ 11.Compensation Rope type_Material cost (SL Currency)=0.0
+ 12.Compensation Rope type_Base hours=0.0
+ 13.Compensation Rope type_Per Service3=0.0
+ 14.Compensation Rope type_per travel [m]3=0.0
+ 15.Compensation Rope type_Each3=0.0
+ 16.Compensation Rope type_Reference hours=0.0
+ 17.Compensation Rope type_ITE factor=0.0
+ 18.Compensation Rope type_Installation Hours=0.0
+ 19.Compensation Rope type_Labour rate=0.0
+ 20.Compensation Rope type_Labor Costs=0.0
+ 21.Compensation Rope type_Contingency=0.0
+ 22.Compensation Rope type_Overhead Recovery=0.0
+ 23.Compensation Rope type_Full Costs=0.0
+ 24.Compensation Rope type_Total Cost=0.0
+ 25.Compensation Rope type_Tender Price=0.0
+18. Rope grip quantity /size:25
+-----------------------------------------------
+ 1.Rope grip quantity_Target Price=0.0
+ 2.Rope grip quantity_Base price=0.0
+ 3.Rope grip quantity_Per Service1=0.0
+ 4.Rope grip quantity_per travel [m]1=0.0
+ 5.Rope grip quantity_Each1=0.0
+ 6.Rope grip quantity_Base cost=2.0
+ 7.Rope grip quantity_Per Service2=0.0
+ 8.Rope grip quantity_per travel [m]2=61.0
+ 9.Rope grip quantity_Each2=0.0
+ 10.Rope grip quantity_Material costs=0.0
+ 11.Rope grip quantity_Material cost (SL Currency)=0.0
+ 12.Rope grip quantity_Base hours=0.0
+ 13.Rope grip quantity_Per Service3=0.0
+ 14.Rope grip quantity_per travel [m]3=0.0
+ 15.Rope grip quantity_Each3=0.0
+ 16.Rope grip quantity_Reference hours=0.0
+ 17.Rope grip quantity_ITE factor=0.0
+ 18.Rope grip quantity_Installation Hours=0.0
+ 19.Rope grip quantity_Labour rate=0.0
+ 20.Rope grip quantity_Labor Costs=0.0
+ 21.Rope grip quantity_Contingency=0.0
+ 22.Rope grip quantity_Overhead Recovery=0.0
+ 23.Rope grip quantity_Full Costs=0.0
+ 24.Rope grip quantity_Total Cost=0.0
+ 25.Rope grip quantity_Tender Price=0.0
+19. Protection gloves quantity [pair] /size:25
+-----------------------------------------------
+ 1.Protection gloves quantity [pair]_Target Price=0.0
+ 2.Protection gloves quantity [pair]_Base price=0.0
+ 3.Protection gloves quantity [pair]_Per Service1=0.0
+ 4.Protection gloves quantity [pair]_per travel [m]1=0.0
+ 5.Protection gloves quantity [pair]_Each1=0.0
+ 6.Protection gloves quantity [pair]_Base cost=2.0
+ 7.Protection gloves quantity [pair]_Per Service2=0.0
+ 8.Protection gloves quantity [pair]_per travel [m]2=61.0
+ 9.Protection gloves quantity [pair]_Each2=0.0
+ 10.Protection gloves quantity [pair]_Material costs=0.0
+ 11.Protection gloves quantity [pair]_Material cost (SL Currency)=0.0
+ 12.Protection gloves quantity [pair]_Base hours=0.0
+ 13.Protection gloves quantity [pair]_Per Service3=0.0
+ 14.Protection gloves quantity [pair]_per travel [m]3=0.0
+ 15.Protection gloves quantity [pair]_Each3=0.0
+ 16.Protection gloves quantity [pair]_Reference hours=0.0
+ 17.Protection gloves quantity [pair]_ITE factor=0.0
+ 18.Protection gloves quantity [pair]_Installation Hours=0.0
+ 19.Protection gloves quantity [pair]_Labour rate=0.0
+ 20.Protection gloves quantity [pair]_Labor Costs=0.0
+ 21.Protection gloves quantity [pair]_Contingency=0.0
+ 22.Protection gloves quantity [pair]_Overhead Recovery=0.0
+ 23.Protection gloves quantity [pair]_Full Costs=0.0
+ 24.Protection gloves quantity [pair]_Total Cost=0.0
+ 25.Protection gloves quantity [pair]_Tender Price=0.0
+20. Number of hoist ropes NR /size:25
+-----------------------------------------------
+ 1.Number of hoist ropes NR_Target Price=0.0
+ 2.Number of hoist ropes NR_Base price=0.0
+ 3.Number of hoist ropes NR_Per Service1=0.0
+ 4.Number of hoist ropes NR_per travel [m]1=0.0
+ 5.Number of hoist ropes NR_Each1=0.0
+ 6.Number of hoist ropes NR_Base cost=2.0
+ 7.Number of hoist ropes NR_Per Service2=0.0
+ 8.Number of hoist ropes NR_per travel [m]2=61.0
+ 9.Number of hoist ropes NR_Each2=0.0
+ 10.Number of hoist ropes NR_Material costs=0.0
+ 11.Number of hoist ropes NR_Material cost (SL Currency)=0.0
+ 12.Number of hoist ropes NR_Base hours=0.0
+ 13.Number of hoist ropes NR_Per Service3=0.0
+ 14.Number of hoist ropes NR_per travel [m]3=0.0
+ 15.Number of hoist ropes NR_Each3=0.0
+ 16.Number of hoist ropes NR_Reference hours=0.0
+ 17.Number of hoist ropes NR_ITE factor=0.0
+ 18.Number of hoist ropes NR_Installation Hours=0.0
+ 19.Number of hoist ropes NR_Labour rate=0.0
+ 20.Number of hoist ropes NR_Labor Costs=0.0
+ 21.Number of hoist ropes NR_Contingency=0.0
+ 22.Number of hoist ropes NR_Overhead Recovery=0.0
+ 23.Number of hoist ropes NR_Full Costs=0.0
+ 24.Number of hoist ropes NR_Total Cost=0.0
+ 25.Number of hoist ropes NR_Tender Price=0.0
+21. Packing Accessories for Ropes /size:25
+-----------------------------------------------
+ 1.Packing Accessories for Ropes_Target Price=0.0
+ 2.Packing Accessories for Ropes_Base price=0.0
+ 3.Packing Accessories for Ropes_Per Service1=0.0
+ 4.Packing Accessories for Ropes_per travel [m]1=0.0
+ 5.Packing Accessories for Ropes_Each1=0.0
+ 6.Packing Accessories for Ropes_Base cost=2.0
+ 7.Packing Accessories for Ropes_Per Service2=0.0
+ 8.Packing Accessories for Ropes_per travel [m]2=61.0
+ 9.Packing Accessories for Ropes_Each2=0.0
+ 10.Packing Accessories for Ropes_Material costs=0.0
+ 11.Packing Accessories for Ropes_Material cost (SL Currency)=0.0
+ 12.Packing Accessories for Ropes_Base hours=20.0
+ 13.Packing Accessories for Ropes_Per Service3=20.0
+ 14.Packing Accessories for Ropes_per travel [m]3=13.8
+ 15.Packing Accessories for Ropes_Each3=52.0
+ 16.Packing Accessories for Ropes_Reference hours=0.0
+ 17.Packing Accessories for Ropes_ITE factor=0.0
+ 18.Packing Accessories for Ropes_Installation Hours=0.0
+ 19.Packing Accessories for Ropes_Labour rate=0.0
+ 20.Packing Accessories for Ropes_Labor Costs=20.0
+ 21.Packing Accessories for Ropes_Contingency=0.0
+ 22.Packing Accessories for Ropes_Overhead Recovery=0.0
+ 23.Packing Accessories for Ropes_Full Costs=0.0
+ 24.Packing Accessories for Ropes_Total Cost=20.0
+ 25.Packing Accessories for Ropes_Tender Price=20.0
+22. Hoist ropes length(per meter) /size:25
+-----------------------------------------------
+ 1.Hoist ropes length(per meter)_Target Price=0.0
+ 2.Hoist ropes length(per meter)_Base price=0.0
+ 3.Hoist ropes length(per meter)_Per Service1=0.0
+ 4.Hoist ropes length(per meter)_per travel [m]1=0.02
+ 5.Hoist ropes length(per meter)_Each1=2.7
+ 6.Hoist ropes length(per meter)_Base cost=2.0
+ 7.Hoist ropes length(per meter)_Per Service2=5.4
+ 8.Hoist ropes length(per meter)_per travel [m]2=61.0
+ 9.Hoist ropes length(per meter)_Each2=329.4
+ 10.Hoist ropes length(per meter)_Material costs=0.0
+ 11.Hoist ropes length(per meter)_Material cost (SL Currency)=0.0
+ 12.Hoist ropes length(per meter)_Base hours=329.4
+ 13.Hoist ropes length(per meter)_Per Service3=329.4
+ 14.Hoist ropes length(per meter)_per travel [m]3=227.29
+ 15.Hoist ropes length(per meter)_Each3=856.44
+ 16.Hoist ropes length(per meter)_Reference hours=0.0
+ 17.Hoist ropes length(per meter)_ITE factor=0.0
+ 18.Hoist ropes length(per meter)_Installation Hours=0.0
+ 19.Hoist ropes length(per meter)_Labour rate=0.0
+ 20.Hoist ropes length(per meter)_Labor Costs=0.0
+ 21.Hoist ropes length(per meter)_Contingency=0.0
+ 22.Hoist ropes length(per meter)_Overhead Recovery=0.0
+ 23.Hoist ropes length(per meter)_Full Costs=0.0
+ 24.Hoist ropes length(per meter)_Total Cost=0.0
+ 25.Hoist ropes length(per meter)_Tender Price=0.0
+23. Hoist ropes Base /size:25
+-----------------------------------------------
+ 1.Hoist ropes Base_Target Price=0.0
+ 2.Hoist ropes Base_Base price=0.0
+ 3.Hoist ropes Base_Per Service1=0.0
+ 4.Hoist ropes Base_per travel [m]1=1.13
+ 5.Hoist ropes Base_Each1=3.39
+ 6.Hoist ropes Base_Base cost=2.0
+ 7.Hoist ropes Base_Per Service2=6.78
+ 8.Hoist ropes Base_per travel [m]2=61.0
+ 9.Hoist ropes Base_Each2=413.58
+ 10.Hoist ropes Base_Material costs=0.0
+ 11.Hoist ropes Base_Material cost (SL Currency)=0.0
+ 12.Hoist ropes Base_Base hours=413.58
+ 13.Hoist ropes Base_Per Service3=413.58
+ 14.Hoist ropes Base_per travel [m]3=285.37
+ 15.Hoist ropes Base_Each3=1075.31
+ 16.Hoist ropes Base_Reference hours=0.0
+ 17.Hoist ropes Base_ITE factor=0.0
+ 18.Hoist ropes Base_Installation Hours=0.0
+ 19.Hoist ropes Base_Labour rate=0.0
+ 20.Hoist ropes Base_Labor Costs=0.0
+ 21.Hoist ropes Base_Contingency=0.0
+ 22.Hoist ropes Base_Overhead Recovery=0.0
+ 23.Hoist ropes Base_Full Costs=0.0
+ 24.Hoist ropes Base_Total Cost=0.0
+ 25.Hoist ropes Base_Tender Price=0.0
+24. Equipment preparation /size:25
+-----------------------------------------------
+ 1.Equipment preparation_Target Price=2.0
+ 2.Equipment preparation_Base price=0.0
+ 3.Equipment preparation_Per Service1=0.0
+ 4.Equipment preparation_per travel [m]1=0.0
+ 5.Equipment preparation_Each1=2.0
+ 6.Equipment preparation_Base cost=2.0
+ 7.Equipment preparation_Per Service2=4.0
+ 8.Equipment preparation_per travel [m]2=61.0
+ 9.Equipment preparation_Each2=244.0
+ 10.Equipment preparation_Material costs=0.0
+ 11.Equipment preparation_Material cost (SL Currency)=0.0
+ 12.Equipment preparation_Base hours=244.0
+ 13.Equipment preparation_Per Service3=244.0
+ 14.Equipment preparation_per travel [m]3=168.36
+ 15.Equipment preparation_Each3=634.4
+ 16.Equipment preparation_Reference hours=0.0
+ 17.Equipment preparation_ITE factor=0.0
+ 18.Equipment preparation_Installation Hours=0.0
+ 19.Equipment preparation_Labour rate=0.0
+ 20.Equipment preparation_Labor Costs=0.0
+ 21.Equipment preparation_Contingency=0.0
+ 22.Equipment preparation_Overhead Recovery=0.0
+ 23.Equipment preparation_Full Costs=0.0
+ 24.Equipment preparation_Total Cost=0.0
+ 25.Equipment preparation_Tender Price=0.0
+25. Equipment Finishing /size:25
+-----------------------------------------------
+ 1.Equipment Finishing_Target Price=1.0
+ 2.Equipment Finishing_Base price=0.0
+ 3.Equipment Finishing_Per Service1=0.0
+ 4.Equipment Finishing_per travel [m]1=0.0
+ 5.Equipment Finishing_Each1=1.0
+ 6.Equipment Finishing_Base cost=2.0
+ 7.Equipment Finishing_Per Service2=2.0
+ 8.Equipment Finishing_per travel [m]2=61.0
+ 9.Equipment Finishing_Each2=122.0
+ 10.Equipment Finishing_Material costs=0.0
+ 11.Equipment Finishing_Material cost (SL Currency)=0.0
+ 12.Equipment Finishing_Base hours=122.0
+ 13.Equipment Finishing_Per Service3=122.0
+ 14.Equipment Finishing_per travel [m]3=84.18
+ 15.Equipment Finishing_Each3=317.2
+ 16.Equipment Finishing_Reference hours=0.0
+ 17.Equipment Finishing_ITE factor=0.0
+ 18.Equipment Finishing_Installation Hours=0.0
+ 19.Equipment Finishing_Labour rate=0.0
+ 20.Equipment Finishing_Labor Costs=0.0
+ 21.Equipment Finishing_Contingency=0.0
+ 22.Equipment Finishing_Overhead Recovery=0.0
+ 23.Equipment Finishing_Full Costs=0.0
+ 24.Equipment Finishing_Total Cost=0.0
+ 25.Equipment Finishing_Tender Price=0.0
+26. Hoisting Rope length [m] /size:25
+-----------------------------------------------
+ 1.Hoisting Rope length [m]_Target Price=0.0
+ 2.Hoisting Rope length [m]_Base price=0.0
+ 3.Hoisting Rope length [m]_Per Service1=0.0
+ 4.Hoisting Rope length [m]_per travel [m]1=0.0
+ 5.Hoisting Rope length [m]_Each1=0.0
+ 6.Hoisting Rope length [m]_Base cost=2.0
+ 7.Hoisting Rope length [m]_Per Service2=0.0
+ 8.Hoisting Rope length [m]_per travel [m]2=61.0
+ 9.Hoisting Rope length [m]_Each2=0.0
+ 10.Hoisting Rope length [m]_Material costs=0.0
+ 11.Hoisting Rope length [m]_Material cost (SL Currency)=0.0
+ 12.Hoisting Rope length [m]_Base hours=0.0
+ 13.Hoisting Rope length [m]_Per Service3=0.0
+ 14.Hoisting Rope length [m]_per travel [m]3=0.0
+ 15.Hoisting Rope length [m]_Each3=0.0
+ 16.Hoisting Rope length [m]_Reference hours=0.0
+ 17.Hoisting Rope length [m]_ITE factor=0.0
+ 18.Hoisting Rope length [m]_Installation Hours=0.0
+ 19.Hoisting Rope length [m]_Labour rate=0.0
+ 20.Hoisting Rope length [m]_Labor Costs=0.0
+ 21.Hoisting Rope length [m]_Contingency=0.0
+ 22.Hoisting Rope length [m]_Overhead Recovery=0.0
+ 23.Hoisting Rope length [m]_Full Costs=0.0
+ 24.Hoisting Rope length [m]_Total Cost=0.0
+ 25.Hoisting Rope length [m]_Tender Price=0.0
+27. Hoist rope diameter, DL [mm] /size:25
+-----------------------------------------------
+ 1.Hoist rope diameter, DL [mm]_Target Price=0.0
+ 2.Hoist rope diameter, DL [mm]_Base price=0.0
+ 3.Hoist rope diameter, DL [mm]_Per Service1=0.0
+ 4.Hoist rope diameter, DL [mm]_per travel [m]1=0.0
+ 5.Hoist rope diameter, DL [mm]_Each1=0.0
+ 6.Hoist rope diameter, DL [mm]_Base cost=2.0
+ 7.Hoist rope diameter, DL [mm]_Per Service2=0.0
+ 8.Hoist rope diameter, DL [mm]_per travel [m]2=61.0
+ 9.Hoist rope diameter, DL [mm]_Each2=0.0
+ 10.Hoist rope diameter, DL [mm]_Material costs=0.0
+ 11.Hoist rope diameter, DL [mm]_Material cost (SL Currency)=0.0
+ 12.Hoist rope diameter, DL [mm]_Base hours=0.0
+ 13.Hoist rope diameter, DL [mm]_Per Service3=0.0
+ 14.Hoist rope diameter, DL [mm]_per travel [m]3=0.0
+ 15.Hoist rope diameter, DL [mm]_Each3=0.0
+ 16.Hoist rope diameter, DL [mm]_Reference hours=0.0
+ 17.Hoist rope diameter, DL [mm]_ITE factor=0.0
+ 18.Hoist rope diameter, DL [mm]_Installation Hours=0.0
+ 19.Hoist rope diameter, DL [mm]_Labour rate=0.0
+ 20.Hoist rope diameter, DL [mm]_Labor Costs=0.0
+ 21.Hoist rope diameter, DL [mm]_Contingency=0.0
+ 22.Hoist rope diameter, DL [mm]_Overhead Recovery=0.0
+ 23.Hoist rope diameter, DL [mm]_Full Costs=0.0
+ 24.Hoist rope diameter, DL [mm]_Total Cost=0.0
+ 25.Hoist rope diameter, DL [mm]_Tender Price=0.0
+28. Compensation rope diameter [mm] /size:25
+-----------------------------------------------
+ 1.Compensation rope diameter [mm]_Target Price=0.0
+ 2.Compensation rope diameter [mm]_Base price=0.0
+ 3.Compensation rope diameter [mm]_Per Service1=0.0
+ 4.Compensation rope diameter [mm]_per travel [m]1=0.0
+ 5.Compensation rope diameter [mm]_Each1=0.0
+ 6.Compensation rope diameter [mm]_Base cost=2.0
+ 7.Compensation rope diameter [mm]_Per Service2=0.0
+ 8.Compensation rope diameter [mm]_per travel [m]2=61.0
+ 9.Compensation rope diameter [mm]_Each2=0.0
+ 10.Compensation rope diameter [mm]_Material costs=0.0
+ 11.Compensation rope diameter [mm]_Material cost (SL Currency)=0.0
+ 12.Compensation rope diameter [mm]_Base hours=0.0
+ 13.Compensation rope diameter [mm]_Per Service3=0.0
+ 14.Compensation rope diameter [mm]_per travel [m]3=0.0
+ 15.Compensation rope diameter [mm]_Each3=0.0
+ 16.Compensation rope diameter [mm]_Reference hours=0.0
+ 17.Compensation rope diameter [mm]_ITE factor=0.0
+ 18.Compensation rope diameter [mm]_Installation Hours=0.0
+ 19.Compensation rope diameter [mm]_Labour rate=0.0
+ 20.Compensation rope diameter [mm]_Labor Costs=0.0
+ 21.Compensation rope diameter [mm]_Contingency=0.0
+ 22.Compensation rope diameter [mm]_Overhead Recovery=0.0
+ 23.Compensation rope diameter [mm]_Full Costs=0.0
+ 24.Compensation rope diameter [mm]_Total Cost=0.0
+ 25.Compensation rope diameter [mm]_Tender Price=0.0
+29. CWT OSG Rope type /size:25
+-----------------------------------------------
+ 1.CWT OSG Rope type_Target Price=0.0
+ 2.CWT OSG Rope type_Base price=0.0
+ 3.CWT OSG Rope type_Per Service1=0.0
+ 4.CWT OSG Rope type_per travel [m]1=0.0
+ 5.CWT OSG Rope type_Each1=0.0
+ 6.CWT OSG Rope type_Base cost=2.0
+ 7.CWT OSG Rope type_Per Service2=0.0
+ 8.CWT OSG Rope type_per travel [m]2=61.0
+ 9.CWT OSG Rope type_Each2=0.0
+ 10.CWT OSG Rope type_Material costs=0.0
+ 11.CWT OSG Rope type_Material cost (SL Currency)=0.0
+ 12.CWT OSG Rope type_Base hours=0.0
+ 13.CWT OSG Rope type_Per Service3=0.0
+ 14.CWT OSG Rope type_per travel [m]3=0.0
+ 15.CWT OSG Rope type_Each3=0.0
+ 16.CWT OSG Rope type_Reference hours=0.0
+ 17.CWT OSG Rope type_ITE factor=0.0
+ 18.CWT OSG Rope type_Installation Hours=0.0
+ 19.CWT OSG Rope type_Labour rate=0.0
+ 20.CWT OSG Rope type_Labor Costs=0.0
+ 21.CWT OSG Rope type_Contingency=0.0
+ 22.CWT OSG Rope type_Overhead Recovery=0.0
+ 23.CWT OSG Rope type_Full Costs=0.0
+ 24.CWT OSG Rope type_Total Cost=0.0
+ 25.CWT OSG Rope type_Tender Price=0.0
+30. OSG rope reel option /size:25
+-----------------------------------------------
+ 1.OSG rope reel option_Target Price=0.0
+ 2.OSG rope reel option_Base price=0.0
+ 3.OSG rope reel option_Per Service1=0.0
+ 4.OSG rope reel option_per travel [m]1=0.0
+ 5.OSG rope reel option_Each1=0.0
+ 6.OSG rope reel option_Base cost=2.0
+ 7.OSG rope reel option_Per Service2=0.0
+ 8.OSG rope reel option_per travel [m]2=61.0
+ 9.OSG rope reel option_Each2=0.0
+ 10.OSG rope reel option_Material costs=0.0
+ 11.OSG rope reel option_Material cost (SL Currency)=0.0
+ 12.OSG rope reel option_Base hours=15.0
+ 13.OSG rope reel option_Per Service3=15.0
+ 14.OSG rope reel option_per travel [m]3=10.35
+ 15.OSG rope reel option_Each3=39.0
+ 16.OSG rope reel option_Reference hours=0.0
+ 17.OSG rope reel option_ITE factor=0.0
+ 18.OSG rope reel option_Installation Hours=0.0
+ 19.OSG rope reel option_Labour rate=0.0
+ 20.OSG rope reel option_Labor Costs=15.0
+ 21.OSG rope reel option_Contingency=0.0
+ 22.OSG rope reel option_Overhead Recovery=0.0
+ 23.OSG rope reel option_Full Costs=0.0
+ 24.OSG rope reel option_Total Cost=15.0
+ 25.OSG rope reel option_Tender Price=15.0
+31. CAR OSG Rope type /size:25
+-----------------------------------------------
+ 1.CAR OSG Rope type_Target Price=0.0
+ 2.CAR OSG Rope type_Base price=0.0
+ 3.CAR OSG Rope type_Per Service1=0.0
+ 4.CAR OSG Rope type_per travel [m]1=0.0
+ 5.CAR OSG Rope type_Each1=0.0
+ 6.CAR OSG Rope type_Base cost=2.0
+ 7.CAR OSG Rope type_Per Service2=0.0
+ 8.CAR OSG Rope type_per travel [m]2=61.0
+ 9.CAR OSG Rope type_Each2=0.0
+ 10.CAR OSG Rope type_Material costs=0.0
+ 11.CAR OSG Rope type_Material cost (SL Currency)=0.0
+ 12.CAR OSG Rope type_Base hours=22.65
+ 13.CAR OSG Rope type_Per Service3=22.65
+ 14.CAR OSG Rope type_per travel [m]3=15.63
+ 15.CAR OSG Rope type_Each3=58.9
+ 16.CAR OSG Rope type_Reference hours=0.0
+ 17.CAR OSG Rope type_ITE factor=0.0
+ 18.CAR OSG Rope type_Installation Hours=0.0
+ 19.CAR OSG Rope type_Labour rate=0.0
+ 20.CAR OSG Rope type_Labor Costs=0.0
+ 21.CAR OSG Rope type_Contingency=0.0
+ 22.CAR OSG Rope type_Overhead Recovery=0.0
+ 23.CAR OSG Rope type_Full Costs=48.19
+ 24.CAR OSG Rope type_Total Cost=22.65
+ 25.CAR OSG Rope type_Tender Price=22.65
+32. Car OSG rope quantity /size:25
+-----------------------------------------------
+ 1.Car OSG rope quantity_Target Price=0.0
+ 2.Car OSG rope quantity_Base price=0.0
+ 3.Car OSG rope quantity_Per Service1=0.0
+ 4.Car OSG rope quantity_per travel [m]1=0.0
+ 5.Car OSG rope quantity_Each1=0.0
+ 6.Car OSG rope quantity_Base cost=2.0
+ 7.Car OSG rope quantity_Per Service2=0.0
+ 8.Car OSG rope quantity_per travel [m]2=61.0
+ 9.Car OSG rope quantity_Each2=0.0
+ 10.Car OSG rope quantity_Material costs=0.0
+ 11.Car OSG rope quantity_Material cost (SL Currency)=0.0
+ 12.Car OSG rope quantity_Base hours=0.0
+ 13.Car OSG rope quantity_Per Service3=0.0
+ 14.Car OSG rope quantity_per travel [m]3=0.0
+ 15.Car OSG rope quantity_Each3=0.0
+ 16.Car OSG rope quantity_Reference hours=0.0
+ 17.Car OSG rope quantity_ITE factor=0.0
+ 18.Car OSG rope quantity_Installation Hours=0.0
+ 19.Car OSG rope quantity_Labour rate=0.0
+ 20.Car OSG rope quantity_Labor Costs=0.0
+ 21.Car OSG rope quantity_Contingency=0.0
+ 22.Car OSG rope quantity_Overhead Recovery=0.0
+ 23.Car OSG rope quantity_Full Costs=0.0
+ 24.Car OSG rope quantity_Total Cost=0.0
+ 25.Car OSG rope quantity_Tender Price=0.0
+33. CAR OSG Ropes /size:25
+-----------------------------------------------
+ 1.CAR OSG Ropes_Target Price=1.13
+ 2.CAR OSG Ropes_Base price=0.0
+ 3.CAR OSG Ropes_Per Service1=0.0
+ 4.CAR OSG Ropes_per travel [m]1=0.02
+ 5.CAR OSG Ropes_Each1=2.07
+ 6.CAR OSG Ropes_Base cost=2.0
+ 7.CAR OSG Ropes_Per Service2=4.14
+ 8.CAR OSG Ropes_per travel [m]2=61.0
+ 9.CAR OSG Ropes_Each2=252.54
+ 10.CAR OSG Ropes_Material costs=0.0
+ 11.CAR OSG Ropes_Material cost (SL Currency)=0.0
+ 12.CAR OSG Ropes_Base hours=252.54
+ 13.CAR OSG Ropes_Per Service3=252.54
+ 14.CAR OSG Ropes_per travel [m]3=174.26
+ 15.CAR OSG Ropes_Each3=656.6
+ 16.CAR OSG Ropes_Reference hours=0.0
+ 17.CAR OSG Ropes_ITE factor=0.0
+ 18.CAR OSG Ropes_Installation Hours=0.0
+ 19.CAR OSG Ropes_Labour rate=0.0
+ 20.CAR OSG Ropes_Labor Costs=0.0
+ 21.CAR OSG Ropes_Contingency=0.0
+ 22.CAR OSG Ropes_Overhead Recovery=0.0
+ 23.CAR OSG Ropes_Full Costs=0.0
+ 24.CAR OSG Ropes_Total Cost=0.0
+ 25.CAR OSG Ropes_Tender Price=0.0
+34. CWT OSG rope diameter [mm] /size:25
+-----------------------------------------------
+ 1.CWT OSG rope diameter [mm]_Target Price=0.0
+ 2.CWT OSG rope diameter [mm]_Base price=0.0
+ 3.CWT OSG rope diameter [mm]_Per Service1=0.0
+ 4.CWT OSG rope diameter [mm]_per travel [m]1=0.0
+ 5.CWT OSG rope diameter [mm]_Each1=0.0
+ 6.CWT OSG rope diameter [mm]_Base cost=2.0
+ 7.CWT OSG rope diameter [mm]_Per Service2=0.0
+ 8.CWT OSG rope diameter [mm]_per travel [m]2=61.0
+ 9.CWT OSG rope diameter [mm]_Each2=0.0
+ 10.CWT OSG rope diameter [mm]_Material costs=0.0
+ 11.CWT OSG rope diameter [mm]_Material cost (SL Currency)=0.0
+ 12.CWT OSG rope diameter [mm]_Base hours=0.0
+ 13.CWT OSG rope diameter [mm]_Per Service3=0.0
+ 14.CWT OSG rope diameter [mm]_per travel [m]3=0.0
+ 15.CWT OSG rope diameter [mm]_Each3=0.0
+ 16.CWT OSG rope diameter [mm]_Reference hours=0.0
+ 17.CWT OSG rope diameter [mm]_ITE factor=0.0
+ 18.CWT OSG rope diameter [mm]_Installation Hours=0.0
+ 19.CWT OSG rope diameter [mm]_Labour rate=0.0
+ 20.CWT OSG rope diameter [mm]_Labor Costs=0.0
+ 21.CWT OSG rope diameter [mm]_Contingency=0.0
+ 22.CWT OSG rope diameter [mm]_Overhead Recovery=0.0
+ 23.CWT OSG rope diameter [mm]_Full Costs=0.0
+ 24.CWT OSG rope diameter [mm]_Total Cost=0.0
+ 25.CWT OSG rope diameter [mm]_Tender Price=0.0
+35. Car OSG rope length [m] /size:25
+-----------------------------------------------
+ 1.Car OSG rope length [m]_Target Price=0.0
+ 2.Car OSG rope length [m]_Base price=0.0
+ 3.Car OSG rope length [m]_Per Service1=0.0
+ 4.Car OSG rope length [m]_per travel [m]1=0.0
+ 5.Car OSG rope length [m]_Each1=0.0
+ 6.Car OSG rope length [m]_Base cost=2.0
+ 7.Car OSG rope length [m]_Per Service2=0.0
+ 8.Car OSG rope length [m]_per travel [m]2=61.0
+ 9.Car OSG rope length [m]_Each2=0.0
+ 10.Car OSG rope length [m]_Material costs=0.0
+ 11.Car OSG rope length [m]_Material cost (SL Currency)=0.0
+ 12.Car OSG rope length [m]_Base hours=0.0
+ 13.Car OSG rope length [m]_Per Service3=0.0
+ 14.Car OSG rope length [m]_per travel [m]3=0.0
+ 15.Car OSG rope length [m]_Each3=0.0
+ 16.Car OSG rope length [m]_Reference hours=0.0
+ 17.Car OSG rope length [m]_ITE factor=0.0
+ 18.Car OSG rope length [m]_Installation Hours=0.0
+ 19.Car OSG rope length [m]_Labour rate=0.0
+ 20.Car OSG rope length [m]_Labor Costs=0.0
+ 21.Car OSG rope length [m]_Contingency=0.0
+ 22.Car OSG rope length [m]_Overhead Recovery=0.0
+ 23.Car OSG rope length [m]_Full Costs=0.0
+ 24.Car OSG rope length [m]_Total Cost=0.0
+ 25.Car OSG rope length [m]_Tender Price=0.0
+36. Car OSG rope diameter [mm] /size:25
+-----------------------------------------------
+ 1.Car OSG rope diameter [mm]_Target Price=0.0
+ 2.Car OSG rope diameter [mm]_Base price=0.0
+ 3.Car OSG rope diameter [mm]_Per Service1=0.0
+ 4.Car OSG rope diameter [mm]_per travel [m]1=0.0
+ 5.Car OSG rope diameter [mm]_Each1=0.0
+ 6.Car OSG rope diameter [mm]_Base cost=2.0
+ 7.Car OSG rope diameter [mm]_Per Service2=0.0
+ 8.Car OSG rope diameter [mm]_per travel [m]2=61.0
+ 9.Car OSG rope diameter [mm]_Each2=0.0
+ 10.Car OSG rope diameter [mm]_Material costs=0.0
+ 11.Car OSG rope diameter [mm]_Material cost (SL Currency)=0.0
+ 12.Car OSG rope diameter [mm]_Base hours=0.0
+ 13.Car OSG rope diameter [mm]_Per Service3=0.0
+ 14.Car OSG rope diameter [mm]_per travel [m]3=0.0
+ 15.Car OSG rope diameter [mm]_Each3=0.0
+ 16.Car OSG rope diameter [mm]_Reference hours=0.0
+ 17.Car OSG rope diameter [mm]_ITE factor=0.0
+ 18.Car OSG rope diameter [mm]_Installation Hours=0.0
+ 19.Car OSG rope diameter [mm]_Labour rate=0.0
+ 20.Car OSG rope diameter [mm]_Labor Costs=0.0
+ 21.Car OSG rope diameter [mm]_Contingency=0.0
+ 22.Car OSG rope diameter [mm]_Overhead Recovery=0.0
+ 23.Car OSG rope diameter [mm]_Full Costs=0.0
+ 24.Car OSG rope diameter [mm]_Total Cost=0.0
+ 25.Car OSG rope diameter [mm]_Tender Price=0.0
+37. SBU_ROPES_BASE_NEW /size:21
+-----------------------------------------------
+ 1.SBU_ROPES_BASE_NEW_Target Price=0.0
+ 2.SBU_ROPES_BASE_NEW_Base price=0.0
+ 3.SBU_ROPES_BASE_NEW_Per Service1=0.0
+ 4.SBU_ROPES_BASE_NEW_per travel [m]1=0.0
+ 5.SBU_ROPES_BASE_NEW_Each1=0.0
+ 6.SBU_ROPES_BASE_NEW_Base cost=0.0
+ 7.SBU_ROPES_BASE_NEW_Per Service2=0.0
+ 8.SBU_ROPES_BASE_NEW_per travel [m]2=0.0
+ 9.SBU_ROPES_BASE_NEW_Each2=0.0
+ 10.SBU_ROPES_BASE_NEW_Material costs=0.0
+ 11.SBU_ROPES_BASE_NEW_Material cost (SL Currency)=0.0
+ 12.SBU_ROPES_BASE_NEW_Base hours=0.0
+ 13.SBU_ROPES_BASE_NEW_Per Service3=0.0
+ 14.SBU_ROPES_BASE_NEW_per travel [m]3=0.0
+ 15.SBU_ROPES_BASE_NEW_Each3=0.0
+ 16.SBU_ROPES_BASE_NEW_Reference hours=0.0
+ 17.SBU_ROPES_BASE_NEW_ITE factor=0.0
+ 18.SBU_ROPES_BASE_NEW_Installation Hours=0.0
+ 19.SBU_ROPES_BASE_NEW_Labour rate=0.0
+ 20.SBU_ROPES_BASE_NEW_Labor Costs=0.0
+ 21.SBU_ROPES_BASE_NEW_Contingency=0.0
+38. FreightCost_SBU_Ropes_new /size:21
+-----------------------------------------------
+ 1.FreightCost_SBU_Ropes_new_Target Price=0.0
+ 2.FreightCost_SBU_Ropes_new_Base price=0.0
+ 3.FreightCost_SBU_Ropes_new_Per Service1=0.0
+ 4.FreightCost_SBU_Ropes_new_per travel [m]1=0.0
+ 5.FreightCost_SBU_Ropes_new_Each1=0.0
+ 6.FreightCost_SBU_Ropes_new_Base cost=0.0
+ 7.FreightCost_SBU_Ropes_new_Per Service2=0.0
+ 8.FreightCost_SBU_Ropes_new_per travel [m]2=0.0
+ 9.FreightCost_SBU_Ropes_new_Each2=0.0
+ 10.FreightCost_SBU_Ropes_new_Material costs=0.0
+ 11.FreightCost_SBU_Ropes_new_Material cost (SL Currency)=0.0
+ 12.FreightCost_SBU_Ropes_new_Base hours=54.08
+ 13.FreightCost_SBU_Ropes_new_Per Service3=54.08
+ 14.FreightCost_SBU_Ropes_new_per travel [m]3=37.32
+ 15.FreightCost_SBU_Ropes_new_Each3=140.61
+ 16.FreightCost_SBU_Ropes_new_Reference hours=52.0
+ 17.FreightCost_SBU_Ropes_new_ITE factor=0.0
+ 18.FreightCost_SBU_Ropes_new_Installation Hours=0.0
+ 19.FreightCost_SBU_Ropes_new_Labour rate=0.0
+ 20.FreightCost_SBU_Ropes_new_Labor Costs=54.08
+ 21.FreightCost_SBU_Ropes_new_Contingency=54.08
+39. Hoist rope reel option /size:25
+-----------------------------------------------
+ 1.Hoist rope reel option_Target Price=0.0
+ 2.Hoist rope reel option_Base price=0.0
+ 3.Hoist rope reel option_Per Service1=0.0
+ 4.Hoist rope reel option_per travel [m]1=0.0
+ 5.Hoist rope reel option_Each1=0.0
+ 6.Hoist rope reel option_Base cost=2.0
+ 7.Hoist rope reel option_Per Service2=0.0
+ 8.Hoist rope reel option_per travel [m]2=61.0
+ 9.Hoist rope reel option_Each2=0.0
+ 10.Hoist rope reel option_Material costs=0.0
+ 11.Hoist rope reel option_Material cost (SL Currency)=0.0
+ 12.Hoist rope reel option_Base hours=48.03
+ 13.Hoist rope reel option_Per Service3=48.03
+ 14.Hoist rope reel option_per travel [m]3=33.14
+ 15.Hoist rope reel option_Each3=124.88
+ 16.Hoist rope reel option_Reference hours=0.0
+ 17.Hoist rope reel option_ITE factor=0.0
+ 18.Hoist rope reel option_Installation Hours=0.0
+ 19.Hoist rope reel option_Labour rate=0.0
+ 20.Hoist rope reel option_Labor Costs=0.0
+ 21.Hoist rope reel option_Contingency=0.0
+ 22.Hoist rope reel option_Overhead Recovery=0.0
+ 23.Hoist rope reel option_Full Costs=16.01
+ 24.Hoist rope reel option_Total Cost=48.03
+ 25.Hoist rope reel option_Tender Price=48.03</msg>
+<status endtime="20190109 13:57:19.025" starttime="20190109 13:55:36.764" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:54:37.188" starttime="20181222 00:54:37.174" status="PASS"></status>
+<status critical="yes" endtime="20190109 13:57:19.030" starttime="20190109 13:55:36.759" status="PASS"></status>
 </test>
-<test name="20.TestData for Escalator" id="s1-s1-s1-t20">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Read Test Data">
-<arguments>
-<arg>france</arg>
-<arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
-</arguments>
-<status endtime="20181222 00:54:37.385" starttime="20181222 00:54:37.197" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Multiple Equipments">
-<msg level="INFO" timestamp="20181222 00:54:50.085">ToConfiguration icon clicked
-scroll UP to Building1 tree
-Rightclick performed on Building1
-scroll UP to Group Automation_GroupName tree
-Rightclick performed on Automation_GroupName GroupName
-checkbox clicked
-ADD button clicked</msg>
-<status endtime="20181222 00:54:50.089" starttime="20181222 00:54:37.388" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:54:50.092" starttime="20181222 00:54:37.193" status="PASS"></status>
-</test>
-<test name="21.Verify Tender Created Successfully for Escalator" id="s1-s1-s1-t21">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Equipment ID Elevator">
-<status endtime="20181222 00:54:50.174" starttime="20181222 00:54:50.109" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Hand Over Date Is Greater Than Installation Date">
-<msg level="INFO" timestamp="20181222 00:54:51.266">Project clicked
-Current MS5HO Date: 27/07/2020
-MS5HODate Changed to: null</msg>
-<status endtime="20181222 00:54:51.270" starttime="20181222 00:54:50.178" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Sales Officeis Selected">
-<msg level="INFO" timestamp="20181222 00:54:52.417">SalesOffice value VB FRRW Selected</msg>
-<status endtime="20181222 00:54:52.423" starttime="20181222 00:54:51.273" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Additionalfieldsin Project Overviewfor Canada">
-<status endtime="20181222 00:54:52.455" starttime="20181222 00:54:52.434" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Supervisor">
-<msg level="INFO" timestamp="20181222 00:54:55.111">CustomerID: A10137873 entered
-06114080 selected in Supervisor</msg>
-<status endtime="20181222 00:54:55.115" starttime="20181222 00:54:52.474" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Equipment In Service">
-<msg level="INFO" timestamp="20181222 00:54:57.124">EIS Escalator is clicked in Equipment InService</msg>
-<status endtime="20181222 00:54:57.129" starttime="20181222 00:54:55.120" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Template To Be Uploaded">
-<msg level="INFO" timestamp="20181222 00:55:01.076">Rightclick performed on Equipment
-Open Templates clicked
-Automation_Template_forEscalator Entered in search
-Shared templates radio button Clicked
-Automation_Template_forEscalator Template Clicked</msg>
-<status endtime="20181222 00:55:01.079" starttime="20181222 00:54:57.133" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Tender Consistency">
-<msg level="INFO" timestamp="20181222 00:55:05.655">FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
-FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
-FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
-FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
-PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
-FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
-FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
-PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
-PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
-PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
-PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
-PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")</msg>
-<status endtime="20181222 00:55:05.657" starttime="20181222 00:55:01.082" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Tender Number">
-<msg level="INFO" timestamp="20181222 00:55:05.682">Tender # is :T-0002465828</msg>
-<status endtime="20181222 00:55:05.683" starttime="20181222 00:55:05.660" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:05.686" starttime="20181222 00:54:50.100" status="PASS"></status>
-</test>
-<test name="22.Validate TenderPrice Without FirstMaintenance for Escalator" id="s1-s1-s1-t22">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Pricing Icon Click">
-<msg level="INFO" timestamp="20181222 00:55:06.010">pricing icon Clicked</msg>
-<status endtime="20181222 00:55:06.015" starttime="20181222 00:55:05.692" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
-<arguments>
-<arg>10</arg>
-<arg>0</arg>
-</arguments>
-<msg level="INFO" timestamp="20181222 00:55:12.238">Discount entered as: 10
-First maintenance: 0 Clicked</msg>
-<status endtime="20181222 00:55:12.240" starttime="20181222 00:55:06.021" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:12.244" starttime="20181222 00:55:05.689" status="PASS"></status>
-</test>
-<test name="23.Check TenderPrice Without FirstMaintenance for Escalator" id="s1-s1-s1-t23">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:55:12.615">TargetPrice:23849.41
-Firstmaintenance:800.0
-Discount:10.0
-*** TenderPriceFinal:21544.47 / CurrentTenderPrice:21544.47 ***
-is TenderPriceFinal VS ApplicationTenderPrice Equal: true ***
-null Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: true ***</msg>
-<status endtime="20181222 00:55:12.618" starttime="20181222 00:55:12.251" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:12.620" starttime="20181222 00:55:12.248" status="PASS"></status>
-</test>
-<test name="24.Validate Discount Without FirstMaintenance for Escalator" id="s1-s1-s1-t24">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
-<arguments>
-<arg>1011</arg>
-<arg>0</arg>
-</arguments>
-<msg level="INFO" timestamp="20181222 00:55:17.776">TenderPrice entered as: 1011
-First maintenance: 0 Clicked</msg>
-<status endtime="20181222 00:55:17.780" starttime="20181222 00:55:12.628" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:17.786" starttime="20181222 00:55:12.624" status="PASS"></status>
-</test>
-<test name="25.Check Discount Without FirstMaintenance for Escalator" id="s1-s1-s1-t25">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:55:18.324">TargetPrice:23049.41
-Firstmaintenance:0.0
-TenderPrice:1011.0
-DiscountFinal:95.61 / Discount shown in Application:95.61
-*** is FinalDiscount VS ApplicationDiscount Equal:true ***
-null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
-<status endtime="20181222 00:55:18.326" starttime="20181222 00:55:17.812" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:18.331" starttime="20181222 00:55:17.801" status="PASS"></status>
-</test>
-<test name="26.Validate TenderPrice With FirstMaintenance for Escalator" id="s1-s1-s1-t26">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
-<arguments>
-<arg>11</arg>
-<arg>3</arg>
-</arguments>
-<msg level="INFO" timestamp="20181222 00:55:23.494">Discount entered as: 11
-First maintenance: 3 Clicked</msg>
-<status endtime="20181222 00:55:23.500" starttime="20181222 00:55:18.344" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:23.503" starttime="20181222 00:55:18.338" status="PASS"></status>
-</test>
-<test name="27.Check TenderPrice With FirstMaintenance for Escalator" id="s1-s1-s1-t27">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:55:24.235">TargetPrice:23849.41
-Firstmaintenance:800.0
-Discount:11.0
-*** TenderPriceFinal:21313.97 / CurrentTenderPrice:21313.97 ***
-is TenderPriceFinal VS ApplicationTenderPrice Equal: true ***
-null Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: true ***</msg>
-<status endtime="20181222 00:55:24.237" starttime="20181222 00:55:23.512" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:24.239" starttime="20181222 00:55:23.508" status="PASS"></status>
-</test>
-<test name="28.Validate Discount With FirstMaintenance for Escalator" id="s1-s1-s1-t28">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
-<arguments>
-<arg>1012</arg>
-<arg>3</arg>
-</arguments>
-<msg level="INFO" timestamp="20181222 00:55:27.457">TenderPrice entered as: 1012
-First maintenance: 3 Clicked</msg>
-<status endtime="20181222 00:55:27.459" starttime="20181222 00:55:24.246" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:27.462" starttime="20181222 00:55:24.243" status="PASS"></status>
-</test>
-<test name="29.Check Discount With FirstMaintenance for Escalator" id="s1-s1-s1-t29">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:55:27.780">TargetPrice:23849.41
-Firstmaintenance:800.0
-TenderPrice:1012.0
-DiscountFinal:99.08 / Discount shown in Application:99.08
-*** is FinalDiscount VS ApplicationDiscount Equal:true ***
-null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
-<status endtime="20181222 00:55:27.782" starttime="20181222 00:55:27.469" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:27.784" starttime="20181222 00:55:27.466" status="PASS"></status>
-</test>
-<test name="30.Change and Validate Discount With FirstMaintenance for Escalator" id="s1-s1-s1-t30">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
-<arguments>
-<arg>1013</arg>
-<arg>6</arg>
-</arguments>
-<msg level="INFO" timestamp="20181222 00:55:30.283">TenderPrice entered as: 1013
-First maintenance: 6 Clicked</msg>
-<status endtime="20181222 00:55:30.286" starttime="20181222 00:55:27.790" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:30.289" starttime="20181222 00:55:27.787" status="PASS"></status>
-</test>
-<test name="31.Check Changed Discount With FirstMaintenance for Escalator" id="s1-s1-s1-t31">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20181222 00:55:30.660">TargetPrice:23849.41
-Firstmaintenance:800.0
-TenderPrice:1013.0
-DiscountFinal:99.08 / Discount shown in Application:99.08
-*** is FinalDiscount VS ApplicationDiscount Equal:true ***
-null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
-<status endtime="20181222 00:55:30.661" starttime="20181222 00:55:30.298" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:30.664" starttime="20181222 00:55:30.294" status="PASS"></status>
-</test>
-<test name="32.CheckRegionalFactorAtSalesOfficeLevel for Escalator" id="s1-s1-s1-t32">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
-<msg level="INFO" timestamp="20181222 00:55:32.247">Additional Discount Icon CLICKED</msg>
-<status endtime="20181222 00:55:32.250" starttime="20181222 00:55:30.672" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
-<arguments>
-<arg>0</arg>
-</arguments>
-<msg level="INFO" timestamp="20181222 00:55:33.619">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:false *** / read_Regionaldiscountoncomponent_Percent:3.91 / regionalDiscount:4.0
-is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:false *** / final_Regionaldiscountoncomponent:1046.55 / read_Regionaldiscountoncomponent:1023.19
-is final_TargetPrice VS read_TargetPrice equal:false *** / final_TargetPrice:25117.32 / read_TargetPrice:24649.41
--0.02 Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: false ***</msg>
-<msg level="INFO" html="yes" timestamp="20181222 00:55:33.620">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Dec2018_12_55_33AM\SS_22Dec2018_12_55_33AM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Dec2018_12_55_33AM\SS_22Dec2018_12_55_33AM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
-<status endtime="20181222 00:55:33.627" starttime="20181222 00:55:32.254" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:33.633" starttime="20181222 00:55:30.668" status="PASS"></status>
-</test>
-<test name="33.CheckRegionalFactorWhenSalesOfficeIsChanged for Escalator" id="s1-s1-s1-t33">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
-<msg level="INFO" timestamp="20181222 00:55:39.511">ToConfiguration icon clicked
-Project clicked
-SalesOffice value VB FRPP Selected
-pricing icon Clicked</msg>
-<status endtime="20181222 00:55:39.526" starttime="20181222 00:55:33.655" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
-<msg level="INFO" timestamp="20181222 00:55:44.267">Additional Discount Icon CLICKED</msg>
-<status endtime="20181222 00:55:44.268" starttime="20181222 00:55:39.536" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
-<arguments>
-<arg>0</arg>
-</arguments>
-<msg level="INFO" timestamp="20181222 00:55:45.671">is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:false *** / read_Regionaldiscountoncomponent_Percent:-4.54 / regionalDiscount:-5.0
-is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:false *** / final_Regionaldiscountoncomponent:-1305.68 / read_Regionaldiscountoncomponent:-1185.55
-is final_TargetPrice VS read_TargetPrice equal:false *** / final_TargetPrice:27419.32 / read_TargetPrice:27299.19
--0.02 Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: false ***</msg>
-<msg level="INFO" html="yes" timestamp="20181222 00:55:45.673">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Dec2018_12_55_45AM\SS_22Dec2018_12_55_45AM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Dec2018_12_55_45AM\SS_22Dec2018_12_55_45AM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
-<status endtime="20181222 00:55:45.683" starttime="20181222 00:55:44.271" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:55:45.693" starttime="20181222 00:55:33.642" status="PASS"></status>
-</test>
-<test name="34.Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Escalator" id="s1-s1-s1-t34">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Primary Sales Office">
-<arguments>
-<arg>france</arg>
-<arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
-</arguments>
-<msg level="INFO" timestamp="20181222 00:55:50.763">ToConfiguration icon clicked
-Project clicked
-SalesOffice value VB FRRW Selected
-pricing icon Clicked</msg>
-<status endtime="20181222 00:55:50.767" starttime="20181222 00:55:45.703" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
-<msg level="INFO" timestamp="20181222 00:56:02.156">Detailed breakdown Clicked
-[[FirefoxDriver: firefox on WINDOWS (97a38b51-acc9-4ade-97ac-d265093dc840)] -&gt; xpath: //*[text()='MMS Electrification Module']] CLICKED
-Show TotalCost Calculation Details CLICKED</msg>
-<msg level="INFO" timestamp="20181222 00:56:02.163">org.openqa.selenium.StaleElementReferenceException: The element reference of &lt;input id="v13721_0" class="cg5gkot497q928 cto8c40322u788" type="text"&gt; is stale; either the element is no longer attached to the DOM, it is not in the current frame context, or the document has been refreshed
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '172.20.10.3', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 5032, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
-	at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:128)
-	at com.KTOC.TRB.testautomation.Keywords.Keywords.validateDetailBreakdownTab(Keywords.java:953)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.python.core.PyReflectedFunction.__call__(PyReflectedFunction.java:186)
-	at org.python.core.PyObject.__call__(PyObject.java:419)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.running.librarykeywordrunner$py.f$13(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:89)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:124)
-	at org.python.core.PyFunction.__call__(PyFunction.java:403)
-	at robot.running.librarykeywordrunner$py._run_with_signal_monitoring$16(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:103)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run_with_output_captured_and_signal_monitor$15(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:96)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run$8(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:77)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py.run$6(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:56)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.steprunner$py.run_step$4(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:57)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.steprunner$py.run_steps$3(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:47)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.runner$py.visit_test$7(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py:160)
-	at robot.running.runner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testcase$py.visit$7(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py:74)
-	at robot.model.testcase$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.model$py.run$17(C:\jython2.7.0\Lib\site-packages\robot\running\model.py:250)
-	at robot.running.model$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\model.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at org.python.pycode._pyx10.main$3(C:\jython2.7.0\Lib\site-packages\robot\run.py:452)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.utils.application$py._execute$10(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:94)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.utils.application$py.execute_cli$5(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:49)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.pycode._pyx10.run_cli$7(C:\jython2.7.0\Lib\site-packages\robot\run.py:489)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:131)
-	at org.python.core.PyFunction.__call__(PyFunction.java:413)
-	at org.python.pycode._pyx10.f$0(C:\jython2.7.0\Lib\site-packages\robot\run.py:550)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyCode.call(PyCode.java:18)
-	at org.python.core.Py.runCode(Py.java:1386)
-	at org.python.core.Py.exec(Py.java:1430)
-	at runpy$py._run_code$9(C:\jython2.7.0\Lib\runpy.py:73)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyFunction.function___call__(PyFunction.java:471)
-	at org.python.core.PyFunction.__call__(PyFunction.java:466)
-	at org.python.core.PyFunction.__call__(PyFunction.java:456)
-	at runpy$py._run_module_as_main$14(C:\jython2.7.0\Lib\runpy.py:161)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyFunction.__call__(PyFunction.java:418)
-	at org.python.util.jython.runModule(jython.java:199)
-	at org.python.util.jython.runModule(jython.java:191)
-	at org.python.util.jython.run(jython.java:402)
-	at org.python.util.jython.main(jython.java:142)</msg>
-<msg level="FAIL" timestamp="20181222 00:56:02.183">IllegalStateException: failure 'Validate Detail Breakdown Tab Failed due to: org.openqa.selenium.StaleElementReferenceException: The element reference of &lt;input id="v13721_0" class="cg5gkot497q928 cto8c40322u788" type="text"&gt; is stale; either the element is no longer attached to the DOM, it is not in the current frame context, or the document has been refreshed
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '172.20.10.3', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 5032, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840'</msg>
-<status endtime="20181222 00:56:02.187" starttime="20181222 00:55:50.773" status="FAIL"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:56:02.192" starttime="20181222 00:55:45.698" status="FAIL">IllegalStateException: failure 'Validate Detail Breakdown Tab Failed due to: org.openqa.selenium.StaleElementReferenceException: The element reference of &lt;input id="v13721_0" class="cg5gkot497q928 cto8c40322u788" type="text"&gt; is stale; either the element is no longer attached to the DOM, it is not in the current frame context, or the document has been refreshed
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '172.20.10.3', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 5032, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840'</status>
-</test>
-<test name="35. Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Escalator" id="s1-s1-s1-t35">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
-<msg level="INFO" timestamp="20181222 00:56:06.289">ToConfiguration icon clicked
-Project clicked
-SalesOffice value VB FRPP Selected
-pricing icon Clicked</msg>
-<status endtime="20181222 00:56:06.294" starttime="20181222 00:56:02.208" status="PASS"></status>
-</kw>
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
-<msg level="INFO" timestamp="20181222 00:56:16.653">Detailed breakdown Clicked
-[[FirefoxDriver: firefox on WINDOWS (97a38b51-acc9-4ade-97ac-d265093dc840)] -&gt; xpath: //*[text()='MMS Electrification Module']] CLICKED
-Show TotalCost Calculation Details CLICKED</msg>
-<msg level="INFO" timestamp="20181222 00:56:16.657">java.lang.IndexOutOfBoundsException: Index: 4, Size: 4
-	at java.util.LinkedList.checkElementIndex(LinkedList.java:555)
-	at java.util.LinkedList.get(LinkedList.java:476)
-	at com.KTOC.TRB.testautomation.Keywords.Keywords.validateDetailBreakdownTab(Keywords.java:982)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.python.core.PyReflectedFunction.__call__(PyReflectedFunction.java:186)
-	at org.python.core.PyObject.__call__(PyObject.java:419)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.running.librarykeywordrunner$py.f$13(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:89)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:124)
-	at org.python.core.PyFunction.__call__(PyFunction.java:403)
-	at robot.running.librarykeywordrunner$py._run_with_signal_monitoring$16(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:103)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run_with_output_captured_and_signal_monitor$15(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:96)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py._run$8(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:77)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.librarykeywordrunner$py.run$6(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:56)
-	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.running.steprunner$py.run_step$4(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:57)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.steprunner$py.run_steps$3(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:47)
-	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.runner$py.visit_test$7(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py:160)
-	at robot.running.runner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testcase$py.visit$7(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py:74)
-	at robot.model.testcase$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
-	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
-	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
-	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at robot.running.model$py.run$17(C:\jython2.7.0\Lib\site-packages\robot\running\model.py:250)
-	at robot.running.model$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\model.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyMethod.__call__(PyMethod.java:141)
-	at org.python.pycode._pyx10.main$3(C:\jython2.7.0\Lib\site-packages\robot\run.py:452)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.core.PyMethod.__call__(PyMethod.java:223)
-	at org.python.core.PyObject._callextra(PyObject.java:601)
-	at robot.utils.application$py._execute$10(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:94)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
-	at org.python.core.PyFunction.__call__(PyFunction.java:434)
-	at org.python.core.PyMethod.__call__(PyMethod.java:156)
-	at robot.utils.application$py.execute_cli$5(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:49)
-	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
-	at org.python.core.PyFunction.__call__(PyFunction.java:482)
-	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
-	at org.python.core.PyMethod.__call__(PyMethod.java:228)
-	at org.python.pycode._pyx10.run_cli$7(C:\jython2.7.0\Lib\site-packages\robot\run.py:489)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:131)
-	at org.python.core.PyFunction.__call__(PyFunction.java:413)
-	at org.python.pycode._pyx10.f$0(C:\jython2.7.0\Lib\site-packages\robot\run.py:550)
-	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyCode.call(PyCode.java:18)
-	at org.python.core.Py.runCode(Py.java:1386)
-	at org.python.core.Py.exec(Py.java:1430)
-	at runpy$py._run_code$9(C:\jython2.7.0\Lib\runpy.py:73)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
-	at org.python.core.PyFunction.function___call__(PyFunction.java:471)
-	at org.python.core.PyFunction.__call__(PyFunction.java:466)
-	at org.python.core.PyFunction.__call__(PyFunction.java:456)
-	at runpy$py._run_module_as_main$14(C:\jython2.7.0\Lib\runpy.py:161)
-	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
-	at org.python.core.PyTableCode.call(PyTableCode.java:167)
-	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
-	at org.python.core.PyFunction.__call__(PyFunction.java:423)
-	at org.python.core.PyFunction.__call__(PyFunction.java:418)
-	at org.python.util.jython.runModule(jython.java:199)
-	at org.python.util.jython.runModule(jython.java:191)
-	at org.python.util.jython.run(jython.java:402)
-	at org.python.util.jython.main(jython.java:142)</msg>
-<msg level="FAIL" timestamp="20181222 00:56:16.669">IllegalStateException: failure 'Validate Detail Breakdown Tab Failed due to: java.lang.IndexOutOfBoundsException: Index: 4, Size: 4'</msg>
-<status endtime="20181222 00:56:16.672" starttime="20181222 00:56:06.303" status="FAIL"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:56:16.676" starttime="20181222 00:56:02.202" status="FAIL">IllegalStateException: failure 'Validate Detail Breakdown Tab Failed due to: java.lang.IndexOutOfBoundsException: Index: 4, Size: 4'</status>
-</test>
-<test name="36.Check Cost Calculated Correctly When The Tender Currency Is Different From SLCurrency for Escalator" id="s1-s1-s1-t36">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Cost Calculated Successfully">
-<msg level="INFO" timestamp="20181222 00:56:16.698">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
-<status endtime="20181222 00:56:16.702" starttime="20181222 00:56:16.691" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:56:16.707" starttime="20181222 00:56:16.683" status="PASS"></status>
-</test>
-<test name="37.Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Escalator" id="s1-s1-s1-t37">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="VerifyPriceCalculatedSuccessfully TobecheckedinFrance">
-<msg level="INFO" timestamp="20181222 00:56:16.721">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
-<status endtime="20181222 00:56:16.723" starttime="20181222 00:56:16.718" status="PASS"></status>
-</kw>
-<status critical="yes" endtime="20181222 00:56:16.726" starttime="20181222 00:56:16.712" status="PASS"></status>
-</test>
-<test name="38.Check TenderLetter Is generated Correctly With All The components for Escalator" id="s1-s1-s1-t38">
+<test name="20.Check TenderLetter Is generated Correctly With All The components" id="s1-s1-s1-t20">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Go To Documents Taband Click The Tender">
-<msg level="INFO" timestamp="20181222 00:56:27.962">ToWord icon clicked</msg>
-<status endtime="20181222 00:56:27.967" starttime="20181222 00:56:16.739" status="PASS"></status>
+<msg level="INFO" timestamp="20190109 13:57:21.637">ToWord icon clicked</msg>
+<status endtime="20190109 13:57:21.642" starttime="20190109 13:57:19.042" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Successful Message Displayed">
-<msg level="INFO" timestamp="20181222 00:56:42.241">org.openqa.selenium.WebDriverException: Failed to decode response from marionette
+<msg level="INFO" timestamp="20190109 13:57:25.165">Create PrintOut icon clicked
+No clicked in Do you want to freeze printed version?</msg>
+<status endtime="20190109 13:57:25.171" starttime="20190109 13:57:21.651" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190109 13:57:25.177" starttime="20190109 13:57:19.036" status="PASS"></status>
+</test>
+<test name="21.Close KTOC" id="s1-s1-s1-t21">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Click Saveand Close Button">
+<msg level="INFO" timestamp="20190109 13:57:32.738">SaveandClose icon CLICKED
+Yes CLICKED in SaveandClose
+Automation Test Description entered in Description field in stage / Probability window
+OK clicked in SalesForce.com update failed! Pop-up
+Close icon CLICKED</msg>
+<msg level="INFO" timestamp="20190109 13:57:32.744">org.openqa.selenium.ElementClickInterceptedException: Element &lt;div id="b7249_28" class="tbw1 tbw0 "&gt; is not clickable at point (1165.6666641235352,20.666664123535156) because another element &lt;div id="gp" class="gp"&gt; obscures it
 Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '172.20.10.3', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
 Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 5032, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 13732, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 9860f292-0b10-4bd0-ae53-2aec3928be42
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -1409,11 +1399,9 @@ Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
 	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
-	at org.openqa.selenium.remote.RemoteWebElement.isEnabled(RemoteWebElement.java:150)
-	at org.openqa.selenium.support.ui.ExpectedConditions$24.apply(ExpectedConditions.java:716)
-	at org.openqa.selenium.support.ui.ExpectedConditions$24.apply(ExpectedConditions.java:711)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:248)
-	at com.KTOC.TRB.testautomation.Keywords.Keywords.verifySuccessfulMessageDisplayed(Keywords.java:1192)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils.clickonButton(KTOCTRBUtils.java:409)
+	at com.KTOC.TRB.testautomation.Keywords.Keywords.clickSaveandCloseButton(Keywords.java:1676)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1592,24 +1580,51 @@ Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840
 	at org.python.util.jython.runModule(jython.java:191)
 	at org.python.util.jython.run(jython.java:402)
 	at org.python.util.jython.main(jython.java:142)</msg>
-<msg level="FAIL" timestamp="20181222 00:56:42.254">IllegalStateException: failure 'Verify Successful Message Displayed Failed due to: org.openqa.selenium.WebDriverException: Failed to decode response from marionette
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '172.20.10.3', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 5032, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840'</msg>
-<status endtime="20181222 00:56:42.258" starttime="20181222 00:56:27.973" status="FAIL"></status>
+<status endtime="20190109 13:57:32.756" starttime="20190109 13:57:25.198" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20181222 00:56:42.263" starttime="20181222 00:56:16.731" status="FAIL">IllegalStateException: failure 'Verify Successful Message Displayed Failed due to: org.openqa.selenium.WebDriverException: Failed to decode response from marionette
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
-System info: host: '5CG71660NZ', ip: '172.20.10.3', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 5032, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 97a38b51-acc9-4ade-97ac-d265093dc840'</status>
+<status critical="yes" endtime="20190109 13:57:32.772" starttime="20190109 13:57:25.186" status="PASS"></status>
 </test>
-<test name="39.Close KTOC" id="s1-s1-s1-t39">
-<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Click Saveand Close Button">
+<test name="22.Verify Total SalesPrice With SF Product Information" id="s1-s1-s1-t22">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Compare Sales Pricebetween Tender Pageand Salesforce">
+<msg level="INFO" timestamp="20190109 13:58:45.475">Tender Price:1803.0 / Final_SalesPrice:0.0
+is TRB TenderPrice VS Salesforce TenderPrice equal:false ***</msg>
+<msg level="INFO" html="yes" timestamp="20190109 13:58:45.476">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\09Jan2019_01_58_41PM\SS_09Jan2019_01_58_41PM_TenderPrice not equal in compareSalesPricebetweenTenderPageandSalesforce for SingleEquipment.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\09Jan2019_01_58_41PM\SS_09Jan2019_01_58_41PM_TenderPrice not equal in compareSalesPricebetweenTenderPageandSalesforce for SingleEquipment.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;
+Configurator Clicked
+No clicked in New Version is available for this product</msg>
+<status endtime="20190109 13:58:45.489" starttime="20190109 13:57:32.794" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Hand Shake">
+<msg level="INFO" timestamp="20190109 13:58:52.389">FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
+FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
+FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
+FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
+FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
+isHandShakeiconisEnabled:true HandShakeicon CLICKED</msg>
+<status endtime="20190109 13:58:52.400" starttime="20190109 13:58:45.497" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190109 13:58:52.406" starttime="20190109 13:57:32.789" status="PASS"></status>
+</test>
+<status endtime="20190109 13:58:52.558" starttime="20190109 13:52:51.700" status="PASS"></status>
+</suite>
+<status endtime="20190109 13:58:52.809" starttime="20190109 13:52:51.664" status="PASS"></status>
+</suite>
+<status endtime="20190109 13:58:52.907" starttime="20190109 13:52:51.068" status="PASS"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="22" fail="0">Critical Tests</stat>
+<stat pass="22" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="22" fail="0" name="KTOC TRB TestAutomation" id="s1">KTOC TRB TestAutomation</stat>
+<stat pass="22" fail="0" name="TestSuites" id="s1-s1">KTOC TRB TestAutomation.TestSuites</stat>
+<stat pass="22" fail="0" name="RegressionKTOC TRB France" id="s1-s1-s1">KTOC TRB TestAutomation.TestSuites.RegressionKTOC TRB France</stat>
+</suite>
+</statistics>
 <errors>
-<msg level="ERROR" timestamp="20181222 00:56:42.279">Execution stopped by user.</msg>
 </errors>
 </robot>

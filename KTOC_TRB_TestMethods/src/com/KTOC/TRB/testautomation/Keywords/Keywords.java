@@ -2,6 +2,8 @@ package com.KTOC.TRB.testautomation.Keywords;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -643,8 +645,10 @@ public class Keywords extends KTOCTRBUtils{
 	public void VerifyPriceCalculatedSuccessfully_TobecheckedinFrance() throws Exception{
 		if(frontlineAssigned.equals("AUSTRALIA")) {
 //			checkingTargetPriceFullGrid();
+			validateDetailBreakdownTabFullGrid();
 		} else {
 			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
+			validateDetailBreakdownTabFullGrid();
 		}
 	}
 	
@@ -1060,6 +1064,7 @@ public class Keywords extends KTOCTRBUtils{
 			waitForVisibilityOfElementLocated(header_ITEfactor);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			System.out.println("Show TotalCost Calculation Details CLICKED");
+			if(showInstallationCalculation != 0) {
 			int count=0;
 			List<WebElement> buttons=gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
 			wait.until(ExpectedConditions.visibilityOfAllElements(buttons));
@@ -1074,129 +1079,11 @@ public class Keywords extends KTOCTRBUtils{
 				break;
 			}
 		}
+			}	
+			showInstallationCalculation=1;
 			waitForVisibilityOfElementLocated(By.xpath("//*[text()='Reference hours']"));
-			List<String> ls_TotalCostHeader=new LinkedList<>();
-			List<Float> ls_TotalCostValue=new LinkedList<>();
-			hm_DetailBreakdownData = new HashMap<String, Float>();
-				ls_TotalCostHeader.add("Reference hours");
-				ls_TotalCostHeader.add("ITE factor");
-				ls_TotalCostHeader.add("Installation Hours");
-				ls_TotalCostHeader.add("Labour rate");
-				ls_TotalCostHeader.add("Labor Costs");
-				ls_TotalCostHeader.add("Contigency");
-				ls_TotalCostHeader.add("Overhead Recovery");
-				ls_TotalCostHeader.add("Full Costs");
-				ls_TotalCostHeader.add("Total Cost");
-				ls_TotalCostHeader.add("Ratio of Labor");
-				ls_TotalCostHeader.add("Tender Price");
-//				ls_TotalCostHeader.add("Minimum Tender Price");
-				ls_TotalCostHeader.add("Target Price");
-				ls_TotalCostHeader.add("Material costs");
-				ls_TotalCostHeader.add("Material cost (SL Currency)");
-			Float convertedvalue=null;
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			List<WebElement> Elements_showtotalcostFirstRow = gettingWebElementsfromList(gridvalues_SubTotal);
-			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostFirstRow));
-			for(WebElement Element_showtotalcostFirstRow:Elements_showtotalcostFirstRow) {
-				String getAttribute_showtotalcostFirstRow=Element_showtotalcostFirstRow.getAttribute("value");
-				String getText_showtotalcostFirstRow=Element_showtotalcostFirstRow.getText();
-				if (getAttribute_showtotalcostFirstRow == null ) {
-					if(!getText_showtotalcostFirstRow.isEmpty())	{
-//			System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
-							if(!getText_showtotalcostFirstRow.contains("Subtotal")) {
-								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h $]", "");
-								getvalue = getvalue.replace(",", ".");
-								getvalue=removingDot(getvalue);
-								convertedvalue = Float.valueOf(getvalue);
-								ls_TotalCostValue.add(convertedvalue);
-							}
-					}
-				} else if(!getAttribute_showtotalcostFirstRow.isEmpty() && getAttribute_showtotalcostFirstRow!=null)	{
-//			System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
-					String getvalue = null;
-					if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
-						getvalue=getAttribute_showtotalcostFirstRow.replaceAll("[€ % h .]", "");
-						getvalue = getvalue.replace(",", ".");
-					} else if(frontlineAssigned.equals("AUSTRALIA")) {
-						getvalue=getAttribute_showtotalcostFirstRow.replaceAll("[€ % h $]", "");
-						getvalue = getvalue.replace(",", "");
-					}
-						convertedvalue = Float.valueOf(getvalue);
-						ls_TotalCostValue.add(convertedvalue);
-				}
-			}
-			for(int i=0; i<14; i++) {
-//				System.out.printf("line:937:"+i+"/"+ls_TotalCostHeader.get(i).toString()+"/"+ ls_TotalCostValue.get(i).toString());
-				hm_DetailBreakdownData.put(ls_TotalCostHeader.get(i), ls_TotalCostValue.get(i));
-			}
-			/*Float showtotal_TargetPrice= hm_DetailBreakdownData.get("Target Price");
-			Float showtotal_Materialcosts= hm_DetailBreakdownData.get("Material costs");
-			Float showtotal_MaterialcostSLCurrency= hm_DetailBreakdownData.get("Material cost (SL Currency)");
-		System.out.println("====="+showtotal_TargetPrice+"/"+showtotal_Materialcosts+"/"+showtotal_MaterialcostSLCurrency);*/
-			Float showtotal_Referencehours= hm_DetailBreakdownData.get("Reference hours");
-			Float showtotal_ITEfactor= hm_DetailBreakdownData.get("ITE factor");
-			Float showtotal_InstallationHours= hm_DetailBreakdownData.get("Installation Hours");
-			Float showtotal_Labourrate= hm_DetailBreakdownData.get("Labour rate");
-			Float showtotal_LaborCosts= hm_DetailBreakdownData.get("Labor Costs");
-			/*Float showtotal_Contigency= hm_DetailBreakdownData.get("Contigency");
-			Float showtotal_OverheadRecovery= hm_DetailBreakdownData.get("Overhead Recovery");
-			Float showtotal_FullCosts= hm_DetailBreakdownData.get("Full Costs");
-			Float showtotal_TotalCost= hm_DetailBreakdownData.get("Total Cost");
-			Float showtotal_RatioofLabor= hm_DetailBreakdownData.get("Ratio of Labor");
-			Float showtotal_TenderPrice= hm_DetailBreakdownData.get("Tender Price");*/
-			Float check_showtotal_Referencehours= showtotal_InstallationHours/showtotal_ITEfactor;
-			Float check_showtotal_Labourrate= showtotal_LaborCosts/showtotal_InstallationHours;
-			/*System.out.println("is_showtotal_ITEfactor: "+check_showtotal_ITEfactor+"/"+showtotal_ITEfactor);
-			System.out.println("is_showtotal_LaborCosts "+check_showtotal_Labourrate+"/"+showtotal_Labourrate);
-			System.out.println("is_showtotal_Referencehours "+check_showtotal_Referencehours+"/"+showtotal_Referencehours);*/
-				check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get(selectedSalesOffice);
-				LabourRate = hm_LabourRateforSalesOfficeData.get(selectedSalesOffice);
-			Boolean is_showtotal_ITEfactor = roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor));
-			Boolean is_showtotal_Referencehours= roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours));
-			Boolean is_showtotal_Labourrate= roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate));
-			Boolean is_Labourrate= roundoff.format(LabourRate).equals(roundoff.format(showtotal_Labourrate));
-			System.out.println("check_showtotal_ITEfactor:"+roundoff.format(check_showtotal_ITEfactor)+" / showtotal_ITEfactor:"+roundoff.format(showtotal_ITEfactor));
-			System.out.println("check_showtotal_Referencehours:"+roundoff.format(check_showtotal_Referencehours)+" / showtotal_Referencehours:"+roundoff.format(showtotal_Referencehours));
-			System.out.println("check_showtotal_Labourrate:"+roundoff.format(check_showtotal_Labourrate)+" / showtotal_Labourrate:"+roundoff.format(showtotal_Labourrate));
-			System.out.println("LabourRate:"+roundoff.format(LabourRate)+" / showtotal_Labourrate:"+roundoff.format(showtotal_Labourrate));
-			System.out.println("*** is_showtotal_ITEfactor: "+is_showtotal_ITEfactor+" *** / is_Labourrate: "+is_Labourrate+" *** / is_showtotal_Labourrate: "+is_showtotal_Labourrate+" *** / is_showtotal_Referencehours: "+is_showtotal_Referencehours+" ***");
-			String condition=null;
-			if(!roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))) {
-				check_showtotal_ITEfactor=check_showtotal_ITEfactor-0.01f;
-				if(roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))) {
-					condition="-0.01";
-				} else {
-					check_showtotal_ITEfactor=check_showtotal_ITEfactor-0.02f;
-					 condition="-0.02";
-					}
-			System.out.println(condition+" Added in ITEfactor hence CalculatedITEfactor VS ActualITEfactor shown in Application is: "+roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))+" ***");
-			}
-			String condition1=null;
-			if(!roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours))) {
-				check_showtotal_Referencehours=check_showtotal_Referencehours-0.01f;
-				if(roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))) {
-					condition1="-0.01";
-				} else {
-					check_showtotal_Referencehours=check_showtotal_Referencehours-0.02f;
-					condition1="-0.02";
-					}
-			System.out.println(condition1+" Added in ITEfactor hence CalculatedReferencehours VS ActualReferencehours shown in Application is: "+roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours))+" ***");
-			}
-			String condition2=null;
-			if(!roundoff.format(LabourRate).equals(roundoff.format(showtotal_Labourrate))) {
-				showtotal_Labourrate=showtotal_Labourrate-0.01f;
-				if(roundoff.format(LabourRate).equals(roundoff.format(showtotal_Labourrate))) {
-					condition2="-0.01";
-				} else {
-					showtotal_Labourrate=showtotal_Labourrate-0.02f;
-					condition2="-0.02";
-					}
-			System.out.println(condition2+" Added in ITEfactor hence CalculatedLabourrate VS ActualLabourRate shown in Application is: "+roundoff.format(LabourRate).equals(roundoff.format(showtotal_Labourrate))+" ***");
-			}
-			if(!roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor)) || !roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours)) || !roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate))) {
-				screenshotCapture("DetailBreakdownTab");
-//				Assert.fail("Failed due to Validate Detail Breakdown Tab");
-			}
+			validateDetailBreakdownTabGetDatafromGrid();
+			
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
 			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
@@ -1226,150 +1113,21 @@ public class Keywords extends KTOCTRBUtils{
 	}
 	
 	/**
-	 **Reuse method, it will click Detail Breakdown Tab and checks ITE factor, Labour rate, Reference hours (FullGrid)
+	 **Reuse method, it will get data from Detail Breakdown (FullGrid)
 	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
-	public HashMap<String, Float> hm_DetailBreakdownDataFullGrid;
-	public void validateDetailBreakdownTabFullGrid() throws Exception{
+	public void validateDetailBreakdownTabGetDatafromGrid() throws Exception{
 		try {
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			WebElement scrollto_DetailbreakdownTab = gettingWebElement(tab_detailBreakDown);
-			scrollIntoView_Javascript(scrollto_DetailbreakdownTab);
-			waitForVisibilityOfElementLocated(tab_detailBreakDown);
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(tab_detailBreakDown);
-			System.out.println("Detailed breakdown Clicked");
-			waitForVisibilityOfElementLocated(dd_selectProject);
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(dd_selectProject);
-			WebElement element_Ropes = gettingWebElement(value_ropes);
-			waitForVisibilityOfElementLocated(value_ropes);
-			waitForElementToBeClickable(value_ropes);
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			wait.until(ExpectedConditions.visibilityOf(element_Ropes));
-			if(isMultipleEquipment) {
-				By checkbox_forMultipleEquipment = By.xpath("//*[text()='MMS Electrification Module']");
-				WebElement element_forMultipleEquipment = gettingWebElement(checkbox_forMultipleEquipment);
-				wait.until(ExpectedConditions.visibilityOf(element_forMultipleEquipment));
-				waitForinvisibilityOfElementLocated(elementtoInvisible);
-				click_Javascript(element_forMultipleEquipment);
-				System.out.println(element_forMultipleEquipment+" CLICKED");
-			} else {
-				click_Javascript(element_Ropes);
-				System.out.println("ROPES CLICKED");
-			}
-			waitForinvisibilityOfElementLocated(value_ropes);
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
-			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
-			waitForVisibilityOfElementLocated(header_ITEfactor);
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			System.out.println("Show TotalCost Calculation Details CLICKED");
-			int count=0;
-			List<WebElement> buttons=gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
-			wait.until(ExpectedConditions.visibilityOfAllElements(buttons));
-			for(WebElement button:buttons) {
-//			System.out.println(button.getAttribute("id"));
-			count++;
-			if(count==4) {
-				scrollIntoView_Javascript(button);
-				wait.until(ExpectedConditions.visibilityOf(button));
-				waitForinvisibilityOfElementLocated(elementtoInvisible);
-				button.click();
-				break;
-			}
-		}
 			waitForVisibilityOfElementLocated(By.xpath("//*[text()='Reference hours']"));
-			
-//			WebElement horizontal_scroll = driver.findElement(By.xpath("(//*[text()='Overhead Recovery'])[last()]")); 
-//			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", horizontal_scroll);
-		/*	JavascriptExecutor jse = (JavascriptExecutor) driver;     
-			jse.executeScript("document.querySelector('//div[text()='Subtotal'] div:last-child').scrollIntoView();");*/
-			
-			List<WebElement> Elements_showtotalcostRowHeader = gettingWebElementsfromList(By.xpath("//*[text()='Subtotal']/../../div"));
-//			System.out.println(Elements_showtotalcostRowHeader.size());
-			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostRowHeader));
-			List<String> ls_TotalCostRowHeader=new LinkedList<>();
-			int countRowHeader = 0;
-			for(WebElement Element_showtotalcostRowHeader:Elements_showtotalcostRowHeader) {
-//				System.out.println(Element_showtotalcostRowHeader.getAttribute("id"));
-				List<WebElement> Element_showtotalcostRowHeader1 = Element_showtotalcostRowHeader.findElements(By.xpath("./*"));
-				for(WebElement Element_showtotalcostRowHeader2:Element_showtotalcostRowHeader1) {
-//					System.out.println(Element_showtotalcostRowHeader2.getAttribute("id"));
-					if(!Element_showtotalcostRowHeader2.getText().isEmpty() && !Element_showtotalcostRowHeader2.getText().contains("€") && !Element_showtotalcostRowHeader2.getText().contains("$") && !Element_showtotalcostRowHeader2.getText().contains(".") && !Element_showtotalcostRowHeader2.getText().equals("0") && !Element_showtotalcostRowHeader2.getText().equals("1") && !Element_showtotalcostRowHeader2.getText().equals("2")) {
-//						System.out.println(Element_showtotalcostRowHeader2.getText());
-						ls_TotalCostRowHeader.add(Element_showtotalcostRowHeader2.getText());
-						countRowHeader++;
-					}
-				}
-			}
-			System.out.println("countRowHeader:"+countRowHeader);
-			
-			List<WebElement> Elements_showtotalcostHeader = gettingWebElementsfromList(By.xpath("//*[text()='Subtotal']/../../../../div[2]"));
-//			System.out.println(Elements_showtotalcostHeader.size());
-			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostHeader));
 			List<String> ls_TotalCostHeader=new LinkedList<>();
-			int countHeader = 0;
-			for(WebElement Element_showtotalcostHeader:Elements_showtotalcostHeader) {
-//				System.out.println(Element_showtotalcostHeader.getAttribute("id"));
-				List<WebElement> Element_showtotalcostHeader1 = Element_showtotalcostHeader.findElements(By.xpath("./div/*"));
-//				System.out.println(Element_showtotalcostHeader1.size());
-				for(WebElement Element_showtotalcostHeader2:Element_showtotalcostHeader1) {
-//					System.out.println(Element_showtotalcostHeader2.getAttribute("id"));
-					if(!Element_showtotalcostHeader2.getText().contains("Description") && !Element_showtotalcostHeader2.getText().isEmpty()) {
-//						System.out.println(Element_showtotalcostHeader2.getText());
-						ls_TotalCostHeader.add(Element_showtotalcostHeader2.getText());
-						countHeader++;
-					}
-				}
-			}
-		System.out.println("countHeader:"+countHeader);
-		
-			List<WebElement> Elements_showtotalcostAllRows = gettingWebElementsfromList(By.xpath("//*[text()='Subtotal']/../../div"));
-//			System.out.println(Elements_showtotalcostAllRows.size());
-			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostAllRows));
 			List<Float> ls_TotalCostValue=new LinkedList<>();
-			Float convertedvalue=null;
-			for(WebElement Element_showtotalcostAllRows:Elements_showtotalcostAllRows) {
-//				System.out.println(Element_showtotalcostAllRows.getAttribute("id"));
-				List<WebElement> Element_showtotalcostAllRow = Element_showtotalcostAllRows.findElements(By.xpath("./*"));
-				for(WebElement Element_showtotalcostAllRow1:Element_showtotalcostAllRow) {
-//					System.out.println(Element_showtotalcostAllRow1.getAttribute("id"));
-					if (Element_showtotalcostAllRow1.getAttribute("value") == null ) {
-						if(!Element_showtotalcostAllRow1.getText().isEmpty())	{
-//				System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
-								if(!ls_TotalCostRowHeader.contains(Element_showtotalcostAllRow1.getText())) {
-									String getvalue=Element_showtotalcostAllRow1.getText().replaceAll("[€ % h $]", "");
-									getvalue = getvalue.replace(",", ".");
-									getvalue=removingDot(getvalue);
-									convertedvalue = Float.valueOf(getvalue);
-									ls_TotalCostValue.add(convertedvalue);
-								}
-						}
-					} else if(!Element_showtotalcostAllRow1.getAttribute("value").isEmpty() && Element_showtotalcostAllRow1.getAttribute("value")!=null)	{
-//				System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
-						String getvalue = null;
-						if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
-							getvalue=Element_showtotalcostAllRow1.getAttribute("value").replaceAll("[€ % h .]", "");
-							getvalue = getvalue.replace(",", ".");
-						} else if(frontlineAssigned.equals("AUSTRALIA")) {
-							getvalue=Element_showtotalcostAllRow1.getAttribute("value").replaceAll("[€ % h $]", "");
-							getvalue = getvalue.replace(",", "");
-						}
-							convertedvalue = Float.valueOf(getvalue);
-							ls_TotalCostValue.add(convertedvalue);
-					}
-				}
-				System.out.println("---------------&&&&&&&-------------");
-			}
-			
-			/*List<String> ls_TotalCostHeader=new LinkedList<>();
-			List<Float> ls_TotalCostValue=new LinkedList<>();
-			hm_DetailBreakdownDataFullGrid = new HashMap<String, Float>();
-				ls_TotalCostHeader.add("Reference hours");
+			List<String> TotalCostHeader = Arrays.asList("Reference hours", "ITE factor", "Installation Hours", "Labour rate", "Labor Costs", "Contigency", "Overhead Recovery", "Full Costs", "Total Cost", "Ratio of Labor", "Tender Price", "Target Price", "Material costs", "Material cost (SL Currency)");
+			/*System.out.println("Before rotate:\n " + TotalCostHeader);
+			Collections.rotate(TotalCostHeader, 4);
+			System.out.println("After rotate:\n " + TotalCostHeader);*/
+			hm_DetailBreakdownData = new HashMap<String, Float>();
+				/*ls_TotalCostHeader.add("Reference hours");
 				ls_TotalCostHeader.add("ITE factor");
 				ls_TotalCostHeader.add("Installation Hours");
 				ls_TotalCostHeader.add("Labour rate");
@@ -1380,11 +1138,12 @@ public class Keywords extends KTOCTRBUtils{
 				ls_TotalCostHeader.add("Total Cost");
 				ls_TotalCostHeader.add("Ratio of Labor");
 				ls_TotalCostHeader.add("Tender Price");
-//				ls_TotalCostHeader.add("Minimum Tender Price");
 				ls_TotalCostHeader.add("Target Price");
 				ls_TotalCostHeader.add("Material costs");
-				ls_TotalCostHeader.add("Material cost (SL Currency)");
+				ls_TotalCostHeader.add("Material cost (SL Currency)");*/
 			Float convertedvalue=null;
+			int count=0;
+			int count1=1;
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			List<WebElement> Elements_showtotalcostFirstRow = gettingWebElementsfromList(gridvalues_SubTotal);
 			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostFirstRow));
@@ -1395,6 +1154,11 @@ public class Keywords extends KTOCTRBUtils{
 					if(!getText_showtotalcostFirstRow.isEmpty())	{
 //			System.out.println("getText:"+Element_showtotalcostFirstRow.getText());
 							if(!getText_showtotalcostFirstRow.contains("Subtotal")) {
+								count++;
+								if(Element_showtotalcostFirstRow.getText().contains("h")) {
+									count1=count;
+//									System.out.println(count1);
+								}
 								String getvalue=Element_showtotalcostFirstRow.getText().replaceAll("[€ % h $]", "");
 								getvalue = getvalue.replace(",", ".");
 								getvalue=removingDot(getvalue);
@@ -1414,10 +1178,19 @@ public class Keywords extends KTOCTRBUtils{
 					}
 						convertedvalue = Float.valueOf(getvalue);
 						ls_TotalCostValue.add(convertedvalue);
+						count++;
 				}
-			}*/
-			for(int i=0; i<14; i++) {
-//				System.out.printf("line:937:"+i+"/"+ls_TotalCostHeader.get(i).toString()+"/"+ ls_TotalCostValue.get(i).toString());
+			}
+			if(count1==6) {
+				Collections.rotate(TotalCostHeader, 3);
+//				System.out.println("After rotate:\n " + TotalCostHeader);
+			}
+			for(int j=0; j<ls_TotalCostValue.size(); j++) {
+//				System.out.println(TotalCostHeader.get(j));
+				ls_TotalCostHeader.add(TotalCostHeader.get(j));
+			}
+			for(int i=0; i<ls_TotalCostValue.size(); i++) {
+//				System.out.println(i+". "+ls_TotalCostHeader.get(i).toString()+" / "+ ls_TotalCostValue.get(i).toString());
 				hm_DetailBreakdownData.put(ls_TotalCostHeader.get(i), ls_TotalCostValue.get(i));
 			}
 			/*Float showtotal_TargetPrice= hm_DetailBreakdownData.get("Target Price");
@@ -1488,6 +1261,73 @@ public class Keywords extends KTOCTRBUtils{
 				screenshotCapture("DetailBreakdownTab");
 //				Assert.fail("Failed due to Validate Detail Breakdown Tab");
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+//			Assert.fail("Validate Detail Breakdown Tab Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will click Detail Breakdown Tab and checks ITE factor, Labour rate, Reference hours (FullGrid)
+	 *@throws Exception: For exception handling
+	 *@author CON_SVIJAY02
+	 */
+	public HashMap<String, Float> hm_DetailBreakdownDataFullGrid;
+	public void validateDetailBreakdownTabFullGrid() throws Exception{
+		try {
+			/*waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement scrollto_DetailbreakdownTab = gettingWebElement(tab_detailBreakDown);
+			scrollIntoView_Javascript(scrollto_DetailbreakdownTab);
+			waitForVisibilityOfElementLocated(tab_detailBreakDown);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(tab_detailBreakDown);
+			System.out.println("Detailed breakdown Clicked");
+			waitForVisibilityOfElementLocated(dd_selectProject);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(dd_selectProject);
+			WebElement element_Ropes = gettingWebElement(value_ropes);
+			waitForVisibilityOfElementLocated(value_ropes);
+			waitForElementToBeClickable(value_ropes);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			wait.until(ExpectedConditions.visibilityOf(element_Ropes));
+			if(isMultipleEquipment) {
+				By checkbox_forMultipleEquipment = By.xpath("//*[text()='MMS Electrification Module']");
+				WebElement element_forMultipleEquipment = gettingWebElement(checkbox_forMultipleEquipment);
+				wait.until(ExpectedConditions.visibilityOf(element_forMultipleEquipment));
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				click_Javascript(element_forMultipleEquipment);
+				System.out.println(element_forMultipleEquipment+" CLICKED");
+			} else {
+				click_Javascript(element_Ropes);
+				System.out.println("ROPES CLICKED");
+			}
+			waitForinvisibilityOfElementLocated(value_ropes);*/
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
+			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
+			waitForVisibilityOfElementLocated(header_ITEfactor);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			System.out.println("Show TotalCost Calculation Details CLICKED");
+			int count=0;
+			List<WebElement> buttons=gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
+			wait.until(ExpectedConditions.visibilityOfAllElements(buttons));
+			for(WebElement button:buttons) {
+//			System.out.println(button.getAttribute("id"));
+			count++;
+			if(count==4) {
+				scrollIntoView_Javascript(button);
+				wait.until(ExpectedConditions.visibilityOf(button));
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				button.click();
+				break;
+			}
+		}
+			waitForVisibilityOfElementLocated(By.xpath("//*[text()='Reference hours']"));
+			
+			validateDetailBreakdownTabGetDatafromFullGrid();
+			
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
 			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
@@ -1512,7 +1352,116 @@ public class Keywords extends KTOCTRBUtils{
 //			System.out.println("header_ITEfactor disabled");
 		} catch (Exception e) {
 			e.printStackTrace();
-			Assert.fail("Validate Detail Breakdown Tab Failed due to: "+e);
+//			Assert.fail("Validate Detail Breakdown Tab (FullGrid) Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will get data from Detail Breakdown (FullGrid)
+	 *@throws Exception: For exception handling
+	 *@author CON_SVIJAY02
+	 */
+	public void validateDetailBreakdownTabGetDatafromFullGrid() throws Exception{
+		try {
+			List<WebElement> Elements_showtotalcostHeader = gettingWebElementsfromList(By.xpath("//*[text()='Subtotal']/../../../../div[2]/div/div[text()='Description']")); //*[text()='Subtotal']/..//* //*[text()='Subtotal']/../../../../div[2]
+			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostHeader));
+			List<String> ls_TotalCostHeader=new LinkedList<>();
+			hm_DetailBreakdownDataFullGrid = new HashMap<String, Float>();
+			HashMap<String, Integer> hm_DetailBreakdownDataSizeFullGrid = new HashMap<String, Integer>();
+			ls_TotalCostHeader.add("Target Price");
+			ls_TotalCostHeader.add("Base price");
+			ls_TotalCostHeader.add("Per Service1");
+			ls_TotalCostHeader.add("per travel [m]1");
+			ls_TotalCostHeader.add("Each1");
+			ls_TotalCostHeader.add("Base cost");
+			ls_TotalCostHeader.add("Per Service2");
+			ls_TotalCostHeader.add("per travel [m]2");
+			ls_TotalCostHeader.add("Each2");
+			ls_TotalCostHeader.add("Material costs");
+			ls_TotalCostHeader.add("Material cost (SL Currency)");
+			ls_TotalCostHeader.add("Base hours");
+			ls_TotalCostHeader.add("Per Service3");
+			ls_TotalCostHeader.add("per travel [m]3");
+			ls_TotalCostHeader.add("Each3");
+			ls_TotalCostHeader.add("Reference hours");
+			ls_TotalCostHeader.add("ITE factor");
+			ls_TotalCostHeader.add("Installation Hours");
+			ls_TotalCostHeader.add("Labour rate");
+			ls_TotalCostHeader.add("Labor Costs");
+			ls_TotalCostHeader.add("Contingency");
+			ls_TotalCostHeader.add("Overhead Recovery");
+			ls_TotalCostHeader.add("Full Costs");
+			ls_TotalCostHeader.add("Total Cost");
+//			ls_TotalCostHeader.add("Ratio of Labor");
+			ls_TotalCostHeader.add("Tender Price");
+			List<WebElement> Elements_showtotalcostRowHeader = gettingWebElementsfromList(By.xpath("//*[text()='Subtotal']/../../div"));
+//			System.out.println(Elements_showtotalcostRowHeader.size());
+			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostRowHeader));
+			List<String> ls_TotalCostRowHeader=new LinkedList<>();
+			int countRowHeader = 0;
+			for(WebElement Element_showtotalcostRowHeader:Elements_showtotalcostRowHeader) {
+//			System.out.println(Element_showtotalcostRowHeader.getAttribute("id"));
+				List<WebElement> Element_showtotalcostRowHeader1 = Element_showtotalcostRowHeader.findElements(By.xpath("./*"));
+				for(WebElement Element_showtotalcostRowHeader2:Element_showtotalcostRowHeader1) {
+//				System.out.println(Element_showtotalcostRowHeader2.getAttribute("id")+"<==>"+Element_showtotalcostRowHeader2.getText());
+					if(!Element_showtotalcostRowHeader2.getText().isEmpty() && !Element_showtotalcostRowHeader2.getText().contains("Subtotal") &&!Element_showtotalcostRowHeader2.getText().contains("€") && !Element_showtotalcostRowHeader2.getText().contains("$") && !Element_showtotalcostRowHeader2.getText().contains(".") && !Element_showtotalcostRowHeader2.getText().equals("0") && !Element_showtotalcostRowHeader2.getText().equals("1") && !Element_showtotalcostRowHeader2.getText().equals("2")) {
+////			System.out.println("Element_showtotalcostRowHeader2="+Element_showtotalcostRowHeader2.getText());
+						ls_TotalCostRowHeader.add(Element_showtotalcostRowHeader2.getText());
+						List<WebElement> Element_showtotalcostRowHeader3 = Element_showtotalcostRowHeader2.findElements(By.xpath("./../*"));
+						Float convertedvalue=null;
+						List<Float> ls_TotalCostRowRowValues=new LinkedList<>();
+						for(WebElement Element_showtotalcostRowHeader4:Element_showtotalcostRowHeader3) {
+//					System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"//"+Element_showtotalcostRowHeader4.getText()+"//"+Element_showtotalcostRowHeader4.getAttribute("value"));
+						if (Element_showtotalcostRowHeader4.getAttribute("value") == null ) {
+							if(!Element_showtotalcostRowHeader4.getText().isEmpty())	{
+//					System.out.println("getText:"+Element_showtotalcostRowHeader4.getText());
+									if(!ls_TotalCostRowHeader.contains(Element_showtotalcostRowHeader4.getText())) {
+////			System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getText:"+Element_showtotalcostRowHeader4.getText());
+										String getvalue=Element_showtotalcostRowHeader4.getText().replaceAll("[€ % h $]", "");
+										getvalue = getvalue.replace(",", ".");
+										getvalue=removingDot(getvalue);
+										convertedvalue = Float.valueOf(getvalue);
+										ls_TotalCostRowRowValues.add(convertedvalue);
+									}
+							}
+						} else if(!Element_showtotalcostRowHeader4.getAttribute("value").isEmpty() && Element_showtotalcostRowHeader4.getAttribute("value")!=null) {
+////			System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getAttribute:"+Element_showtotalcostRowHeader4.getAttribute("value"));
+							String getvalue = null;
+							if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+								getvalue=Element_showtotalcostRowHeader4.getAttribute("value").replaceAll("[€ % h .]", "");
+								getvalue = getvalue.replace(",", ".");
+							} else if(frontlineAssigned.equals("AUSTRALIA")) {
+								getvalue=Element_showtotalcostRowHeader4.getAttribute("value").replaceAll("[€ % h $]", "");
+								getvalue = getvalue.replace(",", "");
+							}
+								convertedvalue = Float.valueOf(getvalue);
+								ls_TotalCostRowRowValues.add(convertedvalue);
+							}
+						}
+//						System.out.println(ls_TotalCostRowRowValues.size());
+						for(int i=0; i<ls_TotalCostRowRowValues.size(); i++) {
+							hm_DetailBreakdownDataFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i), ls_TotalCostRowRowValues.get(i));
+						}
+						hm_DetailBreakdownDataSizeFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader), ls_TotalCostRowRowValues.size());
+//						System.out.println(ls_TotalCostRowHeader.get(countRowHeader)+"="+ls_TotalCostRowRowValues.size());
+						countRowHeader++;
+					}
+				}
+			}
+//			hm_DetailBreakdownDataFullGrid.forEach((key, value) -> {System.out.println("Key : " + key + " Value : " + value);});
+//			System.out.println("countRowHeader:"+countRowHeader);
+			for(int j=0; j<ls_TotalCostRowHeader.size(); j++) {
+				int b=j+1;
+				System.out.println(b+". "+ls_TotalCostRowHeader.get(j)+" /size:"+hm_DetailBreakdownDataSizeFullGrid.get(ls_TotalCostRowHeader.get(j)));
+				System.out.println("-----------------------------------------------");
+				for(int i=0; i<hm_DetailBreakdownDataSizeFullGrid.get(ls_TotalCostRowHeader.get(j)); i++) {
+					int a=i+1;
+					System.out.println(" "+a+"."+ls_TotalCostRowHeader.get(j)+"_"+ls_TotalCostHeader.get(i)+"="+hm_DetailBreakdownDataFullGrid.get(ls_TotalCostRowHeader.get(j)+"_"+ls_TotalCostHeader.get(i)));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+//			Assert.fail("Validate Detail Breakdown Tab (FullGrid) GetData from FullGrid Failed due to: "+e);
 		}
 	}
 	
@@ -1690,6 +1639,7 @@ public class Keywords extends KTOCTRBUtils{
 				enteringValues(txt_stageProbabilityDescription, StageProbability_Description);
 				System.out.println(StageProbability_Description+" entered in Description field in stage / Probability window");
 				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				
 				clickonButton(dd_stage);
 				waitForinvisibilityOfElementLocated(elementtoInvisible);
 				clickonButton(value_stage);
@@ -1698,6 +1648,7 @@ public class Keywords extends KTOCTRBUtils{
 				element_enderVersionProbability.sendKeys(StageProbability_probability);
 				waitForinvisibilityOfElementLocated(elementtoInvisible);
 				clickonButton(btn_stageProbability);
+				
 			/*	waitForinvisibilityOfElementLocated(btn_stageProbability);
 			} else if(activeElement_StageProbability.getAttribute("data-ctcwgtname").equals("close")) { //for SaveandClose="No";
 				enteringValues(txt_stageProbabilityDescription, StageProbability_Description);
@@ -1711,7 +1662,7 @@ public class Keywords extends KTOCTRBUtils{
 				element_enderVersionProbability.sendKeys(StageProbability_probability);
 				waitForinvisibilityOfElementLocated(elementtoInvisible);
 				clickonButton(btn_stageProbability);*/
-				if(isMultipleEquipment || frontlineAssigned.equals("CANADA")) {
+				if(isMultipleEquipment || frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
 					WebElement activeElement_SFupdateFailed=driver.switchTo().activeElement();
 					if(activeElement_SFupdateFailed.getText().contains("OK")) {
 						By btn_updateFailedOK = By.xpath("//*[text()='OK']");
@@ -1745,11 +1696,20 @@ public class Keywords extends KTOCTRBUtils{
 			wait.until(ExpectedConditions.visibilityOf(element_Configurator));
 //			System.out.println("Configurator button is visible");
 			scrollIntoView_Javascript(element_Configurator);
-			By header_totalSalesPrice=By.xpath("//*[text()='Total Sales Price']/../../../..//tr/td/*"); 
+			By header_totalSalesPrice=By.xpath("//*[text()='Total Sales Price']/../../../../tbody/tr/td"); //*[text()='Total Sales Price']/../../../..//tr/td/*
 			List<WebElement>element_totalSalesPrices=gettingWebElementsfromList(header_totalSalesPrice);
-			wait.until(ExpectedConditions.visibilityOfAllElements(element_totalSalesPrices));
-			for(WebElement element_totalSalesPrice:element_totalSalesPrices) {
+			
+			String totalsalesprice=element_totalSalesPrices.get(12).getText();
+//			System.out.println("Final_SalesPrice="+totalsalesprice);
+			String b[] = totalsalesprice.split(" ");
+			totalsalesprice=b[1].trim();
+			totalsalesprice=totalsalesprice.replaceAll(",", "");
+			Final_SalesPrice=Float.valueOf(totalsalesprice);
+//			wait.until(ExpectedConditions.visibilityOfAllElements(element_totalSalesPrices));
+			/*for(WebElement element_totalSalesPrice:element_totalSalesPrices) {
+				System.out.println(element_totalSalesPrice.getAttribute("id"));
 				if(!element_totalSalesPrice.getText().isEmpty()) {
+					System.out.println(element_totalSalesPrice.getText()+"/"+element_totalSalesPrice.getAttribute("id"));
 					if(element_totalSalesPrice.getText().contains("(")){
 						String totalsalesprice=element_totalSalesPrice.getText();
 						System.out.println("Salesforce TenderPrice:"+totalsalesprice);
@@ -1762,7 +1722,7 @@ public class Keywords extends KTOCTRBUtils{
 						break;
 					}
 				}
-			}
+			}*/
 			if(isMultipleEquipment) {
 				addAllTenderPrice();
 				System.out.println("allTender Price:"+allTenderPrice+" / Final_SalesPrice:"+Final_SalesPrice);
@@ -2313,14 +2273,14 @@ public class Keywords extends KTOCTRBUtils{
 			List<WebElement> Elements_Description = gettingWebElementsfromList(By.xpath("//div[@data-ctctype='ComponentTree']/div/div[div/div/text()='Project']/div"));//hd it wk
 			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_Description));
 			for(WebElement Element_Description:Elements_Description) { 				
-				if (Element_Description.getText().trim().equalsIgnoreCase("")) {//hd it wk
+				if (Element_Description.getText().trim().equalsIgnoreCase("")) {
 					continue;
 				}
 				Map<String, Float> rowData  = new HashMap<String, Float>();
-				List<WebElement> rowElement = Element_Description.findElements(By.xpath("./*"));//hd it wk
+				List<WebElement> rowElement = Element_Description.findElements(By.xpath("./*"));
 				rowElement.sort(new Comparator<WebElement>() {
 					@Override
-					public int compare(WebElement o1, WebElement o2) {//hd it wk
+					public int compare(WebElement o1, WebElement o2) {
 						String idStr1 = o1.getAttribute("id");
 						String idStr2 = o2.getAttribute("id");
 					    Integer id1 = idStr1 == null ? 0 : Integer.parseInt(idStr1.substring(0, idStr1.indexOf("_")).replaceAll("[^0-9]", ""));
