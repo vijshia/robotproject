@@ -1368,7 +1368,9 @@ public class Keywords extends KTOCTRBUtils{
 			List<String> ls_TotalCostHeader=new LinkedList<>();
 			hm_DetailBreakdownDataFullGrid = new HashMap<String, Float>();
 			HashMap<String, Integer> hm_DetailBreakdownDataSizeFullGrid = new HashMap<String, Integer>();
-			ls_TotalCostHeader.add("Target Price");
+			List<String> TotalCostHeaderFullGrid = Arrays.asList("Base hours", "Per Service3", "per travel [m]3", "Each3", "Reference hours", "ITE factor", "Installation Hours", "Labour rate", "Labor Costs", "Contingency", "Overhead Recovery", "Full Costs", "Total Cost", "Tender Price", "Target Price", "Base price", "Per Service1", "per travel [m]1", "Each1", "Base cost", "Per Service2", "per travel [m]2", "Each2", "Material costs", "Material cost (SL Currency)");
+//			System.out.println("Before rotate:\n " + TotalCostHeaderFullGrid);
+			/*ls_TotalCostHeader.add("Target Price");
 			ls_TotalCostHeader.add("Base price");
 			ls_TotalCostHeader.add("Per Service1");
 			ls_TotalCostHeader.add("per travel [m]1");
@@ -1393,19 +1395,25 @@ public class Keywords extends KTOCTRBUtils{
 			ls_TotalCostHeader.add("Full Costs");
 			ls_TotalCostHeader.add("Total Cost");
 //			ls_TotalCostHeader.add("Ratio of Labor");
-			ls_TotalCostHeader.add("Tender Price");
+			ls_TotalCostHeader.add("Tender Price");*/
 			List<WebElement> Elements_showtotalcostRowHeader = gettingWebElementsfromList(By.xpath("//*[text()='Subtotal']/../../div"));
 //			System.out.println(Elements_showtotalcostRowHeader.size());
 			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostRowHeader));
 			List<String> ls_TotalCostRowHeader=new LinkedList<>();
 			int countRowHeader = 0;
+			int count=0;
+			int count1=1;
 			for(WebElement Element_showtotalcostRowHeader:Elements_showtotalcostRowHeader) {
 //			System.out.println(Element_showtotalcostRowHeader.getAttribute("id"));
 				List<WebElement> Element_showtotalcostRowHeader1 = Element_showtotalcostRowHeader.findElements(By.xpath("./*"));
+		int count2=0;
 				for(WebElement Element_showtotalcostRowHeader2:Element_showtotalcostRowHeader1) {
 //				System.out.println(Element_showtotalcostRowHeader2.getAttribute("id")+"<==>"+Element_showtotalcostRowHeader2.getText());
 					if(!Element_showtotalcostRowHeader2.getText().isEmpty() && !Element_showtotalcostRowHeader2.getText().contains("Subtotal") &&!Element_showtotalcostRowHeader2.getText().contains("€") && !Element_showtotalcostRowHeader2.getText().contains("$") && !Element_showtotalcostRowHeader2.getText().contains(".") && !Element_showtotalcostRowHeader2.getText().equals("0") && !Element_showtotalcostRowHeader2.getText().equals("1") && !Element_showtotalcostRowHeader2.getText().equals("2")) {
-////			System.out.println("Element_showtotalcostRowHeader2="+Element_showtotalcostRowHeader2.getText());
+//			System.out.println("Element_showtotalcostRowHeader2="+Element_showtotalcostRowHeader2.getText());
+		if(Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW")) {
+			System.out.println(count2+" showtotalcostRowHeader="+Element_showtotalcostRowHeader2.getText());
+			}
 						ls_TotalCostRowHeader.add(Element_showtotalcostRowHeader2.getText());
 						List<WebElement> Element_showtotalcostRowHeader3 = Element_showtotalcostRowHeader2.findElements(By.xpath("./../*"));
 						Float convertedvalue=null;
@@ -1416,7 +1424,12 @@ public class Keywords extends KTOCTRBUtils{
 							if(!Element_showtotalcostRowHeader4.getText().isEmpty())	{
 //					System.out.println("getText:"+Element_showtotalcostRowHeader4.getText());
 									if(!ls_TotalCostRowHeader.contains(Element_showtotalcostRowHeader4.getText())) {
-////			System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getText:"+Element_showtotalcostRowHeader4.getText());
+			System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getText:"+Element_showtotalcostRowHeader4.getText());
+										count++;
+										if(Element_showtotalcostRowHeader4.getText().contains("h")) {
+											count1=count;
+//											System.out.println("index of h= "+count1);
+										}
 										String getvalue=Element_showtotalcostRowHeader4.getText().replaceAll("[€ % h $]", "");
 										getvalue = getvalue.replace(",", ".");
 										getvalue=removingDot(getvalue);
@@ -1425,7 +1438,7 @@ public class Keywords extends KTOCTRBUtils{
 									}
 							}
 						} else if(!Element_showtotalcostRowHeader4.getAttribute("value").isEmpty() && Element_showtotalcostRowHeader4.getAttribute("value")!=null) {
-////			System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getAttribute:"+Element_showtotalcostRowHeader4.getAttribute("value"));
+			System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getAttribute:"+Element_showtotalcostRowHeader4.getAttribute("value"));
 							String getvalue = null;
 							if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 								getvalue=Element_showtotalcostRowHeader4.getAttribute("value").replaceAll("[€ % h .]", "");
@@ -1436,21 +1449,39 @@ public class Keywords extends KTOCTRBUtils{
 							}
 								convertedvalue = Float.valueOf(getvalue);
 								ls_TotalCostRowRowValues.add(convertedvalue);
+								count++;
+								if((Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW") || Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW")) && count==15) {
+									ls_TotalCostRowRowValues.add(count, 0f);
+									ls_TotalCostRowRowValues.add(count+1, 0f);
+									ls_TotalCostRowRowValues.add(count+2, 0f);
+									ls_TotalCostRowRowValues.add(count+3, 0f);
+								}
 							}
 						}
-//						System.out.println(ls_TotalCostRowRowValues.size());
+						count=0;
+						if(count1 != 7) {
+							Collections.rotate(TotalCostHeaderFullGrid, 20);
+//							System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);
+						}
+						for(int j=0; j<ls_TotalCostRowRowValues.size(); j++) {
+//							System.out.println(TotalCostHeaderFullGrid.get(j));
+							ls_TotalCostHeader.add(TotalCostHeaderFullGrid.get(j));
+						}
 						for(int i=0; i<ls_TotalCostRowRowValues.size(); i++) {
-							hm_DetailBreakdownDataFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i), ls_TotalCostRowRowValues.get(i));
+							System.out.println(i+". "+ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i)+"="+ls_TotalCostRowRowValues.get(i));
+							System.out.println(ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i)+"="+ls_TotalCostRowRowValues.get(i));
+								hm_DetailBreakdownDataFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i), ls_TotalCostRowRowValues.get(i));
 						}
 						hm_DetailBreakdownDataSizeFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader), ls_TotalCostRowRowValues.size());
 //						System.out.println(ls_TotalCostRowHeader.get(countRowHeader)+"="+ls_TotalCostRowRowValues.size());
 						countRowHeader++;
 					}
+					count2++;
 				}
 			}
 //			hm_DetailBreakdownDataFullGrid.forEach((key, value) -> {System.out.println("Key : " + key + " Value : " + value);});
 //			System.out.println("countRowHeader:"+countRowHeader);
-			for(int j=0; j<ls_TotalCostRowHeader.size(); j++) {
+			/*for(int j=0; j<ls_TotalCostRowHeader.size(); j++) {
 				int b=j+1;
 				System.out.println(b+". "+ls_TotalCostRowHeader.get(j)+" /size:"+hm_DetailBreakdownDataSizeFullGrid.get(ls_TotalCostRowHeader.get(j)));
 				System.out.println("-----------------------------------------------");
@@ -1458,7 +1489,61 @@ public class Keywords extends KTOCTRBUtils{
 					int a=i+1;
 					System.out.println(" "+a+"."+ls_TotalCostRowHeader.get(j)+"_"+ls_TotalCostHeader.get(i)+"="+hm_DetailBreakdownDataFullGrid.get(ls_TotalCostRowHeader.get(j)+"_"+ls_TotalCostHeader.get(i)));
 				}
+			}*/
+			Float totalTargetPrice = 0f; 
+			Float totalMaterialcosts = 0f;
+			Float totalaterialcostSLCurrency = 0f;
+			Float totalReferencehours = 0f;
+			Float totalInstallationHours = 0f;
+			Float totalLaborCosts = 0f;
+			Float totalFullCosts = 0f;
+			Float totalTotalCost = 0f;
+			Float totalTenderPrice = 0f;
+			for ( Map.Entry<String, Float> entry : hm_DetailBreakdownDataFullGrid.entrySet()) {
+			    String key = entry.getKey();
+			    Float value = entry.getValue();
+			    System.out.println(key+"=="+value);
+			    if(key.contains("_Target Price")) {
+//			    	System.out.println(key+"=="+value);
+			    	Float totalTargetPrice1 = value;
+			    	totalTargetPrice=totalTargetPrice+totalTargetPrice1;
+			    } else if(key.contains("_Material costs")) {
+			    	System.out.println(key+"=="+value);
+			    	Float totalMaterialcosts1 = value;
+			    	totalMaterialcosts=totalMaterialcosts+totalMaterialcosts1;
+			    } else if(key.contains("_Material cost (SL Currency)")) {
+			    	System.out.println(key+"=="+value);
+			    	Float totalaterialcostSLCurrency1 = value;
+			    	totalaterialcostSLCurrency=totalaterialcostSLCurrency+totalaterialcostSLCurrency1;
+			    } else if(key.contains("_Reference hours")) {
+			    	Float totalReferencehours1 = value;
+			    	totalReferencehours=totalReferencehours+totalReferencehours1;
+			    } else if(key.contains("_Installation Hours")) {
+			    	Float totalInstallationHours1 = value;
+			    	totalInstallationHours=totalInstallationHours+totalInstallationHours1;
+			    } else if(key.contains("_Labor Costs")) {
+			    	Float totalLaborCosts1 = value;
+			    	totalLaborCosts=totalLaborCosts+totalLaborCosts1;
+			    } else if(key.contains("_Full Costs")) {
+			    	Float totalFullCosts1 = value;
+			    	totalFullCosts=totalFullCosts+totalFullCosts1;
+			    } else if(key.contains("_Total Cost")) {
+			    	Float totalTotalCost1 = value;
+			    	totalTotalCost=totalTotalCost+totalTotalCost1;
+			    } else if(key.contains("_Tender Price")) {
+			    	Float totalTenderPrice1 = value;
+			    	totalTenderPrice=totalTenderPrice+totalTenderPrice1;
+			    }
 			}
+			System.out.println("totalTargetPrice="+totalTargetPrice);
+			System.out.println("totalMaterialcosts="+totalMaterialcosts);
+			System.out.println("totalaterialcostSLCurrency="+totalaterialcostSLCurrency);
+			System.out.println("totalReferencehours="+totalReferencehours);
+			System.out.println("totalInstallationHours="+totalInstallationHours);
+			System.out.println("totalLaborCosts="+totalLaborCosts);
+			System.out.println("totalFullCosts="+totalFullCosts);
+			System.out.println("totalTotalCost="+totalTotalCost);
+			System.out.println("totalTotalCost="+totalTenderPrice);
 		} catch (Exception e) {
 			e.printStackTrace();
 //			Assert.fail("Validate Detail Breakdown Tab (FullGrid) GetData from FullGrid Failed due to: "+e);

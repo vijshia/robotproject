@@ -32,7 +32,7 @@ public class testRun_Sample {
 	Keywords.getTenderNumber();
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
-	Keywords.CheckTenderPriceAfterDiscountUpdate("10", "0");
+	/*Keywords.CheckTenderPriceAfterDiscountUpdate("10", "0");
 //	Keywords.checkingTargetPriceFullGrid(); //fullGrid
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("2001", "0");
@@ -56,7 +56,7 @@ public class testRun_Sample {
 	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
 //	Keywords.validateDetailBreakdownTabFullGrid();//fullGrid
 	Keywords.validateDetailBreakdownTab();
-	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
+	Keywords.gotoConfigurationPageandChangeTheSalesOffice();*/
 	Keywords.validateDetailBreakdownTab();
 	//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Australia)
 	Keywords.VerifyCostCalculatedSuccessfully();
