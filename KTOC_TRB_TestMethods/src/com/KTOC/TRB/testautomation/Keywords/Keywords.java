@@ -1237,12 +1237,10 @@ public class Keywords extends KTOCTRBUtils{
 			Boolean is_showtotal_Referencehours= roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours));
 			Boolean is_showtotal_Labourrate= roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate));
 			Boolean is_Labourrate= roundoff.format(LabourRate).equals(roundoff.format(showtotal_Labourrate));
-			System.out.println("---------------------------------------------------------------------");
 			System.out.println("check_showtotal_ITEfactor:"+roundoff.format(check_showtotal_ITEfactor)+" / showtotal_ITEfactor:"+roundoff.format(showtotal_ITEfactor));
 			System.out.println("check_showtotal_Referencehours:"+roundoff.format(check_showtotal_Referencehours)+" / showtotal_Referencehours:"+roundoff.format(showtotal_Referencehours));
 			System.out.println("check_showtotal_Labourrate:"+roundoff.format(check_showtotal_Labourrate)+" / showtotal_Labourrate:"+roundoff.format(showtotal_Labourrate));
 			System.out.println("LabourRate:"+roundoff.format(LabourRate)+" / showtotal_Labourrate:"+roundoff.format(showtotal_Labourrate));
-			System.out.println("---------------------------------------------------------------------");
 			System.out.println();
 			System.out.println("*** is_showtotal_ITEfactor: "+is_showtotal_ITEfactor+" *** / is_Labourrate: "+is_Labourrate+" *** / is_showtotal_Labourrate: "+is_showtotal_Labourrate+" *** / is_showtotal_Referencehours: "+is_showtotal_Referencehours+" ***");
 			String condition=null;
