@@ -142,38 +142,38 @@ public class Keywords extends KTOCTRBUtils{
 			click_Javascript(gettingWebElement(txt_CustomerID));
 //			clickonButton(txt_CustomerID);
 			if(!isMultipleEquipment) {
-			WebElement element_customerID = gettingWebElement(txt_CustomerID); //*[@data-ctcwgtname='CustomerID']
-			wait.until(ExpectedConditions.visibilityOf(element_customerID));
-			element_customerID.clear(); 
-//			System.out.println("CustomerID existing value cleared");
-			WebElement element_EquipmentID = gettingWebElement(txt_EquipmentID); //*[@data-ctcwgtname='EquipmentID']
-			element_EquipmentID.clear();
-			element_EquipmentID.sendKeys(equipmentid); 
-			System.out.println(equipmentid+" EquipmentID entered");
-			wait.until(ExpectedConditions.elementToBeClickable(element_customerID));
-			waitForElementToBeClickable(txt_CustomerID);
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			click_Javascript(gettingWebElement(txt_CustomerID));
-//			clickonButton(txt_CustomerID);
-			wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentID));
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			element_EquipmentID.click();
-//			System.out.println("EquipmentID clicked");
-			wait.until(ExpectedConditions.elementToBeClickable(lookup_EquipmentID)); 
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(lookup_EquipmentID);
-			System.out.println("Equipment loader clicked");
-			waitForVisibilityOfElementLocated(header_AddNewEquipment);
-			waitForVisibilityOfElementLocated(checkbox_Equipment);
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(checkbox_Equipment);
-			System.out.println("checkbox clicked");
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
-				if(equipment_ADDorChange.equalsIgnoreCase("add")) {
-					addEquipment();
-				} else if(equipment_ADDorChange.equalsIgnoreCase("change")) {
-					changeEquipment();
-				}
+				WebElement element_customerID = gettingWebElement(txt_CustomerID); //*[@data-ctcwgtname='CustomerID']
+				wait.until(ExpectedConditions.visibilityOf(element_customerID));
+				element_customerID.clear(); 
+	//			System.out.println("CustomerID existing value cleared");
+				WebElement element_EquipmentID = gettingWebElement(txt_EquipmentID); //*[@data-ctcwgtname='EquipmentID']
+				element_EquipmentID.clear();
+				element_EquipmentID.sendKeys(equipmentid); 
+				System.out.println(equipmentid+" EquipmentID entered");
+				wait.until(ExpectedConditions.elementToBeClickable(element_customerID));
+				waitForElementToBeClickable(txt_CustomerID);
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				click_Javascript(gettingWebElement(txt_CustomerID));
+	//			clickonButton(txt_CustomerID);
+				wait.until(ExpectedConditions.elementToBeClickable(element_EquipmentID));
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				element_EquipmentID.click();
+	//			System.out.println("EquipmentID clicked");
+				wait.until(ExpectedConditions.elementToBeClickable(lookup_EquipmentID)); 
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				clickonButton(lookup_EquipmentID);
+				System.out.println("Equipment loader clicked");
+				waitForVisibilityOfElementLocated(header_AddNewEquipment);
+				waitForVisibilityOfElementLocated(checkbox_Equipment);
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				clickonButton(checkbox_Equipment);
+				System.out.println("checkbox clicked");
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+					if(equipment_ADDorChange.equalsIgnoreCase("add")) {
+						addEquipment();
+					} else if(equipment_ADDorChange.equalsIgnoreCase("change")) {
+						changeEquipment();
+					}
 			}
 			/*WebElement element_customerID1 = gettingWebElement(txt_CustomerID);
 			wait.until(ExpectedConditions.elementToBeClickable(element_customerID1));
@@ -355,13 +355,13 @@ public class Keywords extends KTOCTRBUtils{
 //					System.out.println(gettingWebElement(By.xpath("//div[text()='"+value_seismicArea+"']")).getAttribute("id"));
 					WebElement element_seismicArea = gettingWebElement(By.xpath("//div[text()='"+value_seismicArea+"']"));
 					click_Javascript(element_seismicArea);
-					System.out.println(value_seismicArea+" value selected in SeismicArea");
+					System.out.println(value_seismicArea+" selected in SeismicArea");
 					waitForinvisibilityOfElementLocated(elementtoInvisible);
 					enteringValues(txt_weeklyTeamCostforZone, weeklyTeamCostforZone);
-					System.out.println(weeklyTeamCostforZone+" value entered in weeklyTeamCostforZone");
+//					System.out.println(weeklyTeamCostforZone+" value entered in weeklyTeamCostforZone");
 					waitForinvisibilityOfElementLocated(elementtoInvisible);
 					enteringValues(txt_weeklyTeamCostforRoomandBoard, weeklyTeamCostforRoomandBoard);
-					System.out.println(weeklyTeamCostforRoomandBoard+" value entered in weeklyTeamCostforRoomandBoard");
+//					System.out.println(weeklyTeamCostforRoomandBoard+" value entered in weeklyTeamCostforRoomandBoard");
 				}
 			} catch (Exception e) {
 //				e.printStackTrace();
@@ -597,6 +597,7 @@ public class Keywords extends KTOCTRBUtils{
 		gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
 		try {
 			if(!isgetRegionalDiscount) {
+				isgetRegionalDiscount = true;
 				Assert.fail("Failed due to (Regionaldiscountoncomponent% or Regionaldiscountoncomponent or TargetPrice)");
 			}
 		} catch (Exception e) {
@@ -718,7 +719,7 @@ public class Keywords extends KTOCTRBUtils{
 //		System.out.println("header RegionalDiscount is visible");
 		} catch (Exception e) {
 //			e.printStackTrace();
-			Assert.fail("Click on Additional Discount Icon Failed due to"+e);
+			Assert.fail("Click on Additional Discount Icon Failed due to:"+e);
 		}
 	}
 	
@@ -851,22 +852,32 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("*** is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:"+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" ***");
 			System.out.println("final_Regionaldiscountoncomponent:"+final_Regionaldiscountoncomponent+" / read_Regionaldiscountoncomponent:"+read_Regionaldiscountoncomponent);
 			System.out.println("*** is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:"+final_Regionaldiscountoncomponent.equals(read_Regionaldiscountoncomponent)+" ***");
-			System.out.println("final_TargetPrice:"+final_TargetPrice+" / read_TargetPrice:"+read_TargetPrice);
-			System.out.println("*** is final_TargetPrice VS read_TargetPrice equal:"+final_TargetPrice.equals(read_TargetPrice)+" ***");
+			System.out.println("final_TargetPrice:"+final_TargetPrice+" / read_TargetPrice:"+roundoff.format(read_TargetPrice));
+			System.out.println("*** is final_TargetPrice VS read_TargetPrice equal:"+roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))+" ***");
 			String condition=null;
 			if(!read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)) {
 				read_Regionaldiscountoncomponent_Percent=read_Regionaldiscountoncomponent_Percent-0.01f;
 				if(read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)) {
 					condition="-0.01";
-				} else {
+				}else {
 					read_Regionaldiscountoncomponent_Percent=read_Regionaldiscountoncomponent_Percent-0.02f;
 					 condition="-0.02";
 					}
 				}
 			System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: "+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" ***");
+			String condition1=null;
+			if(!roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
+				final_TargetPrice=final_TargetPrice-0.01f;
+				if(roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
+					condition1="-0.01";
+				}else {
+					final_TargetPrice=final_TargetPrice-0.02f;
+					 condition1="-0.02";
+					}
+				}
+			System.out.println(condition1+" Added in final_TargetPrice hence CalculatedTargetPrice VS ActualTargetPrice shown in Application is: "+roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))+" ***");
 			if(!roundoff.format(read_Regionaldiscountoncomponent_Percent).equals(roundoff.format(regionalDiscount)) || !roundoff.format(final_Regionaldiscountoncomponent).equals(roundoff.format(read_Regionaldiscountoncomponent)) || !roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
 				screenshotCapture("VerifyTargetPriceDisplayedCorrectly");
-//				Assert.fail("Failed due to (Regionaldiscountoncomponent% or Regionaldiscountoncomponent or TargetPrice) Get Regional Discount");
 				isgetRegionalDiscount = false;
 			}
 		} catch (Exception e) {
@@ -1121,6 +1132,7 @@ public class Keywords extends KTOCTRBUtils{
 //			waitForinvisibilityOfElementLocated(header_ITEfactor);
 //			System.out.println("header_ITEfactor disabled");
 			if(!isDetailBreakdown) {
+				isDetailBreakdown = true;
 				Assert.fail("Failed due to (ITEfactor or Referencehours or Labourrate) not euqal in Detail Breakdown Tab");
 			}
 		} catch (Exception e) {
@@ -1278,7 +1290,6 @@ public class Keywords extends KTOCTRBUtils{
 			}
 			if(!roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor)) || !roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours)) || !roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate))) {
 				screenshotCapture("DetailBreakdownTab");
-//				Assert.fail("Failed due to (ITEfactor or Referencehours or Labourrate) not euqal in Detail Breakdown Tab");
 				isDetailBreakdown = false;
 			}
 		} catch (Exception e) {
@@ -2588,6 +2599,7 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("*** "+ls_rowHeader.get(indexvalue)+":- is FinalDiscount VS ApplicationDiscount Equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
 				if(!roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
 					screenshotCapture("Discount not equal in VerifyDiscountByChangingTheTenderPrice");
+					Assert.fail("Checking Target Price in FullGrid Failed");
 				}
 				istenderPrice = false;
 			} else {
