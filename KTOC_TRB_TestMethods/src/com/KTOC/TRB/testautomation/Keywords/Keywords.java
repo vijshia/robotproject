@@ -641,7 +641,7 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost is: "+roundoff.format(check_Materialcosts).equals(roundoff.format(showtotal_Materialcosts))+" ***");
 				if(!roundoff.format(check_Materialcosts).equals(roundoff.format(showtotal_Materialcosts))) {
 					screenshotCapture("MaterialCost not equal in VerifyCostCalculatedSuccessfully");		
-//					Assert.fail("MaterialCost not equal in VerifyCostCalculatedSuccessfully");
+					Assert.fail("MaterialCost not equal in VerifyCostCalculatedSuccessfully");
 				}
 			} else {
 				System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
@@ -884,7 +884,7 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println(condition1+" Added in final_TargetPrice hence CalculatedTargetPrice VS ActualTargetPrice shown in Application is: "+roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))+" ***");
 			if(!roundoff.format(read_Regionaldiscountoncomponent_Percent).equals(roundoff.format(regionalDiscount)) || !roundoff.format(final_Regionaldiscountoncomponent).equals(roundoff.format(read_Regionaldiscountoncomponent)) || !roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
 				screenshotCapture("VerifyTargetPriceDisplayedCorrectly");
-//				isgetRegionalDiscount = false;
+				isgetRegionalDiscount = false;
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
@@ -1027,7 +1027,7 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: "+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" ***");
 			if(!roundoff.format(read_Regionaldiscountoncomponent_Percent).equals(roundoff.format(regionalDiscount)) || !roundoff.format(final_Regionaldiscountoncomponent).equals(roundoff.format(read_Regionaldiscountoncomponent)) || !roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
 				screenshotCapture("VerifyTargetPriceDisplayedCorrectly");
-//				Assert.fail("Failed due to Get Regional Discount");
+				Assert.fail("Failed due to Get Regional Discount");
 			}
 		}	
 		} catch (Exception e) {
@@ -1296,7 +1296,7 @@ public class Keywords extends KTOCTRBUtils{
 			}
 			if(!roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor)) || !roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours)) || !roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate))) {
 				screenshotCapture("DetailBreakdownTab");
-//				isDetailBreakdown = false;
+				isDetailBreakdown = false;
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
@@ -1648,7 +1648,7 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("*** is totalTenderPrice vs subtotal_TenderPrice equal: "+TenderPrice);
 			if(!TargetPrice || !Materialcosts || !MaterialcostSLCurrency || !Referencehours || !InstallationHours || !LaborCosts || !FullCosts || !TotalCost || !TenderPrice) {
 				screenshotCapture("DetailBreakdownTab");
-//				Assert.fail("Detail Breakdown Tab (FullGrid) Failed");
+				Assert.fail("Detail Breakdown Tab (FullGrid) Failed");
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
@@ -1919,14 +1919,14 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("is TRB allTenderPrice VS Salesforce TenderPrice equal:"+allTenderPrice.equals(Final_SalesPrice)+" ***");
 				if(!allTenderPrice.equals(Final_SalesPrice)) {
 					screenshotCapture("TenderPrice not equal in compareSalesPricebetweenTenderPageandSalesforce for MultipleEquipment");
-//					Assert.fail("Failed due to TenderPrice not equal in Get SalesPrice from SalesForce");
+					Assert.fail("Failed due to TenderPrice not equal in Get SalesPrice from SalesForce");
 				}
 			} else {
 				System.out.println("Tender Price:"+TenderPrice+" / Final_SalesPrice:"+Final_SalesPrice);
 				System.out.println("is TRB TenderPrice VS Salesforce TenderPrice equal:"+TenderPrice.equals(Final_SalesPrice)+" ***");
 				if(!TenderPrice.equals(Final_SalesPrice)) {
 					screenshotCapture("TenderPrice not equal in compareSalesPricebetweenTenderPageandSalesforce for SingleEquipment");
-//					Assert.fail("Failed due to TenderPrice not equal in Get SalesPrice from SalesForce");
+					Assert.fail("Failed due to TenderPrice not equal in Get SalesPrice from SalesForce");
 				}
 			}
 			click_Javascript(element_Configurator);
@@ -2388,7 +2388,7 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println(condition+" Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: "+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
 				if(!roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
 						screenshotCapture("Discount not equal in VerifyDiscountByChangingTheTenderPrice");
-//						Assert.fail("Failed due to Discount not equal in VerifyDiscountByChangingTheTenderPrice: ");
+						Assert.fail("Failed due to Discount not equal in VerifyDiscountByChangingTheTenderPrice: ");
 				}
 				istenderPrice = false;
 			} else {
@@ -2414,7 +2414,7 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println(condition+" Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: "+roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
 				if(!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
 					screenshotCapture("Discount not equal in CheckTenderPriceAfterDiscountUpdate");
-//					Assert.fail("Failed due to Discount not equal in CheckTenderPriceAfterDiscountUpdate Failed");
+					Assert.fail("Failed due to Discount not equal in CheckTenderPriceAfterDiscountUpdate Failed");
 				}
 			}
 		} catch (Exception e) {
@@ -2628,7 +2628,7 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("*** "+ls_rowHeader.get(indexvalue)+":- is FinalDiscount VS ApplicationDiscount Equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
 				if(!roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
 					screenshotCapture("Discount not equal in VerifyDiscountByChangingTheTenderPrice");
-//					Assert.fail("Checking Target Price in FullGrid Failed");
+					Assert.fail("Checking Target Price in FullGrid Failed");
 				}
 				istenderPrice = false;
 			} else {
@@ -2643,7 +2643,7 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("*** "+ls_rowHeader.get(indexvalue)+":- is TenderPriceFinal VS ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
 				if(!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
 					screenshotCapture("Discount not equal in CheckTenderPriceAfterDiscountUpdate");
-//					Assert.fail("Checking Target Price in FullGrid Failed");
+					Assert.fail("Checking Target Price in FullGrid Failed");
 				}
 		}
 			}
