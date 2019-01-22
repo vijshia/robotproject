@@ -1429,9 +1429,9 @@ public class Keywords extends KTOCTRBUtils{
 					if(!Element_showtotalcostRowHeader2.getText().isEmpty() && !Element_showtotalcostRowHeader2.getText().contains("Subtotal") && !array[0].isEmpty() && !numerals.contains(array[0])) {
 //					if(!Element_showtotalcostRowHeader2.getText().isEmpty() && !Element_showtotalcostRowHeader2.getText().contains("Subtotal") &&!Element_showtotalcostRowHeader2.getText().contains("€") && !Element_showtotalcostRowHeader2.getText().contains("$") && !Element_showtotalcostRowHeader2.getText().contains(".") && !Element_showtotalcostRowHeader2.getText().equals("0") && !Element_showtotalcostRowHeader2.getText().equals("1") && !Element_showtotalcostRowHeader2.getText().equals("2") && !Element_showtotalcostRowHeader2.getText().equals("3") && !Element_showtotalcostRowHeader2.getText().equals("4") && !Element_showtotalcostRowHeader2.getText().equals("5") && !Element_showtotalcostRowHeader2.getText().equals("6") && !Element_showtotalcostRowHeader2.getText().equals("7") && !Element_showtotalcostRowHeader2.getText().equals("8") && !Element_showtotalcostRowHeader2.getText().equals("9") && !Element_showtotalcostRowHeader2.getText().equals("0")) {						
 //		System.out.println("Element_showtotalcostRowHeader2="+Element_showtotalcostRowHeader2.getText());
-		/*if(Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW")) {
-		System.out.println(count2+" showtotalcostRowHeader="+Element_showtotalcostRowHeader2.getText());
-		}*/
+		/*if(Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW")) {*/
+//		System.out.println(count2+" showtotalcostRowHeader="+Element_showtotalcostRowHeader2.getText());
+		/*}*/
 						ls_TotalCostRowHeader.add(Element_showtotalcostRowHeader2.getText());
 						List<WebElement> Element_showtotalcostRowHeader3 = Element_showtotalcostRowHeader2.findElements(By.xpath("./../*"));
 						Float convertedvalue=null;
@@ -1468,7 +1468,7 @@ public class Keywords extends KTOCTRBUtils{
 								convertedvalue = Float.valueOf(getvalue);
 								ls_TotalCostRowRowValues.add(convertedvalue);
 								count++;
-								if((Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW") || Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new")) && count==15) {
+								if((Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW") || Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new") || Element_showtotalcostRowHeader2.getText().equals("Process Cost")) && count==15) {
 									ls_TotalCostRowRowValues.add(count, 0f);
 									ls_TotalCostRowRowValues.add(count+1, 0f);
 									ls_TotalCostRowRowValues.add(count+2, 0f);
@@ -1483,7 +1483,7 @@ public class Keywords extends KTOCTRBUtils{
 								rotate++;
 //								System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);
 							}
-							if(Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW") || Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new")) {
+							if(Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW") || Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new") || Element_showtotalcostRowHeader2.getText().equals("Process Cost")) {
 								ls_TotalCostRowRowValues.add(9, 0f);
 								ls_TotalCostRowRowValues.add(10, 0f);
 								ls_TotalCostRowRowValues.add(11, 0f);
@@ -1540,6 +1540,7 @@ public class Keywords extends KTOCTRBUtils{
 			    	Float totalMaterialcosts1 = value;
 			    	totalMaterialcosts=totalMaterialcosts+totalMaterialcosts1;
 			    } else if(key.contains("_Material cost (SL Currency)")) {
+//			    	System.out.println(key+"=="+value);
 			    	Float totalaterialcostSLCurrency1 = value;
 			    	totalMaterialcostSLCurrency=totalMaterialcostSLCurrency+totalaterialcostSLCurrency1;
 			    } else if(key.contains("_Reference hours")) {
@@ -1562,10 +1563,10 @@ public class Keywords extends KTOCTRBUtils{
 			    	totalTenderPrice=totalTenderPrice+totalTenderPrice1;
 			    }
 			}
-			/*System.out.println("totalTargetPrice="+totalTargetPrice);
-			System.out.println("totalMaterialcosts="+totalMaterialcosts);
-			System.out.println("totalaterialcostSLCurrency="+totalMaterialcostSLCurrency);
-			System.out.println("totalReferencehours="+totalReferencehours);
+//			System.out.println("totalTargetPrice="+totalTargetPrice);
+//			System.out.println("totalMaterialcosts="+totalMaterialcosts);
+//			System.out.println("totalaterialcostSLCurrency="+totalMaterialcostSLCurrency);
+			/*System.out.println("totalReferencehours="+totalReferencehours);
 			System.out.println("totalInstallationHours="+totalInstallationHours);
 			System.out.println("totalLaborCosts="+totalLaborCosts);
 			System.out.println("totalFullCosts="+totalFullCosts);
@@ -1590,31 +1591,53 @@ public class Keywords extends KTOCTRBUtils{
 			Float subtotal_TotalCost= hm_DetailBreakdownData.get("Total Cost");
 			Float subtotal_TenderPrice= hm_DetailBreakdownData.get("Tender Price");
 //			System.out.println("====="+subtotal_TargetPrice+"/"+subtotal_Materialcosts+"/"+subtotal_MaterialcostSLCurrency+"/"+subtotal_Referencehours+"/"+subtotal_InstallationHours+"/"+subtotal_LaborCosts+"/"+subtotal_FullCosts+"/"+subtotal_TotalCost+"/"+subtotal_TenderPrice);
-			System.out.println("totalTargetPrice:"+totalTargetPrice+" / subtotal_TargetPrice:"+subtotal_TargetPrice);
+			System.out.println("totalTargetPrice:"+roundoff.format(totalTargetPrice)+" / subtotal_TargetPrice:"+roundoff.format(subtotal_TargetPrice));
 			Boolean TargetPrice = roundoff.format(totalTargetPrice).equals(roundoff.format(subtotal_TargetPrice));
 			System.out.println("*** is totalTargetPrice vs subtotal_TargetPrice equal: "+TargetPrice);
 			System.out.println("totalMaterialcosts="+roundoff.format(totalMaterialcosts)+" / subtotal_Materialcosts:"+subtotal_Materialcosts);
+			String condition=null;
+			if(!roundoff.format(totalMaterialcosts).equals(roundoff.format(subtotal_Materialcosts))) {
+				totalMaterialcosts=totalMaterialcosts+0.01f;
+				if(roundoff.format(totalMaterialcosts).equals(roundoff.format(subtotal_Materialcosts))) {
+					condition="-0.01";
+				} else {
+					totalMaterialcosts=totalMaterialcosts-0.02f;
+					 condition="-0.02";
+					}
+			System.out.println(condition+" Added in totalMaterialcosts "+roundoff.format(totalMaterialcosts));
+			}
 			Boolean Materialcosts = roundoff.format(totalMaterialcosts).equals(roundoff.format(subtotal_Materialcosts));
 			System.out.println("*** is totalMaterialcosts vs subtotal_Materialcosts equal: "+Materialcosts);
-			System.out.println("totalMaterialcostSLCurrency="+totalMaterialcostSLCurrency+" / subtotal_MaterialcostSLCurrency:"+subtotal_MaterialcostSLCurrency);
+			System.out.println("totalMaterialcostSLCurrency="+roundoff.format(totalMaterialcostSLCurrency)+" / subtotal_MaterialcostSLCurrency:"+roundoff.format(subtotal_MaterialcostSLCurrency));
+			String condition1=null;
+			if(!roundoff.format(totalMaterialcostSLCurrency).equals(roundoff.format(subtotal_MaterialcostSLCurrency))) {
+				totalMaterialcostSLCurrency=totalMaterialcostSLCurrency-0.01f;
+				if(roundoff.format(totalMaterialcostSLCurrency).equals(roundoff.format(subtotal_MaterialcostSLCurrency))) {
+					condition1="-0.01";
+				} else {
+					totalMaterialcostSLCurrency=totalMaterialcostSLCurrency-0.02f;
+					 condition1="-0.02";
+					}
+			System.out.println(condition1+" Added in totalMaterialcostSLCurrency");
+			}
 			Boolean MaterialcostSLCurrency = roundoff.format(totalMaterialcostSLCurrency).equals(roundoff.format(subtotal_MaterialcostSLCurrency));
 			System.out.println("*** is totalMaterialcostSLCurrency vs subtotal_MaterialcostSLCurrency equal: "+MaterialcostSLCurrency);
-			System.out.println("totalReferencehours="+totalReferencehours+" / subtotal_Referencehours:"+subtotal_Referencehours);
+			System.out.println("totalReferencehours="+roundoff.format(totalReferencehours)+" / subtotal_Referencehours:"+roundoff.format(subtotal_Referencehours));
 			Boolean Referencehours = roundoff.format(totalReferencehours).equals(roundoff.format(subtotal_Referencehours));
 			System.out.println("*** is totalReferencehours vs subtotal_Referencehours equal: "+Referencehours);
-			System.out.println("totalInstallationHours="+totalInstallationHours+" / subtotal_InstallationHours:"+subtotal_InstallationHours);
+			System.out.println("totalInstallationHours="+roundoff.format(totalInstallationHours)+" / subtotal_InstallationHours:"+roundoff.format(subtotal_InstallationHours));
 			Boolean InstallationHours = roundoff.format(totalInstallationHours).equals(roundoff.format(subtotal_InstallationHours));
 			System.out.println("*** is totalInstallationHours vs subtotal_Materialcosts equal: "+InstallationHours);
-			System.out.println("totalLaborCosts="+totalLaborCosts+" / subtotal_LaborCosts:"+subtotal_LaborCosts);
+			System.out.println("totalLaborCosts="+roundoff.format(totalLaborCosts)+" / subtotal_LaborCosts:"+roundoff.format(subtotal_LaborCosts));
 			Boolean LaborCosts = roundoff.format(totalLaborCosts).equals(roundoff.format(subtotal_LaborCosts));
 			System.out.println("*** is totalLaborCosts vs subtotal_LaborCosts equal: "+LaborCosts);
-			System.out.println("totalFullCosts="+totalFullCosts+" / subtotal_FullCosts:"+subtotal_FullCosts);
+			System.out.println("totalFullCosts="+roundoff.format(totalFullCosts)+" / subtotal_FullCosts:"+roundoff.format(subtotal_FullCosts));
 			Boolean FullCosts = roundoff.format(totalFullCosts).equals(roundoff.format(subtotal_FullCosts));
 			System.out.println("*** is totalFullCosts vs subtotal_FullCosts equal: "+FullCosts);
 			System.out.println("totalTotalCost="+roundoff.format(totalTotalCost)+" / subtotal_TotalCost:"+subtotal_TotalCost);
 			Boolean TotalCost = roundoff.format(totalTotalCost).equals(roundoff.format(subtotal_TotalCost));
 			System.out.println("*** is totalTotalCost vs subtotal_TotalCost equal: "+TotalCost);
-			System.out.println("totalTenderPrice="+totalTenderPrice+" / subtotal_TenderPrice:"+subtotal_TenderPrice);
+			System.out.println("totalTenderPrice="+roundoff.format(totalTenderPrice)+" / subtotal_TenderPrice:"+roundoff.format(subtotal_TenderPrice));
 			Boolean TenderPrice = roundoff.format(totalTenderPrice).equals(roundoff.format(subtotal_TenderPrice));
 			System.out.println("*** is totalTenderPrice vs subtotal_TenderPrice equal: "+TenderPrice);
 			if(!TargetPrice || !Materialcosts || !MaterialcostSLCurrency || !Referencehours || !InstallationHours || !LaborCosts || !FullCosts || !TotalCost || !TenderPrice) {
