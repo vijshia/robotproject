@@ -74,6 +74,10 @@ public class Keywords extends KTOCTRBUtils{
 				waitForVisibilityOfElementLocated(lnk_selectOpportunity);
 				clickonButton(lnk_selectOpportunity);
 				System.out.println(opportunity+" has been clicked");
+				waitForVisibilityOfElementLocated(header_flTender);
+				/*waitForElementToBeClickable(header_flTender);
+				scrollIntoView_Javascript(gettingWebElement(header_flTender));
+				waitForVisibilityOfElementLocated(header_flTender);*/
 				waitForElementToBeClickable(header_flTender);
 				clickonButton(header_flTender);
 //				System.out.println("clicked on FL Tenders header in Opportunity");
@@ -660,11 +664,13 @@ public class Keywords extends KTOCTRBUtils{
 	public void VerifyPriceCalculatedSuccessfully_TobecheckedinFrance() throws Exception{
 		if(frontlineAssigned.equals("AUSTRALIA")) {
 //			checkingTargetPriceFullGrid();
-			validateDetailBreakdownTabFullGrid();
+//			validateDetailBreakdownTabFullGrid();
+			validateDetailBreakdownTabFullGrid1();
 		} else {
-			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
-			validateDetailBreakdownTabFullGrid();
-			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
+//			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
+//			validateDetailBreakdownTabFullGrid();
+			validateDetailBreakdownTabFullGrid1();
+//			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
 		}
 	}
 	
@@ -870,7 +876,7 @@ public class Keywords extends KTOCTRBUtils{
 					 condition="-0.02";
 					}
 				}
-			System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: "+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" ***");
+			System.out.println(condition+" Added in Calculated RegionaldiscountoncomponentPercent hence Calculated RegionaldiscountoncomponentPercent VS Actual regionalDiscount shown in Application is: "+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" ***");
 			String condition1=null;
 			if(!roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
 				final_TargetPrice=final_TargetPrice-0.01f;
@@ -1393,20 +1399,365 @@ public class Keywords extends KTOCTRBUtils{
 		}
 	}
 	
-	/**
-	 **Reuse method, it will get data from Detail Breakdown (FullGrid)
-	 *@throws Exception: For exception handling
-	 *@author CON_SVIJAY02
-	 */
+	public HashMap<String, Float> hm_DetailBreakdownDataFullGrid1;
+	public void validateDetailBreakdownTabFullGrid1() throws Exception{
+		try {
+			/*waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement scrollto_DetailbreakdownTab = gettingWebElement(tab_detailBreakDown);
+			scrollIntoView_Javascript(scrollto_DetailbreakdownTab);
+			waitForVisibilityOfElementLocated(tab_detailBreakDown);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(tab_detailBreakDown);
+			System.out.println("Detailed breakdown Clicked");
+			waitForVisibilityOfElementLocated(dd_selectProject);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(dd_selectProject);
+			WebElement element_Ropes = gettingWebElement(value_ropes);
+			waitForVisibilityOfElementLocated(value_ropes);
+			waitForElementToBeClickable(value_ropes);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			wait.until(ExpectedConditions.visibilityOf(element_Ropes));
+			if(isMultipleEquipment) {
+				By checkbox_forMultipleEquipment = By.xpath("//*[text()='MMS Electrification Module']");
+				WebElement element_forMultipleEquipment = gettingWebElement(checkbox_forMultipleEquipment);
+				wait.until(ExpectedConditions.visibilityOf(element_forMultipleEquipment));
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				click_Javascript(element_forMultipleEquipment);
+				System.out.println(element_forMultipleEquipment+" CLICKED");
+			} else {
+				click_Javascript(element_Ropes);
+				System.out.println("ROPES CLICKED");
+			}
+			waitForinvisibilityOfElementLocated(value_ropes);*/
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
+			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
+			waitForVisibilityOfElementLocated(header_ITEfactor);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			System.out.println("Show TotalCost Calculation Details CLICKED");
+			int count=0;
+			List<WebElement> buttons=gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
+			wait.until(ExpectedConditions.visibilityOfAllElements(buttons));
+			for(WebElement button:buttons) {
+//			System.out.println(button.getAttribute("id"));
+			count++;
+			if(count==4) {
+				scrollIntoView_Javascript(button);
+				wait.until(ExpectedConditions.visibilityOf(button));
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				button.click();
+				break;
+			}
+		}
+			waitForVisibilityOfElementLocated(By.xpath("//*[text()='Reference hours']"));
+			
+			validateDetailBreakdownTabGetDatafromFullGrid1();
+			
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).click();
+			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			int count1=0;
+			List<WebElement> buttons1=gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
+			wait.until(ExpectedConditions.visibilityOfAllElements(buttons1));
+			for(WebElement button:buttons1) {
+//			System.out.println(button.getAttribute("id"));
+			count1++;
+			if(count1==4) {
+				scrollIntoView_Javascript(button);
+				wait.until(ExpectedConditions.visibilityOf(button));
+				waitForinvisibilityOfElementLocated(elementtoInvisible);
+				button.click();
+				break;
+			}
+		}
+//			System.out.println("elementShowTotalCostCalculationDetail_CLICKED*****BACK="+driver.findElements(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div")).get(4).getAttribute("id"));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+//			waitForinvisibilityOfElementLocated(header_ITEfactor);
+//			System.out.println("header_ITEfactor disabled");
+			if(!isDetailBreakdowndata) {
+				isDetailBreakdowndata = true;
+				Assert.fail("Failed due to (TargetPrice or Materialcosts or MaterialcostSLCurrency or Referencehours or InstallationHours or LaborCosts or FullCosts or TotalCost or TenderPrice) not euqal in Detail Breakdown Tab");
+			}
+		} catch (Exception e) {
+//			e.printStackTrace();
+			Assert.fail("Validate Detail Breakdown Tab (FullGrid) Failed due to: "+e);
+		}
+	}
+	
 	public Float totalTargetPrice; 
 	public Float totalMaterialcosts;
-	public Float totalMaterialcostSLCurrency;
+	public Float totalMaterialcostSLCurrency; 
 	public Float totalReferencehours;
 	public Float totalInstallationHours;
 	public Float totalLaborCosts;
 	public Float totalFullCosts;
 	public Float totalTotalCost;
 	public Float totalTenderPrice;
+	public void validateDetailBreakdownTabGetDatafromFullGrid1() throws Exception{
+		try {
+			List<WebElement> Elements_showtotalcostHeader = gettingWebElementsfromList(By.xpath("//*[text()='Subtotal']/../../../../div[2]/div/div[text()='Description']")); //*[text()='Subtotal']/..//* //*[text()='Subtotal']/../../../../div[2]
+			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostHeader));
+			List<String> ls_TotalCostHeader=new LinkedList<>();
+			hm_DetailBreakdownDataFullGrid = new HashMap<String, Float>();
+			HashMap<String, Integer> hm_DetailBreakdownDataSizeFullGrid = new HashMap<String, Integer>();
+			List<String> TotalCostHeaderFullGrid = Arrays.asList("Base hours", "Per Service3", "per travel [m]3", "Each3", "Reference hours", "ITE factor", "Installation Hours", "Labour rate", "Labor Costs", "Contingency", "Overhead Recovery", "Full Costs", "Total Cost", "Tender Price", "Target Price", "Base price", "Per Service1", "per travel [m]1", "Each1", "Base cost", "Per Service2", "per travel [m]2", "Each2", "Material costs", "Material cost (SL Currency)");
+			List<String> numerals = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "€", "$", ".", " ");
+			int rotate=0;
+//			System.out.println("Before rotate:\n " + TotalCostHeaderFullGrid);
+			List<WebElement> Elements_showtotalcostRowHeader = gettingWebElementsfromList(By.xpath("//*[text()='Subtotal']/../../div"));
+//			System.out.println(Elements_showtotalcostRowHeader.size());
+			wait.until(ExpectedConditions.visibilityOfAllElements(Elements_showtotalcostRowHeader));
+			List<String> ls_TotalCostRowHeader=new LinkedList<>();
+			int countRowHeader = 0;
+			int count=0;
+			int count1=1;
+			for(WebElement Element_showtotalcostRowHeader:Elements_showtotalcostRowHeader) {
+//			System.out.println(Element_showtotalcostRowHeader.getAttribute("id"));
+				List<WebElement> Element_showtotalcostRowHeader1 = Element_showtotalcostRowHeader.findElements(By.xpath("./*"));
+//		int count2=0;
+				for(WebElement Element_showtotalcostRowHeader2:Element_showtotalcostRowHeader1) {
+//				System.out.println(Element_showtotalcostRowHeader2.getAttribute("id")+"<==>"+Element_showtotalcostRowHeader2.getText());
+				String[] array=Element_showtotalcostRowHeader2.getText().split("");
+					if(!Element_showtotalcostRowHeader2.getText().isEmpty() && !Element_showtotalcostRowHeader2.getText().contains("Subtotal") && !array[0].isEmpty() && !numerals.contains(array[0])) {
+//					if(!Element_showtotalcostRowHeader2.getText().isEmpty() && !Element_showtotalcostRowHeader2.getText().contains("Subtotal") &&!Element_showtotalcostRowHeader2.getText().contains("€") && !Element_showtotalcostRowHeader2.getText().contains("$") && !Element_showtotalcostRowHeader2.getText().contains(".") && !Element_showtotalcostRowHeader2.getText().equals("0") && !Element_showtotalcostRowHeader2.getText().equals("1") && !Element_showtotalcostRowHeader2.getText().equals("2") && !Element_showtotalcostRowHeader2.getText().equals("3") && !Element_showtotalcostRowHeader2.getText().equals("4") && !Element_showtotalcostRowHeader2.getText().equals("5") && !Element_showtotalcostRowHeader2.getText().equals("6") && !Element_showtotalcostRowHeader2.getText().equals("7") && !Element_showtotalcostRowHeader2.getText().equals("8") && !Element_showtotalcostRowHeader2.getText().equals("9") && !Element_showtotalcostRowHeader2.getText().equals("0")) {						
+//		System.out.println("Element_showtotalcostRowHeader2="+Element_showtotalcostRowHeader2.getText());
+		/*if(Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW")) {*/
+//		System.out.println(count2+" showtotalcostRowHeader="+Element_showtotalcostRowHeader2.getText());
+		/*}*/
+						ls_TotalCostRowHeader.add(Element_showtotalcostRowHeader2.getText());
+						List<WebElement> Element_showtotalcostRowHeader3 = Element_showtotalcostRowHeader2.findElements(By.xpath("./../*"));
+						Float convertedvalue=null;
+						List<Float> ls_TotalCostRowRowValues=new LinkedList<>();
+						for(WebElement Element_showtotalcostRowHeader4:Element_showtotalcostRowHeader3) {
+//					System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"//"+Element_showtotalcostRowHeader4.getText()+"//"+Element_showtotalcostRowHeader4.getAttribute("value"));
+						if (Element_showtotalcostRowHeader4.getAttribute("value") == null ) {
+							if(!Element_showtotalcostRowHeader4.getText().isEmpty())	{
+//					System.out.println("getText:"+Element_showtotalcostRowHeader4.getText());
+									if(!ls_TotalCostRowHeader.contains(Element_showtotalcostRowHeader4.getText())) {
+//					System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getText:"+Element_showtotalcostRowHeader4.getText());
+										count++;
+										if(Element_showtotalcostRowHeader4.getText().contains("h")) {
+											count1=count;
+//										System.out.println("index of h= "+count1);
+										}
+										String getvalue=Element_showtotalcostRowHeader4.getText().replaceAll("[€ % h $]", "");
+										getvalue = getvalue.replace(",", ".");
+										getvalue=removingDot(getvalue);
+										convertedvalue = Float.valueOf(getvalue);
+										ls_TotalCostRowRowValues.add(convertedvalue);
+									}
+							}
+						} else if(!Element_showtotalcostRowHeader4.getAttribute("value").isEmpty() && Element_showtotalcostRowHeader4.getAttribute("value")!=null) {
+//				System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getAttribute:"+Element_showtotalcostRowHeader4.getAttribute("value"));
+							String getvalue = null;
+							if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+								getvalue=Element_showtotalcostRowHeader4.getAttribute("value").replaceAll("[€ % h .]", "");
+								getvalue = getvalue.replace(",", ".");
+							} else if(frontlineAssigned.equals("AUSTRALIA")) {
+								getvalue=Element_showtotalcostRowHeader4.getAttribute("value").replaceAll("[€ % h $]", "");
+								getvalue = getvalue.replace(",", "");
+							}
+								convertedvalue = Float.valueOf(getvalue);
+								ls_TotalCostRowRowValues.add(convertedvalue);
+								count++;
+								if((Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW") || Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new") || Element_showtotalcostRowHeader2.getText().equals("Process Cost")) && count==15) {
+									ls_TotalCostRowRowValues.add(count, 0f);
+									ls_TotalCostRowRowValues.add(count+1, 0f);
+									ls_TotalCostRowRowValues.add(count+2, 0f);
+									ls_TotalCostRowRowValues.add(count+3, 0f);
+								}
+							}
+						}
+						count=0;
+						if(count1 != 7) {
+							if(rotate ==0) {
+								Collections.rotate(TotalCostHeaderFullGrid, 20);
+								rotate++;
+//								System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);
+							}
+							if(Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW") || Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new") || Element_showtotalcostRowHeader2.getText().equals("Process Cost")) {
+								ls_TotalCostRowRowValues.add(9, 0f);
+								ls_TotalCostRowRowValues.add(10, 0f);
+								ls_TotalCostRowRowValues.add(11, 0f);
+								ls_TotalCostRowRowValues.add(12, 0f);
+							}
+						}
+						for(int j=0; j<ls_TotalCostRowRowValues.size(); j++) {
+/*							if(count1 != 7 && (rotate ==0 || rotate ==1) && (j==1 || j==20 || j==21 || j==22 || j==23 || j==24)) {
+								System.out.println("HI:"+TotalCostHeaderFullGrid.get(j));
+							} else {*/
+								ls_TotalCostHeader.add(TotalCostHeaderFullGrid.get(j));
+//								System.out.println(TotalCostHeaderFullGrid.get(j));
+//							}
+						}
+						for(int i=0; i<ls_TotalCostRowRowValues.size(); i++) {
+//							System.out.println(i+". "+ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i)+"="+ls_TotalCostRowRowValues.get(i));
+							hm_DetailBreakdownDataFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i), ls_TotalCostRowRowValues.get(i));
+						}
+						hm_DetailBreakdownDataSizeFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader), ls_TotalCostRowRowValues.size());
+//						System.out.println(ls_TotalCostRowHeader.get(countRowHeader)+"="+ls_TotalCostRowRowValues.size());
+						countRowHeader++;
+					} 
+					//below implemention done due to Australia - Detailed Breakdown tab, a row header is starting with Numeral as “3. OSG rope reel option”
+					else if(!Element_showtotalcostRowHeader2.getText().isEmpty() && !Element_showtotalcostRowHeader2.getText().contains("Subtotal") && !array[0].isEmpty()) { // numerals.contains(array[0]) && array.length >5
+						 if(numerals.contains(array[0]) && array.length >10 && !array[5].isEmpty() && array[5]!=null && !numerals.contains(array[5])) { //array[5]!=null && !numerals.contains(array[5])
+//						System.out.println(" showtotalcostRowHeader="+Element_showtotalcostRowHeader2.getText());
+						ls_TotalCostRowHeader.add(Element_showtotalcostRowHeader2.getText());
+						List<WebElement> Element_showtotalcostRowHeader3 = Element_showtotalcostRowHeader2.findElements(By.xpath("./../*"));
+						Float convertedvalue=null;
+						List<Float> ls_TotalCostRowRowValues=new LinkedList<>();
+						for(WebElement Element_showtotalcostRowHeader4:Element_showtotalcostRowHeader3) {
+//					System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"//"+Element_showtotalcostRowHeader4.getText()+"//"+Element_showtotalcostRowHeader4.getAttribute("value"));
+						if (Element_showtotalcostRowHeader4.getAttribute("value") == null ) {
+							if(!Element_showtotalcostRowHeader4.getText().isEmpty())	{
+//					System.out.println("getText:"+Element_showtotalcostRowHeader4.getText());
+									if(!ls_TotalCostRowHeader.contains(Element_showtotalcostRowHeader4.getText())) {
+//					System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getText:"+Element_showtotalcostRowHeader4.getText());
+										count++;
+										if(Element_showtotalcostRowHeader4.getText().contains("h")) {
+											count1=count;
+//										System.out.println("index of h= "+count1);
+										}
+										String getvalue=Element_showtotalcostRowHeader4.getText().replaceAll("[€ % h $]", "");
+										getvalue = getvalue.replace(",", ".");
+										getvalue=removingDot(getvalue);
+										convertedvalue = Float.valueOf(getvalue);
+										ls_TotalCostRowRowValues.add(convertedvalue);
+									}
+							}
+						} else if(!Element_showtotalcostRowHeader4.getAttribute("value").isEmpty() && Element_showtotalcostRowHeader4.getAttribute("value")!=null) {
+//				System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getAttribute:"+Element_showtotalcostRowHeader4.getAttribute("value"));
+							String getvalue = null;
+							if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+								getvalue=Element_showtotalcostRowHeader4.getAttribute("value").replaceAll("[€ % h .]", "");
+								getvalue = getvalue.replace(",", ".");
+							} else if(frontlineAssigned.equals("AUSTRALIA")) {
+								getvalue=Element_showtotalcostRowHeader4.getAttribute("value").replaceAll("[€ % h $]", "");
+								getvalue = getvalue.replace(",", "");
+							}
+								convertedvalue = Float.valueOf(getvalue);
+								ls_TotalCostRowRowValues.add(convertedvalue);
+								count++;
+								if((Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW") || Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new") || Element_showtotalcostRowHeader2.getText().equals("Process Cost")) && count==15) {
+									ls_TotalCostRowRowValues.add(count, 0f);
+									ls_TotalCostRowRowValues.add(count+1, 0f);
+									ls_TotalCostRowRowValues.add(count+2, 0f);
+									ls_TotalCostRowRowValues.add(count+3, 0f);
+								}
+							}
+						}
+						count=0;
+						if(count1 != 7) {
+							if(rotate ==0) {
+								Collections.rotate(TotalCostHeaderFullGrid, 20);
+								rotate++;
+//								System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);
+							}
+							if(Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW") || Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new") || Element_showtotalcostRowHeader2.getText().equals("Process Cost")) {
+								ls_TotalCostRowRowValues.add(9, 0f);
+								ls_TotalCostRowRowValues.add(10, 0f);
+								ls_TotalCostRowRowValues.add(11, 0f);
+								ls_TotalCostRowRowValues.add(12, 0f);
+							}
+						}
+						for(int j=0; j<ls_TotalCostRowRowValues.size(); j++) {
+/*							if(count1 != 7 && (rotate ==0 || rotate ==1) && (j==1 || j==20 || j==21 || j==22 || j==23 || j==24)) {
+								System.out.println("HI:"+TotalCostHeaderFullGrid.get(j));
+							} else {*/
+								ls_TotalCostHeader.add(TotalCostHeaderFullGrid.get(j));
+//								System.out.println(TotalCostHeaderFullGrid.get(j));
+//							}
+						}
+						for(int i=0; i<ls_TotalCostRowRowValues.size(); i++) {
+//							System.out.println(i+". "+ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i)+"="+ls_TotalCostRowRowValues.get(i));
+							hm_DetailBreakdownDataFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i), ls_TotalCostRowRowValues.get(i));
+						}
+						hm_DetailBreakdownDataSizeFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader), ls_TotalCostRowRowValues.size());
+//						System.out.println(ls_TotalCostRowHeader.get(countRowHeader)+"="+ls_TotalCostRowRowValues.size());
+						countRowHeader++;
+						 }
+					}
+//					count2++;
+				}
+			}
+//			hm_DetailBreakdownDataFullGrid.forEach((key, value) -> {System.out.println("Key : " + key + " Value : " + value);});
+//			System.out.println("countRowHeader:"+countRowHeader);
+			/*for(int j=0; j<ls_TotalCostRowHeader.size(); j++) {
+				int b=j+1;
+				System.out.println(b+". "+ls_TotalCostRowHeader.get(j)+" /size:"+hm_DetailBreakdownDataSizeFullGrid.get(ls_TotalCostRowHeader.get(j)));
+				System.out.println("-----------------------------------------------");
+				for(int i=0; i<hm_DetailBreakdownDataSizeFullGrid.get(ls_TotalCostRowHeader.get(j)); i++) {
+					int a=i+1;
+					System.out.println(" "+a+"."+ls_TotalCostRowHeader.get(j)+"_"+ls_TotalCostHeader.get(i)+"="+hm_DetailBreakdownDataFullGrid.get(ls_TotalCostRowHeader.get(j)+"_"+ls_TotalCostHeader.get(i)));
+				}
+			}*/
+			totalTargetPrice = 0f; 
+			totalMaterialcosts = 0f;
+			totalMaterialcostSLCurrency = 0f;
+			totalReferencehours = 0f;
+			totalInstallationHours = 0f;
+			totalLaborCosts = 0f;
+			totalFullCosts = 0f;
+			totalTotalCost = 0f;
+			totalTenderPrice = 0f;
+			for ( Map.Entry<String, Float> entry : hm_DetailBreakdownDataFullGrid.entrySet()) {
+			    String key = entry.getKey();
+			    Float value = entry.getValue();
+//			    System.out.println(key+"=="+value);
+			    if(key.contains("_Target Price")) {
+			    	Float totalTargetPrice12 = value;
+			    	totalTargetPrice=totalTargetPrice+totalTargetPrice12;
+			    } else if(key.contains("_Material costs")) {
+			    	Float totalMaterialcosts12 = value;
+			    	totalMaterialcosts=totalMaterialcosts+totalMaterialcosts12;
+			    } else if(key.contains("_Material cost (SL Currency)")) {
+//			    	System.out.println(key+"=="+value);
+			    	Float totalaterialcostSLCurrency12 = value;
+			    	totalMaterialcostSLCurrency=totalMaterialcostSLCurrency+totalaterialcostSLCurrency12;
+			    } else if(key.contains("_Reference hours")) {
+			    	Float totalReferencehours12 = value;
+			    	totalReferencehours=totalReferencehours+totalReferencehours12;
+			    } else if(key.contains("_Installation Hours")) {
+			    	Float totalInstallationHours12 = value;
+			    	totalInstallationHours=totalInstallationHours+totalInstallationHours12;
+			    } else if(key.contains("_Labor Costs")) {
+			    	Float totalLaborCosts12 = value;
+			    	totalLaborCosts=totalLaborCosts+totalLaborCosts12;
+			    } else if(key.contains("_Full Costs")) {
+			    	Float totalFullCosts12 = value;
+			    	totalFullCosts=totalFullCosts+totalFullCosts12;
+			    } else if(key.contains("_Total Cost")) {
+			    	Float totalTotalCost12 = value;
+			    	totalTotalCost=totalTotalCost+totalTotalCost12;
+			    } else if(key.contains("_Tender Price")) {
+			    	Float totalTenderPrice12 = value;
+			    	totalTenderPrice=totalTenderPrice+totalTenderPrice12;
+			    }
+			}
+			/*System.out.println("totalTargetPrice="+totalTargetPrice);
+			System.out.println("totalMaterialcosts="+totalMaterialcosts);
+			System.out.println("totalaterialcostSLCurrency="+totalMaterialcostSLCurrency);
+			System.out.println("totalReferencehours="+totalReferencehours);
+			System.out.println("totalInstallationHours="+totalInstallationHours);
+			System.out.println("totalLaborCosts="+totalLaborCosts);
+			System.out.println("totalFullCosts="+totalFullCosts);
+			System.out.println("totalTotalCost="+totalTotalCost);
+			System.out.println("totalTenderPrice="+totalTenderPrice);*/
+			validateDetailBreakdownTabCheckTotalValuesinFullGrid();
+		} catch (Exception e) {
+//			e.printStackTrace();
+			Assert.fail("Validate Detail Breakdown Tab (FullGrid) GetData from FullGrid Failed due to: "+e);
+		}
+	}
+	
+	/**
+	 **Reuse method, it will get data from Detail Breakdown (FullGrid)
+	 *@throws Exception: For exception handling
+	 *@author CON_SVIJAY02
+	 */
 	public void validateDetailBreakdownTabGetDatafromFullGrid() throws Exception{
 		try {
 			List<WebElement> Elements_showtotalcostHeader = gettingWebElementsfromList(By.xpath("//*[text()='Subtotal']/../../../../div[2]/div/div[text()='Description']")); //*[text()='Subtotal']/..//* //*[text()='Subtotal']/../../../../div[2]
@@ -1569,10 +1920,10 @@ public class Keywords extends KTOCTRBUtils{
 			    	totalTenderPrice=totalTenderPrice+totalTenderPrice1;
 			    }
 			}
-//			System.out.println("totalTargetPrice="+totalTargetPrice);
-//			System.out.println("totalMaterialcosts="+totalMaterialcosts);
-//			System.out.println("totalaterialcostSLCurrency="+totalMaterialcostSLCurrency);
-			/*System.out.println("totalReferencehours="+totalReferencehours);
+			/*System.out.println("totalTargetPrice="+totalTargetPrice);
+			System.out.println("totalMaterialcosts="+totalMaterialcosts);
+			System.out.println("totalaterialcostSLCurrency="+totalMaterialcostSLCurrency);
+			System.out.println("totalReferencehours="+totalReferencehours);
 			System.out.println("totalInstallationHours="+totalInstallationHours);
 			System.out.println("totalLaborCosts="+totalLaborCosts);
 			System.out.println("totalFullCosts="+totalFullCosts);
@@ -1585,6 +1936,12 @@ public class Keywords extends KTOCTRBUtils{
 		}
 	}
 	
+	/**
+	 **Reuse method, it will compare data from Detail Breakdown (FullGrid)
+	 *@throws Exception: For exception handling
+	 *@author CON_SVIJAY02
+	 */
+	public boolean isDetailBreakdowndata = true;
 	public void validateDetailBreakdownTabCheckTotalValuesinFullGrid() throws Exception{
 		try {
 			Float subtotal_TargetPrice= hm_DetailBreakdownData.get("Target Price");
@@ -1648,7 +2005,7 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("*** is totalTenderPrice vs subtotal_TenderPrice equal: "+TenderPrice);
 			if(!TargetPrice || !Materialcosts || !MaterialcostSLCurrency || !Referencehours || !InstallationHours || !LaborCosts || !FullCosts || !TotalCost || !TenderPrice) {
 				screenshotCapture("DetailBreakdownTab");
-				Assert.fail("Detail Breakdown Tab (FullGrid) Failed");
+				isDetailBreakdowndata = false;
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
@@ -1852,7 +2209,7 @@ public class Keywords extends KTOCTRBUtils{
 				element_enderVersionProbability.sendKeys(StageProbability_probability);
 				waitForinvisibilityOfElementLocated(elementtoInvisible);
 				clickonButton(btn_stageProbability);*/
-				if(isMultipleEquipment || frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
+				if(isMultipleEquipment || frontlineAssigned.equals("CANADA") ) { //|| frontlineAssigned.equals("FRANCE")
 					WebElement activeElement_SFupdateFailed=driver.switchTo().activeElement();
 					if(activeElement_SFupdateFailed.getText().contains("OK")) {
 						By btn_updateFailedOK = By.xpath("//*[text()='OK']");

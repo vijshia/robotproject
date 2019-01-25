@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20190122 17:01:53.133">
+<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20190125 16:37:51.161">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation" name="KTOC TRB TestAutomation" id="s1">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites" name="TestSuites" id="s1-s1">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites\RegressionKTOC_TRB_Australia.robot" name="RegressionKTOC TRB Australia" id="s1-s1-s1">
@@ -8,112 +8,311 @@
 <arg>australia</arg>
 <arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
 </arguments>
-<msg level="INFO" timestamp="20190122 17:02:07.371">1548156717485	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.GLSGY6AD0z7S"
-1548156719727	Marionette	INFO	Listening on port 54847
-1548156720235	Marionette	WARN	TLS certificate errors will be ignored for this session
-Jan 22, 2019 5:02:00 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+<msg level="INFO" timestamp="20190125 16:38:05.472">1548414476066	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.8v0SBql7iSiv"
+1548414478422	Marionette	INFO	Listening on port 51136
+1548414478811	Marionette	WARN	TLS certificate errors will be ignored for this session
+Jan 25, 2019 4:37:58 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C</msg>
-<status endtime="20190122 17:02:07.395" starttime="20190122 17:01:54.589" status="PASS"></status>
+<status endtime="20190125 16:38:05.488" starttime="20190125 16:37:52.751" status="PASS"></status>
 </kw>
 <test name="1.Logon To Salesforce" id="s1-s1-s1-t1">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Loginto Salesforce">
-<status endtime="20190122 17:02:12.217" starttime="20190122 17:02:07.425" status="PASS"></status>
+<status endtime="20190125 16:38:10.447" starttime="20190125 16:38:05.517" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:02:12.223" starttime="20190122 17:02:07.410" status="PASS"></status>
+<status critical="yes" endtime="20190125 16:38:10.456" starttime="20190125 16:38:05.500" status="PASS"></status>
 </test>
 <test name="2.Verify Creating Opportunity and Mapping It With FLTender" id="s1-s1-s1-t2">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Create Opportunity OR Search Opportunity">
-<msg level="INFO" timestamp="20190122 17:02:36.530">Opportunity Name:KOFCOL TRB 201 entered in Search box
+<msg level="INFO" timestamp="20190125 16:38:31.301">Opportunity Name:KOFCOL TRB 201 entered in Search box
 KOFCOL TRB 201 has been clicked</msg>
-<status endtime="20190122 17:02:36.547" starttime="20190122 17:02:12.245" status="PASS"></status>
+<status endtime="20190125 16:38:31.310" starttime="20190125 16:38:10.488" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:02:36.562" starttime="20190122 17:02:12.236" status="PASS"></status>
+<status critical="yes" endtime="20190125 16:38:31.321" starttime="20190125 16:38:10.468" status="PASS"></status>
 </test>
 <test name="3.Verify Tender Created Successfully for Elevator" id="s1-s1-s1-t3">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Navigateto KTOCTRB">
-<msg level="INFO" timestamp="20190122 17:02:44.927">Release 1813 is Selected
+<msg level="INFO" timestamp="20190125 16:38:41.414">Release 1813 is Selected
 Clicked on OK button</msg>
-<status endtime="20190122 17:02:44.932" starttime="20190122 17:02:36.582" status="PASS"></status>
+<status endtime="20190125 16:38:41.420" starttime="20190125 16:38:31.370" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Equipment ID Elevator">
-<msg level="INFO" timestamp="20190122 17:03:39.657">30493722 EquipmentID entered
+<msg level="INFO" timestamp="20190125 16:38:51.977">30493722 EquipmentID entered
 Equipment loader clicked
 checkbox clicked
 Change button clicked</msg>
-<status endtime="20190122 17:03:39.661" starttime="20190122 17:02:44.948" status="PASS"></status>
+<status endtime="20190125 16:38:51.983" starttime="20190125 16:38:41.437" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Hand Over Date Is Greater Than Installation Date">
-<msg level="INFO" timestamp="20190122 17:03:40.489">Project clicked
+<msg level="INFO" timestamp="20190125 16:38:52.916">Project clicked
 Current MS5HO Date: 08/06/2020
 MS5HODate Changed to: 10/06/2020</msg>
-<status endtime="20190122 17:03:40.492" starttime="20190122 17:03:39.668" status="PASS"></status>
+<status endtime="20190125 16:38:52.927" starttime="20190125 16:38:51.987" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Sales Officeis Selected">
-<msg level="INFO" timestamp="20190122 17:03:41.574">SalesOffice value AU21 - Sydney Region Selected</msg>
-<status endtime="20190122 17:03:41.582" starttime="20190122 17:03:40.496" status="PASS"></status>
+<msg level="INFO" timestamp="20190125 16:38:54.088">SalesOffice value AU21 - Sydney Region Selected</msg>
+<status endtime="20190125 16:38:54.102" starttime="20190125 16:38:52.930" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Additionalfieldsin Project Overviewfor Canada">
-<status endtime="20190122 17:03:41.593" starttime="20190122 17:03:41.588" status="PASS"></status>
+<status endtime="20190125 16:38:54.141" starttime="20190125 16:38:54.116" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Supervisor">
-<msg level="INFO" timestamp="20190122 17:03:43.553">CustomerID: A10137873 entered
+<msg level="INFO" timestamp="20190125 16:38:55.578">CustomerID: A10137873 entered
 13012004 selected in Supervisor</msg>
-<status endtime="20190122 17:03:43.567" starttime="20190122 17:03:41.598" status="PASS"></status>
+<status endtime="20190125 16:38:55.582" starttime="20190125 16:38:54.153" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Equipment In Service">
-<msg level="INFO" timestamp="20190122 17:03:44.810">LIS Elevator is clicked in Equipment InService</msg>
-<status endtime="20190122 17:03:44.816" starttime="20190122 17:03:43.575" status="PASS"></status>
+<msg level="INFO" timestamp="20190125 16:38:56.975">LIS Elevator is clicked in Equipment InService</msg>
+<status endtime="20190125 16:38:56.978" starttime="20190125 16:38:55.588" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Template To Be Uploaded">
-<msg level="INFO" timestamp="20190122 17:03:47.819">Rightclick performed on Equipment
+<msg level="INFO" timestamp="20190125 16:39:00.355">Rightclick performed on Equipment
 Open Templates clicked
 AustraliaRopes_For Automation Entered in search
 Shared templates radio button Clicked
 AustraliaRopes_For Automation Template Clicked</msg>
-<status endtime="20190122 17:03:47.822" starttime="20190122 17:03:44.821" status="PASS"></status>
+<status endtime="20190125 16:39:00.362" starttime="20190125 16:38:56.982" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Tender Consistency">
-<msg level="INFO" timestamp="20190122 17:03:51.965">PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+<msg level="INFO" timestamp="20190125 16:39:04.980">PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")</msg>
-<status endtime="20190122 17:03:51.969" starttime="20190122 17:03:47.829" status="PASS"></status>
+<status endtime="20190125 16:39:04.985" starttime="20190125 16:39:00.373" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Tender Number">
-<msg level="INFO" timestamp="20190122 17:03:52.001">Tender # is :T-0002466457</msg>
-<status endtime="20190122 17:03:52.006" starttime="20190122 17:03:51.973" status="PASS"></status>
+<msg level="INFO" timestamp="20190125 16:39:05.011">Tender # is :T-0002466581</msg>
+<status endtime="20190125 16:39:05.014" starttime="20190125 16:39:04.988" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:03:52.010" starttime="20190122 17:02:36.575" status="PASS"></status>
+<status critical="yes" endtime="20190125 16:39:05.017" starttime="20190125 16:38:31.357" status="PASS"></status>
 </test>
 <test name="4.Validate TenderPrice Without FirstMaintenance for Elevator" id="s1-s1-s1-t4">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Pricing Icon Click">
-<msg level="INFO" timestamp="20190122 17:03:52.325">pricing icon Clicked</msg>
-<status endtime="20190122 17:03:52.328" starttime="20190122 17:03:52.023" status="PASS"></status>
+<msg level="INFO" timestamp="20190125 16:39:05.325">pricing icon Clicked</msg>
+<status endtime="20190125 16:39:05.330" starttime="20190125 16:39:05.025" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
 <arguments>
 <arg>10</arg>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20190122 17:03:56.257">Discount entered as: 10
+<msg level="INFO" timestamp="20190125 17:09:23.363">Discount entered as: 10
 First maintenance: 0 Clicked</msg>
-<status endtime="20190122 17:03:56.262" starttime="20190122 17:03:52.332" status="PASS"></status>
+<msg level="INFO" timestamp="20190125 17:09:23.367">org.openqa.selenium.ElementClickInterceptedException: Element &lt;button id="e2994" class="pbn1 civ1al88magjb8" type="button"&gt; is not clickable at point (598.1666870117188,436.16668701171875) because another element &lt;div id="gp" class="gp"&gt; obscures it
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T15:15:03.216Z'
+System info: host: '5CG71660NZ', ip: '10.114.127.235', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 63.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.23.0, moz:headless: false, moz:processID: 12672, moz:profile: C:\Users\con_svijay02\AppDa..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 98a3a636-a19c-4217-8cc9-9e11c489fc95
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils.clickonButton(KTOCTRBUtils.java:409)
+	at com.KTOC.TRB.testautomation.Keywords.Keywords.selectingDiscount(Keywords.java:2601)
+	at com.KTOC.TRB.testautomation.Keywords.Keywords.CheckTenderPriceAfterDiscountUpdate(Keywords.java:553)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.python.core.PyReflectedFunction.__call__(PyReflectedFunction.java:186)
+	at org.python.core.PyObject.__call__(PyObject.java:419)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.core.PyMethod.__call__(PyMethod.java:223)
+	at org.python.core.PyObject._callextra(PyObject.java:601)
+	at robot.running.librarykeywordrunner$py.f$13(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:89)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:124)
+	at org.python.core.PyFunction.__call__(PyFunction.java:403)
+	at robot.running.librarykeywordrunner$py._run_with_signal_monitoring$16(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:103)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py._run_with_output_captured_and_signal_monitor$15(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:96)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py._run$8(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:77)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.librarykeywordrunner$py.run$6(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py:56)
+	at robot.running.librarykeywordrunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\librarykeywordrunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.running.steprunner$py.run_step$4(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:57)
+	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.steprunner$py.run_steps$3(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py:47)
+	at robot.running.steprunner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\steprunner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.runner$py.visit_test$7(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py:160)
+	at robot.running.runner$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\runner.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testcase$py.visit$7(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py:74)
+	at robot.model.testcase$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testcase.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.itemlist$py.visit$11(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py:75)
+	at robot.model.itemlist$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\itemlist.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.visitor$py.visit_suite$2(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py:88)
+	at robot.model.visitor$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\visitor.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.model.testsuite$py.visit$19(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py:161)
+	at robot.model.testsuite$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\model\testsuite.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at robot.running.model$py.run$17(C:\jython2.7.0\Lib\site-packages\robot\running\model.py:250)
+	at robot.running.model$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\running\model.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:145)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyMethod.__call__(PyMethod.java:141)
+	at org.python.pycode._pyx10.main$3(C:\jython2.7.0\Lib\site-packages\robot\run.py:452)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
+	at org.python.core.PyFunction.__call__(PyFunction.java:482)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.core.PyMethod.__call__(PyMethod.java:223)
+	at org.python.core.PyObject._callextra(PyObject.java:601)
+	at robot.utils.application$py._execute$10(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:94)
+	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:170)
+	at org.python.core.PyFunction.__call__(PyFunction.java:434)
+	at org.python.core.PyMethod.__call__(PyMethod.java:156)
+	at robot.utils.application$py.execute_cli$5(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py:49)
+	at robot.utils.application$py.call_function(C:\jython2.7.0\Lib\site-packages\robot\utils\application.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:198)
+	at org.python.core.PyFunction.__call__(PyFunction.java:482)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:237)
+	at org.python.core.PyMethod.__call__(PyMethod.java:228)
+	at org.python.pycode._pyx10.run_cli$7(C:\jython2.7.0\Lib\site-packages\robot\run.py:489)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:131)
+	at org.python.core.PyFunction.__call__(PyFunction.java:413)
+	at org.python.pycode._pyx10.f$0(C:\jython2.7.0\Lib\site-packages\robot\run.py:550)
+	at org.python.pycode._pyx10.call_function(C:\jython2.7.0\Lib\site-packages\robot\run.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyCode.call(PyCode.java:18)
+	at org.python.core.Py.runCode(Py.java:1386)
+	at org.python.core.Py.exec(Py.java:1430)
+	at runpy$py._run_code$9(C:\jython2.7.0\Lib\runpy.py:73)
+	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:307)
+	at org.python.core.PyFunction.function___call__(PyFunction.java:471)
+	at org.python.core.PyFunction.__call__(PyFunction.java:466)
+	at org.python.core.PyFunction.__call__(PyFunction.java:456)
+	at runpy$py._run_module_as_main$14(C:\jython2.7.0\Lib\runpy.py:161)
+	at runpy$py.call_function(C:\jython2.7.0\Lib\runpy.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:167)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:153)
+	at org.python.core.PyFunction.__call__(PyFunction.java:423)
+	at org.python.core.PyFunction.__call__(PyFunction.java:418)
+	at org.python.util.jython.runModule(jython.java:199)
+	at org.python.util.jython.runModule(jython.java:191)
+	at org.python.util.jython.run(jython.java:402)
+	at org.python.util.jython.main(jython.java:142)</msg>
+<status endtime="20190125 17:09:23.386" starttime="20190125 16:39:05.337" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:03:56.266" starttime="20190122 17:03:52.016" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:23.401" starttime="20190125 16:39:05.022" status="PASS"></status>
 </test>
 <test name="5.Check TenderPrice Without FirstMaintenance for Elevator" id="s1-s1-s1-t5">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20190122 17:03:56.872">TargetPrice:10764.77
+<msg level="INFO" timestamp="20190125 17:09:24.080">TargetPrice:10764.77
 Firstmaintenance:0.0
 Discount:10.0
 *** TenderPriceFinal:9688.29 / CurrentTenderPrice:9688.28 ***
 -0.01 Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: true ***</msg>
-<status endtime="20190122 17:03:56.874" starttime="20190122 17:03:56.280" status="PASS"></status>
+<status endtime="20190125 17:09:24.086" starttime="20190125 17:09:23.417" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:03:56.877" starttime="20190122 17:03:56.274" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:24.091" starttime="20190125 17:09:23.407" status="PASS"></status>
 </test>
 <test name="6.Validate Discount Without FirstMaintenance for Elevator" id="s1-s1-s1-t6">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
@@ -121,23 +320,23 @@ Discount:10.0
 <arg>2001</arg>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20190122 17:03:59.515">TenderPrice entered as: 2001
+<msg level="INFO" timestamp="20190125 17:09:27.021">TenderPrice entered as: 2001
 First maintenance: 0 Clicked</msg>
-<status endtime="20190122 17:03:59.518" starttime="20190122 17:03:56.885" status="PASS"></status>
+<status endtime="20190125 17:09:27.023" starttime="20190125 17:09:24.104" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:03:59.524" starttime="20190122 17:03:56.881" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:27.026" starttime="20190125 17:09:24.097" status="PASS"></status>
 </test>
 <test name="7.Check Discount Without FirstMaintenance for Elevator" id="s1-s1-s1-t7">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20190122 17:04:00.318">TargetPrice:10764.77
+<msg level="INFO" timestamp="20190125 17:09:27.669">TargetPrice:10764.77
 Firstmaintenance:0.0
 TenderPrice:2001.0
 DiscountFinal:81.41 / Discount shown in Application:81.41
 *** is FinalDiscount VS ApplicationDiscount Equal:true ***
 null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
-<status endtime="20190122 17:04:00.322" starttime="20190122 17:03:59.535" status="PASS"></status>
+<status endtime="20190125 17:09:27.674" starttime="20190125 17:09:27.035" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:00.325" starttime="20190122 17:03:59.529" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:27.679" starttime="20190125 17:09:27.030" status="PASS"></status>
 </test>
 <test name="8.Validate TenderPrice With FirstMaintenance for Elevator" id="s1-s1-s1-t8">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
@@ -145,23 +344,24 @@ null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in A
 <arg>11</arg>
 <arg>3</arg>
 </arguments>
-<msg level="INFO" timestamp="20190122 17:04:03.069">Discount entered as: 11
+<msg level="INFO" timestamp="20190125 17:09:30.511">Discount entered as: 11
 First maintenance: 3 Clicked</msg>
-<status endtime="20190122 17:04:03.072" starttime="20190122 17:04:00.335" status="PASS"></status>
+<status endtime="20190125 17:09:30.514" starttime="20190125 17:09:27.688" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:03.075" starttime="20190122 17:04:00.330" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:30.517" starttime="20190125 17:09:27.683" status="PASS"></status>
 </test>
 <test name="9.Check TenderPrice With FirstMaintenance for Elevator" id="s1-s1-s1-t9">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20190122 17:04:03.889">TargetPrice:14360.78
+<msg level="INFO" timestamp="20190125 17:09:31.365">TargetPrice:14360.78
 Firstmaintenance:3500.0
 Discount:11.0
 *** TenderPriceFinal:13166.09 / CurrentTenderPrice:13166.1 ***
 -0.02 Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: false ***</msg>
-<msg level="INFO" html="yes" timestamp="20190122 17:04:03.889">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Jan2019_05_04_03PM\SS_22Jan2019_05_04_03PM_Discount not equal in CheckTenderPriceAfterDiscountUpdate.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Jan2019_05_04_03PM\SS_22Jan2019_05_04_03PM_Discount not equal in CheckTenderPriceAfterDiscountUpdate.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
-<status endtime="20190122 17:04:03.895" starttime="20190122 17:04:03.086" status="PASS"></status>
+<msg level="INFO" html="yes" timestamp="20190125 17:09:31.365">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\25Jan2019_05_09_31PM\SS_25Jan2019_05_09_31PM_Discount not equal in CheckTenderPriceAfterDiscountUpdate.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\25Jan2019_05_09_31PM\SS_25Jan2019_05_09_31PM_Discount not equal in CheckTenderPriceAfterDiscountUpdate.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
+<msg level="FAIL" timestamp="20190125 17:09:31.402">IllegalStateException: failure 'Checking TargetPrice Failed due to: java.lang.IllegalStateException: failure 'Failed due to Discount not equal in CheckTenderPriceAfterDiscountUpdate Failed''</msg>
+<status endtime="20190125 17:09:31.420" starttime="20190125 17:09:30.527" status="FAIL"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:03.898" starttime="20190122 17:04:03.081" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:31.428" starttime="20190125 17:09:30.521" status="FAIL">IllegalStateException: failure 'Checking TargetPrice Failed due to: java.lang.IllegalStateException: failure 'Failed due to Discount not equal in CheckTenderPriceAfterDiscountUpdate Failed''</status>
 </test>
 <test name="10.Validate Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t10">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
@@ -169,23 +369,23 @@ Discount:11.0
 <arg>1002</arg>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20190122 17:04:07.782">TenderPrice entered as: 1002
+<msg level="INFO" timestamp="20190125 17:09:35.308">TenderPrice entered as: 1002
 First maintenance: 0 Clicked</msg>
-<status endtime="20190122 17:04:07.787" starttime="20190122 17:04:03.911" status="PASS"></status>
+<status endtime="20190125 17:09:35.313" starttime="20190125 17:09:31.453" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:07.791" starttime="20190122 17:04:03.903" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:35.317" starttime="20190125 17:09:31.436" status="PASS"></status>
 </test>
 <test name="11.Check Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t11">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20190122 17:04:08.406">TargetPrice:10764.77
+<msg level="INFO" timestamp="20190125 17:09:35.992">TargetPrice:10764.77
 Firstmaintenance:0.0
 TenderPrice:-2475.91
 DiscountFinal:123.00 / Discount shown in Application:123.0
 *** is FinalDiscount VS ApplicationDiscount Equal:true ***
 null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
-<status endtime="20190122 17:04:08.409" starttime="20190122 17:04:07.802" status="PASS"></status>
+<status endtime="20190125 17:09:35.994" starttime="20190125 17:09:35.330" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:08.412" starttime="20190122 17:04:07.796" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:35.997" starttime="20190125 17:09:35.325" status="PASS"></status>
 </test>
 <test name="12.Change and Validate Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t12">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
@@ -193,74 +393,76 @@ null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in A
 <arg>1003</arg>
 <arg>6</arg>
 </arguments>
-<msg level="INFO" timestamp="20190122 17:04:11.873">TenderPrice entered as: 1003
+<msg level="INFO" timestamp="20190125 17:09:39.781">TenderPrice entered as: 1003
 First maintenance: 6 Clicked</msg>
-<status endtime="20190122 17:04:11.876" starttime="20190122 17:04:08.421" status="PASS"></status>
+<status endtime="20190125 17:09:39.786" starttime="20190125 17:09:36.006" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:11.879" starttime="20190122 17:04:08.417" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:39.789" starttime="20190125 17:09:36.001" status="PASS"></status>
 </test>
 <test name="13.Check Changed Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t13">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
-<msg level="INFO" timestamp="20190122 17:04:12.541">TargetPrice:14360.78
+<msg level="INFO" timestamp="20190125 17:09:40.434">TargetPrice:14360.78
 Firstmaintenance:3500.0
 TenderPrice:4511.95
 DiscountFinal:90.68 / Discount shown in Application:90.68
 *** is FinalDiscount VS ApplicationDiscount Equal:true ***
 null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
-<status endtime="20190122 17:04:12.545" starttime="20190122 17:04:11.891" status="PASS"></status>
+<status endtime="20190125 17:09:40.437" starttime="20190125 17:09:39.795" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:12.549" starttime="20190122 17:04:11.886" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:40.441" starttime="20190125 17:09:39.792" status="PASS"></status>
 </test>
 <test name="14.Check Regional Factor At SalesOffice Level for Elevator" id="s1-s1-s1-t14">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
-<msg level="INFO" timestamp="20190122 17:04:13.130">Additional Discount Icon CLICKED</msg>
-<status endtime="20190122 17:04:13.132" starttime="20190122 17:04:12.560" status="PASS"></status>
+<msg level="INFO" timestamp="20190125 17:09:41.181">Additional Discount Icon CLICKED</msg>
+<status endtime="20190125 17:09:41.185" starttime="20190125 17:09:40.451" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
 <arguments>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20190122 17:04:14.953">read_Regionaldiscountoncomponent_Percent:0.0 / regionalDiscount:0.0
+<msg level="INFO" timestamp="20190125 17:09:43.246">read_Regionaldiscountoncomponent_Percent:0.0 / regionalDiscount:0.0
 *** is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:true ***
 final_Regionaldiscountoncomponent:0.0 / read_Regionaldiscountoncomponent:0.0
 *** is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:true ***
 final_TargetPrice:13.69 / read_TargetPrice:14.36
 *** is final_TargetPrice VS read_TargetPrice equal:false ***
-null Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: true ***
+null Added in Calculated RegionaldiscountoncomponentPercent hence Calculated RegionaldiscountoncomponentPercent VS Actual regionalDiscount shown in Application is: true ***
 -0.02 Added in final_TargetPrice hence CalculatedTargetPrice VS ActualTargetPrice shown in Application is: false ***</msg>
-<msg level="INFO" html="yes" timestamp="20190122 17:04:14.954">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Jan2019_05_04_14PM\SS_22Jan2019_05_04_14PM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Jan2019_05_04_14PM\SS_22Jan2019_05_04_14PM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
-<status endtime="20190122 17:04:14.960" starttime="20190122 17:04:13.135" status="PASS"></status>
+<msg level="INFO" html="yes" timestamp="20190125 17:09:43.247">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\25Jan2019_05_09_42PM\SS_25Jan2019_05_09_42PM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\25Jan2019_05_09_42PM\SS_25Jan2019_05_09_42PM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
+<msg level="FAIL" timestamp="20190125 17:09:43.302">IllegalStateException: failure 'Get Regional Discount Failed due to: java.lang.IllegalStateException: failure 'Failed due to (Regionaldiscountoncomponent% or Regionaldiscountoncomponent or TargetPrice)''</msg>
+<status endtime="20190125 17:09:43.309" starttime="20190125 17:09:41.188" status="FAIL"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:14.965" starttime="20190122 17:04:12.554" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:43.313" starttime="20190125 17:09:40.446" status="FAIL">IllegalStateException: failure 'Get Regional Discount Failed due to: java.lang.IllegalStateException: failure 'Failed due to (Regionaldiscountoncomponent% or Regionaldiscountoncomponent or TargetPrice)''</status>
 </test>
 <test name="15.Check Regional Factor When SalesOffice Is Changed for Elevator" id="s1-s1-s1-t15">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
-<msg level="INFO" timestamp="20190122 17:04:18.801">ToConfiguration icon clicked
+<msg level="INFO" timestamp="20190125 17:09:48.034">ToConfiguration icon clicked
 Project clicked
 SalesOffice value AU22 - Newcastle Region Selected
 pricing icon Clicked</msg>
-<status endtime="20190122 17:04:18.808" starttime="20190122 17:04:14.976" status="PASS"></status>
+<status endtime="20190125 17:09:48.038" starttime="20190125 17:09:43.322" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
-<msg level="INFO" timestamp="20190122 17:04:21.030">Additional Discount Icon CLICKED</msg>
-<status endtime="20190122 17:04:21.034" starttime="20190122 17:04:18.812" status="PASS"></status>
+<msg level="INFO" timestamp="20190125 17:09:50.428">Additional Discount Icon CLICKED</msg>
+<status endtime="20190125 17:09:50.429" starttime="20190125 17:09:48.045" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
 <arguments>
 <arg>0</arg>
 </arguments>
-<msg level="INFO" timestamp="20190122 17:04:22.948">read_Regionaldiscountoncomponent_Percent:0.0 / regionalDiscount:0.0
+<msg level="INFO" timestamp="20190125 17:09:52.376">read_Regionaldiscountoncomponent_Percent:0.0 / regionalDiscount:0.0
 *** is read_Regionaldiscountoncomponent_Percent VS regionalDiscount equal:true ***
 final_Regionaldiscountoncomponent:0.0 / read_Regionaldiscountoncomponent:0.0
 *** is final_Regionaldiscountoncomponent VS read_Regionaldiscountoncomponent equal:true ***
 final_TargetPrice:13.69 / read_TargetPrice:14.36
 *** is final_TargetPrice VS read_TargetPrice equal:false ***
-null Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: true ***
+null Added in Calculated RegionaldiscountoncomponentPercent hence Calculated RegionaldiscountoncomponentPercent VS Actual regionalDiscount shown in Application is: true ***
 -0.02 Added in final_TargetPrice hence CalculatedTargetPrice VS ActualTargetPrice shown in Application is: false ***</msg>
-<msg level="INFO" html="yes" timestamp="20190122 17:04:22.949">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Jan2019_05_04_22PM\SS_22Jan2019_05_04_22PM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Jan2019_05_04_22PM\SS_22Jan2019_05_04_22PM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
-<status endtime="20190122 17:04:22.961" starttime="20190122 17:04:21.036" status="PASS"></status>
+<msg level="INFO" html="yes" timestamp="20190125 17:09:52.377">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\25Jan2019_05_09_51PM\SS_25Jan2019_05_09_51PM_VerifyTargetPriceDisplayedCorrectly.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\25Jan2019_05_09_51PM\SS_25Jan2019_05_09_51PM_VerifyTargetPriceDisplayedCorrectly.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
+<msg level="FAIL" timestamp="20190125 17:09:52.417">IllegalStateException: failure 'Get Regional Discount Failed due to: java.lang.IllegalStateException: failure 'Failed due to (Regionaldiscountoncomponent% or Regionaldiscountoncomponent or TargetPrice)''</msg>
+<status endtime="20190125 17:09:52.424" starttime="20190125 17:09:50.432" status="FAIL"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:22.970" starttime="20190122 17:04:14.972" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:09:52.433" starttime="20190125 17:09:43.318" status="FAIL">IllegalStateException: failure 'Get Regional Discount Failed due to: java.lang.IllegalStateException: failure 'Failed due to (Regionaldiscountoncomponent% or Regionaldiscountoncomponent or TargetPrice)''</status>
 </test>
 <test name="16 Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator" id="s1-s1-s1-t16">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Primary Sales Office">
@@ -268,14 +470,14 @@ null Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMater
 <arg>australia</arg>
 <arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
 </arguments>
-<msg level="INFO" timestamp="20190122 17:04:25.882">ToConfiguration icon clicked
+<msg level="INFO" timestamp="20190125 17:09:56.720">ToConfiguration icon clicked
 Project clicked
 SalesOffice value AU21 - Sydney Region Selected
 pricing icon Clicked</msg>
-<status endtime="20190122 17:04:25.887" starttime="20190122 17:04:22.982" status="PASS"></status>
+<status endtime="20190125 17:09:56.731" starttime="20190125 17:09:52.462" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
-<msg level="INFO" timestamp="20190122 17:04:35.112">Detailed breakdown Clicked
+<msg level="INFO" timestamp="20190125 17:10:09.866">Detailed breakdown Clicked
 ROPES CLICKED
 Show TotalCost Calculation Details CLICKED
 check_showtotal_ITEfactor:2.47 / showtotal_ITEfactor:2.47
@@ -284,20 +486,20 @@ check_showtotal_Labourrate:73.68 / showtotal_Labourrate:73.68
 LabourRate:73.68 / showtotal_Labourrate:73.68
 
 *** is_showtotal_ITEfactor: true *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
-<status endtime="20190122 17:04:35.116" starttime="20190122 17:04:25.891" status="PASS"></status>
+<status endtime="20190125 17:10:09.872" starttime="20190125 17:09:56.737" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:35.119" starttime="20190122 17:04:22.976" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:10:09.876" starttime="20190125 17:09:52.448" status="PASS"></status>
 </test>
 <test name="17 Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator" id="s1-s1-s1-t17">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
-<msg level="INFO" timestamp="20190122 17:04:37.805">ToConfiguration icon clicked
+<msg level="INFO" timestamp="20190125 17:10:12.682">ToConfiguration icon clicked
 Project clicked
 SalesOffice value AU22 - Newcastle Region Selected
 pricing icon Clicked</msg>
-<status endtime="20190122 17:04:37.809" starttime="20190122 17:04:35.125" status="PASS"></status>
+<status endtime="20190125 17:10:12.690" starttime="20190125 17:10:09.886" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
-<msg level="INFO" timestamp="20190122 17:04:52.507">Detailed breakdown Clicked
+<msg level="INFO" timestamp="20190125 17:10:25.514">Detailed breakdown Clicked
 ROPES CLICKED
 Show TotalCost Calculation Details CLICKED
 check_showtotal_ITEfactor:2.47 / showtotal_ITEfactor:2.47
@@ -306,29 +508,28 @@ check_showtotal_Labourrate:73.68 / showtotal_Labourrate:73.68
 LabourRate:73.68 / showtotal_Labourrate:73.68
 
 *** is_showtotal_ITEfactor: true *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
-<status endtime="20190122 17:04:52.514" starttime="20190122 17:04:37.815" status="PASS"></status>
+<status endtime="20190125 17:10:25.523" starttime="20190125 17:10:12.698" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:52.516" starttime="20190122 17:04:35.122" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:10:25.528" starttime="20190125 17:10:09.881" status="PASS"></status>
 </test>
 <test name="18.Check Cost Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator" id="s1-s1-s1-t18">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Cost Calculated Successfully">
-<msg level="INFO" timestamp="20190122 17:04:53.524">CurrenciesTab Clicked
+<msg level="INFO" timestamp="20190125 17:10:26.654">CurrenciesTab Clicked
 Conversion Factor:1.75578
 Calculate Materialcost:1444.18 / Actual Materialcost:1444.18
 null Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost is: true ***</msg>
-<status endtime="20190122 17:04:53.526" starttime="20190122 17:04:52.526" status="PASS"></status>
+<status endtime="20190125 17:10:26.661" starttime="20190125 17:10:25.541" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:04:53.528" starttime="20190122 17:04:52.522" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:10:26.669" starttime="20190125 17:10:25.535" status="PASS"></status>
 </test>
 <test name="19.Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator" id="s1-s1-s1-t19">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="VerifyPriceCalculatedSuccessfully TobecheckedinFrance">
-<msg level="INFO" timestamp="20190122 17:06:44.609">Show TotalCost Calculation Details CLICKED
-totalTargetPrice:10137.18 / subtotal_TargetPrice:10191.75
-*** is totalTargetPrice vs subtotal_TargetPrice equal: false
-totalMaterialcosts=1417.84 / subtotal_Materialcosts:1444.18
-0.02 Added in totalMaterialcosts 1417.83
-*** is totalMaterialcosts vs subtotal_Materialcosts equal: false
-totalMaterialcostSLCurrency=807.52 / subtotal_MaterialcostSLCurrency:822.53
+<msg level="INFO" timestamp="20190125 17:12:45.871">Show TotalCost Calculation Details CLICKED
+totalTargetPrice:10191.75 / subtotal_TargetPrice:10191.75
+*** is totalTargetPrice vs subtotal_TargetPrice equal: true
+totalMaterialcosts=1444.18 / subtotal_Materialcosts:1444.18
+*** is totalMaterialcosts vs subtotal_Materialcosts equal: true
+totalMaterialcostSLCurrency=822.52 / subtotal_MaterialcostSLCurrency:822.53
 -0.02 Added in totalMaterialcostSLCurrency
 *** is totalMaterialcostSLCurrency vs subtotal_MaterialcostSLCurrency equal: false
 totalReferencehours=20.68 / subtotal_Referencehours:20.68
@@ -337,47 +538,48 @@ totalInstallationHours=51.07 / subtotal_InstallationHours:51.07
 *** is totalInstallationHours vs subtotal_Materialcosts equal: true
 totalLaborCosts=3762.82 / subtotal_LaborCosts:3762.82
 *** is totalLaborCosts vs subtotal_LaborCosts equal: true
-totalFullCosts=5180.66 / subtotal_FullCosts:5207.00
-*** is totalFullCosts vs subtotal_FullCosts equal: false
-totalTotalCost=5180.66 / subtotal_TotalCost:5207.0
-*** is totalTotalCost vs subtotal_TotalCost equal: false
-totalTenderPrice=944.53 / subtotal_TenderPrice:949.61
-*** is totalTenderPrice vs subtotal_TenderPrice equal: false</msg>
-<msg level="INFO" html="yes" timestamp="20190122 17:06:44.610">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Jan2019_05_06_42PM\SS_22Jan2019_05_06_42PM_DetailBreakdownTab.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\22Jan2019_05_06_42PM\SS_22Jan2019_05_06_42PM_DetailBreakdownTab.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
-<status endtime="20190122 17:06:44.615" starttime="20190122 17:04:53.537" status="PASS"></status>
+totalFullCosts=5207.00 / subtotal_FullCosts:5207.00
+*** is totalFullCosts vs subtotal_FullCosts equal: true
+totalTotalCost=5207.00 / subtotal_TotalCost:5207.0
+*** is totalTotalCost vs subtotal_TotalCost equal: true
+totalTenderPrice=949.61 / subtotal_TenderPrice:949.61
+*** is totalTenderPrice vs subtotal_TenderPrice equal: true</msg>
+<msg level="INFO" html="yes" timestamp="20190125 17:12:45.872">&lt;a href='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\25Jan2019_05_12_42PM\SS_25Jan2019_05_12_42PM_DetailBreakdownTab.png' target='_blank'&gt;&lt;img src='C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\Screenshots\25Jan2019_05_12_42PM\SS_25Jan2019_05_12_42PM_DetailBreakdownTab.png' style='width:80%; height: auto;'/&gt;&lt;/a&gt;</msg>
+<msg level="FAIL" timestamp="20190125 17:12:45.883">IllegalStateException: failure 'Validate Detail Breakdown Tab (FullGrid) Failed due to: java.lang.IllegalStateException: failure 'Failed due to (TargetPrice or Materialcosts or MaterialcostSLCurrency or Referencehours or InstallationHours or LaborCosts or FullCosts or TotalCost or TenderPrice) not euqal in Detail Breakdown Tab''</msg>
+<status endtime="20190125 17:12:45.886" starttime="20190125 17:10:26.689" status="FAIL"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:06:44.621" starttime="20190122 17:04:53.533" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:12:45.890" starttime="20190125 17:10:26.683" status="FAIL">IllegalStateException: failure 'Validate Detail Breakdown Tab (FullGrid) Failed due to: java.lang.IllegalStateException: failure 'Failed due to (TargetPrice or Materialcosts or MaterialcostSLCurrency or Referencehours or InstallationHours or LaborCosts or FullCosts or TotalCost or TenderPrice) not euqal in Detail Breakdown Tab''</status>
 </test>
 <test name="20.Check TenderLetter Is generated Correctly With All The components" id="s1-s1-s1-t20">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Go To Documents Taband Click The Tender">
-<msg level="INFO" timestamp="20190122 17:06:47.178">ToWord icon clicked</msg>
-<status endtime="20190122 17:06:47.189" starttime="20190122 17:06:44.631" status="PASS"></status>
+<msg level="INFO" timestamp="20190125 17:12:48.394">ToWord icon clicked</msg>
+<status endtime="20190125 17:12:48.407" starttime="20190125 17:12:45.901" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Successful Message Displayed">
-<msg level="INFO" timestamp="20190122 17:07:01.963">Create PrintOut icon clicked</msg>
-<status endtime="20190122 17:07:01.965" starttime="20190122 17:06:47.191" status="PASS"></status>
+<msg level="INFO" timestamp="20190125 17:12:58.437">Create PrintOut icon clicked</msg>
+<status endtime="20190125 17:12:58.439" starttime="20190125 17:12:48.414" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:07:01.972" starttime="20190122 17:06:44.626" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:12:58.445" starttime="20190125 17:12:45.895" status="PASS"></status>
 </test>
 <test name="21.Close KTOC" id="s1-s1-s1-t21">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Click Saveand Close Button">
-<msg level="INFO" timestamp="20190122 17:07:05.341">SaveandClose icon CLICKED
+<msg level="INFO" timestamp="20190125 17:14:46.335">SaveandClose icon CLICKED
 Yes CLICKED in SaveandClose
 Automation Test Description entered in Description field in stage / Probability window</msg>
-<status endtime="20190122 17:07:05.345" starttime="20190122 17:07:01.987" status="PASS"></status>
+<status endtime="20190125 17:14:46.346" starttime="20190125 17:12:58.457" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:07:05.349" starttime="20190122 17:07:01.980" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:14:46.353" starttime="20190125 17:12:58.453" status="PASS"></status>
 </test>
 <test name="22.Verify Total SalesPrice With SF Product Information" id="s1-s1-s1-t22">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Compare Sales Pricebetween Tender Pageand Salesforce">
-<msg level="INFO" timestamp="20190122 17:07:25.314">Tender Price:4511.95 / Final_SalesPrice:4511.95
+<msg level="INFO" timestamp="20190125 17:15:14.224">Tender Price:4511.95 / Final_SalesPrice:4511.95
 is TRB TenderPrice VS Salesforce TenderPrice equal:true ***
 Configurator Clicked
 No clicked in New Version is available for this product</msg>
-<status endtime="20190122 17:07:25.321" starttime="20190122 17:07:05.361" status="PASS"></status>
+<status endtime="20190125 17:15:14.229" starttime="20190125 17:14:46.372" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Hand Shake">
-<msg level="INFO" timestamp="20190122 17:07:30.761">PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+<msg level="INFO" timestamp="20190125 17:15:19.590">PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
@@ -385,27 +587,27 @@ PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Clien
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
 isHandShakeiconisEnabled:true HandShakeicon CLICKED</msg>
-<status endtime="20190122 17:07:30.767" starttime="20190122 17:07:25.328" status="PASS"></status>
+<status endtime="20190125 17:15:19.600" starttime="20190125 17:15:14.237" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190122 17:07:30.770" starttime="20190122 17:07:05.356" status="PASS"></status>
+<status critical="yes" endtime="20190125 17:15:19.606" starttime="20190125 17:14:46.362" status="PASS"></status>
 </test>
-<status endtime="20190122 17:07:30.803" starttime="20190122 17:01:54.128" status="PASS"></status>
+<status endtime="20190125 17:15:19.643" starttime="20190125 16:37:52.276" status="FAIL"></status>
 </suite>
-<status endtime="20190122 17:07:30.982" starttime="20190122 17:01:54.094" status="PASS"></status>
+<status endtime="20190125 17:15:19.861" starttime="20190125 16:37:52.242" status="FAIL"></status>
 </suite>
-<status endtime="20190122 17:07:31.071" starttime="20190122 17:01:53.821" status="PASS"></status>
+<status endtime="20190125 17:15:19.926" starttime="20190125 16:37:51.936" status="FAIL"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="22" fail="0">Critical Tests</stat>
-<stat pass="22" fail="0">All Tests</stat>
+<stat pass="18" fail="4">Critical Tests</stat>
+<stat pass="18" fail="4">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="22" fail="0" name="KTOC TRB TestAutomation" id="s1">KTOC TRB TestAutomation</stat>
-<stat pass="22" fail="0" name="TestSuites" id="s1-s1">KTOC TRB TestAutomation.TestSuites</stat>
-<stat pass="22" fail="0" name="RegressionKTOC TRB Australia" id="s1-s1-s1">KTOC TRB TestAutomation.TestSuites.RegressionKTOC TRB Australia</stat>
+<stat pass="18" fail="4" name="KTOC TRB TestAutomation" id="s1">KTOC TRB TestAutomation</stat>
+<stat pass="18" fail="4" name="TestSuites" id="s1-s1">KTOC TRB TestAutomation.TestSuites</stat>
+<stat pass="18" fail="4" name="RegressionKTOC TRB Australia" id="s1-s1-s1">KTOC TRB TestAutomation.TestSuites.RegressionKTOC TRB Australia</stat>
 </suite>
 </statistics>
 <errors>
