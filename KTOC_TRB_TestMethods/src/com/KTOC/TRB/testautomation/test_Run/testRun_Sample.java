@@ -15,7 +15,7 @@ public class testRun_Sample {
 	KTOCTRBUtils KTOCTRBUtils=new KTOCTRBUtils();
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 //	String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
-	Keywords.LaunchBrowser("australia", EXCEL_PATH);
+	Keywords.LaunchBrowser("france", EXCEL_PATH);
 	//1.LogonToSalesforce
 	Keywords.logintoSalesforce();
 	//2.VerifyCreatingOpportunityandMappingItWithFLTender
@@ -34,30 +34,28 @@ public class testRun_Sample {
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
 	
-//	Keywords.validateDetailBreakdownTabFullGrid1();
-	
-	Keywords.CheckTenderPriceAfterDiscountUpdate("10", "0");
+	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");
 //	Keywords.checkingTargetPriceFullGrid(); //fullGrid
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("2001", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("3600", "1");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
-	Keywords.CheckTenderPriceAfterDiscountUpdate("11", "3");
+	Keywords.CheckTenderPriceAfterDiscountUpdate("7", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("1002", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("3550", "0");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("1003", "6");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("3500", "6");
 	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
 //	Keywords.getRegionalDiscountFullGrid();//fullGrid
-	Keywords.verifyTargetPriceDisplayedCorrectly("0");
+	Keywords.verifyTargetPriceDisplayedCorrectly();
 	//7.CheckRegionalFactorWhenSalesOfficeIsChanged(additionallyforCanada:ITEandlabourrate)
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
-	Keywords.verifyTargetPriceDisplayedCorrectly("0");
+	Keywords.verifyTargetPriceDisplayedCorrectly(); //"0"
 	//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
-	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("australia", EXCEL_PATH);
+	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
 //	Keywords.validateDetailBreakdownTabFullGrid();//fullGrid
 	Keywords.validateDetailBreakdownTab();
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
@@ -87,17 +85,17 @@ public class testRun_Sample {
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("16", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("2502", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("2502", "6");
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("2503", "7");
 	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
-	Keywords.verifyTargetPriceDisplayedCorrectly("0");
+	Keywords.verifyTargetPriceDisplayedCorrectly();
 	//7.CheckRegionalFactorWhenSalesOfficeIsChanged(additionallyforCanada:ITEandlabourrate)
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
-	Keywords.verifyTargetPriceDisplayedCorrectly("0");
+	Keywords.verifyTargetPriceDisplayedCorrectly();
 	//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
 	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
 	Keywords.validateDetailBreakdownTab();

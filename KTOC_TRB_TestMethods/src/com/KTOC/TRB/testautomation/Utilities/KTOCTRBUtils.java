@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -53,10 +54,16 @@ public class KTOCTRBUtils {
 	public static int showInstallationCalculation=0;
 	public static Float regionalDiscount;
 	public static Float regionalDiscounttoChange;
+	public static Float regionalDiscount_MultipleEqup;
+	public static Float regionalDiscounttoChange_MultipleEqup;
 	public static Float check_showtotal_ITEfactor;
 	public static Float check_showtotal_ITEfactortoChange;
+	public static Float check_showtotal_ITEfactor_MultipleEqup;
+	public static Float check_showtotal_ITEfactortoChange_MultipleEqup;
 	public static Float LabourRate;
 	public static Float LabourRatetoChange;
+	public static Float LabourRate_MultipleEqup;
+	public static Float LabourRatetoChange_MultipleEqup;
 	public static String FreezePrintedVersion="No";
 	public static String NewVersionProduct="No"; //No
 	public static String SaveandClose="Yes";
@@ -145,6 +152,7 @@ public class KTOCTRBUtils {
 	public HashMap<String, Float> hm_ITEfactorforSalesOfficeData = new HashMap<String, Float>();
 	public HashMap<String, Float> hm_RegionalDiscountforSalesOfficeData  = new HashMap<String, Float>();
 	public HashMap<String, Float> hm_LabourRateforSalesOfficeData  = new HashMap<String, Float>();
+	public List<String> ls_allEquipmentIDs=new LinkedList<>();
 	public void readTestData(String frontline, String EXCELPATH) throws Exception{
 		try {
 			String torun="java1";
@@ -168,6 +176,8 @@ public class KTOCTRBUtils {
 				groupName = excelReader.GetData("France").get("GroupName");
 				template_2  = excelReader.GetData("France").get("TemplateName2");
 				equipmentinService_Escalator  = excelReader.GetData("France").get("EquipmentinService_Escalator");
+				regionalDiscount_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount_MultipleEqup"));
+				regionalDiscounttoChange_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount_MultipleEqup"));
 				//-----for multiEquipment-----
 				equipment_ADDorChange  = excelReader.GetData("France").get("Equipment_ADDorChange");
 				customerid  = excelReader.GetData("France").get("CustomerID");	
@@ -188,8 +198,12 @@ public class KTOCTRBUtils {
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("France").get("ITEfactor"));
 				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("France").get("changeITEfactor"));
+				check_showtotal_ITEfactor_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("ITEfactor_MultipleEqup"));
+				check_showtotal_ITEfactortoChange_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("changeITEfactor_MultipleEqup"));
 				LabourRate = Float.valueOf(excelReader.GetData("France").get("LabourRate"));
 				LabourRatetoChange = Float.valueOf(excelReader.GetData("France").get("changeLabourRate"));
+				LabourRate_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("LabourRate_MultipleEqup"));
+				LabourRatetoChange_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("changeLabourRate__MultipleEqup"));
 				StageProbability_Stage = excelReader.GetData("France").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("France").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("France").get("StageProbabilityProbability");
@@ -266,10 +280,16 @@ public class KTOCTRBUtils {
 			}
 			hm_ITEfactorforSalesOfficeData.put(salesoffice, check_showtotal_ITEfactor);
 			hm_ITEfactorforSalesOfficeData.put(changeSalesOffice, check_showtotal_ITEfactortoChange);
+			hm_ITEfactorforSalesOfficeData.put("MultipleEqup_"+salesoffice, check_showtotal_ITEfactor_MultipleEqup);
+			hm_ITEfactorforSalesOfficeData.put("MultipleEqup_"+changeSalesOffice, check_showtotal_ITEfactortoChange_MultipleEqup);
 			hm_RegionalDiscountforSalesOfficeData.put(salesoffice, regionalDiscount);
 			hm_RegionalDiscountforSalesOfficeData.put(changeSalesOffice, regionalDiscounttoChange);	
 			hm_LabourRateforSalesOfficeData.put(salesoffice, LabourRate);
 			hm_LabourRateforSalesOfficeData.put(changeSalesOffice, LabourRatetoChange);
+			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+salesoffice, LabourRate_MultipleEqup);
+			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+changeSalesOffice, LabourRatetoChange_MultipleEqup);
+			ls_allEquipmentIDs.add(equipmentid);
+			ls_allEquipmentIDs.add(equipmentid_2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

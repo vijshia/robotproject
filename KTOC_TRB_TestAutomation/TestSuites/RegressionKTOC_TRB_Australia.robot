@@ -41,11 +41,11 @@ Suite Setup    Launch Browser    australia    \\TestData\\KTOCTRB_AutomationTest
     Get Target Price
 14.Check Regional Factor At SalesOffice Level for Elevator
     Verify Regional Discount Displayed Correctly
-    Verify Target Price Displayed Correctly    0
+    Verify Target Price Displayed Correctly    
 15.Check Regional Factor When SalesOffice Is Changed for Elevator
     Goto Configuration Pageand Change The Sales Office
     Verify Regional Discount Displayed Correctly
-    Verify Target Price Displayed Correctly    0
+    Verify Target Price Displayed Correctly    
 16 Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator
     Goto Configuration Pageand Change The Primary Sales Office    australia    \\TestData\\KTOCTRB_AutomationTestData.xlsx
     Validate Detail Breakdown Tab

@@ -552,9 +552,9 @@ public class Keywords extends KTOCTRBUtils{
 	public void CheckTenderPriceAfterDiscountUpdate(String discount, String FirstMaintenance) throws Exception{
 		selectingDiscount(discount);
 		selectingFirstMaintenance(FirstMaintenance);
-		if(FirstMaintenance.equals("0")) {
+		/*if(FirstMaintenance.equals("0")) {
 			withoutFirstMaintenance = FirstMaintenance;
-		} 
+		} */
 	}
 	
 	/**
@@ -568,9 +568,9 @@ public class Keywords extends KTOCTRBUtils{
 	public void VerifyDiscountByChangingTheTenderPrice(String tenderPrice, String FirstMaintenance) throws Exception{
 		selectingTenderPrice(tenderPrice);
 		selectingFirstMaintenance(FirstMaintenance);
-		if(FirstMaintenance.equals("0")) {
+		/*if(FirstMaintenance.equals("0")) {
 			withoutFirstMaintenance = FirstMaintenance;
-		} 
+		} */
 	}
 	/**
 	 **Reuse method, it will Get TargetPrice from table
@@ -595,8 +595,9 @@ public class Keywords extends KTOCTRBUtils{
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
-	public void verifyTargetPriceDisplayedCorrectly(String firstMaintenance) throws Exception{
-		getRegionalDiscount(firstMaintenance);
+	public void verifyTargetPriceDisplayedCorrectly() throws Exception{ //String firstMaintenance
+		getRegionalDiscountFullGrid();
+//		getRegionalDiscount(firstMaintenance);
 		waitForinvisibilityOfElementLocated(elementtoInvisible);
 		gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
 		try {
@@ -634,14 +635,26 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("Calculate Materialcost:"+check_Materialcosts+" / "+"Actual Materialcost:"+showtotal_Materialcosts);
 				String condition=null;
 				if(!check_Materialcosts.equals(showtotal_Materialcosts)) {
-					check_Materialcosts=check_Materialcosts-0.01f;
-					if(check_Materialcosts.equals(showtotal_Materialcosts)) {
-						condition="-0.01";
-					} else {
-					 check_Materialcosts=check_Materialcosts-0.02f;
-					 condition="-0.02";
-					}
-				}
+					Float difference = check_Materialcosts - showtotal_Materialcosts;
+//					System.out.println(roundoff.format(difference));
+						if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+							check_Materialcosts=check_Materialcosts+0.01f;
+							condition="+0.01";
+//					System.out.println(roundoff.format(check_Materialcosts));
+						} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+							check_Materialcosts=check_Materialcosts+0.02f;
+							condition="+0.02";
+//					System.out.println(roundoff.format(check_Materialcosts));
+						} else {
+							check_Materialcosts=check_Materialcosts-0.01f;
+							if(check_Materialcosts.equals(showtotal_Materialcosts)) {
+								condition="-0.01";
+							} else {
+							 check_Materialcosts=check_Materialcosts-0.01f;
+							 condition="-0.02";
+							}
+				}	
+			}
 				System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost is: "+roundoff.format(check_Materialcosts).equals(roundoff.format(showtotal_Materialcosts))+" ***");
 				if(!roundoff.format(check_Materialcosts).equals(roundoff.format(showtotal_Materialcosts))) {
 					screenshotCapture("MaterialCost not equal in VerifyCostCalculatedSuccessfully");		
@@ -868,25 +881,49 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("*** is final_TargetPrice VS read_TargetPrice equal:"+roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))+" ***");
 			String condition=null;
 			if(!read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)) {
-				read_Regionaldiscountoncomponent_Percent=read_Regionaldiscountoncomponent_Percent-0.01f;
-				if(read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)) {
-					condition="-0.01";
-				}else {
-					read_Regionaldiscountoncomponent_Percent=read_Regionaldiscountoncomponent_Percent-0.02f;
-					 condition="-0.02";
-					}
+				Float difference = read_Regionaldiscountoncomponent_Percent - regionalDiscount;
+//				System.out.println(roundoff.format(difference));
+					if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+						read_Regionaldiscountoncomponent_Percent=read_Regionaldiscountoncomponent_Percent+0.01f;
+						condition="+0.01";
+//				System.out.println(roundoff.format(read_Regionaldiscountoncomponent_Percent));
+					} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+						read_Regionaldiscountoncomponent_Percent=read_Regionaldiscountoncomponent_Percent+0.02f;
+						condition="+0.02";
+//				System.out.println(roundoff.format(read_Regionaldiscountoncomponent_Percent));
+					} else {
+						read_Regionaldiscountoncomponent_Percent=read_Regionaldiscountoncomponent_Percent-0.01f;
+						if(read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)) {
+							condition="-0.01";
+						}else {
+							read_Regionaldiscountoncomponent_Percent=read_Regionaldiscountoncomponent_Percent-0.01f;
+							 condition="-0.02";
+							}
 				}
+			}
 			System.out.println(condition+" Added in Calculated RegionaldiscountoncomponentPercent hence Calculated RegionaldiscountoncomponentPercent VS Actual regionalDiscount shown in Application is: "+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" ***");
 			String condition1=null;
 			if(!roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
-				final_TargetPrice=final_TargetPrice-0.01f;
-				if(roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
-					condition1="-0.01";
-				}else {
-					final_TargetPrice=final_TargetPrice-0.02f;
-					 condition1="-0.02";
-					}
+				Float difference = final_TargetPrice - read_TargetPrice;
+//				System.out.println(roundoff.format(difference));
+					if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+						final_TargetPrice=final_TargetPrice+0.01f;
+						condition="+0.01";
+//				System.out.println(roundoff.format(final_TargetPrice));
+					} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+						final_TargetPrice=final_TargetPrice+0.02f;
+						condition="+0.02";
+//				System.out.println(roundoff.format(final_TargetPrice));
+					} else {
+						final_TargetPrice=final_TargetPrice-0.01f;
+						if(roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
+							condition1="-0.01";
+						}else {
+							final_TargetPrice=final_TargetPrice-0.01f;
+							 condition1="-0.02";
+							}
 				}
+			}
 			System.out.println(condition1+" Added in final_TargetPrice hence CalculatedTargetPrice VS ActualTargetPrice shown in Application is: "+roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))+" ***");
 			if(!roundoff.format(read_Regionaldiscountoncomponent_Percent).equals(roundoff.format(regionalDiscount)) || !roundoff.format(final_Regionaldiscountoncomponent).equals(roundoff.format(read_Regionaldiscountoncomponent)) || !roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
 				screenshotCapture("VerifyTargetPriceDisplayedCorrectly");
@@ -909,26 +946,49 @@ public class Keywords extends KTOCTRBUtils{
 		try {
 			waitForVisibilityOfElementLocated(grid_RegionalDiscountValues);
 			List<String> ls_RegionalDiscountColumnHeader=new LinkedList<>();
+			List<String> ls_RegionalDiscountRowHeader=new LinkedList<>();
 			List<Float> ls_RegionalDiscountValue = null;
+			hm_RegionalDiscountDataFullGrid = null;
 			hm_RegionalDiscountDataFullGrid = new HashMap<String, Float>();
 			Float convertedvalue=null;
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(grid_RegionalDiscountValues));
 			List<WebElement> element_RegionalDiscountValues=gettingWebElementsfromList(grid_RegionalDiscountValues);
 			wait.until(ExpectedConditions.visibilityOfAllElements(element_RegionalDiscountValues));
-			List<WebElement> elements_RegionalDiscountHeader=gettingWebElementsfromList(By.xpath("//*[text()='Regional discount on component (%)']/../../div"));
+			/*List<WebElement> elements_RegionalDiscountHeader=gettingWebElementsfromList(By.xpath("//*[text()='Regional discount on component (%)']/../../div"));
 			for(WebElement element_RegionalDiscountHeader:elements_RegionalDiscountHeader) {
 				List<WebElement> Element1 = element_RegionalDiscountHeader.findElements(By.xpath("./*"));
 //				System.out.println(elements_RegionalDiscountHeader.size()+"/"+Element1.size());
 				for(WebElement Element:Element1) {
-//					System.out.println(Element.getAttribute("id")+"/"+Element.getText());
+					System.out.println(Element.getAttribute("id")+"/"+Element.getText());
 					if(!Element.getText().contains("Description") && !Element.getText().contains("LO") && !Element.getText().isEmpty()) {
 //					System.out.println(Element.getText());
 					ls_RegionalDiscountColumnHeader.add(Element.getText());
 					}
 				}
+			}*/
+			ls_RegionalDiscountColumnHeader.add("Target Price (Base)");
+			ls_RegionalDiscountColumnHeader.add("Funding Sector Discount (%)");
+			ls_RegionalDiscountColumnHeader.add("Funding Sector Discount");
+			ls_RegionalDiscountColumnHeader.add("Market Segment Discount (%)");
+			ls_RegionalDiscountColumnHeader.add("Market Segment Discount");
+			ls_RegionalDiscountColumnHeader.add("Billing Plan Discount (%)");
+			ls_RegionalDiscountColumnHeader.add("Billing Plan Discount");
+			ls_RegionalDiscountColumnHeader.add("Sales Office Multiplier (%)");
+			ls_RegionalDiscountColumnHeader.add("Sales Office Multiplier");
+			ls_RegionalDiscountColumnHeader.add("Selling Value Package Discount (%)");
+			ls_RegionalDiscountColumnHeader.add("Selling Value Package Discount");
+			ls_RegionalDiscountColumnHeader.add("Regional discount on component (%)");
+			ls_RegionalDiscountColumnHeader.add("Regional discount on component");
+			ls_RegionalDiscountColumnHeader.add("Target Price");
+			ls_RegionalDiscountColumnHeader.add("Discount");
+			ls_RegionalDiscountColumnHeader.add("Tender Price");
+			if(!firstMaintenance.equals("0")){
+				ls_RegionalDiscountColumnHeader.add("First Maintenance");
 			}
+			List<String> numerals = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "€", "$", ".", " ","-");
 			List<WebElement> elements_RegionalDiscountValues=gettingWebElementsfromList(By.xpath("//*[text()='Regional discount on component (%)']/../../../div[3]"));
-			int indexvalue=1;
+//			int indexvalue=1;
+			String element_RegionalDiscountRowHeader = null;
 			for(WebElement elements_RegionalDiscountValue:elements_RegionalDiscountValues) {
 //				System.out.println(elements_RegionalDiscountValues.size());
 //				System.out.println("elements_RegionalDiscountValueID:"+elements_RegionalDiscountValue.getAttribute("id"));
@@ -945,14 +1005,26 @@ public class Keywords extends KTOCTRBUtils{
 //						System.out.println("ElementID:"+Element3.getAttribute("id"));
 						if (Element3.getAttribute("value") == null ) {
 							if(!Element3.getText().isEmpty())	{
-									if(!Element3.getText().contains("Subtotal") && !Element3.getText().contains("Project")) {
+//								System.out.println(Element3.getText());
+								String[] array=Element3.getText().split("");
+								if(!numerals.contains(array[0]) || ls_allEquipmentIDs.contains(Element3.getText())) {
+									element_RegionalDiscountRowHeader=Element3.getText();
+//									System.out.println("element_RegionalDiscountRowHeader="+element_RegionalDiscountRowHeader);
+									ls_RegionalDiscountRowHeader.add(Element3.getText());
+								}
+									if(!ls_RegionalDiscountRowHeader.contains(Element3.getText())) { //!Element3.getText().contains("Subtotal") && 
 										String getvalue=Element3.getText();
 //									System.out.println("2*"+Element3.getAttribute("id")+"="+getvalue);
-										if(!getvalue.equals("0.00") && !getvalue.contains("%")) {
+										/*if(!getvalue.equals("0.00") && !getvalue.contains("%")) {
 											getvalue = getvalue.replace(".", "");
-										}
+										}*/
 										getvalue=getvalue.replaceAll("[€ % h $]", "");
-										getvalue = getvalue.replace(",", ".");
+										if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+											getvalue = getvalue.replace(",", ".");
+										} else if(frontlineAssigned.equals("AUSTRALIA")) {
+											getvalue = getvalue.replace(",", "");
+										}
+										getvalue=removingDot(getvalue);
 //									System.out.println("2**"+Element3.getAttribute("id")+"="+getvalue);
 										convertedvalue = Float.valueOf(getvalue);
 										ls_RegionalDiscountValue.add(convertedvalue);
@@ -960,8 +1032,13 @@ public class Keywords extends KTOCTRBUtils{
 									}
 							} 
 						} else if(!Element3.getAttribute("value").isEmpty() && Element3.getAttribute("value")!=null)	{
-								String getvalue=Element3.getAttribute("value").replaceAll("[€ % h . $]", "");
-								getvalue = getvalue.replace(",", ".");
+								String getvalue=Element3.getAttribute("value").replaceAll("[€ % h $]", "");
+								if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+									getvalue = getvalue.replace(".", "");
+									getvalue = getvalue.replace(",", ".");
+								} else if(frontlineAssigned.equals("AUSTRALIA")) {
+									getvalue = getvalue.replace(",", "");
+								}
 //							System.out.println("3**"+Element3.getAttribute("id")+"="+getvalue);
 								convertedvalue = Float.valueOf(getvalue);
 								ls_RegionalDiscountValue.add(convertedvalue);
@@ -970,16 +1047,76 @@ public class Keywords extends KTOCTRBUtils{
 					}
 //					System.out.println(ls_RegionalDiscountValue.size());
 					for(int i=0; i<ls_RegionalDiscountValue.size(); i++) {
-						hm_RegionalDiscountDataFullGrid.put(indexvalue+"_"+ls_RegionalDiscountColumnHeader.get(i), ls_RegionalDiscountValue.get(i));
+//						System.out.println(element_RegionalDiscountRowHeader+"_"+ls_RegionalDiscountColumnHeader.get(i)+"="+ ls_RegionalDiscountValue.get(i));
+						hm_RegionalDiscountDataFullGrid.put(element_RegionalDiscountRowHeader+"_"+ls_RegionalDiscountColumnHeader.get(i), ls_RegionalDiscountValue.get(i));
 					}
-					indexvalue++;
+//					indexvalue++;
 					}
 				}
 //				System.out.println("indexvalue:"+indexvalue);
 			}
 			/*hm_RegionalDiscountDataFullGrid.values().forEach(System.out::println);*/
 //			hm_RegionalDiscountDataFullGrid.forEach((key, value) -> {System.out.println("Key : " + key + " Value : " + value);});
-			int iterate=1;
+			Float read_TargetPriceBase1=hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Target Price (Base)");
+			Float read_Regionaldiscountoncomponent_percentage1=hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Regional discount on component (%)");
+			Float read_Regionaldiscountoncomponent1=hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Regional discount on component");
+//			Float read_TargetPrice1=hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Target Price");
+//			System.out.println("read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Target Price (Base)="+read_TargetPriceBase1+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Regional discount on component (%)="+read_Regionaldiscountoncomponent_percentage1+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Regional discount on component="+read_Regionaldiscountoncomponent1+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Target Price="+read_TargetPrice1);
+			Float calculated_Regionaldiscountoncomponent1 = read_TargetPriceBase1*(read_Regionaldiscountoncomponent_percentage1/100);
+			Boolean isRegionaldiscountoncomponent_calculated = roundoff.format(calculated_Regionaldiscountoncomponent1).equals(roundoff.format(read_Regionaldiscountoncomponent1));
+			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_calculatedRegionaldiscountoncomponent ="+roundoff.format(calculated_Regionaldiscountoncomponent1)+" / read_Regionaldiscountoncomponent ="+roundoff.format(read_Regionaldiscountoncomponent1));
+			System.out.println("*** is calculated_Regionaldiscountoncomponent vs read_Regionaldiscountoncomponent equal: "+isRegionaldiscountoncomponent_calculated);
+			Boolean isRegionaldiscountoncomponent_testdata = null;
+			if(!isMultipleEquipment) {
+				isRegionaldiscountoncomponent_testdata = read_Regionaldiscountoncomponent_percentage1.equals(regionalDiscount);
+				System.out.println("read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Regional discount on component (%)="+read_Regionaldiscountoncomponent_percentage1+" / testdata_regionalDiscount:"+regionalDiscount);
+			} else {
+				isRegionaldiscountoncomponent_testdata = read_Regionaldiscountoncomponent_percentage1.equals(regionalDiscount_MultipleEqup);
+				System.out.println("read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Regional discount on component (%)="+read_Regionaldiscountoncomponent_percentage1+" / testdata_regionalDiscount:"+regionalDiscount_MultipleEqup);
+			}
+			System.out.println("***is read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-1)+"_Regional discount on component (%) VS testdata_regionalDiscount equal:"+isRegionaldiscountoncomponent_testdata);
+			Float read_TargetPriceBase2=hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Target Price (Base)");
+			Float read_Regionaldiscountoncomponent_percentage2=hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Regional discount on component (%)");
+			Float read_Regionaldiscountoncomponent2=hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Regional discount on component");
+			Float read_TargetPrice2=hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Target Price");
+//			System.out.println("read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Target Price (Base)="+read_TargetPriceBase2+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Regional discount on component (%)="+read_Regionaldiscountoncomponent_percentage2+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Regional discount on component="+read_Regionaldiscountoncomponent2+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Target Price="+read_TargetPrice2);
+			Float calculated_Regionaldiscountoncomponent_percentage2 = (read_Regionaldiscountoncomponent2/read_TargetPriceBase2)*100;
+			Float calculated_TargetPrice2 = read_TargetPriceBase2-read_Regionaldiscountoncomponent2;
+			Float notaNumber=0f/0f;
+			if(calculated_Regionaldiscountoncomponent_percentage2.equals(notaNumber)) {
+				calculated_Regionaldiscountoncomponent_percentage2=0f;
+			}
+			Boolean isRegionaldiscountoncomponentpercentage_calculated = roundoff.format(calculated_Regionaldiscountoncomponent_percentage2).equals(roundoff.format(read_Regionaldiscountoncomponent_percentage2));
+			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_calculated_Regionaldiscountoncomponent % ="+roundoff.format(calculated_Regionaldiscountoncomponent_percentage2)+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Regional discount on component (%)="+read_Regionaldiscountoncomponent_percentage2);
+			System.out.println("*** is calculated_Regionaldiscountoncomponent % vs read_Regionaldiscountoncomponent % equal = "+isRegionaldiscountoncomponentpercentage_calculated);
+			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_calculated_TargetPrice ="+roundoff.format(calculated_TargetPrice2)+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Target Price="+roundoff.format(read_TargetPrice2));
+			String condition1=null;
+			if(!roundoff.format(calculated_TargetPrice2).equals(roundoff.format(read_TargetPrice2))) {
+				Float difference = calculated_TargetPrice2 - read_TargetPrice2;
+//				System.out.println(roundoff.format(difference));
+					if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+						calculated_TargetPrice2=calculated_TargetPrice2+0.01f;
+						condition1="+0.01";
+//				System.out.println(roundoff.format(calculated_TargetPrice2));
+					} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+						calculated_TargetPrice2=calculated_TargetPrice2+0.02f;
+						condition1="+0.02";
+//				System.out.println(roundoff.format(calculated_TargetPrice2));
+					} else {
+							calculated_TargetPrice2=calculated_TargetPrice2+0.01f;
+							if(roundoff.format(calculated_TargetPrice2).equals(roundoff.format(read_TargetPrice2))) {
+								condition1="0.01";
+							} else {
+								calculated_TargetPrice2=calculated_TargetPrice2+0.01f;
+//						System.out.println("calculated_TargetPrice2="+calculated_TargetPrice2);
+							condition1="0.02";
+					}
+				}
+			}
+			Boolean isTargetPrice_calculated = roundoff.format(calculated_TargetPrice2).equals(roundoff.format(read_TargetPrice2));
+			System.out.println("*** "+condition1+" Added in calculated_TargetPrice hence calculated_TargetPrice VS read_TargetPrice shown in Application is: "+isTargetPrice_calculated);
+			
+			/*int iterate=1;
 			for(int a=1; a<indexvalue; a++) {
 				String TargetPrice_Base=iterate+"_Target Price (Base)";
 				TargetPrice_Base=TargetPrice_Base.toString();
@@ -993,13 +1130,13 @@ public class Keywords extends KTOCTRBUtils{
 				Float read_Regionaldiscountoncomponent_Percent=hm_RegionalDiscountDataFullGrid.get(Regionaldiscountoncomponent_Percent);
 				Float read_Regionaldiscountoncomponent=hm_RegionalDiscountDataFullGrid.get(Regionaldiscountoncomponent);
 				Float read_TargetPrice=hm_RegionalDiscountDataFullGrid.get(TargetPrice);
-				/*System.out.println("read_TargetPrice_Base:"+read_TargetPrice_Base);
+				System.out.println("read_TargetPrice_Base:"+read_TargetPrice_Base);
 				System.out.println("read_Regionaldiscountoncomponent_Percent:"+read_Regionaldiscountoncomponent_Percent);
 				System.out.println("read_Regionaldiscountoncomponent:"+read_Regionaldiscountoncomponent);
-				System.out.println("read_TargetPrice:"+read_TargetPrice+" /TargetPrice=="+TargetPrice);*/
+				System.out.println("read_TargetPrice:"+read_TargetPrice+" /TargetPrice=="+TargetPrice);
 				iterate++;
 //			}
-			/*Object[] keys = hm_RegionalDiscountDataFullGrid.keySet().toArray();
+			Object[] keys = hm_RegionalDiscountDataFullGrid.keySet().toArray();
 			Arrays.sort(keys);
 			for(Object key : keys) {
 				System.out.print(key);
@@ -1011,7 +1148,7 @@ public class Keywords extends KTOCTRBUtils{
 				  if(y.equalsIgnoreCase(TargetPrice_Base)) {
 					  System.out.println("L");
 				  }
-				}*/
+				}
 				regionalDiscount = hm_RegionalDiscountforSalesOfficeData.get(selectedSalesOffice);
 			Float final_Regionaldiscountoncomponent=read_TargetPrice_Base*(regionalDiscount/100);
 			final_Regionaldiscountoncomponent=Float.valueOf(roundoff.format(final_Regionaldiscountoncomponent));
@@ -1030,12 +1167,12 @@ public class Keywords extends KTOCTRBUtils{
 					 condition="-0.02";
 					}
 				}
-			System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: "+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" ***");
-			if(!roundoff.format(read_Regionaldiscountoncomponent_Percent).equals(roundoff.format(regionalDiscount)) || !roundoff.format(final_Regionaldiscountoncomponent).equals(roundoff.format(read_Regionaldiscountoncomponent)) || !roundoff.format(final_TargetPrice).equals(roundoff.format(read_TargetPrice))) {
+			System.out.println(condition+" Added in CalculatedMaterialCost hence CalculatedMaterialcost VS ActualMaterialcost shown in Application is: "+read_Regionaldiscountoncomponent_Percent.equals(regionalDiscount)+" ***");*/
+			if(!isRegionaldiscountoncomponent_calculated || !isRegionaldiscountoncomponent_testdata || !isRegionaldiscountoncomponentpercentage_calculated || !isTargetPrice_calculated) {
 				screenshotCapture("VerifyTargetPriceDisplayedCorrectly");
 				Assert.fail("Failed due to Get Regional Discount");
 			}
-		}	
+		
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Get Regional Discount (FullGrid) Failed due to: "+e);
@@ -1255,8 +1392,13 @@ public class Keywords extends KTOCTRBUtils{
 			/*System.out.println("is_showtotal_ITEfactor: "+check_showtotal_ITEfactor+"/"+showtotal_ITEfactor);
 			System.out.println("is_showtotal_LaborCosts "+check_showtotal_Labourrate+"/"+showtotal_Labourrate);
 			System.out.println("is_showtotal_Referencehours "+check_showtotal_Referencehours+"/"+showtotal_Referencehours);*/
+			if(!isMultipleEquipment) {
 				check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get(selectedSalesOffice);
 				LabourRate = hm_LabourRateforSalesOfficeData.get(selectedSalesOffice);
+			} else {
+				check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get("MultipleEqup_"+selectedSalesOffice);
+				LabourRate = hm_LabourRateforSalesOfficeData.get("MultipleEqup_"+selectedSalesOffice);
+			}
 			Boolean is_showtotal_ITEfactor = roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor));
 			Boolean is_showtotal_Referencehours= roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours));
 			Boolean is_showtotal_Labourrate= roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate));
@@ -1265,39 +1407,74 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("check_showtotal_Referencehours:"+roundoff.format(check_showtotal_Referencehours)+" / showtotal_Referencehours:"+roundoff.format(showtotal_Referencehours));
 			System.out.println("check_showtotal_Labourrate:"+roundoff.format(check_showtotal_Labourrate)+" / showtotal_Labourrate:"+roundoff.format(showtotal_Labourrate));
 			System.out.println("LabourRate:"+roundoff.format(LabourRate)+" / showtotal_Labourrate:"+roundoff.format(showtotal_Labourrate));
-			System.out.println();
 			System.out.println("*** is_showtotal_ITEfactor: "+is_showtotal_ITEfactor+" *** / is_Labourrate: "+is_Labourrate+" *** / is_showtotal_Labourrate: "+is_showtotal_Labourrate+" *** / is_showtotal_Referencehours: "+is_showtotal_Referencehours+" ***");
 			String condition=null;
 			if(!roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))) {
-				check_showtotal_ITEfactor=check_showtotal_ITEfactor-0.01f;
-				if(roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))) {
-					condition="-0.01";
-				} else {
-					check_showtotal_ITEfactor=check_showtotal_ITEfactor-0.02f;
-					 condition="-0.02";
-					}
+				Float difference = check_showtotal_ITEfactor - showtotal_ITEfactor;
+//				System.out.println(roundoff.format(difference));
+					if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+						check_showtotal_ITEfactor=check_showtotal_ITEfactor+0.01f;
+						condition="+0.01";
+//				System.out.println(roundoff.format(check_showtotal_ITEfactor));
+					} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+						check_showtotal_ITEfactor=check_showtotal_ITEfactor+0.02f;
+						condition="+0.02";
+//				System.out.println(roundoff.format(check_showtotal_ITEfactor));
+					} else {
+						check_showtotal_ITEfactor=check_showtotal_ITEfactor-0.01f;
+						if(roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))) {
+							condition="-0.01";
+						} else {
+							check_showtotal_ITEfactor=check_showtotal_ITEfactor-0.01f;
+							 condition="-0.02";
+							}
+			}
 			System.out.println(condition+" Added in ITEfactor hence CalculatedITEfactor VS ActualITEfactor shown in Application is: "+roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))+" ***");
 			}
 			String condition1=null;
 			if(!roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours))) {
-				check_showtotal_Referencehours=check_showtotal_Referencehours-0.01f;
-				if(roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))) {
-					condition1="-0.01";
-				} else {
-					check_showtotal_Referencehours=check_showtotal_Referencehours-0.02f;
-					condition1="-0.02";
-					}
+				Float difference = check_showtotal_Referencehours - showtotal_Referencehours;
+//				System.out.println(roundoff.format(difference));
+					if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+						check_showtotal_Referencehours=check_showtotal_Referencehours+0.01f;
+						condition="+0.01";
+//				System.out.println(roundoff.format(check_showtotal_Referencehours));
+					} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+						check_showtotal_Referencehours=check_showtotal_Referencehours+0.02f;
+						condition="+0.02";
+//				System.out.println(roundoff.format(check_showtotal_Referencehours));
+					} else {
+						check_showtotal_Referencehours=check_showtotal_Referencehours-0.01f;
+						if(roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours))) {
+							condition1="-0.01";
+						} else {
+							check_showtotal_Referencehours=check_showtotal_Referencehours-0.01f;
+							condition1="-0.02";
+							}
+				}
 			System.out.println(condition1+" Added in ITEfactor hence CalculatedReferencehours VS ActualReferencehours shown in Application is: "+roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours))+" ***");
 			}
 			String condition2=null;
 			if(!roundoff.format(LabourRate).equals(roundoff.format(showtotal_Labourrate))) {
+				Float difference = LabourRate - showtotal_Labourrate;
+//				System.out.println(roundoff.format(difference));
+					if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+						showtotal_Labourrate=showtotal_Labourrate+0.01f;
+						condition="+0.01";
+//				System.out.println(roundoff.format(showtotal_Labourrate));
+					} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+						showtotal_Labourrate=showtotal_Labourrate+0.02f;
+						condition="+0.02";
+//				System.out.println(roundoff.format(showtotal_Labourrate));
+					} else {
 				showtotal_Labourrate=showtotal_Labourrate-0.01f;
 				if(roundoff.format(LabourRate).equals(roundoff.format(showtotal_Labourrate))) {
 					condition2="-0.01";
 				} else {
-					showtotal_Labourrate=showtotal_Labourrate-0.02f;
+					showtotal_Labourrate=showtotal_Labourrate-0.01f;
 					condition2="-0.02";
 					}
+				}
 			System.out.println(condition2+" Added in ITEfactor hence CalculatedLabourrate VS ActualLabourRate shown in Application is: "+roundoff.format(LabourRate).equals(roundoff.format(showtotal_Labourrate))+" ***");
 			}
 			if(!roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor)) || !roundoff.format(check_showtotal_Referencehours).equals(roundoff.format(showtotal_Referencehours)) || !roundoff.format(check_showtotal_Labourrate).equals(roundoff.format(showtotal_Labourrate))) {
@@ -1960,31 +2137,53 @@ public class Keywords extends KTOCTRBUtils{
 			System.out.println("totalMaterialcosts="+roundoff.format(totalMaterialcosts)+" / subtotal_Materialcosts:"+subtotal_Materialcosts);
 			String condition=null;
 			if(!roundoff.format(totalMaterialcosts).equals(roundoff.format(subtotal_Materialcosts))) {
-				totalMaterialcosts=totalMaterialcosts+0.01f;
-				if(roundoff.format(totalMaterialcosts).equals(roundoff.format(subtotal_Materialcosts))) {
-					condition="0.01";
+				Float difference = totalMaterialcosts - subtotal_Materialcosts;
+//			System.out.println(roundoff.format(difference));
+				if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+					totalMaterialcosts=totalMaterialcosts+0.01f;
+					condition="+0.01";
+//			System.out.println(roundoff.format(totalMaterialcosts));
+				} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+					totalMaterialcosts=totalMaterialcosts+0.02f;
+					condition="+0.02";
+//			System.out.println(roundoff.format(totalMaterialcosts));
 				} else {
+					totalMaterialcosts=totalMaterialcosts+0.01f;
+					if(roundoff.format(totalMaterialcosts).equals(roundoff.format(subtotal_Materialcosts))) {
+					condition="0.01";
+					} else {
 					totalMaterialcosts=totalMaterialcosts-0.02f;
 					 condition="0.02";
 					}
-			System.out.println(condition+" Added in totalMaterialcosts "+roundoff.format(totalMaterialcosts));
+				}
 			}
 			Boolean Materialcosts = roundoff.format(totalMaterialcosts).equals(roundoff.format(subtotal_Materialcosts));
-			System.out.println("*** is totalMaterialcosts vs subtotal_Materialcosts equal: "+Materialcosts);
+			System.out.println("*** "+condition+" Added in totalMaterialcosts hence totalMaterialcosts vs subtotal_Materialcosts equal: "+Materialcosts);
 			System.out.println("totalMaterialcostSLCurrency="+roundoff.format(totalMaterialcostSLCurrency)+" / subtotal_MaterialcostSLCurrency:"+roundoff.format(subtotal_MaterialcostSLCurrency));
 			String condition1=null;
 			if(!roundoff.format(totalMaterialcostSLCurrency).equals(roundoff.format(subtotal_MaterialcostSLCurrency))) {
-				totalMaterialcostSLCurrency=totalMaterialcostSLCurrency-0.01f;
-				if(roundoff.format(totalMaterialcostSLCurrency).equals(roundoff.format(subtotal_MaterialcostSLCurrency))) {
-					condition1="-0.01";
+				Float difference = totalMaterialcostSLCurrency - subtotal_MaterialcostSLCurrency;
+//			System.out.println(roundoff.format(difference));
+				if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+					totalMaterialcostSLCurrency=totalMaterialcostSLCurrency+0.01f;
+					condition1="+0.01";
+//			System.out.println(roundoff.format(totalMaterialcostSLCurrency));
+				} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+					totalMaterialcostSLCurrency=totalMaterialcostSLCurrency+0.02f;
+					condition1="+0.02";
+//			System.out.println(roundoff.format(totalMaterialcostSLCurrency));
 				} else {
-					totalMaterialcostSLCurrency=totalMaterialcostSLCurrency-0.02f;
-					 condition1="-0.02";
-					}
-			System.out.println(condition1+" Added in totalMaterialcostSLCurrency");
+				totalMaterialcostSLCurrency=totalMaterialcostSLCurrency-0.01f;
+					if(roundoff.format(totalMaterialcostSLCurrency).equals(roundoff.format(subtotal_MaterialcostSLCurrency))) {
+						condition1="-0.01";
+					} else {
+						totalMaterialcostSLCurrency=totalMaterialcostSLCurrency-0.01f;
+						 condition1="-0.02";
+						}
+				}
 			}
 			Boolean MaterialcostSLCurrency = roundoff.format(totalMaterialcostSLCurrency).equals(roundoff.format(subtotal_MaterialcostSLCurrency));
-			System.out.println("*** is totalMaterialcostSLCurrency vs subtotal_MaterialcostSLCurrency equal: "+MaterialcostSLCurrency);
+			System.out.println("*** "+condition1+" Added in totalMaterialcostSLCurrency hence totalMaterialcostSLCurrency vs subtotal_MaterialcostSLCurrency equal: "+MaterialcostSLCurrency);
 			System.out.println("totalReferencehours="+roundoff.format(totalReferencehours)+" / subtotal_Referencehours:"+roundoff.format(subtotal_Referencehours));
 			Boolean Referencehours = roundoff.format(totalReferencehours).equals(roundoff.format(subtotal_Referencehours));
 			System.out.println("*** is totalReferencehours vs subtotal_Referencehours equal: "+Referencehours);
@@ -2021,6 +2220,10 @@ public class Keywords extends KTOCTRBUtils{
 		try {
 			salesoffice=changeSalesOffice;
 			supervisor_ResponsiblePerson=supervisor_ResponsiblePersontoChange;
+			regionalDiscount=regionalDiscounttoChange;
+			if(isMultipleEquipment) {
+				regionalDiscount_MultipleEqup=regionalDiscounttoChange_MultipleEqup;
+			}
 			gotoConfigurationPage();
 			selectProjectTree();
 			checkSalesOfficeisSelected();
@@ -2507,16 +2710,20 @@ public class Keywords extends KTOCTRBUtils{
  	 *@throws Exception: For exception handling
 	 *@author CON_SVIJAY02
 	 */
+	public String firstMaintenance;
 	public void selectingFirstMaintenance(String FirstMaintenance) throws Exception{
 		try {
+			firstMaintenance=FirstMaintenance;
 			By value_firstMaintenance = null;
 			if(frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
 				value_firstMaintenance = By.xpath("//div[starts-with(text(),'" + FirstMaintenance + " Mois de gratuité ')]");
 			} else if(frontlineAssigned.equals("AUSTRALIA")) {
 				if(!FirstMaintenance.equals("0")) {
 					value_firstMaintenance = By.xpath("//div[text()='12 Months Free Maintenance']");
+					firstMaintenance="12";
 				} else {
 					value_firstMaintenance = By.xpath("//div[text()='No Free Maintenance']");
+					firstMaintenance="0";
 				}
 			}
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -2659,8 +2866,9 @@ public class Keywords extends KTOCTRBUtils{
 	public void checkingTargetPrice() throws Exception{
 		try {
 			Float arrary[] = new Float[2];
-			Float TargetPrice, Firstmaintenance, Discount = null;
+			Float TargetPrice, Firstmaintenance = null, Discount = null;
 			waitForVisibilityOfElementLocated(grid_discount);
+			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='FreeMaintenancePeriod' and @value='"+firstMaintenance+"']"));
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(grid_allValues));
 			List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allValues);
 			for (WebElement Element : Elements_PriceOverview) {
@@ -2710,7 +2918,7 @@ public class Keywords extends KTOCTRBUtils{
 					}
 				}
 			}
-			if(withoutFirstMaintenance.equals("0")) {
+			if(firstMaintenance.equals("0")) { //if(withoutFirstMaintenance.equals("0")) {
 				if(arrary[1] == null) {
 					arrary[1] = 0f;
 				}
@@ -2722,7 +2930,7 @@ public class Keywords extends KTOCTRBUtils{
 			} else {
 				TargetPrice = arrary[1];
 				Firstmaintenance = arrary[0];
-			System.out.println("CONDTION_2 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
+//			System.out.println("CONDTION_2 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
 			}
 //System.out.println("istenderPrice=>"+istenderPrice);			
 			if(istenderPrice) {
@@ -2731,18 +2939,30 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("Firstmaintenance:"+Firstmaintenance);
 				System.out.println("TenderPrice:"+TenderPrice);
 				System.out.println("DiscountFinal:"+ roundoff.format(DiscountFinal)+" / Discount shown in Application:"+Discount);
-				System.out.println("*** is FinalDiscount VS ApplicationDiscount Equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
+//				System.out.println("*** is FinalDiscount VS ApplicationDiscount Equal:"+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
 				String condition=null;
 				if(!roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
-					DiscountFinal=DiscountFinal-0.01f;
-					if(roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
-						condition="-0.01";
-					} else {
-						DiscountFinal=DiscountFinal-0.02f;
-					 condition="-0.02";
-					}
+					Float difference = DiscountFinal - Discount;
+//					System.out.println(roundoff.format(difference));
+						if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+							DiscountFinal=DiscountFinal+0.01f;
+							condition="+0.01";
+//					System.out.println(roundoff.format(DiscountFinal));
+						} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+							DiscountFinal=DiscountFinal+0.02f;
+							condition="+0.02";
+//					System.out.println(roundoff.format(DiscountFinal));
+						} else {
+							DiscountFinal=DiscountFinal-0.01f;
+							if(roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
+								condition="-0.01";
+							} else {
+								DiscountFinal=DiscountFinal-0.01f;
+							 condition="-0.02";
+							}
 				}
-				System.out.println(condition+" Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: "+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
+			}
+				System.out.println("*** "+condition+" Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: "+roundoff.format(DiscountFinal).equals(roundoff.format(Discount))+" ***");
 				if(!roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
 						screenshotCapture("Discount not equal in VerifyDiscountByChangingTheTenderPrice");
 						Assert.fail("Failed due to Discount not equal in VerifyDiscountByChangingTheTenderPrice: ");
@@ -2759,16 +2979,28 @@ public class Keywords extends KTOCTRBUtils{
 				System.out.println("*** TenderPriceFinal:" + roundoff.format(TenderPriceFinal)+" / CurrentTenderPrice:"+TenderPrice+" ***");
 //				System.out.println("is TenderPriceFinal VS ApplicationTenderPrice Equal: " + roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
 				String condition=null;
-				if(!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
-					TenderPriceFinal=TenderPriceFinal-0.01f;
-					if(roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
-						condition="-0.01";
+				if(!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) { //if(!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
+					Float difference = TenderPriceFinal - TenderPrice;
+//					System.out.println(roundoff.format(difference));
+					if(roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+						TenderPriceFinal=TenderPriceFinal+0.01f;
+						condition="+0.01";
+//						System.out.println(roundoff.format(TenderPriceFinal));
+					} else if(roundoff.format(difference).equals(roundoff.format(-.02f))) {
+						TenderPriceFinal=TenderPriceFinal+0.02f;
+						condition="+0.02";
+//						System.out.println(roundoff.format(TenderPriceFinal));
 					} else {
-						TenderPriceFinal=TenderPriceFinal-0.02f;
-					 condition="-0.02";
-					}
+							TenderPriceFinal=TenderPriceFinal-0.01f;
+							if(roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
+								condition="-0.01";
+							} else {
+								TenderPriceFinal=TenderPriceFinal-0.01f;
+							 condition="-0.02";
+							}
+						}
 				}
-				System.out.println(condition+" Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: "+roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
+				System.out.println("*** "+condition+" Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: "+roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))+" ***");
 				if(!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
 					screenshotCapture("Discount not equal in CheckTenderPriceAfterDiscountUpdate");
 					Assert.fail("Failed due to Discount not equal in CheckTenderPriceAfterDiscountUpdate Failed");
@@ -2950,7 +3182,7 @@ public class Keywords extends KTOCTRBUtils{
 					/*System.out.println("ARRAY 2");
 					System.out.println(arrary[1] = converted);*/
 									} 
-									if(withoutFirstMaintenance.equals("0")) {
+									if(firstMaintenance.equals("0")) { //if(withoutFirstMaintenance.equals("0")) {
 										if(arrary[1] == null) {
 											arrary[1] = 0f;
 										}
