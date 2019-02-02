@@ -65,7 +65,7 @@ public class testRun_Sample {
 	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
 	
 //*****selectMultipleEquipment*************************
-	KTOCTRBUtils.readTestData("france", EXCEL_PATH);
+	/*KTOCTRBUtils.readTestData("france", EXCEL_PATH);
 	Keywords.addMultipleEquipments();
 	Keywords.addEquipmentIDElevator();
 	Keywords.checkHandOverDateIsGreaterThanInstallationDate();
@@ -103,7 +103,7 @@ public class testRun_Sample {
 	Keywords.validateDetailBreakdownTab();
 	//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Australia)
 	Keywords.VerifyCostCalculatedSuccessfully();
-	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
+	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();*/
 
 //*****selectMultipleEquipment*************************
 	//11.CheckTenderLetterIsgeneratedCorrectlyWithAllThecomponents

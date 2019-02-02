@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20190201 16:51:02.216">
+<suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation" name="KTOC TRB TestAutomation" id="s1">
+<suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites" name="TestSuites" id="s1-s1">
+<suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites\RegressionKTOC_TRB_France_MultipleEquipment.robot" name="RegressionKTOC TRB France MultipleEquipment" id="s1-s1-s1">
+<kw type="setup" library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Launch Browser">
+<arguments>
+<arg>france</arg>
+<arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
+</arguments>
+<msg level="INFO" timestamp="20190201 16:51:18.171">1549020067636	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.Ubg5BLXYdWvy"
+1549020070398	Marionette	INFO	Listening on port 61045
+1549020070893	Marionette	WARN	TLS certificate errors will be ignored for this session
+Feb 01, 2019 4:51:10 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C</msg>
+<status endtime="20190201 16:51:18.210" starttime="20190201 16:51:03.982" status="PASS"></status>
+</kw>
+<test name="1.Logon To Salesforce" id="s1-s1-s1-t1">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Loginto Salesforce">
+<status endtime="20190201 16:51:21.660" starttime="20190201 16:51:18.270" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190201 16:51:21.666" starttime="20190201 16:51:18.234" status="PASS"></status>
+</test>
+<test name="2.Verify Creating Opportunity and Mapping It With FLTender" id="s1-s1-s1-t2">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Create Opportunity OR Search Opportunity">
+<msg level="INFO" timestamp="20190201 16:53:02.284">Opportunity Name:KOFCOL TRB SFA entered in Search box
+KOFCOL TRB SFA has been clicked</msg>
+<status endtime="20190201 16:53:02.292" starttime="20190201 16:51:21.690" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190201 16:53:02.297" starttime="20190201 16:51:21.675" status="PASS"></status>
+</test>
+<test name="3.Verify Tender Created Successfully for Elevator" id="s1-s1-s1-t3">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Navigateto KTOCTRB">
+<msg level="INFO" timestamp="20190201 16:53:12.139">Release 1723 is Selected
+Clicked on OK button</msg>
+<status endtime="20190201 16:53:12.150" starttime="20190201 16:53:02.315" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Equipment ID Elevator">
+<msg level="INFO" timestamp="20190201 17:27:04.546">10503512 EquipmentID entered
+Equipment loader clicked
+checkbox clicked
+Change button clicked</msg>
+<status endtime="20190201 17:27:04.554" starttime="20190201 16:53:12.161" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Hand Over Date Is Greater Than Installation Date">
+<errors>
+<msg level="ERROR" timestamp="20190201 17:27:04.572">Execution stopped by user.</msg>
+</errors>
+</robot>

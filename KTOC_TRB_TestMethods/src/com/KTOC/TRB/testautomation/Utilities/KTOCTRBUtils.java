@@ -127,10 +127,12 @@ public class KTOCTRBUtils {
 				} else if (browser.equalsIgnoreCase("ch")) {
 					DesiredCapabilities CHDes = DesiredCapabilities.chrome();
 					ChromeOptions CHOpt = new ChromeOptions();
+//					CHOpt.setUseCleanSession(true);
+//					CHOpt.setUseTechnologyPreview(true);
 					CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
-					File CHPath = new File("C:\\Backups\\Vijay S\\Download Folder\\chromedriver_win32 (2.42)\\chromedriver.exe");
+					File CHPath = new File("C:\\Users\\con_svijay02\\Downloads\\chromedriver_win32_2.44\\chromedriver.exe");
 					System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
-					driver = new ChromeDriver();
+					driver = new ChromeDriver(CHOpt);
 				}
 			}	
 			wait = new WebDriverWait(driver, 2000000);
