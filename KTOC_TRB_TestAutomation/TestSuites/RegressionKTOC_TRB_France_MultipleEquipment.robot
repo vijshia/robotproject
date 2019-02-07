@@ -25,7 +25,7 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 5.Check TenderPrice Without FirstMaintenance for Elevator    
     Get Target Price
 6.Validate Discount Without FirstMaintenance for Elevator    
-    Verify Discount By Changing The Tender Price    1001    0
+    Verify Discount By Changing The Tender Price    3600    0
 7.Check Discount Without FirstMaintenance for Elevator    
     Get Target Price
 8.Validate TenderPrice and Discount With FirstMaintenance for Elevator
@@ -33,11 +33,11 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 9.Check TenderPrice With FirstMaintenance for Elevator    
     Get Target Price
 10.Validate Discount With FirstMaintenance for Elevator    
-    Verify Discount By Changing The Tender Price    1004    0
+    Verify Discount By Changing The Tender Price    4101    4
 11.Check Discount With FirstMaintenance for Elevator    
     Get Target Price
 12.Change and Validate Discount With FirstMaintenance for Elevator    
-    Verify Discount By Changing The Tender Price    1005    6
+    Verify Discount By Changing The Tender Price    4051    3
 13.Check Changed Discount With FirstMaintenance for Elevator    
     Get Target Price
 14.Check Regional Factor At SalesOffice Level for Elevator
@@ -72,23 +72,23 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
     Get Tender Number
 22.Validate TenderPrice Without FirstMaintenance for Escalator
     Pricing Icon Click
-    Check Tender Price After Discount Update    10    0
+    Check Tender Price After Discount Update    6    0
 23.Check TenderPrice Without FirstMaintenance for Escalator  
     Get Target Price
 24.Validate Discount Without FirstMaintenance for Escalator   
-    Verify Discount By Changing The Tender Price    1011    0
+    Verify Discount By Changing The Tender Price    25000    0
 25.Check Discount Without FirstMaintenance for Escalator 
     Get Target Price
 26.Validate TenderPrice With FirstMaintenance for Escalator
-    Check Tender Price After Discount Update    11    3
+    Check Tender Price After Discount Update    7    3
 27.Check TenderPrice With FirstMaintenance for Escalator    
     Get Target Price
 28.Validate Discount With FirstMaintenance for Escalator    
-    Verify Discount By Changing The Tender Price    1012    0
+    Verify Discount By Changing The Tender Price    26000    4
 29.Check Discount With FirstMaintenance for Escalator        
     Get Target Price
 30.Change and Validate Discount With FirstMaintenance for Escalator 
-    Verify Discount By Changing The Tender Price    1013    6
+    Verify Discount By Changing The Tender Price    25500    3
 31.Check Changed Discount With FirstMaintenance for Escalator
     Get Target Price
 32.CheckRegionalFactorAtSalesOfficeLevel for Escalator

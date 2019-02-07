@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20190201 16:51:02.216">
+<robot generator="Robot 3.0.4 (Jython 2.7.0 on java1.8.0_181)" generated="20190207 13:12:29.238">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation" name="KTOC TRB TestAutomation" id="s1">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites" name="TestSuites" id="s1-s1">
 <suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites\RegressionKTOC_TRB_France_MultipleEquipment.robot" name="RegressionKTOC TRB France MultipleEquipment" id="s1-s1-s1">
@@ -8,42 +8,607 @@
 <arg>france</arg>
 <arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
 </arguments>
-<msg level="INFO" timestamp="20190201 16:51:18.171">1549020067636	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.Ubg5BLXYdWvy"
-1549020070398	Marionette	INFO	Listening on port 61045
-1549020070893	Marionette	WARN	TLS certificate errors will be ignored for this session
-Feb 01, 2019 4:51:10 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+<msg level="INFO" timestamp="20190207 13:12:44.125">1549525355183	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\CON_SV~1\\AppData\\Local\\Temp\\rust_mozprofile.yH4Uaw6BqmTA"
+1549525357713	Marionette	INFO	Listening on port 50376
+1549525357926	Marionette	WARN	TLS certificate errors will be ignored for this session
+Feb 07, 2019 1:12:38 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C</msg>
-<status endtime="20190201 16:51:18.210" starttime="20190201 16:51:03.982" status="PASS"></status>
+<status endtime="20190207 13:12:44.148" starttime="20190207 13:12:31.279" status="PASS"></status>
 </kw>
 <test name="1.Logon To Salesforce" id="s1-s1-s1-t1">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Loginto Salesforce">
-<status endtime="20190201 16:51:21.660" starttime="20190201 16:51:18.270" status="PASS"></status>
+<status endtime="20190207 13:12:49.368" starttime="20190207 13:12:44.193" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190201 16:51:21.666" starttime="20190201 16:51:18.234" status="PASS"></status>
+<status critical="yes" endtime="20190207 13:12:49.378" starttime="20190207 13:12:44.171" status="PASS"></status>
 </test>
 <test name="2.Verify Creating Opportunity and Mapping It With FLTender" id="s1-s1-s1-t2">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Create Opportunity OR Search Opportunity">
-<msg level="INFO" timestamp="20190201 16:53:02.284">Opportunity Name:KOFCOL TRB SFA entered in Search box
+<msg level="INFO" timestamp="20190207 13:13:16.428">Opportunity Name:KOFCOL TRB SFA entered in Search box
 KOFCOL TRB SFA has been clicked</msg>
-<status endtime="20190201 16:53:02.292" starttime="20190201 16:51:21.690" status="PASS"></status>
+<status endtime="20190207 13:13:16.443" starttime="20190207 13:12:49.403" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20190201 16:53:02.297" starttime="20190201 16:51:21.675" status="PASS"></status>
+<status critical="yes" endtime="20190207 13:13:16.462" starttime="20190207 13:12:49.391" status="PASS"></status>
 </test>
 <test name="3.Verify Tender Created Successfully for Elevator" id="s1-s1-s1-t3">
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Navigateto KTOCTRB">
-<msg level="INFO" timestamp="20190201 16:53:12.139">Release 1723 is Selected
+<msg level="INFO" timestamp="20190207 13:13:26.472">Release 1723 is Selected
 Clicked on OK button</msg>
-<status endtime="20190201 16:53:12.150" starttime="20190201 16:53:02.315" status="PASS"></status>
+<status endtime="20190207 13:13:26.480" starttime="20190207 13:13:16.521" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Equipment ID Elevator">
-<msg level="INFO" timestamp="20190201 17:27:04.546">10503512 EquipmentID entered
+<msg level="INFO" timestamp="20190207 13:13:43.457">10503512 EquipmentID entered
 Equipment loader clicked
 checkbox clicked
 Change button clicked</msg>
-<status endtime="20190201 17:27:04.554" starttime="20190201 16:53:12.161" status="PASS"></status>
+<status endtime="20190207 13:13:43.465" starttime="20190207 13:13:26.494" status="PASS"></status>
 </kw>
 <kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Hand Over Date Is Greater Than Installation Date">
-<errors>
-<msg level="ERROR" timestamp="20190201 17:27:04.572">Execution stopped by user.</msg>
-</errors>
-</robot>
+<msg level="INFO" timestamp="20190207 13:13:44.987">Project clicked
+Current MS5HO Date: 25/07/2020
+MS5HODate Changed to: 27/07/2020</msg>
+<status endtime="20190207 13:13:44.994" starttime="20190207 13:13:43.473" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Sales Officeis Selected">
+<msg level="INFO" timestamp="20190207 13:13:46.097">SalesOffice value VB FRRW Selected</msg>
+<status endtime="20190207 13:13:46.102" starttime="20190207 13:13:45.001" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Additionalfieldsin Project Overviewfor Canada">
+<status endtime="20190207 13:13:46.121" starttime="20190207 13:13:46.108" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Supervisor">
+<msg level="INFO" timestamp="20190207 13:13:47.997">06114080 selected in Supervisor</msg>
+<status endtime="20190207 13:13:48.008" starttime="20190207 13:13:46.126" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Equipment In Service">
+<msg level="INFO" timestamp="20190207 13:13:50.231">LIS Elevator is clicked in Equipment InService
+HydraulicElevCheck clicked</msg>
+<status endtime="20190207 13:13:50.238" starttime="20190207 13:13:48.024" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Template To Be Uploaded">
+<msg level="INFO" timestamp="20190207 13:13:53.437">Rightclick performed on Equipment
+Open Templates clicked
+Automation_Template_002 Entered in search
+Shared templates radio button Clicked
+Automation_Template_002 Template Clicked</msg>
+<status endtime="20190207 13:13:53.443" starttime="20190207 13:13:50.241" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Tender Consistency">
+<msg level="INFO" timestamp="20190207 13:13:57.351">PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")</msg>
+<status endtime="20190207 13:13:57.356" starttime="20190207 13:13:53.453" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Tender Number">
+<msg level="INFO" timestamp="20190207 13:13:57.385">Tender # is :T-0002466965</msg>
+<status endtime="20190207 13:13:57.388" starttime="20190207 13:13:57.360" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:13:57.392" starttime="20190207 13:13:16.507" status="PASS"></status>
+</test>
+<test name="4.Validate TenderPrice and Discount Without FirstMaintenance for Elevator" id="s1-s1-s1-t4">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Pricing Icon Click">
+<msg level="INFO" timestamp="20190207 13:13:57.722">pricing icon Clicked</msg>
+<status endtime="20190207 13:13:57.736" starttime="20190207 13:13:57.402" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
+<arguments>
+<arg>10</arg>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:14:01.817">Discount entered as: 10
+First maintenance: 0 Clicked</msg>
+<status endtime="20190207 13:14:01.822" starttime="20190207 13:13:57.753" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:01.829" starttime="20190207 13:13:57.398" status="PASS"></status>
+</test>
+<test name="5.Check TenderPrice Without FirstMaintenance for Elevator" id="s1-s1-s1-t5">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:14:02.578">TargetPrice:3860.7
+Firstmaintenance:0.0
+Discount:10.0
+*** TenderPriceFinal:3474.63 / CurrentTenderPrice:3474.63 ***
+*** null Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: true ***</msg>
+<status endtime="20190207 13:14:02.581" starttime="20190207 13:14:01.844" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:02.585" starttime="20190207 13:14:01.837" status="PASS"></status>
+</test>
+<test name="6.Validate Discount Without FirstMaintenance for Elevator" id="s1-s1-s1-t6">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
+<arguments>
+<arg>3600</arg>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:14:06.034">TenderPrice entered as: 3600
+First maintenance: 0 Clicked</msg>
+<status endtime="20190207 13:14:06.043" starttime="20190207 13:14:02.594" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:06.048" starttime="20190207 13:14:02.590" status="PASS"></status>
+</test>
+<test name="7.Check Discount Without FirstMaintenance for Elevator" id="s1-s1-s1-t7">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:14:06.847">TargetPrice:3860.7
+Firstmaintenance:0.0
+TenderPrice:3600.0
+DiscountFinal:6.75 / Discount shown in Application:6.75
+*** null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
+<status endtime="20190207 13:14:06.850" starttime="20190207 13:14:06.067" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:06.855" starttime="20190207 13:14:06.058" status="PASS"></status>
+</test>
+<test name="8.Validate TenderPrice and Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t8">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
+<arguments>
+<arg>11</arg>
+<arg>3</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:14:09.705">Discount entered as: 11
+First maintenance: 3 Clicked</msg>
+<status endtime="20190207 13:14:09.709" starttime="20190207 13:14:06.867" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:09.713" starttime="20190207 13:14:06.861" status="PASS"></status>
+</test>
+<test name="9.Check TenderPrice With FirstMaintenance for Elevator" id="s1-s1-s1-t9">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:14:10.510">TargetPrice:4260.7
+Firstmaintenance:400.0
+Discount:11.0
+*** TenderPriceFinal:3836.02 / CurrentTenderPrice:3836.02 ***
+*** null Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: true ***</msg>
+<status endtime="20190207 13:14:10.513" starttime="20190207 13:14:09.728" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:10.516" starttime="20190207 13:14:09.720" status="PASS"></status>
+</test>
+<test name="10.Validate Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t10">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
+<arguments>
+<arg>4101</arg>
+<arg>4</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:14:13.476">TenderPrice entered as: 4101
+First maintenance: 4 Clicked</msg>
+<status endtime="20190207 13:14:13.482" starttime="20190207 13:14:10.526" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:13.486" starttime="20190207 13:14:10.521" status="PASS"></status>
+</test>
+<test name="11.Check Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t11">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:14:14.542">TargetPrice:4390.7
+Firstmaintenance:530.0
+TenderPrice:4231.0
+DiscountFinal:4.14 / Discount shown in Application:4.14
+*** null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
+<status endtime="20190207 13:14:14.545" starttime="20190207 13:14:13.495" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:14.547" starttime="20190207 13:14:13.491" status="PASS"></status>
+</test>
+<test name="12.Change and Validate Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t12">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
+<arguments>
+<arg>4051</arg>
+<arg>3</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:14:17.132">TenderPrice entered as: 4051
+First maintenance: 3 Clicked</msg>
+<status endtime="20190207 13:14:17.138" starttime="20190207 13:14:14.558" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:17.140" starttime="20190207 13:14:14.554" status="PASS"></status>
+</test>
+<test name="13.Check Changed Discount With FirstMaintenance for Elevator" id="s1-s1-s1-t13">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:14:18.087">TargetPrice:4260.7
+Firstmaintenance:400.0
+TenderPrice:3921.0
+DiscountFinal:8.80 / Discount shown in Application:8.8
+*** null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
+<status endtime="20190207 13:14:18.090" starttime="20190207 13:14:17.168" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:18.093" starttime="20190207 13:14:17.145" status="PASS"></status>
+</test>
+<test name="14.Check Regional Factor At SalesOffice Level for Elevator" id="s1-s1-s1-t14">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
+<msg level="INFO" timestamp="20190207 13:14:20.277">Additional Discount Icon CLICKED</msg>
+<status endtime="20190207 13:14:20.279" starttime="20190207 13:14:18.104" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
+<msg level="INFO" timestamp="20190207 13:14:29.406">Ropes_calculatedRegionaldiscountoncomponent =203.19 / read_Regionaldiscountoncomponent =203.19
+*** is calculated_Regionaldiscountoncomponent vs read_Regionaldiscountoncomponent equal: true
+read_Ropes_Regional discount on component (%)=5.0 / testdata_regionalDiscount:5.0
+***is read_Ropes_Regional discount on component (%) VS testdata_regionalDiscount equal:true
+Solution 2_calculated_Regionaldiscountoncomponent % =4.55 / read_Solution 2_Regional discount on component (%)=4.55
+*** is calculated_Regionaldiscountoncomponent % vs read_Regionaldiscountoncomponent % equal = true
+Solution 2_calculated_TargetPrice =4260.68 / read_Solution 2_Target Price=4260.70
+*** +0.02 Added in calculated_TargetPrice hence calculated_TargetPrice VS read_TargetPrice shown in Application is: true</msg>
+<status endtime="20190207 13:14:29.424" starttime="20190207 13:14:20.282" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:29.437" starttime="20190207 13:14:18.099" status="PASS"></status>
+</test>
+<test name="15.Check Regional Factor When SalesOffice Is Changed for Elevator" id="s1-s1-s1-t15">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
+<msg level="INFO" timestamp="20190207 13:14:35.285">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRPP Selected
+pricing icon Clicked</msg>
+<status endtime="20190207 13:14:35.293" starttime="20190207 13:14:29.480" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
+<msg level="INFO" timestamp="20190207 13:14:37.307">Additional Discount Icon CLICKED</msg>
+<status endtime="20190207 13:14:37.311" starttime="20190207 13:14:35.297" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
+<msg level="INFO" timestamp="20190207 13:14:46.245">Ropes_calculatedRegionaldiscountoncomponent =-160.55 / read_Regionaldiscountoncomponent =-160.55
+*** is calculated_Regionaldiscountoncomponent vs read_Regionaldiscountoncomponent equal: true
+read_Ropes_Regional discount on component (%)=-4.0 / testdata_regionalDiscount:-4.0
+***is read_Ropes_Regional discount on component (%) VS testdata_regionalDiscount equal:true
+Solution 2_calculated_Regionaldiscountoncomponent % =-3.64 / read_Solution 2_Regional discount on component (%)=-3.64
+*** is calculated_Regionaldiscountoncomponent % vs read_Regionaldiscountoncomponent % equal = true
+Solution 2_calculated_TargetPrice =4574.19 / read_Solution 2_Target Price=4574.19
+*** null Added in calculated_TargetPrice hence calculated_TargetPrice VS read_TargetPrice shown in Application is: true</msg>
+<status endtime="20190207 13:14:46.277" starttime="20190207 13:14:37.314" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:14:46.289" starttime="20190207 13:14:29.458" status="PASS"></status>
+</test>
+<test name="16.Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator" id="s1-s1-s1-t16">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Primary Sales Office">
+<arguments>
+<arg>france</arg>
+<arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:14:50.340">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRRW Selected
+pricing icon Clicked</msg>
+<status endtime="20190207 13:14:50.342" starttime="20190207 13:14:46.305" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
+<msg level="INFO" timestamp="20190207 13:15:03.975">Detailed breakdown Clicked
+ROPES CLICKED
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.00 / showtotal_ITEfactor:2.00
+check_showtotal_Referencehours:11.16 / showtotal_Referencehours:11.16
+check_showtotal_Labourrate:61.90 / showtotal_Labourrate:61.90
+LabourRate:61.90 / showtotal_Labourrate:61.90
+*** is_showtotal_ITEfactor: true *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
+<status endtime="20190207 13:15:03.980" starttime="20190207 13:14:50.354" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:15:03.983" starttime="20190207 13:14:46.297" status="PASS"></status>
+</test>
+<test name="17 Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator" id="s1-s1-s1-t17">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
+<msg level="INFO" timestamp="20190207 13:15:06.789">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRPP Selected
+pricing icon Clicked</msg>
+<status endtime="20190207 13:15:06.791" starttime="20190207 13:15:03.993" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
+<msg level="INFO" timestamp="20190207 13:15:21.418">Detailed breakdown Clicked
+ROPES CLICKED
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.00 / showtotal_ITEfactor:2.00
+check_showtotal_Referencehours:11.16 / showtotal_Referencehours:11.16
+check_showtotal_Labourrate:61.00 / showtotal_Labourrate:61.00
+LabourRate:61.00 / showtotal_Labourrate:61.00
+*** is_showtotal_ITEfactor: true *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
+<status endtime="20190207 13:15:21.423" starttime="20190207 13:15:06.794" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:15:21.425" starttime="20190207 13:15:03.988" status="PASS"></status>
+</test>
+<test name="18.Check Cost Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator" id="s1-s1-s1-t18">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Cost Calculated Successfully">
+<msg level="INFO" timestamp="20190207 13:15:21.442">*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***</msg>
+<status endtime="20190207 13:15:21.444" starttime="20190207 13:15:21.433" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:15:21.446" starttime="20190207 13:15:21.429" status="PASS"></status>
+</test>
+<test name="19.Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator" id="s1-s1-s1-t19">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="VerifyPriceCalculatedSuccessfully TobecheckedinFrance">
+<msg level="INFO" timestamp="20190207 13:17:45.054">Show TotalCost Calculation Details CLICKED
+totalTargetPrice:4174.19 / subtotal_TargetPrice:4174.19
+*** is totalTargetPrice vs subtotal_TargetPrice equal: true
+totalMaterialcosts=243.93 / subtotal_Materialcosts:243.93
+*** null Added in totalMaterialcosts hence totalMaterialcosts vs subtotal_Materialcosts equal: true
+totalMaterialcostSLCurrency=243.93 / subtotal_MaterialcostSLCurrency:243.93
+*** null Added in totalMaterialcostSLCurrency hence totalMaterialcostSLCurrency vs subtotal_MaterialcostSLCurrency equal: true
+totalReferencehours=11.16 / subtotal_Referencehours:11.16
+*** is totalReferencehours vs subtotal_Referencehours equal: true
+totalInstallationHours=22.32 / subtotal_InstallationHours:22.32
+*** is totalInstallationHours vs subtotal_Materialcosts equal: true
+totalLaborCosts=1361.52 / subtotal_LaborCosts:1361.52
+*** is totalLaborCosts vs subtotal_LaborCosts equal: true
+totalFullCosts=1605.45 / subtotal_FullCosts:1605.45
+*** is totalFullCosts vs subtotal_FullCosts equal: true
+totalTotalCost=1605.45 / subtotal_TotalCost:1605.45
+*** is totalTotalCost vs subtotal_TotalCost equal: true
+totalTenderPrice=3806.89 / subtotal_TenderPrice:3806.89
+*** is totalTenderPrice vs subtotal_TenderPrice equal: true</msg>
+<status endtime="20190207 13:17:45.058" starttime="20190207 13:15:21.454" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:17:45.062" starttime="20190207 13:15:21.449" status="PASS"></status>
+</test>
+<test name="20.TestData for Escalator" id="s1-s1-s1-t20">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Read Test Data">
+<arguments>
+<arg>france</arg>
+<arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
+</arguments>
+<status endtime="20190207 13:17:45.279" starttime="20190207 13:17:45.076" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Multiple Equipments">
+<msg level="INFO" timestamp="20190207 13:18:00.137">ToConfiguration icon clicked
+scroll UP to Building1 tree
+Rightclick performed on Building1
+scroll UP to Group Automation_GroupName tree
+Rightclick performed on Automation_GroupName GroupName
+checkbox clicked
+ADD button clicked</msg>
+<status endtime="20190207 13:18:00.144" starttime="20190207 13:17:45.287" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:00.147" starttime="20190207 13:17:45.067" status="PASS"></status>
+</test>
+<test name="21.Verify Tender Created Successfully for Escalator" id="s1-s1-s1-t21">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Add Equipment ID Elevator">
+<status endtime="20190207 13:18:00.219" starttime="20190207 13:18:00.155" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Hand Over Date Is Greater Than Installation Date">
+<msg level="INFO" timestamp="20190207 13:18:01.367">Project clicked
+Current MS5HO Date: 27/07/2020
+MS5HODate Changed to: null</msg>
+<status endtime="20190207 13:18:01.370" starttime="20190207 13:18:00.222" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Sales Officeis Selected">
+<msg level="INFO" timestamp="20190207 13:18:02.446">SalesOffice value VB FRRW Selected</msg>
+<status endtime="20190207 13:18:02.448" starttime="20190207 13:18:01.372" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Additionalfieldsin Project Overviewfor Canada">
+<status endtime="20190207 13:18:02.455" starttime="20190207 13:18:02.450" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Supervisor">
+<msg level="INFO" timestamp="20190207 13:18:04.318">06114080 selected in Supervisor</msg>
+<status endtime="20190207 13:18:04.322" starttime="20190207 13:18:02.458" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Equipment In Service">
+<msg level="INFO" timestamp="20190207 13:18:05.559">EIS Escalator is clicked in Equipment InService</msg>
+<status endtime="20190207 13:18:05.562" starttime="20190207 13:18:04.324" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Select Template To Be Uploaded">
+<msg level="INFO" timestamp="20190207 13:18:09.064">Rightclick performed on Equipment
+Open Templates clicked
+Automation_Template_forEscalator Entered in search
+Shared templates radio button Clicked
+Automation_Template_forEscalator Template Clicked</msg>
+<status endtime="20190207 13:18:09.067" starttime="20190207 13:18:05.565" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Tender Consistency">
+<msg level="INFO" timestamp="20190207 13:18:14.448">FAIL: Tender is NOT Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=0191f5aaded042c33180d357113667fbefc81b95&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")
+PASS: Tender is Consistent, value:url("https://ktoc-ca3.kone.com/camosHTML5Client/cH5C/SMG?i=cad9a93f6c879df1ed1373d2853634026ff3224f&amp;w=16&amp;h=16")</msg>
+<status endtime="20190207 13:18:14.459" starttime="20190207 13:18:09.072" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Tender Number">
+<msg level="INFO" timestamp="20190207 13:18:14.527">Tender # is :T-0002466965</msg>
+<status endtime="20190207 13:18:14.530" starttime="20190207 13:18:14.465" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:14.533" starttime="20190207 13:18:00.151" status="PASS"></status>
+</test>
+<test name="22.Validate TenderPrice Without FirstMaintenance for Escalator" id="s1-s1-s1-t22">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Pricing Icon Click">
+<msg level="INFO" timestamp="20190207 13:18:14.891">pricing icon Clicked</msg>
+<status endtime="20190207 13:18:14.893" starttime="20190207 13:18:14.542" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
+<arguments>
+<arg>6</arg>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:18:22.298">Discount entered as: 6
+First maintenance: 0 Clicked</msg>
+<status endtime="20190207 13:18:22.302" starttime="20190207 13:18:14.896" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:22.306" starttime="20190207 13:18:14.538" status="PASS"></status>
+</test>
+<test name="23.Check TenderPrice Without FirstMaintenance for Escalator" id="s1-s1-s1-t23">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:18:23.018">TargetPrice:23540.7
+Firstmaintenance:0.0
+Discount:6.0
+*** TenderPriceFinal:22128.26 / CurrentTenderPrice:22128.26 ***
+*** null Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: true ***</msg>
+<status endtime="20190207 13:18:23.020" starttime="20190207 13:18:22.314" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:23.023" starttime="20190207 13:18:22.311" status="PASS"></status>
+</test>
+<test name="24.Validate Discount Without FirstMaintenance for Escalator" id="s1-s1-s1-t24">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
+<arguments>
+<arg>25000</arg>
+<arg>0</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:18:26.577">TenderPrice entered as: 25000
+First maintenance: 0 Clicked</msg>
+<status endtime="20190207 13:18:26.581" starttime="20190207 13:18:23.030" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:26.583" starttime="20190207 13:18:23.027" status="PASS"></status>
+</test>
+<test name="25.Check Discount Without FirstMaintenance for Escalator" id="s1-s1-s1-t25">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:18:27.319">TargetPrice:23540.7
+Firstmaintenance:0.0
+TenderPrice:25000.0
+DiscountFinal:-6.20 / Discount shown in Application:-6.2
+*** null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
+<status endtime="20190207 13:18:27.322" starttime="20190207 13:18:26.590" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:27.324" starttime="20190207 13:18:26.587" status="PASS"></status>
+</test>
+<test name="26.Validate TenderPrice With FirstMaintenance for Escalator" id="s1-s1-s1-t26">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Check Tender Price After Discount Update">
+<arguments>
+<arg>7</arg>
+<arg>3</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:18:31.584">Discount entered as: 7
+First maintenance: 3 Clicked</msg>
+<status endtime="20190207 13:18:31.588" starttime="20190207 13:18:27.331" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:31.590" starttime="20190207 13:18:27.328" status="PASS"></status>
+</test>
+<test name="27.Check TenderPrice With FirstMaintenance for Escalator" id="s1-s1-s1-t27">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:18:32.354">TargetPrice:24340.7
+Firstmaintenance:800.0
+Discount:7.0
+*** TenderPriceFinal:22692.85 / CurrentTenderPrice:22692.85 ***
+*** null Added in TenderPrice hence TenderPriceFinal VS TenderPrice shown in Application is: true ***</msg>
+<status endtime="20190207 13:18:32.356" starttime="20190207 13:18:31.596" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:32.365" starttime="20190207 13:18:31.593" status="PASS"></status>
+</test>
+<test name="28.Validate Discount With FirstMaintenance for Escalator" id="s1-s1-s1-t28">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
+<arguments>
+<arg>26000</arg>
+<arg>4</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:18:35.741">TenderPrice entered as: 26000
+First maintenance: 4 Clicked</msg>
+<status endtime="20190207 13:18:35.743" starttime="20190207 13:18:32.372" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:35.746" starttime="20190207 13:18:32.368" status="PASS"></status>
+</test>
+<test name="29.Check Discount With FirstMaintenance for Escalator" id="s1-s1-s1-t29">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:18:36.930">TargetPrice:24600.7
+Firstmaintenance:1060.0
+TenderPrice:26260.0
+DiscountFinal:-7.05 / Discount shown in Application:-7.05
+*** null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
+<status endtime="20190207 13:18:36.933" starttime="20190207 13:18:35.760" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:36.936" starttime="20190207 13:18:35.754" status="PASS"></status>
+</test>
+<test name="30.Change and Validate Discount With FirstMaintenance for Escalator" id="s1-s1-s1-t30">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Discount By Changing The Tender Price">
+<arguments>
+<arg>25500</arg>
+<arg>3</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:18:39.813">TenderPrice entered as: 25500
+First maintenance: 3 Clicked</msg>
+<status endtime="20190207 13:18:39.817" starttime="20190207 13:18:36.944" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:39.820" starttime="20190207 13:18:36.940" status="PASS"></status>
+</test>
+<test name="31.Check Changed Discount With FirstMaintenance for Escalator" id="s1-s1-s1-t31">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Get Target Price">
+<msg level="INFO" timestamp="20190207 13:18:40.983">TargetPrice:24340.7
+Firstmaintenance:800.0
+TenderPrice:25240.0
+DiscountFinal:-3.82 / Discount shown in Application:-3.82
+*** null Added in CalculatedDiscountFinal hence DiscountFinal VS Discount shown in Application is: true ***</msg>
+<status endtime="20190207 13:18:40.985" starttime="20190207 13:18:39.827" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:40.988" starttime="20190207 13:18:39.824" status="PASS"></status>
+</test>
+<test name="32.CheckRegionalFactorAtSalesOfficeLevel for Escalator" id="s1-s1-s1-t32">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
+<msg level="INFO" timestamp="20190207 13:18:42.087">Additional Discount Icon CLICKED</msg>
+<status endtime="20190207 13:18:42.089" starttime="20190207 13:18:40.998" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
+<msg level="INFO" timestamp="20190207 13:18:57.700">MMS Electrification Module_calculatedRegionaldiscountoncomponent =820.00 / read_Regionaldiscountoncomponent =820.00
+*** is calculated_Regionaldiscountoncomponent vs read_Regionaldiscountoncomponent equal: true
+read_MMS Electrification Module_Regional discount on component (%)=4.0 / testdata_regionalDiscount:4.0
+***is read_MMS Electrification Module_Regional discount on component (%) VS testdata_regionalDiscount equal:true
+Solution 2_calculated_Regionaldiscountoncomponent % =3.92 / read_Solution 2_Regional discount on component (%)=3.92
+*** is calculated_Regionaldiscountoncomponent % vs read_Regionaldiscountoncomponent % equal = true
+Solution 2_calculated_TargetPrice =20080.00 / read_Solution 2_Target Price=20080.00
+*** null Added in calculated_TargetPrice hence calculated_TargetPrice VS read_TargetPrice shown in Application is: true</msg>
+<status endtime="20190207 13:18:57.704" starttime="20190207 13:18:42.092" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:18:57.706" starttime="20190207 13:18:40.994" status="PASS"></status>
+</test>
+<test name="33.CheckRegionalFactorWhenSalesOfficeIsChanged for Escalator" id="s1-s1-s1-t33">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
+<msg level="INFO" timestamp="20190207 13:19:03.334">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRPP Selected
+pricing icon Clicked</msg>
+<status endtime="20190207 13:19:03.345" starttime="20190207 13:18:57.714" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Regional Discount Displayed Correctly">
+<msg level="INFO" timestamp="20190207 13:19:07.990">Additional Discount Icon CLICKED</msg>
+<status endtime="20190207 13:19:07.992" starttime="20190207 13:19:03.350" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Target Price Displayed Correctly">
+<msg level="INFO" timestamp="20190207 13:19:22.479">MMS Electrification Module_calculatedRegionaldiscountoncomponent =-1025.00 / read_Regionaldiscountoncomponent =-1025.00
+*** is calculated_Regionaldiscountoncomponent vs read_Regionaldiscountoncomponent equal: true
+read_MMS Electrification Module_Regional discount on component (%)=-5.0 / testdata_regionalDiscount:-5.0
+***is read_MMS Electrification Module_Regional discount on component (%) VS testdata_regionalDiscount equal:true
+Solution 2_calculated_Regionaldiscountoncomponent % =-4.90 / read_Solution 2_Regional discount on component (%)=-4.9
+*** is calculated_Regionaldiscountoncomponent % vs read_Regionaldiscountoncomponent % equal = true
+Solution 2_calculated_TargetPrice =21925.00 / read_Solution 2_Target Price=21925.00
+*** null Added in calculated_TargetPrice hence calculated_TargetPrice VS read_TargetPrice shown in Application is: true</msg>
+<status endtime="20190207 13:19:22.482" starttime="20190207 13:19:07.994" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:19:22.484" starttime="20190207 13:18:57.710" status="PASS"></status>
+</test>
+<test name="34.Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Escalator" id="s1-s1-s1-t34">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Primary Sales Office">
+<arguments>
+<arg>france</arg>
+<arg>\\TestData\\KTOCTRB_AutomationTestData.xlsx</arg>
+</arguments>
+<msg level="INFO" timestamp="20190207 13:19:27.000">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRRW Selected
+pricing icon Clicked</msg>
+<status endtime="20190207 13:19:27.004" starttime="20190207 13:19:22.491" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
+<msg level="INFO" timestamp="20190207 13:19:39.802">Detailed breakdown Clicked
+MMS Electrification Module CLICKED
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.00 / showtotal_ITEfactor:2.00
+check_showtotal_Referencehours:78.00 / showtotal_Referencehours:78.00
+check_showtotal_Labourrate:56.00 / showtotal_Labourrate:56.00
+LabourRate:56.00 / showtotal_Labourrate:56.00
+*** is_showtotal_ITEfactor: true *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
+<status endtime="20190207 13:19:39.807" starttime="20190207 13:19:27.006" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:19:39.812" starttime="20190207 13:19:22.487" status="PASS"></status>
+</test>
+<test name="35. Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Escalator" id="s1-s1-s1-t35">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Goto Configuration Pageand Change The Sales Office">
+<msg level="INFO" timestamp="20190207 13:19:44.040">ToConfiguration icon clicked
+Project clicked
+SalesOffice value VB FRPP Selected
+pricing icon Clicked</msg>
+<status endtime="20190207 13:19:44.044" starttime="20190207 13:19:39.822" status="PASS"></status>
+</kw>
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Validate Detail Breakdown Tab">
+<msg level="INFO" timestamp="20190207 13:19:58.207">Detailed breakdown Clicked
+MMS Electrification Module CLICKED
+Show TotalCost Calculation Details CLICKED
+check_showtotal_ITEfactor:2.75 / showtotal_ITEfactor:2.75
+check_showtotal_Referencehours:78.00 / showtotal_Referencehours:78.00
+check_showtotal_Labourrate:60.00 / showtotal_Labourrate:60.00
+LabourRate:60.00 / showtotal_Labourrate:60.00
+*** is_showtotal_ITEfactor: true *** / is_Labourrate: true *** / is_showtotal_Labourrate: true *** / is_showtotal_Referencehours: true ***</msg>
+<status endtime="20190207 13:19:58.216" starttime="20190207 13:19:44.051" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20190207 13:19:58.219" starttime="20190207 13:19:39.817" status="PASS"></status>
+</test>
+<test name="36.Check Cost Calculated Correctly When The Tender Currency Is Different From SLCurrency for Escalator" id="s1-s1-s1-t36">
+<kw library="com.KTOC.TRB.testautomation.Keywords.Keywords" name="Verify Cost Calculated Successfully">

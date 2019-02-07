@@ -15,7 +15,7 @@ public class testRun_Sample {
 	KTOCTRBUtils KTOCTRBUtils=new KTOCTRBUtils();
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 //	String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
-	Keywords.LaunchBrowser("france", EXCEL_PATH);
+	Keywords.LaunchBrowser("canada", EXCEL_PATH);
 	//1.LogonToSalesforce
 	Keywords.logintoSalesforce();
 	//2.VerifyCreatingOpportunityandMappingItWithFLTender
@@ -34,17 +34,17 @@ public class testRun_Sample {
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
 	
-	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");
+	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");	
 //	Keywords.checkingTargetPriceFullGrid(); //fullGrid
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("3600", "1");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("49000", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("7", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("3550", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("47000", "2");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("3500", "6");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("46500", "3");
 	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
@@ -55,7 +55,7 @@ public class testRun_Sample {
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
 	Keywords.verifyTargetPriceDisplayedCorrectly(); //"0"
 	//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
-	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
+	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("canada", EXCEL_PATH);
 //	Keywords.validateDetailBreakdownTabFullGrid();//fullGrid
 	Keywords.validateDetailBreakdownTab();
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
@@ -65,7 +65,7 @@ public class testRun_Sample {
 	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
 	
 //*****selectMultipleEquipment*************************
-	/*KTOCTRBUtils.readTestData("france", EXCEL_PATH);
+	KTOCTRBUtils.readTestData("france", EXCEL_PATH);
 	Keywords.addMultipleEquipments();
 	Keywords.addEquipmentIDElevator();
 	Keywords.checkHandOverDateIsGreaterThanInstallationDate();
@@ -78,16 +78,16 @@ public class testRun_Sample {
 	Keywords.getTenderNumber();
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
-	Keywords.CheckTenderPriceAfterDiscountUpdate("15", "0");
+	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("2501", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("25000", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
-	Keywords.CheckTenderPriceAfterDiscountUpdate("16", "3");
+	Keywords.CheckTenderPriceAfterDiscountUpdate("7", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("2502", "6");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("26000", "4");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("2503", "7");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("25500", "3");
 	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
@@ -103,7 +103,7 @@ public class testRun_Sample {
 	Keywords.validateDetailBreakdownTab();
 	//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Australia)
 	Keywords.VerifyCostCalculatedSuccessfully();
-	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();*/
+	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
 
 //*****selectMultipleEquipment*************************
 	//11.CheckTenderLetterIsgeneratedCorrectlyWithAllThecomponents
