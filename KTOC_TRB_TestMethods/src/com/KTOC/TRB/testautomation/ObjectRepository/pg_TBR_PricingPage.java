@@ -43,11 +43,18 @@ public class pg_TBR_PricingPage {
 	public static By txt_discount = By.xpath("//*[@data-ctcname='New_Dicount_T']");
 	public static By btn_discountOK = By.xpath("//*[@data-ctcname='Discount_Ok_B']");
 	//selectingTenderPrice
-	public static By tab_priceOverview = By.xpath("//*[text()='Price overview']");
+	public static By tab_priceOverview = By.xpath("//*[text()='Price overview']"); 
 	public static By grid_tenderPrice = By.xpath("//*[text()='Project']/..//div");
 	public static By txt_tenderPrice = By.xpath("//*[@data-ctcname='TenderPrice_T']");
 	public static By btn_tenderPriceOK = By.xpath("//*[@data-ctcname='TenderPrice_Ok_B']");
 	//checkingTargetPrice
 	public static By grid_allValues = By.xpath("//*[text()='Project']/..//*"); //*[text()='Project']/../..//div
 	public static By grid_allRowallValues = By.xpath("//*[text()='Project']/../../..//div[@class='av']/div/*");
+	//maximumDiscountLimitExceedPopup
+	public static By header_maximumDiscountLimitExceedPopup = By.xpath("//*[contains(text(),'Maximum discount limit exceeded.')]");
+	public static By btn_maximumDiscountLimitExceedPopup_YES = By.xpath("//*[text()='Yes']");
+	public static By message_maximumDiscountLimitExceedPopup_Body = By.xpath("//textarea[2]");
+	public static By btn_maximumDiscountLimitExceed_SEND = By.xpath("//*[text()='Send']");
+	public static By header_maximumDiscountLimitExceedConfirmation = By.xpath("//*[text()='XML created and Sent']");
+	public static By btn_maximumDiscountLimitExceedConfirmation_Ok = By.xpath("//*[text()='XML created and Sent']/../button/div");
 }

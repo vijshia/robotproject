@@ -15,7 +15,7 @@ public class testRun_Sample {
 	KTOCTRBUtils KTOCTRBUtils=new KTOCTRBUtils();
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 //	String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
-	Keywords.LaunchBrowser("canada", EXCEL_PATH);
+	Keywords.LaunchBrowser("australia", EXCEL_PATH);
 	//1.LogonToSalesforce
 	Keywords.logintoSalesforce();
 	//2.VerifyCreatingOpportunityandMappingItWithFLTender
@@ -31,20 +31,20 @@ public class testRun_Sample {
 	Keywords.selectTemplateToBeUploaded();
 	Keywords.verifyTenderConsistency();
 	Keywords.getTenderNumber();
-	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
+	/*//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
 	
-	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");	
+	Keywords.CheckTenderPriceAfterDiscountUpdate("10", "0");	
 //	Keywords.checkingTargetPriceFullGrid(); //fullGrid
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("49000", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("3600", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
-	Keywords.CheckTenderPriceAfterDiscountUpdate("7", "3");
+	Keywords.CheckTenderPriceAfterDiscountUpdate("11", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("47000", "2");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("4100", "4");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("46500", "3");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("4050", "3");
 	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
@@ -55,7 +55,7 @@ public class testRun_Sample {
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
 	Keywords.verifyTargetPriceDisplayedCorrectly(); //"0"
 	//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
-	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("canada", EXCEL_PATH);
+	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
 //	Keywords.validateDetailBreakdownTabFullGrid();//fullGrid
 	Keywords.validateDetailBreakdownTab();
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
@@ -103,15 +103,17 @@ public class testRun_Sample {
 	Keywords.validateDetailBreakdownTab();
 	//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Australia)
 	Keywords.VerifyCostCalculatedSuccessfully();
-	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
+	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();*/
 
 //*****selectMultipleEquipment*************************
-	//11.CheckTenderLetterIsgeneratedCorrectlyWithAllThecomponents
+	//11.CheckingMaximumDiscountLimitExceeded
+	Keywords.CheckingMaximumDiscountLimitExceeded("101");
+	//12.CheckTenderLetterIsgeneratedCorrectlyWithAllThecomponents
 	Keywords.goToDocumentsTabandClickTheTender();
 	Keywords.verifySuccessfulMessageDisplayed();
-	//12.CloseKTOC
+	//13.CloseKTOC
 	Keywords.clickSaveandCloseButton();
-	//13.VerifyTotalSalesPriceWithSFProductInformation
+	//14.VerifyTotalSalesPriceWithSFProductInformation
 	Keywords.compareSalesPricebetweenTenderPageandSalesforce();
 	Keywords.handShake();
 	}

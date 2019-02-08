@@ -57,12 +57,14 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
     Verify Cost Calculated Successfully
 19.Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator    
     VerifyPriceCalculatedSuccessfully TobecheckedinFrance
-20.Check TenderLetter Is generated Correctly With All The components
+20.Checking Maximum Discount Limit Exceeded    
+    Checking Maximum Discount Limit Exceeded    60
+21.Check TenderLetter Is generated Correctly With All The components
     Go To Documents Taband Click The Tender
     Verify Successful Message Displayed
-21.Close KTOC
+22.Close KTOC
     Click Saveand Close Button
-22.Verify Total SalesPrice With SF Product Information
+23.Verify Total SalesPrice With SF Product Information
     Compare Sales Pricebetween Tender Pageand Salesforce
     Hand Shake
 #23.VerifyOrderCreatedSuccessfullyForElevator

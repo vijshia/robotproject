@@ -33,7 +33,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will enter username & password
-	 * 
 	 * @param username: username to be entered
 	 * @param password: password to be entered
 	 * @throws Exception: For exception handling
@@ -55,7 +54,6 @@ public class Keywords extends KTOCTRBUtils {
 	 ** Reuse method, it will CreateOpportunity, MapContactWithOpportunity,
 	 * MapOpportunityWithFLTenders or Search Opportunity and click on New FLTender
 	 * button
-	 * 
 	 * @param opportunity: opportunity to be searched
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
@@ -111,7 +109,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will navigate to KTOCTRB page
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -141,7 +138,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will add/change equipment
-	 * 
 	 * @param ProductRelease: Release number of the application
 	 * @param equipment_ADDorChange: equipment to be added or changed
 	 * @throws Exception: For exception handling
@@ -210,9 +206,7 @@ public class Keywords extends KTOCTRBUtils {
 	}
 
 	/**
-	 ** Reuse method, it will enter equipmentID in Add New Equipment lookup and click
-	 * search Equipment
-	 * 
+	 ** Reuse method, it will enter equipmentID in Add New Equipment lookup and click search Equipment
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -232,7 +226,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will click on add button in Add New equipment lookup
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -251,7 +244,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will click on change button in Add New equipment lookup
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -270,7 +262,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will select Project in projecttree
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -291,9 +282,7 @@ public class Keywords extends KTOCTRBUtils {
 	}
 
 	/**
-	 ** Reuse method, it will check HandoverMS5date and update handoverdate to
-	 * greater date
-	 * 
+	 ** Reuse method, it will check HandoverMS5date and update handoverdate to greater date
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -343,7 +332,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will select SalesOffice
-	 * 
 	 * @param salesoffice: salesoffice to be selected
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
@@ -368,7 +356,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will enter additional fields in ProjectOverview for Canada
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -403,14 +390,13 @@ public class Keywords extends KTOCTRBUtils {
 				}
 			}
 		} catch (Exception e) {
-//				e.printStackTrace();
+//			e.printStackTrace();
 			Assert.fail("Additional fields in ProjectOverview for Canada Failed due to: " + e);
 		}
 	}
 
 	/**
 	 ** Reuse method, it will select Supervisor
-	 * 
 	 * @param supervisor_ResponsiblePreson: supervisor to be selected
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
@@ -463,7 +449,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will select equipmentinService
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -548,7 +533,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will check Tender consistency
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -573,7 +557,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will get Tender number
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -590,7 +573,6 @@ public class Keywords extends KTOCTRBUtils {
 	/**
 	 *** pricingIconClick method is the prerequisite for Pricing screen*** Reuse
 	 * method, it will select Discount & FirstMaintenance
-	 * 
 	 * @param discount: discount to be entered
 	 * @param FirstMaintenance: FirstMaintenance to be entered
 	 * @throws Exception: For exception handling
@@ -608,7 +590,6 @@ public class Keywords extends KTOCTRBUtils {
 	/**
 	 *** pricingIconClick method is the prerequisite for Pricing screen*** Reuse
 	 * method, it will select TenderPrice & FirstMaintenance
-	 * 
 	 * @param tenderPrice: tenderPrice to be entered
 	 * @param FirstMaintenance: FirstMaintenance to be entered
 	 * @throws Exception: For exception handling
@@ -625,17 +606,32 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will Get TargetPrice from table
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
 	public void GetTargetPrice() throws Exception {
 		checkingTargetPrice();
 	}
+	
+	/**
+	 ** Reuse method, it will enter discount and check MaximumDiscountLimitExceeded pop-up appears
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public Boolean maximumDiscountLimitExceeded = true;
+	public void CheckingMaximumDiscountLimitExceeded(String discount) throws Exception {
+		maximumDiscountLimitExceeded = false;
+		pricingIconClick();
+		waitForVisibilityOfElementLocated(tab_priceOverview);
+		waitForinvisibilityOfElementLocated(elementtoInvisible);
+		clickonButton(tab_priceOverview);
+		selectingDiscount(discount);
+		maximumDiscountLimitExceeded = true;
+		maximumDiscountLimitExceedPopup();
+	}
 
 	/**
 	 ** Reuse method, it will click on AdditionalDiscountIcon
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -645,7 +641,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will get regionaldiscount
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -667,7 +662,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will click on CurrenciesTab and get ConversionFactor value
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -744,7 +738,9 @@ public class Keywords extends KTOCTRBUtils {
 		} else {
 //			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
 //			validateDetailBreakdownTabFullGrid();
+//			System.out.println("======"+new SimpleDateFormat("ddMMMyyyy_hh_mm_ssaa").format(Calendar.getInstance().getTime()));
 			validateDetailBreakdownTabFullGrid1();
+//			System.out.println("========"+new SimpleDateFormat("ddMMMyyyy_hh_mm_ssaa").format(Calendar.getInstance().getTime()));
 //			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
 		}
 	}
@@ -797,7 +793,7 @@ public class Keywords extends KTOCTRBUtils {
 	 */
 	public void clickonAdditionalDiscountIcon() throws Exception {
 		try {
-			waitForVisibilityOfElementLocated(By.xpath("//*[text()='Price overview']"));
+			waitForVisibilityOfElementLocated(tab_priceOverview); //By.xpath("//*[text()='Price overview']")
 			waitForElementToBeClickable(By.xpath("//*[@data-ctcwgtname='nPricingOverview']/div"));
 			wait.until(ExpectedConditions.visibilityOf(gettingWebElementsfromList(icon_additionalDiscount).get(3)));
 			scrollIntoView_Javascript(gettingWebElementsfromList(icon_additionalDiscount).get(3));
@@ -2595,7 +2591,6 @@ public class Keywords extends KTOCTRBUtils {
 			checkSalesOfficeisSelected();
 			pricingIconClick();
 		} catch (Exception e) {
-			;
 //			e.printStackTrace();
 			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: " + e);
 		}
@@ -2617,7 +2612,6 @@ public class Keywords extends KTOCTRBUtils {
 			checkSalesOfficeisSelected();
 			pricingIconClick();
 		} catch (Exception e) {
-			;
 //			e.printStackTrace();
 			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: " + e);
 		}
@@ -2651,8 +2645,7 @@ public class Keywords extends KTOCTRBUtils {
 			}
 			System.out.println("ToConfiguration icon clicked");
 		} catch (Exception e) {
-			;
-//		e.printStackTrace();
+//			e.printStackTrace();
 			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: " + e);
 		}
 	}
@@ -2799,7 +2792,7 @@ public class Keywords extends KTOCTRBUtils {
 			 * waitForinvisibilityOfElementLocated(elementtoInvisible);
 			 * clickonButton(btn_stageProbability);
 			 */
-			if (isMultipleEquipment || frontlineAssigned.equals("CANADA")) { // || frontlineAssigned.equals("FRANCE")
+			if (isMultipleEquipment || frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("FRANCE")
 				WebElement activeElement_SFupdateFailed = driver.switchTo().activeElement();
 				if (activeElement_SFupdateFailed.getText().contains("OK")) {
 					By btn_updateFailedOK = By.xpath("//*[text()='OK']");
@@ -2970,7 +2963,7 @@ public class Keywords extends KTOCTRBUtils {
 			 * template = template_2; TenderPrice = null; isMultipleEquipment = true;
 			 */
 		} catch (Exception e) {
-//		e.printStackTrace();
+//			e.printStackTrace();
 			Assert.fail("Add Multiple Equipments Failed due to: " + e);
 		}
 	}
@@ -3048,7 +3041,7 @@ public class Keywords extends KTOCTRBUtils {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			addEquipment();
 		} catch (Exception e) {
-//		e.printStackTrace();
+//			e.printStackTrace();
 			Assert.fail("Add Equipment in Group Failed due to: " + e);
 		}
 	}
@@ -3063,7 +3056,7 @@ public class Keywords extends KTOCTRBUtils {
 		try {
 			allTenderPrice = allTenderPrice + TenderPrice;
 		} catch (Exception e) {
-//		e.printStackTrace();
+//			e.printStackTrace();
 			Assert.fail("Add All TenderPrice Failed due to: " + e);
 		}
 	}
@@ -3205,10 +3198,12 @@ public class Keywords extends KTOCTRBUtils {
 			System.out.println("Discount entered as: " + discount);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_discountOK); // *[@data-ctcwgtname='pbOK']
-			By grid_discountisApplied = By.xpath("//*[text()='Project']/..//div[text()='" + discount + ".00 %']");
-//			System.out.println("grid_discountisApplied:"+gettingWebElement(grid_discountisApplied).getAttribute("id"));
-			waitForpresenceOfElementLocated(grid_discountisApplied);
-//			System.out.println("Discount applied to GRID");
+			if(maximumDiscountLimitExceeded) {
+				By grid_discountisApplied = By.xpath("//*[text()='Project']/..//div[text()='" + discount + ".00 %']");
+	//			System.out.println("grid_discountisApplied:"+gettingWebElement(grid_discountisApplied).getAttribute("id"));
+				waitForpresenceOfElementLocated(grid_discountisApplied);
+	//			System.out.println("Discount applied to GRID");	
+			}
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Selecting Discount Failed due to: " + e);
@@ -3734,6 +3729,64 @@ public class Keywords extends KTOCTRBUtils {
 //			e.printStackTrace();
 			Assert.fail("Checking Target Price in FullGrid Failed");
 		}
+	}
+	
+	public void maximumDiscountLimitExceedPopup() {
+		try {
+			waitForVisibilityOfElementLocated(header_maximumDiscountLimitExceedPopup);
+//			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(btn_maximumDiscountLimitExceedPopup_YES);
+			waitForVisibilityOfElementLocated(btn_maximumDiscountLimitExceed_SEND);
+//			System.out.println(gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value"));
+			if(gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value").contains("Pricing Approval request for")) {
+				String mailBodyContent=gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value").substring(gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value").indexOf("Account :"));
+//				System.out.println("mailBodyContent="+mailBodyContent);
+				String a[] = mailBodyContent.split("Project pricing:");
+//				System.out.println("a0="+a[0]);
+//				System.out.println("a1="+a[1]);
+				String b[] = a[1].split("Discount :");
+				String projectPricingString = null;
+				if (frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
+					projectPricingString = b[0].replaceAll("[€ . $]", "");
+					projectPricingString = projectPricingString.replaceAll(",", ".");
+				} else {
+					projectPricingString = b[0].replaceAll("[€ , $]", "");
+					projectPricingString = projectPricingString.replaceAll(",", ".");
+				}
+				Float projectPricing = Float.valueOf(projectPricingString.trim());
+				System.out.println("*** Project Pricing = "+projectPricing);
+//				System.out.println("b1"+b[1]);
+				String c[] = b[1].split("Target price:");
+				String discountString = c[0].replaceAll("[ %]", "");
+				Float discount = Float.valueOf(discountString.trim());
+				System.out.println("*** Discount = "+discount);
+				String d[] = c[1].split("Main details of project:");
+				String targetPriceString = null;
+				if (frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
+					targetPriceString = d[0].replaceAll("[€ .]", "");
+					targetPriceString = targetPriceString.replaceAll(",", ".");
+				} else {
+					targetPriceString = d[0].replaceAll("[€ , $]", "");
+					targetPriceString = targetPriceString.replaceAll(",", ".");
+				}
+				Float targetPrice = Float.valueOf(targetPriceString.trim());
+				System.out.println("*** Target Price = "+targetPrice);
+				String e[] = d[1].split("Billing Plan");
+				String billingPlan = e[1].replaceAll("[ :]", "");
+				billingPlan = billingPlan.trim();
+				System.out.println("*** Billing Plan = "+billingPlan);
+			}
+//			waitForinvisibilityOfElementLocated(elementtoInvisible);			
+			scrollIntoView_Javascript(gettingWebElement(btn_maximumDiscountLimitExceed_SEND));
+//			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(btn_maximumDiscountLimitExceed_SEND);
+			waitForVisibilityOfElementLocated(header_maximumDiscountLimitExceedConfirmation);
+//			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(btn_maximumDiscountLimitExceedConfirmation_Ok);
+			} catch (Exception e) {
+//				e.printStackTrace();
+				Assert.fail("Maximum Discount Limit Exceed Failed");
+			}
 	}
 
 	public static String GetAdditionalDiscountGridTargetPriceBaseValues(String TreeValue) {

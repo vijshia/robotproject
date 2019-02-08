@@ -130,7 +130,7 @@ public class KTOCTRBUtils {
 //					CHOpt.setUseCleanSession(true);
 //					CHOpt.setUseTechnologyPreview(true);
 					CHDes.setCapability(ChromeOptions.CAPABILITY, CHOpt);
-					File CHPath = new File("C:\\Users\\con_svijay02\\Downloads\\chromedriver_win32_2.44\\chromedriver.exe");
+					File CHPath = new File("C:\\Users\\con_svijay02\\Downloads\\chromedriver_win32_2.43\\chromedriver.exe");
 					System.setProperty("webdriver.chrome.driver", CHPath.getAbsolutePath());
 					driver = new ChromeDriver(CHOpt);
 				}
