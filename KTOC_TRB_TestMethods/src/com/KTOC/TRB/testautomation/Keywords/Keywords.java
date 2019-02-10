@@ -3181,6 +3181,7 @@ public class Keywords extends KTOCTRBUtils {
 	 * 
 	 * @author CON_SVIJAY02
 	 */
+	public String discountformaximumDiscountLimitExceeded;
 	public void selectingDiscount(String discount) throws Exception {
 		try {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -3198,6 +3199,7 @@ public class Keywords extends KTOCTRBUtils {
 			System.out.println("Discount entered as: " + discount);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_discountOK); // *[@data-ctcwgtname='pbOK']
+			discountformaximumDiscountLimitExceeded = discount;
 			if(maximumDiscountLimitExceeded) {
 				By grid_discountisApplied = By.xpath("//*[text()='Project']/..//div[text()='" + discount + ".00 %']");
 	//			System.out.println("grid_discountisApplied:"+gettingWebElement(grid_discountisApplied).getAttribute("id"));
@@ -3733,60 +3735,66 @@ public class Keywords extends KTOCTRBUtils {
 	
 	public void maximumDiscountLimitExceedPopup() {
 		try {
-			waitForVisibilityOfElementLocated(header_maximumDiscountLimitExceedPopup);
-//			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(btn_maximumDiscountLimitExceedPopup_YES);
-			waitForVisibilityOfElementLocated(btn_maximumDiscountLimitExceed_SEND);
-//			System.out.println(gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value"));
-			if(gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value").contains("Pricing Approval request for")) {
-				String mailBodyContent=gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value").substring(gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value").indexOf("Account :"));
-//				System.out.println("mailBodyContent="+mailBodyContent);
-				String a[] = mailBodyContent.split("Project pricing:");
-//				System.out.println("a0="+a[0]);
-//				System.out.println("a1="+a[1]);
-				String b[] = a[1].split("Discount :");
-				String projectPricingString = null;
-				if (frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
-					projectPricingString = b[0].replaceAll("[€ . $]", "");
-					projectPricingString = projectPricingString.replaceAll(",", ".");
-				} else {
-					projectPricingString = b[0].replaceAll("[€ , $]", "");
-					projectPricingString = projectPricingString.replaceAll(",", ".");
-				}
-				Float projectPricing = Float.valueOf(projectPricingString.trim());
-				System.out.println("*** Project Pricing = "+projectPricing);
-//				System.out.println("b1"+b[1]);
-				String c[] = b[1].split("Target price:");
-				String discountString = c[0].replaceAll("[ %]", "");
-				Float discount = Float.valueOf(discountString.trim());
-				System.out.println("*** Discount = "+discount);
-				String d[] = c[1].split("Main details of project:");
-				String targetPriceString = null;
-				if (frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
-					targetPriceString = d[0].replaceAll("[€ .]", "");
-					targetPriceString = targetPriceString.replaceAll(",", ".");
-				} else {
-					targetPriceString = d[0].replaceAll("[€ , $]", "");
-					targetPriceString = targetPriceString.replaceAll(",", ".");
-				}
-				Float targetPrice = Float.valueOf(targetPriceString.trim());
-				System.out.println("*** Target Price = "+targetPrice);
-				String e[] = d[1].split("Billing Plan");
-				String billingPlan = e[1].replaceAll("[ :]", "");
-				billingPlan = billingPlan.trim();
-				System.out.println("*** Billing Plan = "+billingPlan);
+			By maximumDiscountorDiscountPencil = By.xpath("//*[contains(text(),'Maximum discount limit exceeded.') or text()='" + discountformaximumDiscountLimitExceeded + ".00 %']");
+			waitForVisibilityOfElementLocated(maximumDiscountorDiscountPencil); //header_maximumDiscountLimitExceedPopup
+//			System.out.println(gettingWebElement(maximumDiscountorDiscountPencil).getAttribute("id")+"_"+gettingWebElement(maximumDiscountorDiscountPencil).getText());
+				if(gettingWebElement(maximumDiscountorDiscountPencil).getText().contains("Maximum discount limit exceeded.")) {
+		//			waitForinvisibilityOfElementLocated(elementtoInvisible);
+					clickonButton(btn_maximumDiscountLimitExceedPopup_YES);
+					waitForVisibilityOfElementLocated(btn_maximumDiscountLimitExceed_SEND);
+		//			System.out.println(gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value"));
+					if(gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value").contains("Pricing Approval request for")) {
+						String mailBodyContent=gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value").substring(gettingWebElement(message_maximumDiscountLimitExceedPopup_Body).getAttribute("value").indexOf("Account :"));
+		//				System.out.println("mailBodyContent="+mailBodyContent);
+						String a[] = mailBodyContent.split("Project pricing:");
+		//				System.out.println("a0="+a[0]);
+		//				System.out.println("a1="+a[1]);
+						String b[] = a[1].split("Discount :");
+						String projectPricingString = null;
+						if (frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
+							projectPricingString = b[0].replaceAll("[€ . $]", "");
+							projectPricingString = projectPricingString.replaceAll(",", ".");
+						} else {
+							projectPricingString = b[0].replaceAll("[€ , $]", "");
+							projectPricingString = projectPricingString.replaceAll(",", ".");
+						}
+						Float projectPricing = Float.valueOf(projectPricingString.trim());
+						System.out.println("*** Project Pricing = "+projectPricing);
+		//				System.out.println("b1"+b[1]);
+						String c[] = b[1].split("Target price:");
+						String discountString = c[0].replaceAll("[ %]", "");
+						Float discount = Float.valueOf(discountString.trim());
+						System.out.println("*** Discount = "+discount);
+						String d[] = c[1].split("Main details of project:");
+						String targetPriceString = null;
+						if (frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
+							targetPriceString = d[0].replaceAll("[€ .]", "");
+							targetPriceString = targetPriceString.replaceAll(",", ".");
+						} else {
+							targetPriceString = d[0].replaceAll("[€ , $]", "");
+							targetPriceString = targetPriceString.replaceAll(",", ".");
+						}
+						Float targetPrice = Float.valueOf(targetPriceString.trim());
+						System.out.println("*** Target Price = "+targetPrice);
+						String e[] = d[1].split("Billing Plan");
+						String billingPlan = e[1].replaceAll("[ :]", "");
+						billingPlan = billingPlan.trim();
+						System.out.println("*** Billing Plan = "+billingPlan);
+					}
+		//			waitForinvisibilityOfElementLocated(elementtoInvisible);			
+					scrollIntoView_Javascript(gettingWebElement(btn_maximumDiscountLimitExceed_SEND));
+		//			waitForinvisibilityOfElementLocated(elementtoInvisible);
+					clickonButton(btn_maximumDiscountLimitExceed_SEND);
+					waitForVisibilityOfElementLocated(header_maximumDiscountLimitExceedConfirmation);
+		//			waitForinvisibilityOfElementLocated(elementtoInvisible);
+					clickonButton(btn_maximumDiscountLimitExceedConfirmation_Ok);
+			} else {
+				System.out.println("*** Maximum Discount LimitExceed Pop-up didn't appeared ***");
 			}
-//			waitForinvisibilityOfElementLocated(elementtoInvisible);			
-			scrollIntoView_Javascript(gettingWebElement(btn_maximumDiscountLimitExceed_SEND));
-//			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(btn_maximumDiscountLimitExceed_SEND);
-			waitForVisibilityOfElementLocated(header_maximumDiscountLimitExceedConfirmation);
-//			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			clickonButton(btn_maximumDiscountLimitExceedConfirmation_Ok);
-			} catch (Exception e) {
+		} catch (Exception e) {
 //				e.printStackTrace();
 				Assert.fail("Maximum Discount Limit Exceed Failed");
-			}
+		}
 	}
 
 	public static String GetAdditionalDiscountGridTargetPriceBaseValues(String TreeValue) {

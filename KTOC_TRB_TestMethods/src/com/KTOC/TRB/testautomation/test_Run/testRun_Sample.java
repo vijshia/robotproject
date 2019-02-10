@@ -31,7 +31,7 @@ public class testRun_Sample {
 	Keywords.selectTemplateToBeUploaded();
 	Keywords.verifyTenderConsistency();
 	Keywords.getTenderNumber();
-	/*//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
+	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
 	
 	Keywords.CheckTenderPriceAfterDiscountUpdate("10", "0");	
@@ -103,7 +103,7 @@ public class testRun_Sample {
 	Keywords.validateDetailBreakdownTab();
 	//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Australia)
 	Keywords.VerifyCostCalculatedSuccessfully();
-	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();*/
+	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
 
 //*****selectMultipleEquipment*************************
 	//11.CheckingMaximumDiscountLimitExceeded
