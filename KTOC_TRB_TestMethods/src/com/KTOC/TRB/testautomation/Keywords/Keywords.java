@@ -2658,6 +2658,8 @@ public class Keywords extends KTOCTRBUtils {
 	 */
 	public void goToDocumentsTabandClickTheTender() throws Exception {
 		try {
+			scrollIntoView_Javascript(gettingWebElement(lnk_toWord));
+			waitForElementToBeClickable(lnk_toWord);
 			WebElement element_ToWord = gettingWebElement(lnk_toWord);
 			scrollIntoView_Javascript(element_ToWord);
 			wait.until(ExpectedConditions.elementToBeClickable(element_ToWord));
@@ -2792,7 +2794,7 @@ public class Keywords extends KTOCTRBUtils {
 			 * waitForinvisibilityOfElementLocated(elementtoInvisible);
 			 * clickonButton(btn_stageProbability);
 			 */
-			if (isMultipleEquipment || frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("FRANCE")
+			if (isMultipleEquipment || frontlineAssigned.equals("CANADA")) { // || frontlineAssigned.equals("FRANCE")
 				WebElement activeElement_SFupdateFailed = driver.switchTo().activeElement();
 				if (activeElement_SFupdateFailed.getText().contains("OK")) {
 					By btn_updateFailedOK = By.xpath("//*[text()='OK']");
@@ -2808,7 +2810,7 @@ public class Keywords extends KTOCTRBUtils {
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
-			Assert.fail("Click Save&Close button Failed due to: " + e);
+			Assert.fail("Click Save&Close button Failed");
 		}
 	}
 
@@ -3791,6 +3793,7 @@ public class Keywords extends KTOCTRBUtils {
 			} else {
 				System.out.println("*** Maximum Discount LimitExceed Pop-up didn't appeared ***");
 			}
+			waitForElementToBeClickable(lnk_toWord);
 		} catch (Exception e) {
 //				e.printStackTrace();
 				Assert.fail("Maximum Discount Limit Exceed Failed");
