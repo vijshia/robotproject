@@ -3,6 +3,7 @@ package com.KTOC.TRB.testautomation.Keywords;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+//import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -318,8 +319,20 @@ public class Keywords extends KTOCTRBUtils {
 			WebElement element_MS5HODate = gettingWebElement(txt_DateHandoverMS5); // *[@data-ctcwgtname='DateHandoverMS5']/input
 			element_MS5HODate.clear();
 //			System.out.println("MS5HODate_Current Cleared");
-			wait.until(ExpectedConditions.elementToBeClickable(element_MS5HODate));
-			element_MS5HODate.sendKeys(MS5HODate_toChange);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(By.xpath("//*[@data-ctcwgtname='DateTenderPriceReference']"));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			element_MS5HODate.click();
+			if(browser.equalsIgnoreCase("ch")) {
+				wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(gettingWebElement(txt_DateHandoverMS5), "value")));
+				if(gettingWebElement(txt_DateHandoverMS5).getAttribute("value").isEmpty()) {
+					waitForinvisibilityOfElementLocated(elementtoInvisible);
+					enteringValues(txt_DateHandoverMS5, MS5HODate_toChange);
+				}
+			} else {
+				wait.until(ExpectedConditions.elementToBeClickable(element_MS5HODate));
+				element_MS5HODate.sendKeys(MS5HODate_toChange);
+			}
 			if (element_MS5HODate.getAttribute("value").isEmpty()) {
 				element_MS5HODate.sendKeys(MS5HODate_toChange);
 			}
@@ -1231,8 +1244,8 @@ public class Keywords extends KTOCTRBUtils {
 			Float calculated_Regionaldiscountoncomponent_percentage2 = (read_Regionaldiscountoncomponent2
 					/ read_TargetPriceBase2) * 100;
 			Float calculated_TargetPrice2 = read_TargetPriceBase2 - read_Regionaldiscountoncomponent2;
-			Float notaNumber = 0f / 0f;
-			if (calculated_Regionaldiscountoncomponent_percentage2.equals(notaNumber)) {
+			Float NaN = 0f/0f; //NotaNumber
+			if (calculated_Regionaldiscountoncomponent_percentage2.equals(NaN)) {
 				calculated_Regionaldiscountoncomponent_percentage2 = 0f;
 			}
 			Boolean isRegionaldiscountoncomponentpercentage_calculated = roundoff
@@ -1590,12 +1603,17 @@ public class Keywords extends KTOCTRBUtils {
 			 */
 			Float check_showtotal_Referencehours = showtotal_InstallationHours / showtotal_ITEfactor;
 			Float check_showtotal_Labourrate = showtotal_LaborCosts / showtotal_InstallationHours;
+			Float NaN = 0f/0f; //NotaNumber
+			if(check_showtotal_Referencehours.equals(NaN)) {
+				check_showtotal_Referencehours = 0f;
+			}
+			if(check_showtotal_Labourrate.equals(NaN)) {
+				check_showtotal_Labourrate = 0f;
+			}
 			/*
-			 * System.out.println("is_showtotal_ITEfactor: "+check_showtotal_ITEfactor+"/"+
-			 * showtotal_ITEfactor);
-			 * System.out.println("is_showtotal_LaborCosts "+check_showtotal_Labourrate+"/"+
-			 * showtotal_Labourrate); System.out.println("is_showtotal_Referencehours "
-			 * +check_showtotal_Referencehours+"/"+showtotal_Referencehours);
+			 * System.out.println("is_showtotal_ITEfactor: "+check_showtotal_ITEfactor+"/"+showtotal_ITEfactor);
+			 * System.out.println("is_showtotal_LaborCosts "+check_showtotal_Labourrate+"/"+showtotal_Labourrate); 
+			 * System.out.println("is_showtotal_Referencehours "+check_showtotal_Referencehours+"/"+showtotal_Referencehours);
 			 */
 			if (!isMultipleEquipment) {
 				check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get(selectedSalesOffice);
@@ -1619,7 +1637,7 @@ public class Keywords extends KTOCTRBUtils {
 					+ " / showtotal_Labourrate:" + roundoff.format(showtotal_Labourrate));
 			System.out.println("LabourRate:" + roundoff.format(LabourRate) + " / showtotal_Labourrate:"
 					+ roundoff.format(showtotal_Labourrate));
-			System.out.println("*** is_showtotal_ITEfactor: " + is_showtotal_ITEfactor + " *** / is_Labourrate: "
+			System.out.println("*** is_showtotal_ITEfactor: " + is_showtotal_ITEfactor + " *** / is_Testdata_Labourrate: "
 					+ is_Labourrate + " *** / is_showtotal_Labourrate: " + is_showtotal_Labourrate
 					+ " *** / is_showtotal_Referencehours: " + is_showtotal_Referencehours + " ***");
 			String condition = null;
@@ -3398,8 +3416,7 @@ public class Keywords extends KTOCTRBUtils {
 				 * (Discount / 100)); Float TargetPriceFinal = TargetplusDiscount +
 				 * Firstmaintenance;
 				 */
-				Float TenderPriceFinal = ((TargetPrice - Firstmaintenance)
-						- ((TargetPrice - Firstmaintenance) * (Discount / 100)) + Firstmaintenance);
+				Float TenderPriceFinal = ((TargetPrice - Firstmaintenance) - ((TargetPrice - Firstmaintenance) * (Discount / 100)) + Firstmaintenance);
 				System.out.println("TargetPrice:" + TargetPrice);
 				System.out.println("Firstmaintenance:" + Firstmaintenance);
 				System.out.println("Discount:" + Discount);
