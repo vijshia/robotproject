@@ -25,7 +25,7 @@ Suite Setup    Launch Browser    canada    \\TestData\\KTOCTRB_AutomationTestDat
 5.Check TenderPrice Without FirstMaintenance for Elevator    
     Get Target Price
 6.Validate Discount Without FirstMaintenance for Elevator    
-    Verify Discount By Changing The Tender Price    49000    0
+    Verify Discount By Changing The Tender Price    47500    0
 7.Check Discount Without FirstMaintenance for Elevator        
     Get Target Price
 8.Validate TenderPrice With FirstMaintenance for Elevator

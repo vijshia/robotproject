@@ -37,7 +37,7 @@ public class testRun_Sample {
 	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");	
 //	Keywords.checkingTargetPriceFullGrid(); //fullGrid
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("49000", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("47500", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("7", "3");
@@ -65,7 +65,7 @@ public class testRun_Sample {
 	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
 	
 //*****selectMultipleEquipment*************************
-	KTOCTRBUtils.readTestData("france", EXCEL_PATH);
+	/*KTOCTRBUtils.readTestData("france", EXCEL_PATH);
 	Keywords.addMultipleEquipments();
 	Keywords.addEquipmentIDElevator();
 	Keywords.checkHandOverDateIsGreaterThanInstallationDate();
@@ -103,7 +103,7 @@ public class testRun_Sample {
 	Keywords.validateDetailBreakdownTab();
 	//10.CheckCostAndPriceCalculatedCorrectlyWhenTheTenderCurrencyIsDifferentFromSLCurrency (Australia)
 	Keywords.VerifyCostCalculatedSuccessfully();
-	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();
+	Keywords.VerifyPriceCalculatedSuccessfully_TobecheckedinFrance();*/
 
 //*****selectMultipleEquipment*************************
 	//11.CheckingMaximumDiscountLimitExceeded
