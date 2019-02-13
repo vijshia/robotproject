@@ -76,7 +76,7 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 23.Check TenderPrice Without FirstMaintenance for Escalator  
     Get Target Price
 24.Validate Discount Without FirstMaintenance for Escalator   
-    Verify Discount By Changing The Tender Price    25000    0
+    Verify Discount By Changing The Tender Price    23000    0
 25.Check Discount Without FirstMaintenance for Escalator 
     Get Target Price
 26.Validate TenderPrice With FirstMaintenance for Escalator
@@ -84,11 +84,11 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
 27.Check TenderPrice With FirstMaintenance for Escalator    
     Get Target Price
 28.Validate Discount With FirstMaintenance for Escalator    
-    Verify Discount By Changing The Tender Price    26000    4
+    Verify Discount By Changing The Tender Price    22500    4
 29.Check Discount With FirstMaintenance for Escalator        
     Get Target Price
 30.Change and Validate Discount With FirstMaintenance for Escalator 
-    Verify Discount By Changing The Tender Price    25500    3
+    Verify Discount By Changing The Tender Price    22250    3
 31.Check Changed Discount With FirstMaintenance for Escalator
     Get Target Price
 32.CheckRegionalFactorAtSalesOfficeLevel for Escalator

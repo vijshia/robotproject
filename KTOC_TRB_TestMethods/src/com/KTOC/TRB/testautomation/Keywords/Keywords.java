@@ -313,8 +313,8 @@ public class Keywords extends KTOCTRBUtils {
 				}
 				formatedDate = DateUtils.addDays(formatedDate, MS5HODatetoChange);
 				MS5HODate_toChange = output_dateformat.format(formatedDate);
-//					System.out.println("MS5HODatetoChange:"+MS5HODate_toChange);
-			}
+					System.out.println("MS5HODatetoChange:"+MS5HODate_toChange);
+//			}
 			System.out.println("Current MS5HO Date: " + gettingWebElement(txt_DateHandoverMS5).getAttribute("value"));
 			WebElement element_MS5HODate = gettingWebElement(txt_DateHandoverMS5); // *[@data-ctcwgtname='DateHandoverMS5']/input
 			element_MS5HODate.clear();
@@ -337,6 +337,7 @@ public class Keywords extends KTOCTRBUtils {
 				element_MS5HODate.sendKeys(MS5HODate_toChange);
 			}
 			System.out.println("MS5HODate Changed to: " + MS5HODate_toChange);
+		}	
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Check HandOverDate Is Greater than InstallationDate Failed due to: " + e);
