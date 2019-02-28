@@ -25,7 +25,7 @@ Suite Setup    Launch Browser    canada    \\TestData\\KTOCTRB_AutomationTestDat
 5.Check TenderPrice Without FirstMaintenance for Elevator    
     Get Target Price
 6.Validate Discount Without FirstMaintenance for Elevator    
-    Verify Discount By Changing The Tender Price    47500    0
+    Verify Discount By Changing The Tender Price    65000    0
 7.Check Discount Without FirstMaintenance for Elevator        
     Get Target Price
 8.Validate TenderPrice With FirstMaintenance for Elevator
@@ -33,11 +33,11 @@ Suite Setup    Launch Browser    canada    \\TestData\\KTOCTRB_AutomationTestDat
 9.Check TenderPrice With FirstMaintenance for Elevator
     Get Target Price
 10.Validate Discount With FirstMaintenance for Elevator
-    Verify Discount By Changing The Tender Price    47000    2
+    Verify Discount By Changing The Tender Price    64750    2
 11.Check Discount With FirstMaintenance for Elevator
     Get Target Price
 12.Change and Validate Discount With FirstMaintenance for Elevator    
-    Verify Discount By Changing The Tender Price    46500    3
+    Verify Discount By Changing The Tender Price    64500    3
 13.Check Changed Discount With FirstMaintenance for Elevator    
     Get Target Price
 14.Check Regional Factor At SalesOffice Level for Elevator

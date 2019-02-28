@@ -52,6 +52,9 @@ public class KTOCTRBUtils {
 	public static Boolean istenderPrice = false;
 	public static Boolean isMultipleEquipment = false;
 	public static int showInstallationCalculation=0;
+	public static String isFirstMaintenancetoEdit;
+	public static String isFirstMaintenancetoEdittoChange1;
+	public static String isFirstMaintenancetoEdittoChange2;
 	public static Float regionalDiscount;
 	public static Float regionalDiscounttoChange;
 	public static Float regionalDiscount_MultipleEqup;
@@ -65,7 +68,7 @@ public class KTOCTRBUtils {
 	public static Float LabourRate_MultipleEqup;
 	public static Float LabourRatetoChange_MultipleEqup;
 	public static String FreezePrintedVersion="No";
-	public static String NewVersionProduct="No"; //No
+	public static String NewVersionProduct="Yes"; //No
 	public static String SaveandClose="Yes";
 	public static String ProductRelease;
 	public static String customerid;
@@ -196,6 +199,9 @@ public class KTOCTRBUtils {
 					discount  = excelReader.GetData("France").get("Discount");
 					read_tenderPrice  = excelReader.GetData("France").get("TenderPrice");
 				}
+				isFirstMaintenancetoEdit = excelReader.GetData("France").get("isFirstMaintenancetoEdit");
+				isFirstMaintenancetoEdittoChange1 = excelReader.GetData("France").get("isFirstMaintenancetoEdittoChange_1");
+				isFirstMaintenancetoEdittoChange2 = excelReader.GetData("France").get("isFirstMaintenancetoEdittoChange_2");
 				regionalDiscount = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount"));
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("France").get("ITEfactor"));
@@ -233,6 +239,9 @@ public class KTOCTRBUtils {
 					discount  = excelReader.GetData("Australia").get("Discount");
 					read_tenderPrice  = excelReader.GetData("Australia").get("TenderPrice");
 				}
+				isFirstMaintenancetoEdit = excelReader.GetData("Australia").get("isFirstMaintenancetoEdit");
+				isFirstMaintenancetoEdittoChange1 = excelReader.GetData("Australia").get("isFirstMaintenancetoEdittoChange_1");
+				isFirstMaintenancetoEdittoChange2 = excelReader.GetData("Australia").get("isFirstMaintenancetoEdittoChange_2");
 				regionalDiscount = Float.valueOf(excelReader.GetData("Australia").get("RegionalDiscount"));
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Australia").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Australia").get("ITEfactor"));
@@ -268,6 +277,9 @@ public class KTOCTRBUtils {
 					discount  = excelReader.GetData("Canada").get("Discount");
 					read_tenderPrice  = excelReader.GetData("Canada").get("TenderPrice");
 				}
+				isFirstMaintenancetoEdit = excelReader.GetData("Canada").get("isFirstMaintenancetoEdit");
+				isFirstMaintenancetoEdittoChange1 = excelReader.GetData("Canada").get("isFirstMaintenancetoEdittoChange_1");
+				isFirstMaintenancetoEdittoChange2 = excelReader.GetData("Canada").get("isFirstMaintenancetoEdittoChange_2");
 				regionalDiscount = Float.valueOf(excelReader.GetData("Canada").get("RegionalDiscount"));
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Canada").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Canada").get("ITEfactor"));

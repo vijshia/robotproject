@@ -21,23 +21,23 @@ Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.
     Get Tender Number
 4.Validate TenderPrice Without FirstMaintenance for Elevator
     Pricing Icon Click
-    Check Tender Price After Discount Update    10    0
+    Check Tender Price After Discount Update    5    0
 5.Check TenderPrice Without FirstMaintenance for Elevator    
     Get Target Price
 6.Validate Discount Without FirstMaintenance for Elevator    
-    Verify Discount By Changing The Tender Price    3600    0
+    Verify Discount By Changing The Tender Price    2900    0
 7.Check Discount Without FirstMaintenance for Elevator        
     Get Target Price
 8.Validate TenderPrice With FirstMaintenance for Elevator
-    Check Tender Price After Discount Update    11    3
+    Check Tender Price After Discount Update    7    3
 9.Check TenderPrice With FirstMaintenance for Elevator
     Get Target Price
 10.Validate Discount With FirstMaintenance for Elevator
-    Verify Discount By Changing The Tender Price    4100    4
+    Verify Discount By Changing The Tender Price    3200    6
 11.Check Discount With FirstMaintenance for Elevator
     Get Target Price
 12.Change and Validate Discount With FirstMaintenance for Elevator    
-    Verify Discount By Changing The Tender Price    4050    3
+    Verify Discount By Changing The Tender Price    3800    3
 13.Check Changed Discount With FirstMaintenance for Elevator    
     Get Target Price
 14.Check Regional Factor At SalesOffice Level for Elevator

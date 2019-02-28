@@ -133,7 +133,7 @@ public class Keywords extends KTOCTRBUtils {
 			}
 		} catch (Exception e) {
 //		e.printStackTrace();
-			Assert.fail("selectMultipleEquipment Failed due to: " + e);
+		Assert.fail("selectMultipleEquipment Failed due to: " + e);
 		}
 	}
 
@@ -1152,9 +1152,9 @@ public class Keywords extends KTOCTRBUtils {
 										 * getvalue.replace(".", ""); }
 										 */
 										getvalue = getvalue.replaceAll("[€ % h $]", "");
-										if (frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+										if (frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("CANADA")
 											getvalue = getvalue.replace(",", ".");
-										} else if (frontlineAssigned.equals("AUSTRALIA")) {
+										} else if (frontlineAssigned.equals("AUSTRALIA") || frontlineAssigned.equals("CANADA")) {
 											getvalue = getvalue.replace(",", "");
 										}
 										getvalue = removingDot(getvalue);
@@ -1167,10 +1167,10 @@ public class Keywords extends KTOCTRBUtils {
 							} else if (!Element3.getAttribute("value").isEmpty()
 									&& Element3.getAttribute("value") != null) {
 								String getvalue = Element3.getAttribute("value").replaceAll("[€ % h $]", "");
-								if (frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+								if (frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("CANADA")
 									getvalue = getvalue.replace(".", "");
 									getvalue = getvalue.replace(",", ".");
-								} else if (frontlineAssigned.equals("AUSTRALIA")) {
+								} else if (frontlineAssigned.equals("AUSTRALIA") || frontlineAssigned.equals("CANADA")) {
 									getvalue = getvalue.replace(",", "");
 								}
 //							System.out.println("3**"+Element3.getAttribute("id")+"="+getvalue);
@@ -1241,10 +1241,16 @@ public class Keywords extends KTOCTRBUtils {
 							+ "_Regional discount on component");
 			Float read_TargetPrice2 = hm_RegionalDiscountDataFullGrid
 					.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2) + "_Target Price");
+			Float read_SalesOfficeMultiplier2 = hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2) + "_Sales Office Multiplier");
+			/*Float read_FundingSectorDiscount2 = hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2) + "_Funding Sector Discount");
+			Float read_MarketSegmentDiscount2 = hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2) + "_Market Segment Discount");
+			Float read_BillingPlanDiscount2 = hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2) + "_Billing Plan Discount");
+			Float read_SellingValuePackageDiscount2 = hm_RegionalDiscountDataFullGrid.get(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2) + "_Selling Value Package Discount");*/
 //			System.out.println("read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Target Price (Base)="+read_TargetPriceBase2+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Regional discount on component (%)="+read_Regionaldiscountoncomponent_percentage2+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Regional discount on component="+read_Regionaldiscountoncomponent2+" / read_"+ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size()-2)+"_Target Price="+read_TargetPrice2);
 			Float calculated_Regionaldiscountoncomponent_percentage2 = (read_Regionaldiscountoncomponent2
 					/ read_TargetPriceBase2) * 100;
 			Float calculated_TargetPrice2 = read_TargetPriceBase2 - read_Regionaldiscountoncomponent2;
+			calculated_TargetPrice2 = calculated_TargetPrice2 + (-read_SalesOfficeMultiplier2); //+ (-read_FundingSectorDiscount2) + (-read_MarketSegmentDiscount2) + (-read_BillingPlanDiscount2) + (-read_SellingValuePackageDiscount2)
 			Float NaN = 0f/0f; //NotaNumber
 			if (calculated_Regionaldiscountoncomponent_percentage2.equals(NaN)) {
 				calculated_Regionaldiscountoncomponent_percentage2 = 0f;
@@ -1260,6 +1266,11 @@ public class Keywords extends KTOCTRBUtils {
 			System.out.println(
 					"*** is calculated_Regionaldiscountoncomponent % vs read_Regionaldiscountoncomponent % equal = "
 							+ isRegionaldiscountoncomponentpercentage_calculated);
+			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Sales Office Multiplier =" + roundoff.format(read_SalesOfficeMultiplier2));
+			/*System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Funding Sector Discount =" + roundoff.format(read_FundingSectorDiscount2));
+			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Market Segment Discount =" + roundoff.format(read_MarketSegmentDiscount2));
+			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Billing Plan Discount =" + roundoff.format(read_BillingPlanDiscount2));
+			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Selling Value Package Discount =" + roundoff.format(read_SellingValuePackageDiscount2));*/
 			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)
 					+ "_calculated_TargetPrice =" + roundoff.format(calculated_TargetPrice2) + " / read_"
 					+ ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2) + "_Target Price="
@@ -1557,10 +1568,10 @@ public class Keywords extends KTOCTRBUtils {
 						&& getAttribute_showtotalcostFirstRow != null) {
 //			System.out.println("getAttribute:"+Element_showtotalcostFirstRow.getAttribute("value"));
 					String getvalue = null;
-					if (frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+					if (frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("CANADA")
 						getvalue = getAttribute_showtotalcostFirstRow.replaceAll("[€ % h .]", "");
 						getvalue = getvalue.replace(",", ".");
-					} else if (frontlineAssigned.equals("AUSTRALIA")) {
+					} else if (frontlineAssigned.equals("AUSTRALIA") || frontlineAssigned.equals("CANADA")) {
 						getvalue = getAttribute_showtotalcostFirstRow.replaceAll("[€ % h $]", "");
 						getvalue = getvalue.replace(",", "");
 					}
@@ -2014,11 +2025,11 @@ public class Keywords extends KTOCTRBUtils {
 									&& Element_showtotalcostRowHeader4.getAttribute("value") != null) {
 //				System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getAttribute:"+Element_showtotalcostRowHeader4.getAttribute("value"));
 								String getvalue = null;
-								if (frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+								if (frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("CANADA")
 									getvalue = Element_showtotalcostRowHeader4.getAttribute("value")
 											.replaceAll("[€ % h .]", "");
 									getvalue = getvalue.replace(",", ".");
-								} else if (frontlineAssigned.equals("AUSTRALIA")) {
+								} else if (frontlineAssigned.equals("AUSTRALIA") || frontlineAssigned.equals("CANADA")) {
 									getvalue = Element_showtotalcostRowHeader4.getAttribute("value")
 											.replaceAll("[€ % h $]", "");
 									getvalue = getvalue.replace(",", "");
@@ -2787,7 +2798,6 @@ public class Keywords extends KTOCTRBUtils {
 			System.out.println(
 					StageProbability_Description + " entered in Description field in stage / Probability window");
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-
 			clickonButton(dd_stage);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(value_stage);
@@ -3269,6 +3279,7 @@ public class Keywords extends KTOCTRBUtils {
 			scrollto_TenderPrice_T.sendKeys((Keys.DELETE));
 			scrollto_TenderPrice_T.sendKeys(tenderPrice);
 			System.out.println("TenderPrice entered as: " + tenderPrice);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_tenderPriceOK);
 			istenderPrice = true;
 		} catch (Exception e) {
@@ -3280,7 +3291,6 @@ public class Keywords extends KTOCTRBUtils {
 	/**
 	 ** Reuse method, it will get first row value and check TenderPrice & Discount in
 	 * PriceOverview tab
-	 * 
 	 * @author CON_SVIJAY02
 	 */
 	public void checkingTargetPrice() throws Exception {
@@ -3288,8 +3298,10 @@ public class Keywords extends KTOCTRBUtils {
 			Float arrary[] = new Float[2];
 			Float TargetPrice, Firstmaintenance = null, Discount = null;
 			waitForVisibilityOfElementLocated(grid_discount);
-			waitForVisibilityOfElementLocated(
-					By.xpath("//*[@data-ctcwgtname='FreeMaintenancePeriod' and @value='" + firstMaintenance + "']"));
+			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='FreeMaintenancePeriod' and @value='" + firstMaintenance + "']"));
+			if (!firstMaintenance.equals("0") && gettingWebElement(By.xpath("//*[@data-ctcwgtname='FreeMaintenanceBase']")).getAttribute("value").equals("0")) {
+				enteringFirstMaintenanceValue();
+			}
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(grid_allValues));
 			List<WebElement> Elements_PriceOverview = gettingWebElementsfromList(grid_allValues);
 			for (WebElement Element : Elements_PriceOverview) {
@@ -3302,10 +3314,10 @@ public class Keywords extends KTOCTRBUtils {
 						if (!getText_Element.contains("Project")) {
 							if (!getText_Element.contains("%")) {
 								String element_readTenderPrice = getText_Element.replaceAll("[€  $]", "");
-								if (frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+								if (frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("CANADA")
 									element_readTenderPrice = element_readTenderPrice.replace(".", "");
 									element_readTenderPrice = element_readTenderPrice.replace(",", ".");
-								} else if (frontlineAssigned.equals("AUSTRALIA")) {
+								} else if (frontlineAssigned.equals("AUSTRALIA") || frontlineAssigned.equals("CANADA")) {
 									element_readTenderPrice = element_readTenderPrice.replace(",", "");
 								}
 								TenderPrice = Float.valueOf(element_readTenderPrice);
@@ -3319,10 +3331,10 @@ public class Keywords extends KTOCTRBUtils {
 					} else {
 //	        	System.out.println("****Attribute==>"+Element.getAttribute("value")+"/id==>"+Element.getAttribute("id"));
 						String element_read = getAttribute_Element.replaceAll("[€  $]", "");
-						if (frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+						if (frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("CANADA")
 							element_read = element_read.replace(".", "");
 							element_read = element_read.replace(",", ".");
-						} else if (frontlineAssigned.equals("AUSTRALIA")) {
+						} else if (frontlineAssigned.equals("AUSTRALIA") || frontlineAssigned.equals("CANADA")) {
 							element_read = element_read.replace(",", "");
 						}
 						Float converted = Float.valueOf(element_read);
@@ -3441,24 +3453,30 @@ public class Keywords extends KTOCTRBUtils {
 					 * TenderPriceFinal=TenderPriceFinal-difference;
 					 * System.out.println(TenderPriceFinal); } }
 					 */
-
-					if (roundoff.format(difference).equals(roundoff.format(-.00f))
-							|| roundoff.format(difference).equals(roundoff.format(-.01f))) {
+//				System.out.println(roundoff.format(difference)+"=="+difference+"=="+TenderPriceFinal);
+					if (roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
 						TenderPriceFinal = TenderPriceFinal + 0.01f;
 						condition = "+0.01";
-//						System.out.println(roundoff.format(TenderPriceFinal));
+//				System.out.println(roundoff.format(TenderPriceFinal));
 					} else if (roundoff.format(difference).equals(roundoff.format(-.02f))) {
 						TenderPriceFinal = TenderPriceFinal + 0.02f;
 						condition = "+0.02";
-//						System.out.println(roundoff.format(TenderPriceFinal));
+//				System.out.println(roundoff.format(TenderPriceFinal));
 					} else {
+						if (roundoff.format(difference).equals(roundoff.format(.00f))) {
+							TenderPriceFinal = TenderPriceFinal - difference;
+							condition = "-"+difference;
+//				System.out.println("HI="+TenderPriceFinal);
+						} else {
 						TenderPriceFinal = TenderPriceFinal - 0.01f;
+//				System.out.println(roundoff.format(TenderPriceFinal));
 						if (roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) {
 							condition = "-0.01";
 						} else {
 							TenderPriceFinal = TenderPriceFinal - 0.01f;
 							condition = "-0.02";
 						}
+					}
 					}
 				}
 				System.out.println("*** " + condition
@@ -3472,6 +3490,45 @@ public class Keywords extends KTOCTRBUtils {
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Checking TargetPrice Failed due to: " + e);
+		}
+	}
+	
+	/**
+	 ** Reuse method, it will click on pencile to edit FirstMaintenance and enter FirstMaintenance price if FirstMaintenance price is zero PriceOverview tab
+	 * @author CON_SVIJAY02
+	 */
+	public int countforenteringFirstMaintenanceValue = 1;
+	public void enteringFirstMaintenanceValue() throws Exception {
+		try {
+			By btn_FirstMaintenancePencil = By.xpath("//*[@data-ctcname='FirstMaintenance_Pencil_I']");
+			By txt_editFirstMaintenancePrice  = By.xpath("//*[@data-ctcwgtname='TMP_FreeMaintenanceBase']");
+//			By txt_editFirstMaintenanceDuration  = By.xpath("//*[@data-ctcwgtname='TMP_FreeMaintenancePeriod']");
+			By btn_ok  = By.xpath("//*[@data-ctcwgtname='pbOK']");
+			wait.until(ExpectedConditions.visibilityOf(gettingWebElement(btn_FirstMaintenancePencil)));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(btn_FirstMaintenancePencil);
+			wait.until(ExpectedConditions.visibilityOf(gettingWebElement(txt_editFirstMaintenancePrice)));
+			/*WebElement element_editFirstMaintenancePrice = gettingWebElement(txt_editFirstMaintenancePrice);
+			element_editFirstMaintenancePrice.clear();
+//			wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(gettingWebElement(txt_editFirstMaintenancePrice), "value")));
+			waitForElementToBeClickable(txt_editFirstMaintenancePrice);
+			clickonButton(txt_editFirstMaintenancePrice);*/
+			waitForElementToBeClickable(txt_editFirstMaintenancePrice);
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			enteringValues(txt_editFirstMaintenancePrice, isFirstMaintenancetoEdit);
+			wait.until(ExpectedConditions.visibilityOf(gettingWebElement(btn_ok)));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(btn_ok);
+			waitForVisibilityOfElementLocated(By.xpath("//*[@data-ctcwgtname='FreeMaintenanceBase' and @value='" + isFirstMaintenancetoEdit + "']"));
+			if(countforenteringFirstMaintenanceValue == 1) {
+				isFirstMaintenancetoEdit = isFirstMaintenancetoEdittoChange1;
+			} else if(countforenteringFirstMaintenanceValue == 2) {
+				isFirstMaintenancetoEdit = isFirstMaintenancetoEdittoChange2;
+			}
+			countforenteringFirstMaintenanceValue++;
+		} catch (Exception e) {
+//			e.printStackTrace();
+			Assert.fail("Entering FirstMaintenance Value Failed due to: " + e);
 		}
 	}
 
@@ -3629,11 +3686,10 @@ public class Keywords extends KTOCTRBUtils {
 											String element_readTenderPrice = Element2.getText().replaceAll("[€  $]",
 													"");
 //					System.out.println("element_readTenderPrice:"+Element2.getAttribute("id")+"/"+Element2.getText());
-											if (frontlineAssigned.equals("FRANCE")
-													|| frontlineAssigned.equals("CANADA")) {
+											if (frontlineAssigned.equals("FRANCE")) { //|| frontlineAssigned.equals("CANADA")
 												element_readTenderPrice = element_readTenderPrice.replace(".", "");
 												element_readTenderPrice = element_readTenderPrice.replace(",", ".");
-											} else if (frontlineAssigned.equals("AUSTRALIA")) {
+											} else if (frontlineAssigned.equals("AUSTRALIA") || frontlineAssigned.equals("CANADA")) {
 												element_readTenderPrice = element_readTenderPrice.replace(",", "");
 											}
 											TenderPrice = Float.valueOf(element_readTenderPrice);
@@ -3653,10 +3709,10 @@ public class Keywords extends KTOCTRBUtils {
 								} else {
 //				    System.out.println("****Attribute==>"+Element2.getAttribute("value")+"/id==>"+Element2.getAttribute("id"));
 									String element_read = Element2.getAttribute("value").replaceAll("[€  $]", "");
-									if (frontlineAssigned.equals("FRANCE") || frontlineAssigned.equals("CANADA")) {
+									if (frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("CANADA")
 										element_read = element_read.replace(".", "");
 										element_read = element_read.replace(",", ".");
-									} else if (frontlineAssigned.equals("AUSTRALIA")) {
+									} else if (frontlineAssigned.equals("AUSTRALIA") || frontlineAssigned.equals("CANADA")) {
 										element_read = element_read.replace(",", "");
 									}
 									Float converted = Float.valueOf(element_read);
