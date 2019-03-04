@@ -3512,7 +3512,7 @@ public class Keywords extends KTOCTRBUtils {
 			waitForElementToBeClickable(txt_editFirstMaintenancePrice);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 //			enteringValues(txt_editFirstMaintenancePrice, isFirstMaintenancetoEdit);
-			element_editFirstMaintenancePrice.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+			element_editFirstMaintenancePrice.sendKeys(Keys.CONTROL, "a");
 			element_editFirstMaintenancePrice.sendKeys(isFirstMaintenancetoEdit);
 			System.out.println("First maintenance 'Price per Equipment' entered: "+isFirstMaintenancetoEdit);
 			wait.until(ExpectedConditions.visibilityOf(gettingWebElement(btn_ok)));
@@ -3826,7 +3826,7 @@ public class Keywords extends KTOCTRBUtils {
 		//				System.out.println("a1="+a[1]);
 						String b[] = a[1].split("Discount :");
 						String projectPricingString = null;
-						if (frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
+						if (frontlineAssigned.equals("FRANCE")) {
 							projectPricingString = b[0].replaceAll("[€ . $]", "");
 							projectPricingString = projectPricingString.replaceAll(",", ".");
 						} else {
@@ -3842,7 +3842,7 @@ public class Keywords extends KTOCTRBUtils {
 						System.out.println("*** Discount = "+discount);
 						String d[] = c[1].split("Main details of project:");
 						String targetPriceString = null;
-						if (frontlineAssigned.equals("CANADA") || frontlineAssigned.equals("FRANCE")) {
+						if (frontlineAssigned.equals("FRANCE")) {
 							targetPriceString = d[0].replaceAll("[€ .]", "");
 							targetPriceString = targetPriceString.replaceAll(",", ".");
 						} else {
