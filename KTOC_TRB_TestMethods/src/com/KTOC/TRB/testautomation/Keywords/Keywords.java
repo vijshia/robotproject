@@ -3508,14 +3508,13 @@ public class Keywords extends KTOCTRBUtils {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_FirstMaintenancePencil);
 			wait.until(ExpectedConditions.visibilityOf(gettingWebElement(txt_editFirstMaintenancePrice)));
-			/*WebElement element_editFirstMaintenancePrice = gettingWebElement(txt_editFirstMaintenancePrice);
-			element_editFirstMaintenancePrice.clear();
-//			wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(gettingWebElement(txt_editFirstMaintenancePrice), "value")));
-			waitForElementToBeClickable(txt_editFirstMaintenancePrice);
-			clickonButton(txt_editFirstMaintenancePrice);*/
+			WebElement element_editFirstMaintenancePrice = gettingWebElement(txt_editFirstMaintenancePrice);
 			waitForElementToBeClickable(txt_editFirstMaintenancePrice);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			enteringValues(txt_editFirstMaintenancePrice, isFirstMaintenancetoEdit);
+//			enteringValues(txt_editFirstMaintenancePrice, isFirstMaintenancetoEdit);
+			element_editFirstMaintenancePrice.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+			element_editFirstMaintenancePrice.sendKeys(isFirstMaintenancetoEdit);
+			System.out.println("First maintenance 'Price per Equipment' entered: "+isFirstMaintenancetoEdit);
 			wait.until(ExpectedConditions.visibilityOf(gettingWebElement(btn_ok)));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_ok);
