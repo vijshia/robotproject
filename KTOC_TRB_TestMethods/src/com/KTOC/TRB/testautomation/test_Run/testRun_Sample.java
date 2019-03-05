@@ -33,6 +33,7 @@ public class testRun_Sample {
 	Keywords.getTenderNumber();
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
+//	Keywords.getMaintenanceDatafromPage();
 	
 	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");	
 //	Keywords.checkingTargetPriceFullGrid(); //fullGrid
@@ -78,6 +79,7 @@ public class testRun_Sample {
 	Keywords.getTenderNumber();
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
+//	Keywords.getMaintenanceDatafromPage();
 	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");
 	Keywords.GetTargetPrice();
 	Keywords.VerifyDiscountByChangingTheTenderPrice("23000", "0");

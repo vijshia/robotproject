@@ -975,7 +975,9 @@ public class Keywords extends KTOCTRBUtils {
 			 * read_TenderPrice=hm_data.get("TenderPrice"); Float
 			 * read_FirstMaintenance=hm_data.get("FirstMaintenance");
 			 */
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------			
 			regionalDiscount = hm_RegionalDiscountforSalesOfficeData.get(selectedSalesOffice);
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
 			Float final_Regionaldiscountoncomponent = read_TargetPrice_Base * (regionalDiscount / 100);
 			final_Regionaldiscountoncomponent = Float.valueOf(roundoff.format(final_Regionaldiscountoncomponent));
 			Float final_TargetPrice = read_TargetPrice_Base - final_Regionaldiscountoncomponent;
@@ -1385,7 +1387,6 @@ public class Keywords extends KTOCTRBUtils {
 	/**
 	 ** Reuse method, it will click Detail Breakdown Tab and checks ITE factor,
 	 * Labour rate, Reference hours (1st rowdata)
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -1627,6 +1628,7 @@ public class Keywords extends KTOCTRBUtils {
 			 * System.out.println("is_showtotal_LaborCosts "+check_showtotal_Labourrate+"/"+showtotal_Labourrate); 
 			 * System.out.println("is_showtotal_Referencehours "+check_showtotal_Referencehours+"/"+showtotal_Referencehours);
 			 */
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
 			if (!isMultipleEquipment) {
 				check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get(selectedSalesOffice);
 				LabourRate = hm_LabourRateforSalesOfficeData.get(selectedSalesOffice);
@@ -1634,6 +1636,7 @@ public class Keywords extends KTOCTRBUtils {
 				check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get("MultipleEqup_" + selectedSalesOffice);
 				LabourRate = hm_LabourRateforSalesOfficeData.get("MultipleEqup_" + selectedSalesOffice);
 			}
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
 			Boolean is_showtotal_ITEfactor = roundoff.format(check_showtotal_ITEfactor)
 					.equals(roundoff.format(showtotal_ITEfactor));
 			Boolean is_showtotal_Referencehours = roundoff.format(check_showtotal_Referencehours)
@@ -2620,6 +2623,7 @@ public class Keywords extends KTOCTRBUtils {
 			selectProjectTree();
 			checkSalesOfficeisSelected();
 			pricingIconClick();
+//			getMaintenanceDatafromPage();
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: " + e);
@@ -2641,6 +2645,7 @@ public class Keywords extends KTOCTRBUtils {
 			selectProjectTree();
 			checkSalesOfficeisSelected();
 			pricingIconClick();
+//			getMaintenanceDatafromPage();
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Goto Configuration Page and Change SalesOffice Failed due to: " + e);
@@ -2801,9 +2806,9 @@ public class Keywords extends KTOCTRBUtils {
 			clickonButton(dd_stage);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(value_stage);
-			WebElement element_enderVersionProbability = gettingWebElement(txt_probability);
+/*			WebElement element_enderVersionProbability = gettingWebElement(txt_probability);
 			element_enderVersionProbability.clear();
-			element_enderVersionProbability.sendKeys(StageProbability_probability);
+			element_enderVersionProbability.sendKeys(StageProbability_probability);*/
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_stageProbability);
 
@@ -3511,7 +3516,7 @@ public class Keywords extends KTOCTRBUtils {
 			WebElement element_editFirstMaintenancePrice = gettingWebElement(txt_editFirstMaintenancePrice);
 			waitForElementToBeClickable(txt_editFirstMaintenancePrice);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-//			enteringValues(txt_editFirstMaintenancePrice, isFirstMaintenancetoEdit);
+//			wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(element_editFirstMaintenancePrice, "value")));			
 			element_editFirstMaintenancePrice.sendKeys(Keys.CONTROL, "a");
 			element_editFirstMaintenancePrice.sendKeys(isFirstMaintenancetoEdit);
 			System.out.println("First maintenance 'Price per Equipment' entered: "+isFirstMaintenancetoEdit);
@@ -3630,9 +3635,7 @@ public class Keywords extends KTOCTRBUtils {
 	}
 
 	/**
-	 ** Reuse method, it will get all row value and check TenderPrice & Discount in
-	 * PriceOverview tab
-	 * 
+	 ** Reuse method, it will get all row value and check TenderPrice & Discount in PriceOverview tab
 	 * @throws Exception
 	 * @author CON_SVIJAY02
 	 */
@@ -3808,6 +3811,11 @@ public class Keywords extends KTOCTRBUtils {
 		}
 	}
 	
+	/**
+	 ** Reuse method, it will get Project Pricing, Discount, Target Price & Billing Plan data from Maximum DiscountLimit Exceeded pop-up
+	 * @throws Exception
+	 * @author CON_SVIJAY02
+	 */
 	public void maximumDiscountLimitExceedPopup() {
 		try {
 			By maximumDiscountorDiscountPencil = By.xpath("//*[contains(text(),'Maximum discount limit exceeded.') or text()='" + discountformaximumDiscountLimitExceeded + ".00 %']");
@@ -3872,6 +3880,46 @@ public class Keywords extends KTOCTRBUtils {
 				Assert.fail("Maximum Discount Limit Exceed Failed");
 		}
 	}
+	
+	/**
+	 ** Reuse method, it will get Project Pricing, Discount, Target Price & Billing Plan data from Maximum DiscountLimit Exceeded pop-up
+	 * @throws Exception
+	 * @author CON_SVIJAY02
+	 */
+	public void getMaintenanceDatafromPage() {
+		try {
+
+//-----------------------------------------Comment in readTestData-----------------------------------------Comment for getMaintenanceDatafromPage
+		/*	hm_ITEfactorforSalesOfficeData.put(salesoffice, check_showtotal_ITEfactor);
+			hm_ITEfactorforSalesOfficeData.put(changeSalesOffice, check_showtotal_ITEfactortoChange);
+			hm_ITEfactorforSalesOfficeData.put("MultipleEqup_"+salesoffice, check_showtotal_ITEfactor_MultipleEqup);
+			hm_ITEfactorforSalesOfficeData.put("MultipleEqup_"+changeSalesOffice, check_showtotal_ITEfactortoChange_MultipleEqup);
+			hm_RegionalDiscountforSalesOfficeData.put(salesoffice, regionalDiscount);
+			hm_RegionalDiscountforSalesOfficeData.put(changeSalesOffice, regionalDiscounttoChange);	
+			hm_LabourRateforSalesOfficeData.put(salesoffice, LabourRate);
+			hm_LabourRateforSalesOfficeData.put(changeSalesOffice, LabourRatetoChange);
+			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+salesoffice, LabourRate_MultipleEqup);
+			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+changeSalesOffice, LabourRatetoChange_MultipleEqup);
+//-----------------------------------------Comment in Keywords-----------------------------------------
+			line 978 = regionalDiscount = hm_RegionalDiscountforSalesOfficeData.get(selectedSalesOffice);
+			
+			line 1629 = if (!isMultipleEquipment) {
+							check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get(selectedSalesOffice);
+							LabourRate = hm_LabourRateforSalesOfficeData.get(selectedSalesOffice);
+						} else {
+							check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get("MultipleEqup_" + selectedSalesOffice);
+							LabourRate = hm_LabourRateforSalesOfficeData.get("MultipleEqup_" + selectedSalesOffice);
+			line 1635 = } */
+//-----------------------------------------------------------------------------------------------------
+			regionalDiscount = 0f;
+			check_showtotal_ITEfactor = 0f;
+			LabourRate = 0f;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+//			Assert.fail("Get MaintenanceData from Page Failed");
+	}
+}
 
 	public static String GetAdditionalDiscountGridTargetPriceBaseValues(String TreeValue) {
 		int Linevalue = 0;

@@ -202,6 +202,7 @@ public class KTOCTRBUtils {
 				isFirstMaintenancetoEdit = excelReader.GetData("France").get("isFirstMaintenancetoEdit");
 				isFirstMaintenancetoEdittoChange1 = excelReader.GetData("France").get("isFirstMaintenancetoEdittoChange_1");
 				isFirstMaintenancetoEdittoChange2 = excelReader.GetData("France").get("isFirstMaintenancetoEdittoChange_2");
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------				
 				regionalDiscount = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount"));
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("France").get("ITEfactor"));
@@ -212,6 +213,7 @@ public class KTOCTRBUtils {
 				LabourRatetoChange = Float.valueOf(excelReader.GetData("France").get("changeLabourRate"));
 				LabourRate_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("LabourRate_MultipleEqup"));
 				LabourRatetoChange_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("changeLabourRate__MultipleEqup"));
+//----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------				
 				StageProbability_Stage = excelReader.GetData("France").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("France").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("France").get("StageProbabilityProbability");
@@ -242,12 +244,14 @@ public class KTOCTRBUtils {
 				isFirstMaintenancetoEdit = excelReader.GetData("Australia").get("isFirstMaintenancetoEdit");
 				isFirstMaintenancetoEdittoChange1 = excelReader.GetData("Australia").get("isFirstMaintenancetoEdittoChange_1");
 				isFirstMaintenancetoEdittoChange2 = excelReader.GetData("Australia").get("isFirstMaintenancetoEdittoChange_2");
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
 				regionalDiscount = Float.valueOf(excelReader.GetData("Australia").get("RegionalDiscount"));
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Australia").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Australia").get("ITEfactor"));
 				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("Australia").get("changeITEfactor"));
 				LabourRate = Float.valueOf(excelReader.GetData("Australia").get("LabourRate"));
 				LabourRatetoChange = Float.valueOf(excelReader.GetData("Australia").get("changeLabourRate"));
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
 				StageProbability_Stage = excelReader.GetData("Australia").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("Australia").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("Australia").get("StageProbabilityProbability");
@@ -280,18 +284,21 @@ public class KTOCTRBUtils {
 				isFirstMaintenancetoEdit = excelReader.GetData("Canada").get("isFirstMaintenancetoEdit");
 				isFirstMaintenancetoEdittoChange1 = excelReader.GetData("Canada").get("isFirstMaintenancetoEdittoChange_1");
 				isFirstMaintenancetoEdittoChange2 = excelReader.GetData("Canada").get("isFirstMaintenancetoEdittoChange_2");
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
 				regionalDiscount = Float.valueOf(excelReader.GetData("Canada").get("RegionalDiscount"));
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("Canada").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("Canada").get("ITEfactor"));
 				check_showtotal_ITEfactortoChange = Float.valueOf(excelReader.GetData("Canada").get("changeITEfactor"));
 				LabourRate = Float.valueOf(excelReader.GetData("Canada").get("LabourRate"));
 				LabourRatetoChange = Float.valueOf(excelReader.GetData("Canada").get("changeLabourRate"));
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------				
 				StageProbability_Stage = excelReader.GetData("Canada").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("Canada").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("Canada").get("StageProbabilityProbability");
 				frontlineAssigned=frontline;
 				break;
 			}
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------			
 			hm_ITEfactorforSalesOfficeData.put(salesoffice, check_showtotal_ITEfactor);
 			hm_ITEfactorforSalesOfficeData.put(changeSalesOffice, check_showtotal_ITEfactortoChange);
 			hm_ITEfactorforSalesOfficeData.put("MultipleEqup_"+salesoffice, check_showtotal_ITEfactor_MultipleEqup);
@@ -302,6 +309,7 @@ public class KTOCTRBUtils {
 			hm_LabourRateforSalesOfficeData.put(changeSalesOffice, LabourRatetoChange);
 			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+salesoffice, LabourRate_MultipleEqup);
 			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+changeSalesOffice, LabourRatetoChange_MultipleEqup);
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------			
 			ls_allEquipmentIDs.add(equipmentid);
 			ls_allEquipmentIDs.add(equipmentid_2);
 		} catch (Exception e) {
