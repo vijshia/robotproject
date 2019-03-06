@@ -31,10 +31,9 @@ public class testRun_Sample {
 	Keywords.selectTemplateToBeUploaded();
 	Keywords.verifyTenderConsistency();
 	Keywords.getTenderNumber();
+//	Keywords.getMaintenanceDatafromPage();
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
-//	Keywords.getMaintenanceDatafromPage();
-	
 	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");	
 //	Keywords.checkingTargetPriceFullGrid(); //fullGrid
 	Keywords.GetTargetPrice();

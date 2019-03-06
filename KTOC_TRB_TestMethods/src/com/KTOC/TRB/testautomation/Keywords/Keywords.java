@@ -408,6 +408,24 @@ public class Keywords extends KTOCTRBUtils {
 			Assert.fail("Additional fields in ProjectOverview for Canada Failed due to: " + e);
 		}
 	}
+	
+	/**
+	 ** Reuse method, it will select Equipment in projecttree
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void selectEquipmentTree() throws Exception {
+		try {
+			By tree_equipmentID = By.xpath("//*[text()='" + equipmentid + "']");
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			WebElement element_equipment = gettingWebElement(tree_equipmentID);
+			click_Javascript(element_equipment);
+//			System.out.println("Equipment clicked back");
+		} catch (Exception e) {
+//			e.printStackTrace();
+			Assert.fail("Select ProjectTree Failed due to: " + e);
+		}
+	}
 
 	/**
 	 ** Reuse method, it will select Supervisor
@@ -3861,7 +3879,7 @@ public class Keywords extends KTOCTRBUtils {
 						System.out.println("*** Target Price = "+targetPrice);
 						String e[] = d[1].split("Billing Plan");
 						String billingPlan = e[1].replaceAll("[ :]", "");
-						billingPlan = billingPlan.trim();
+//						billingPlan = billingPlan.trim();
 						System.out.println("*** Billing Plan = "+billingPlan);
 					}
 		//			waitForinvisibilityOfElementLocated(elementtoInvisible);			
@@ -3888,7 +3906,26 @@ public class Keywords extends KTOCTRBUtils {
 	 */
 	public void getMaintenanceDatafromPage() {
 		try {
-
+			selectEquipmentTree();
+			By icon_Magic = By.xpath("//*[@data-ctcwgtname='IcInvisible']");
+			By element_Maintenance = By.xpath("//*[@data-ctcwgtname='ParamAllString']");
+			By element_Close = By.xpath("//*[@data-ctcwgtname='close']");
+			waitForVisibilityOfElementLocated(icon_Magic);
+			scrollIntoView_Javascript(gettingWebElement(icon_Magic));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(icon_Magic);
+			waitForVisibilityOfElementLocated(element_Maintenance);
+			String data_Maintenance = gettingWebElement(element_Maintenance).getAttribute("value");
+			System.out.println("----------------------");
+			/*String convertedvalueOf_MaintenanceData = String.valueOf(data_Maintenance);
+			System.out.println(convertedvalueOf_MaintenanceData);*/
+			String convertedtoString_MaintenanceData = data_Maintenance.toString();
+			String [] split_MaintenanceData = convertedtoString_MaintenanceData.split("Country>");
+//			System.out.println(split_MaintenanceData[1]);
+			String [] split_MaintenanceData1 = split_MaintenanceData[1].split("<");
+			System.out.println(split_MaintenanceData1[0]);
+			System.out.println("----------------------");
+			clickonButton(element_Close);
 //-----------------------------------------Comment in readTestData-----------------------------------------Comment for getMaintenanceDatafromPage
 		/*	hm_ITEfactorforSalesOfficeData.put(salesoffice, check_showtotal_ITEfactor);
 			hm_ITEfactorforSalesOfficeData.put(changeSalesOffice, check_showtotal_ITEfactortoChange);

@@ -46,10 +46,10 @@ Suite Setup    Launch Browser    australia    \\TestData\\KTOCTRB_AutomationTest
     Goto Configuration Pageand Change The Sales Office
     Verify Regional Discount Displayed Correctly
     Verify Target Price Displayed Correctly    
-16 Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator
+16. Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator
     Goto Configuration Pageand Change The Primary Sales Office    australia    \\TestData\\KTOCTRB_AutomationTestData.xlsx
     Validate Detail Breakdown Tab
-17 Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator
+17. Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator
     Goto Configuration Pageand Change The Sales Office
     Validate Detail Breakdown Tab
 18.Check Cost Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator
