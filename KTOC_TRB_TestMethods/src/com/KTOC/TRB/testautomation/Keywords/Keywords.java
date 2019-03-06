@@ -3884,10 +3884,10 @@ public class Keywords extends KTOCTRBUtils {
 					}
 		//			waitForinvisibilityOfElementLocated(elementtoInvisible);			
 					scrollIntoView_Javascript(gettingWebElement(btn_maximumDiscountLimitExceed_SEND));
-		//			waitForinvisibilityOfElementLocated(elementtoInvisible);
+					waitForinvisibilityOfElementLocated(elementtoInvisible);
 					clickonButton(btn_maximumDiscountLimitExceed_SEND);
 					waitForVisibilityOfElementLocated(header_maximumDiscountLimitExceedConfirmation);
-		//			waitForinvisibilityOfElementLocated(elementtoInvisible);
+					waitForinvisibilityOfElementLocated(elementtoInvisible);
 					clickonButton(btn_maximumDiscountLimitExceedConfirmation_Ok);
 			} else {
 				System.out.println("*** Maximum Discount LimitExceed Pop-up didn't appeared ***");
