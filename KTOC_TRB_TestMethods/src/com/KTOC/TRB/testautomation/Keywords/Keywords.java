@@ -3879,7 +3879,7 @@ public class Keywords extends KTOCTRBUtils {
 						System.out.println("*** Target Price = "+targetPrice);
 						String e[] = d[1].split("Billing Plan");
 						String billingPlan = e[1].replaceAll("[ :]", "");
-//						billingPlan = billingPlan.trim();
+						billingPlan = billingPlan.trim();
 						System.out.println("*** Billing Plan = "+billingPlan);
 					}
 		//			waitForinvisibilityOfElementLocated(elementtoInvisible);			

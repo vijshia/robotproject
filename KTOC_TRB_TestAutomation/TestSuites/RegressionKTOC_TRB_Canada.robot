@@ -1,6 +1,5 @@
 *** Settings ***
 Library    com.KTOC.TRB.testautomation.Keywords.Keywords
-
 Suite Setup    Launch Browser    canada    \\TestData\\KTOCTRB_AutomationTestData.xlsx
 *** Variable ***
 *** Test Cases ***
