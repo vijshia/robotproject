@@ -3925,6 +3925,7 @@ public class Keywords extends KTOCTRBUtils {
 			String [] split_MaintenanceData1 = split_MaintenanceData[1].split("<");
 			System.out.println(split_MaintenanceData1[0]);
 			System.out.println("----------------------");
+//			Float.valueOf(split_MaintenanceData1[0]);
 			clickonButton(element_Close);
 //-----------------------------------------Comment in readTestData-----------------------------------------Comment for getMaintenanceDatafromPage
 		/*	hm_ITEfactorforSalesOfficeData.put(salesoffice, check_showtotal_ITEfactor);
