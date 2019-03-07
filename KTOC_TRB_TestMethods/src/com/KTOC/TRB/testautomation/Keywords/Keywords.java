@@ -3900,7 +3900,7 @@ public class Keywords extends KTOCTRBUtils {
 	}
 	
 	/**
-	 ** Reuse method, it will get Project Pricing, Discount, Target Price & Billing Plan data from Maximum DiscountLimit Exceeded pop-up
+	 ** Reuse method, it will get 
 	 * @throws Exception
 	 * @author CON_SVIJAY02
 	 */
@@ -3956,6 +3956,20 @@ public class Keywords extends KTOCTRBUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 //			Assert.fail("Get MaintenanceData from Page Failed");
+	}
+}
+	
+	/**
+	 ** Reuse method, it will close all the browsers
+	 * @throws Exception
+	 * @author CON_SVIJAY02
+	 */
+	public void closeallBrowsers() {
+		try {
+			driver.quit();
+		} catch (Exception e) {
+//			e.printStackTrace();
+			Assert.fail("Close all Browsers Failed");
 	}
 }
 
