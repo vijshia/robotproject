@@ -1,6 +1,7 @@
 *** Settings ***
 Library    com.KTOC.TRB.testautomation.Keywords.Keywords
 Suite Setup    Launch Browser    canada    \\TestData\\KTOCTRB_AutomationTestData.xlsx
+Suite Teardown    Close Browser    
 *** Variable ***
 *** Test Cases ***
 1.Logon To Salesforce

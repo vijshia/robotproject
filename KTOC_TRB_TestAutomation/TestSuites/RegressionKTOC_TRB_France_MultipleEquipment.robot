@@ -1,6 +1,7 @@
 *** Settings ***
 Library    com.KTOC.TRB.testautomation.Keywords.Keywords    
 Suite Setup  Launch Browser    france    \\TestData\\KTOCTRB_AutomationTestData.xlsx
+Suite Teardown    Close Browser    
 *** Variable ***
 
 *** Test Cases ***

@@ -31,7 +31,7 @@ public class testRun_Sample {
 	Keywords.selectTemplateToBeUploaded();
 	Keywords.verifyTenderConsistency();
 	Keywords.getTenderNumber();
-//	Keywords.getMaintenanceDatafromPage();
+
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
 	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");	
@@ -117,5 +117,6 @@ public class testRun_Sample {
 	//14.VerifyTotalSalesPriceWithSFProductInformation
 	Keywords.compareSalesPricebetweenTenderPageandSalesforce();
 	Keywords.handShake();
+	Keywords.CloseBrowser();
 	}
 }

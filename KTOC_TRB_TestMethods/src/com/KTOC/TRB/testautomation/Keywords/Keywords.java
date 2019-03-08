@@ -2910,8 +2910,8 @@ public class Keywords extends KTOCTRBUtils {
 			if (isMultipleEquipment) {
 				addAllTenderPrice();
 				System.out.println("allTender Price:" + allTenderPrice + " / Final_SalesPrice:" + Final_SalesPrice);
-				System.out.println("is TRB allTenderPrice VS Salesforce TenderPrice equal:"
-						+ allTenderPrice.equals(Final_SalesPrice) + " ***");
+				System.out.println("*** is TRB allTenderPrice VS Salesforce TenderPrice equal:"
+						+ allTenderPrice.equals(Final_SalesPrice));
 				if (!allTenderPrice.equals(Final_SalesPrice)) {
 					screenshotCapture(
 							"TenderPrice not equal in compareSalesPricebetweenTenderPageandSalesforce for MultipleEquipment");
@@ -3956,20 +3956,6 @@ public class Keywords extends KTOCTRBUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 //			Assert.fail("Get MaintenanceData from Page Failed");
-	}
-}
-	
-	/**
-	 ** Reuse method, it will close all the browsers
-	 * @throws Exception
-	 * @author CON_SVIJAY02
-	 */
-	public void closeallBrowsers() {
-		try {
-			driver.quit();
-		} catch (Exception e) {
-//			e.printStackTrace();
-			Assert.fail("Close all Browsers Failed");
 	}
 }
 
