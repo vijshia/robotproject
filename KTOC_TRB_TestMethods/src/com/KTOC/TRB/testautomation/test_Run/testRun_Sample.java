@@ -15,7 +15,7 @@ public class testRun_Sample {
 	KTOCTRBUtils KTOCTRBUtils=new KTOCTRBUtils();
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 //	String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
-	Keywords.LaunchBrowser("canada", EXCEL_PATH);
+	Keywords.LaunchBrowser("france", EXCEL_PATH);
 	//1.LogonToSalesforce
 	Keywords.logintoSalesforce();
 	//2.VerifyCreatingOpportunityandMappingItWithFLTender
@@ -23,12 +23,13 @@ public class testRun_Sample {
 	//3.VerifyTenderCreatedSuccessfully
 	Keywords.navigatetoKTOCTRB();
 	Keywords.addEquipmentIDElevator();
+	Keywords.selectTemplateToBeUploaded();
 	Keywords.checkHandOverDateIsGreaterThanInstallationDate();
 	Keywords.checkSalesOfficeisSelected();
-	Keywords.additionalfieldsinProjectOverviewforCanada();
+//	Keywords.additionalfieldsinProjectOverviewforCanada();
 	Keywords.selectSupervisor();
 	Keywords.selectEquipmentInService();
-	Keywords.selectTemplateToBeUploaded();
+//	Keywords.selectTemplateToBeUploaded();
 	Keywords.verifyTenderConsistency();
 	Keywords.getTenderNumber();
 

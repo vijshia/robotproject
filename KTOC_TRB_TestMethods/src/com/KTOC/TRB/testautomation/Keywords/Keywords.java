@@ -1,5 +1,13 @@
 package com.KTOC.TRB.testautomation.Keywords;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -14,6 +22,11 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -21,6 +34,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.python.icu.impl.Assert;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils;
 import com.KTOC.TRB.testautomation.ObjectRepository.*;
 import static com.KTOC.TRB.testautomation.ObjectRepository.pg_SF_Login.*;
@@ -362,6 +381,8 @@ public class Keywords extends KTOCTRBUtils {
 			clickonButton(value_salesOffice);
 			selectedSalesOffice = salesoffice;
 			System.out.println("SalesOffice value " + salesoffice + " Selected");
+			additionalfieldsinProjectOverviewforCanada();
+			getMaintenanceDatafromAutomationTest();
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Check SalesOffice is Selected Failed due to: " + e);
@@ -3900,11 +3921,11 @@ public class Keywords extends KTOCTRBUtils {
 	}
 	
 	/**
-	 ** Reuse method, it will get 
+	 ** Reuse method, it will get data from StartParameter in Equipment Data tab
 	 * @throws Exception
 	 * @author CON_SVIJAY02
 	 */
-	public void getMaintenanceDatafromPage() {
+	public void getDatafromStartParameter() {
 		try {
 			selectEquipmentTree();
 			By icon_Magic = By.xpath("//*[@data-ctcwgtname='IcInvisible']");
@@ -3958,6 +3979,118 @@ public class Keywords extends KTOCTRBUtils {
 //			Assert.fail("Get MaintenanceData from Page Failed");
 	}
 }
+	
+	/**
+	 ** Reuse method, it will get Maintenance Data from Automation Test tab
+	 * @throws Exception
+	 * @author CON_SVIJAY02
+	 */
+	public void getMaintenanceDatafromAutomationTest() {
+		try {	
+			By tab_automationTest = By.xpath("//*[text()='Automation test']");
+			By element_LaborRate = By.xpath("//*[@data-ctcname='LaborRate_ID_T']");
+			By element_ITEFactor = By.xpath("//*[@data-ctcname='ITEFactor_ID_T']");
+			By element_RegionalDiscount = By.xpath("//*[@data-ctcname='RegionalDiscount_ID_T']");
+			waitForVisibilityOfElementLocated(tab_automationTest);
+			scrollIntoView_Javascript(gettingWebElement(tab_automationTest));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(tab_automationTest);
+			waitForVisibilityOfElementLocated(element_LaborRate);
+			String value_LaborRate = gettingWebElement(element_LaborRate).getAttribute("value");
+			String value_ITEFactor = gettingWebElement(element_ITEFactor).getAttribute("value");
+			String value_RegionalDiscount = gettingWebElement(element_RegionalDiscount).getAttribute("value");
+			value_LaborRate = value_LaborRate.replaceAll("[€  $]", "");
+			if (frontlineAssigned.equals("FRANCE")) {
+				value_LaborRate = value_LaborRate.replace(".", "");
+				value_LaborRate = value_LaborRate.replace(",", ".");
+			} else if (frontlineAssigned.equals("AUSTRALIA") || frontlineAssigned.equals("CANADA")) {
+				value_LaborRate = value_LaborRate.replace(",", "");
+			}
+			value_RegionalDiscount = value_RegionalDiscount.replaceAll("[%  ]", "");
+			Float converted_LaborRate = Float.valueOf(value_LaborRate);
+			Float converted_ITEFactor = Float.valueOf(value_ITEFactor);
+			Float converted_RegionalDiscount = Float.valueOf(value_RegionalDiscount);
+			System.out.println("Read LaborRate from Maintenance(AutomationTest tab): "+converted_LaborRate);
+			System.out.println("Read ITEFactor from Maintenance(AutomationTest tab): "+converted_ITEFactor);
+			System.out.println("Read RegionalDiscount from Maintenance(AutomationTest tab): "+converted_RegionalDiscount);
+		} catch (Exception e) {
+			e.printStackTrace();
+//			Assert.fail("Get MaintenanceData from Automation Test Tab Failed");
+	}
+}
+	
+	/**
+	 ** Reuse method, it will connect to sqlserver and get Maintenance Data
+	 * @throws Exception
+	 * @author CON_SVIJAY02
+	 */
+	public HashMap<String, String> hm_sqlServerData = new HashMap<String, String>();
+	public void connecttoDataBaseandGetMaintenanceData() {
+		try {	
+			  Connection connection=null;
+			  try {
+		     	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				connection = DriverManager.getConnection("jdbc:sqlserver://EUDSQLKTOCA3N2:1433", "CAMOS_SQL", "QAZWSXedc123");
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+			  Statement statement = connection.createStatement();
+			  ResultSet results = statement.executeQuery("select top 5 camosguid, CountryGUID, ProductType_Class, Factor from [camos.ktoc.trb].dbo.cMat_Country_ITE_C"); //top 5 camosguid, CountryGUID, ProductType_Class, Factor from [camos.ktoc.trb].dbo.cMat_Country_ITE_C 
+			  ResultSetMetaData resultsetmetadata = results.getMetaData();
+			  int columnsNumber = resultsetmetadata.getColumnCount();
+			  while (results.next()) {
+			      for (int i = 1; i <= columnsNumber; i++) {
+			          String columnValue = results.getString(i);
+//			          System.out.println(rsmd.getColumnName(i)+" => "+columnValue);
+			          hm_sqlServerData.put(resultsetmetadata.getColumnName(i), columnValue);
+			      }
+			  }
+			  connection.close();
+		} catch (Exception e) {
+		e.printStackTrace();
+	//	Assert.fail("Connect to SQLServer and Get MaintenanceData Failed");
+	}
+}	
+	/**
+	 ** Reuse method, it will read Data from XML file
+	 * @throws Exception
+	 * @author CON_SVIJAY02
+	 */
+	public HashMap<String, String> hm_xmlData = new HashMap<String, String>();
+	public void getDatafromXMLfile() {
+		try {	
+			Document document = null;
+			String xmlPath = "C:/VJ/KTOC/TRB/T-0002466613-20190211100059.xml";
+			try {
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				factory.setNamespaceAware(true);
+				DocumentBuilder builder = factory.newDocumentBuilder();
+				document = builder.parse(new File(xmlPath));
+			} catch (ParserConfigurationException e) {
+				e.printStackTrace();
+			} catch (SAXException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			document.getDocumentElement().normalize();
+			NodeList elementsByTagName = document.getElementsByTagName("*");
+			for (int i = 0; i < elementsByTagName.getLength(); i++) {
+				Node node = elementsByTagName.item(i);
+					if (node.getNodeType() == Node.ELEMENT_NODE) {
+					    Element element = (Element) node;
+					    String[] array = element.getTagName().toString().split(":");
+					    String keyValue = array[0];
+					    keyValue = keyValue.replace("[", "");
+//					    System.out.println(keyValue+" = " + element.getAttribute("value"));
+					    hm_xmlData.put(keyValue, element.getAttribute("value"));
+					 }
+			}
+		} catch (Exception e) {
+		e.printStackTrace();
+	//	Assert.fail("Get Data from XML file Failed");
+	}
+}	
 
 	public static String GetAdditionalDiscountGridTargetPriceBaseValues(String TreeValue) {
 		int Linevalue = 0;
