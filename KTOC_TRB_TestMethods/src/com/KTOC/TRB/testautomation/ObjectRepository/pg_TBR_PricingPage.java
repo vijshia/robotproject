@@ -53,6 +53,7 @@ public class pg_TBR_PricingPage {
 	//maximumDiscountLimitExceedPopup
 	public static By header_maximumDiscountLimitExceedPopup = By.xpath("//*[contains(text(),'Maximum discount limit exceeded.')]");
 	public static By btn_maximumDiscountLimitExceedPopup_YES = By.xpath("//*[text()='Yes']");
+	public static By btn_maximumDiscountLimitExceedPopup_No = By.xpath("//*[text()='No']");
 	public static By message_maximumDiscountLimitExceedPopup_Body = By.xpath("//textarea[2]");
 	public static By btn_maximumDiscountLimitExceed_SEND = By.xpath("//*[text()='Send']");
 	public static By header_maximumDiscountLimitExceedConfirmation = By.xpath("//*[text()='XML created and Sent']");

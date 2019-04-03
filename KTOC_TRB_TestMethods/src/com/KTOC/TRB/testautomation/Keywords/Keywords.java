@@ -1,13 +1,5 @@
 package com.KTOC.TRB.testautomation.Keywords;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -23,10 +15,6 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -34,11 +22,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.python.icu.impl.Assert;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils;
 import com.KTOC.TRB.testautomation.ObjectRepository.*;
@@ -634,10 +617,6 @@ public class Keywords extends KTOCTRBUtils {
 	public void CheckTenderPriceAfterDiscountUpdate(String discount, String FirstMaintenance) throws Exception {
 		selectingDiscount(discount);
 		selectingFirstMaintenance(FirstMaintenance);
-		/*
-		 * if(FirstMaintenance.equals("0")) { withoutFirstMaintenance =
-		 * FirstMaintenance; }
-		 */
 	}
 
 	/**
@@ -651,10 +630,6 @@ public class Keywords extends KTOCTRBUtils {
 	public void VerifyDiscountByChangingTheTenderPrice(String tenderPrice, String FirstMaintenance) throws Exception {
 		selectingTenderPrice(tenderPrice);
 		selectingFirstMaintenance(FirstMaintenance);
-		/*
-		 * if(FirstMaintenance.equals("0")) { withoutFirstMaintenance =
-		 * FirstMaintenance; }
-		 */
 	}
 
 	/**
@@ -678,9 +653,18 @@ public class Keywords extends KTOCTRBUtils {
 		waitForVisibilityOfElementLocated(tab_priceOverview);
 		waitForinvisibilityOfElementLocated(elementtoInvisible);
 		clickonButton(tab_priceOverview);
+		GetTargetPrice();
 		selectingDiscount(discount);
-		maximumDiscountLimitExceeded = true;
-		maximumDiscountLimitExceedPopup();
+		maximumDiscountLimitExceedPopup_Yes(discount);
+		maximumDiscountLimitExceeded = false;
+		selectingDiscount(discount);
+		maximumDiscountLimitExceedPopup_No();
+		if(!flag_maximumDiscountLimitExceedYes) {
+			Assert.fail("Projectprice or Targetprice Discount is not equal in maximumDiscountLimitExceedPopup_Yes");
+		}
+		if(!flag_maximumDiscountLimitExceedNo) {
+			Assert.fail("Tenderprice or Targetprice or Discount is not equal in maximumDiscountLimitExceedPopup_No");
+		}
 	}
 
 	/**
@@ -784,18 +768,7 @@ public class Keywords extends KTOCTRBUtils {
 	 * @author CON_SVIJAY02
 	 */
 	public void VerifyPriceCalculatedSuccessfully_TobecheckedinFrance() throws Exception {
-		if (frontlineAssigned.equals("AUSTRALIA")) {
-//			checkingTargetPriceFullGrid();
-//			validateDetailBreakdownTabFullGrid();
 			validateDetailBreakdownTabFullGrid1();
-		} else {
-//			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
-//			validateDetailBreakdownTabFullGrid();
-//			System.out.println("======"+new SimpleDateFormat("ddMMMyyyy_hh_mm_ssaa").format(Calendar.getInstance().getTime()));
-			validateDetailBreakdownTabFullGrid1();
-//			System.out.println("========"+new SimpleDateFormat("ddMMMyyyy_hh_mm_ssaa").format(Calendar.getInstance().getTime()));
-//			System.out.println("*** Currencies Tab is applicable for Australia alone hence skipping TC#10 ***");
-		}
 	}
 
 	/**
@@ -840,7 +813,6 @@ public class Keywords extends KTOCTRBUtils {
 
 	/**
 	 ** Reuse method, it will click on AdditionalDiscountIcon
-	 * 
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
@@ -851,13 +823,18 @@ public class Keywords extends KTOCTRBUtils {
 			wait.until(ExpectedConditions.visibilityOf(gettingWebElementsfromList(icon_additionalDiscount).get(3)));
 			scrollIntoView_Javascript(gettingWebElementsfromList(icon_additionalDiscount).get(3));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
-			gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
-			/*
-			 * System.out.println(gettingWebElementsfromList(icon_additionalDiscount).get(3)
-			 * .getAttribute("id")); for(WebElement
-			 * additionaldiscount:gettingWebElementsfromList(icon_additionalDiscount)) {
-			 * System.out.println(additionaldiscount.getAttribute("id")); }
-			 */
+//	System.out.println(gettingWebElementsfromList(icon_additionalDiscount).get(3).getAttribute("id"));
+//			gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
+			int count = 0;
+			for(WebElement additionaldiscount:gettingWebElementsfromList(icon_additionalDiscount)) {
+				count++;
+//				System.out.println(additionaldiscount.getAttribute("id"));
+				if (count == 4) {
+//					additionaldiscount.click();
+					click_Javascript(additionaldiscount);
+					break;
+				}
+			  }
 			System.out.println("Additional Discount Icon CLICKED");
 			waitForVisibilityOfElementLocated(grid_RegionalDiscountValues); // header_RegionalDiscount
 //		System.out.println("header RegionalDiscount is visible");
@@ -880,53 +857,6 @@ public class Keywords extends KTOCTRBUtils {
 	public void getRegionalDiscount(String firstMaintenance) throws Exception {
 		try {
 			waitForVisibilityOfElementLocated(grid_RegionalDiscountValues);
-			// --------------------------------------------------------------
-			/*
-			 * String Project=GetAdditionalDiscountGridTargetPriceBaseValues("Project");
-			 * Project=Project.replaceAll("[€ % h . $]", ""); Project=Project.replace(",",
-			 * "."); Float TargetPriceBaseValues_Project=Float.valueOf(Project);
-			 * System.out.println(TargetPriceBaseValues_Project);
-			 * 
-			 * String Solution=GetAdditionalDiscountGridTargetPriceBaseValues("Solution 2");
-			 * Solution=Solution.replaceAll("[€ % h . $]", "");
-			 * Solution=Solution.replace(",", "."); Float
-			 * TargetPriceBaseValues_Solution=Float.valueOf(Solution);
-			 * System.out.println(TargetPriceBaseValues_Solution);
-			 * 
-			 * String Project_TargetPriceBase=gettingWebElement(By.xpath(
-			 * "//div[text()='Project']/parent::div/parent::div/div[1]/input[1]")).
-			 * getAttribute("value");
-			 * Project_TargetPriceBase=Project_TargetPriceBase.replaceAll("[€ % h . $]",
-			 * ""); Project_TargetPriceBase = Project_TargetPriceBase.replace(",", ".");
-			 * Float TargetPriceBaseValues_Project1 =
-			 * Float.valueOf(Project_TargetPriceBase);
-			 * System.out.println(TargetPriceBaseValues_Project1);
-			 * 
-			 * String project_Regionaldiscountoncomponent=gettingWebElement(By.xpath(
-			 * "//div[text()='Project']/parent::div/parent::div/div[1]/input[7]")).
-			 * getAttribute("value");
-			 * project_Regionaldiscountoncomponent=project_Regionaldiscountoncomponent.
-			 * replaceAll("[€ % h . $]", ""); project_Regionaldiscountoncomponent =
-			 * project_Regionaldiscountoncomponent.replace(",", "."); Float
-			 * Regionaldiscountoncomponent_Project1=Float.valueOf(
-			 * project_Regionaldiscountoncomponent);
-			 * System.out.println(Regionaldiscountoncomponent_Project1);
-			 * 
-			 * String
-			 * project_Regionaldiscountoncomponent_Percent=gettingWebElement(By.xpath(
-			 * "//div[text()='Project']/parent::div/parent::div/div[1]/input[7]")).
-			 * getAttribute("value"); project_Regionaldiscountoncomponent_Percent=
-			 * project_Regionaldiscountoncomponent_Percent.replaceAll("[€ % h . $]", "");
-			 * project_Regionaldiscountoncomponent_Percent =
-			 * project_Regionaldiscountoncomponent_Percent.replace(",", "."); Float
-			 * Regionaldiscountoncomponent_Percent_Project=Float.valueOf(
-			 * project_Regionaldiscountoncomponent_Percent);
-			 * System.out.println(Regionaldiscountoncomponent_Percent_Project);
-			 * 
-			 * HashMap<String, Float> hm_GetAdditionalDiscountData = new HashMap<String,
-			 * Float>();
-			 */
-			// --------------------------------------------------------------
 			List<String> ls_RegionalDiscountHeader = new LinkedList<>();
 			List<Float> ls_RegionalDiscountValue = new LinkedList<>();
 			hm_RegionalDiscountData = new HashMap<String, Float>();
@@ -1015,7 +945,7 @@ public class Keywords extends KTOCTRBUtils {
 			 * read_FirstMaintenance=hm_data.get("FirstMaintenance");
 			 */
 //-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------			
-			regionalDiscount = hm_RegionalDiscountforSalesOfficeData.get(selectedSalesOffice);
+//			regionalDiscount = hm_RegionalDiscountforSalesOfficeData.get(selectedSalesOffice);
 //-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
 			Float final_Regionaldiscountoncomponent = read_TargetPrice_Base * (regionalDiscount / 100);
 			final_Regionaldiscountoncomponent = Float.valueOf(roundoff.format(final_Regionaldiscountoncomponent));
@@ -1119,22 +1049,6 @@ public class Keywords extends KTOCTRBUtils {
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(grid_RegionalDiscountValues));
 			List<WebElement> element_RegionalDiscountValues = gettingWebElementsfromList(grid_RegionalDiscountValues);
 			wait.until(ExpectedConditions.visibilityOfAllElements(element_RegionalDiscountValues));
-			/*
-			 * List<WebElement>
-			 * elements_RegionalDiscountHeader=gettingWebElementsfromList(By.
-			 * xpath("//*[text()='Regional discount on component (%)']/../../div"));
-			 * for(WebElement
-			 * element_RegionalDiscountHeader:elements_RegionalDiscountHeader) {
-			 * List<WebElement> Element1 =
-			 * element_RegionalDiscountHeader.findElements(By.xpath("./*")); //
-			 * System.out.println(elements_RegionalDiscountHeader.size()+"/"+Element1.size()
-			 * ); for(WebElement Element:Element1) {
-			 * System.out.println(Element.getAttribute("id")+"/"+Element.getText());
-			 * if(!Element.getText().contains("Description") &&
-			 * !Element.getText().contains("LO") && !Element.getText().isEmpty()) { //
-			 * System.out.println(Element.getText());
-			 * ls_RegionalDiscountColumnHeader.add(Element.getText()); } } }
-			 */
 			ls_RegionalDiscountColumnHeader.add("Target Price (Base)");
 			ls_RegionalDiscountColumnHeader.add("Funding Sector Discount (%)");
 			ls_RegionalDiscountColumnHeader.add("Funding Sector Discount");
@@ -1300,21 +1214,21 @@ public class Keywords extends KTOCTRBUtils {
 					.format(calculated_Regionaldiscountoncomponent_percentage2)
 					.equals(roundoff.format(read_Regionaldiscountoncomponent_percentage2));
 			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)
-					+ "_calculated_Regionaldiscountoncomponent % ="
+					+ "_calculated_Regionaldiscountoncomponent %: "
 					+ roundoff.format(calculated_Regionaldiscountoncomponent_percentage2) + " / read_"
 					+ ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)
-					+ "_Regional discount on component (%)=" + read_Regionaldiscountoncomponent_percentage2);
+					+ "_Regional discount on component (%)= " + read_Regionaldiscountoncomponent_percentage2);
 			System.out.println(
-					"*** is calculated_Regionaldiscountoncomponent % vs read_Regionaldiscountoncomponent % equal = "
+					"*** is calculated_Regionaldiscountoncomponent % vs read_Regionaldiscountoncomponent % equal: "
 							+ isRegionaldiscountoncomponentpercentage_calculated);
-			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Sales Office Multiplier =" + roundoff.format(read_SalesOfficeMultiplier2));
+			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Sales Office Multiplier: " + roundoff.format(read_SalesOfficeMultiplier2));
 			/*System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Funding Sector Discount =" + roundoff.format(read_FundingSectorDiscount2));
 			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Market Segment Discount =" + roundoff.format(read_MarketSegmentDiscount2));
 			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Billing Plan Discount =" + roundoff.format(read_BillingPlanDiscount2));
 			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)+ "_Selling Value Package Discount =" + roundoff.format(read_SellingValuePackageDiscount2));*/
 			System.out.println(ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2)
-					+ "_calculated_TargetPrice =" + roundoff.format(calculated_TargetPrice2) + " / read_"
-					+ ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2) + "_Target Price="
+					+ "_calculated_TargetPrice: " + roundoff.format(calculated_TargetPrice2) + " / read_"
+					+ ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 2) + "_Target Price:"
 					+ roundoff.format(read_TargetPrice2));
 			String condition1 = null;
 			if (!roundoff.format(calculated_TargetPrice2).equals(roundoff.format(read_TargetPrice2))) {
@@ -1422,16 +1336,13 @@ public class Keywords extends KTOCTRBUtils {
 			Assert.fail("Get Regional Discount (FullGrid) Failed due to: " + e);
 		}
 	}
-
+	
 	/**
-	 ** Reuse method, it will click Detail Breakdown Tab and checks ITE factor,
-	 * Labour rate, Reference hours (1st rowdata)
+	 ** Reuse method, it will navigate to Detail Breakdown Tab
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
-	public HashMap<String, Float> hm_DetailBreakdownData;
-
-	public void validateDetailBreakdownTab() throws Exception {
+	public void gotoDetailBreakdownTab() throws Exception {
 		try {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			WebElement scrollto_DetailbreakdownTab = gettingWebElement(tab_detailBreakDown);
@@ -1505,8 +1416,19 @@ public class Keywords extends KTOCTRBUtils {
 			}
 			showInstallationCalculation = 1;
 			waitForVisibilityOfElementLocated(By.xpath("//*[text()='Reference hours']"));
-			validateDetailBreakdownTabGetDatafromGrid();
-
+		} catch (Exception e) {
+//			e.printStackTrace();
+			Assert.fail("Goto Detail Breakdown Tab Failed");
+		}
+	}
+	
+	/**
+	 ** Reuse method, it will exit from Detail Breakdown Tab
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void exitDetailBreakdownTab() throws Exception {
+		try {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"))
 					.get(4).click();
@@ -1532,10 +1454,28 @@ public class Keywords extends KTOCTRBUtils {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 //			waitForinvisibilityOfElementLocated(header_ITEfactor);
 //			System.out.println("header_ITEfactor disabled");
+		} catch (Exception e) {
+//			e.printStackTrace();
+			Assert.fail("Exit Detail Breakdown Tab Failed");
+		}
+	}
+
+	/**
+	 ** Reuse method, it will click Detail Breakdown Tab and checks ITE factor,
+	 * Labour rate, Reference hours (1st rowdata)
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public HashMap<String, Float> hm_DetailBreakdownData;
+
+	public void validateDetailBreakdownTab() throws Exception {
+		try {
+			gotoDetailBreakdownTab();
+			validateDetailBreakdownTabGetDatafromGrid();
+			exitDetailBreakdownTab();
 			if (!isDetailBreakdown) {
 				isDetailBreakdown = true;
-				Assert.fail(
-						"Failed due to (ITEfactor or Referencehours or Labourrate) not euqal in Detail Breakdown Tab");
+				Assert.fail("Failed due to (ITEfactor or Referencehours or Labourrate) not euqal in Detail Breakdown Tab");
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
@@ -1667,7 +1607,7 @@ public class Keywords extends KTOCTRBUtils {
 			 * System.out.println("is_showtotal_LaborCosts "+check_showtotal_Labourrate+"/"+showtotal_Labourrate); 
 			 * System.out.println("is_showtotal_Referencehours "+check_showtotal_Referencehours+"/"+showtotal_Referencehours);
 			 */
-//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
+/*-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
 			if (!isMultipleEquipment) {
 				check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get(selectedSalesOffice);
 				LabourRate = hm_LabourRateforSalesOfficeData.get(selectedSalesOffice);
@@ -1675,7 +1615,7 @@ public class Keywords extends KTOCTRBUtils {
 				check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get("MultipleEqup_" + selectedSalesOffice);
 				LabourRate = hm_LabourRateforSalesOfficeData.get("MultipleEqup_" + selectedSalesOffice);
 			}
-//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------*/
 			Boolean is_showtotal_ITEfactor = roundoff.format(check_showtotal_ITEfactor)
 					.equals(roundoff.format(showtotal_ITEfactor));
 			Boolean is_showtotal_Referencehours = roundoff.format(check_showtotal_Referencehours)
@@ -1891,35 +1831,8 @@ public class Keywords extends KTOCTRBUtils {
 	public HashMap<String, Float> hm_DetailBreakdownDataFullGrid1;
 
 	public void validateDetailBreakdownTabFullGrid1() throws Exception {
-		try {
-			/*
-			 * waitForinvisibilityOfElementLocated(elementtoInvisible); WebElement
-			 * scrollto_DetailbreakdownTab = gettingWebElement(tab_detailBreakDown);
-			 * scrollIntoView_Javascript(scrollto_DetailbreakdownTab);
-			 * waitForVisibilityOfElementLocated(tab_detailBreakDown);
-			 * waitForinvisibilityOfElementLocated(elementtoInvisible);
-			 * clickonButton(tab_detailBreakDown);
-			 * System.out.println("Detailed breakdown Clicked");
-			 * waitForVisibilityOfElementLocated(dd_selectProject);
-			 * waitForinvisibilityOfElementLocated(elementtoInvisible);
-			 * clickonButton(dd_selectProject); WebElement element_Ropes =
-			 * gettingWebElement(value_ropes);
-			 * waitForVisibilityOfElementLocated(value_ropes);
-			 * waitForElementToBeClickable(value_ropes);
-			 * waitForinvisibilityOfElementLocated(elementtoInvisible);
-			 * wait.until(ExpectedConditions.visibilityOf(element_Ropes));
-			 * if(isMultipleEquipment) { By checkbox_forMultipleEquipment =
-			 * By.xpath("//*[text()='MMS Electrification Module']"); WebElement
-			 * element_forMultipleEquipment =
-			 * gettingWebElement(checkbox_forMultipleEquipment);
-			 * wait.until(ExpectedConditions.visibilityOf(element_forMultipleEquipment));
-			 * waitForinvisibilityOfElementLocated(elementtoInvisible);
-			 * click_Javascript(element_forMultipleEquipment);
-			 * System.out.println(element_forMultipleEquipment+" CLICKED"); } else {
-			 * click_Javascript(element_Ropes); System.out.println("ROPES CLICKED"); }
-			 * waitForinvisibilityOfElementLocated(value_ropes);
-			 */
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
+		try {			 
+			/*waitForinvisibilityOfElementLocated(elementtoInvisible);
 			waitForVisibilityOfElementLocated(
 					By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -1945,11 +1858,11 @@ public class Keywords extends KTOCTRBUtils {
 					break;
 				}
 			}
-			waitForVisibilityOfElementLocated(By.xpath("//*[text()='Reference hours']"));
-
+			waitForVisibilityOfElementLocated(By.xpath("//*[text()='Reference hours']"));*/
+			gotoDetailBreakdownTab();
 			validateDetailBreakdownTabGetDatafromFullGrid1();
-
-			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			exitDetailBreakdownTab();
+			/*waitForinvisibilityOfElementLocated(elementtoInvisible);
 			gettingWebElementsfromList(By.xpath("//*[@data-ctcwgtname='Toolbar' and @data-ctctype='Toolbar']/div"))
 					.get(4).click();
 			waitForVisibilityOfElementLocated(
@@ -1974,7 +1887,7 @@ public class Keywords extends KTOCTRBUtils {
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 //			waitForinvisibilityOfElementLocated(header_ITEfactor);
 //			System.out.println("header_ITEfactor disabled");
-			if (!isDetailBreakdowndata) {
+*/			if (!isDetailBreakdowndata) {
 				isDetailBreakdowndata = true;
 				Assert.fail(
 						"Failed due to (TargetPrice or Materialcosts or MaterialcostSLCurrency or Referencehours or InstallationHours or LaborCosts or FullCosts or TotalCost or TenderPrice) not euqal in Detail Breakdown Tab");
@@ -2004,14 +1917,19 @@ public class Keywords extends KTOCTRBUtils {
 			List<String> ls_TotalCostHeader = new LinkedList<>();
 			hm_DetailBreakdownDataFullGrid = new HashMap<String, Float>();
 			HashMap<String, Integer> hm_DetailBreakdownDataSizeFullGrid = new HashMap<String, Integer>();
-			List<String> TotalCostHeaderFullGrid = Arrays.asList("Base hours", "Per Service3", "per travel [m]3",
-					"Each3", "Reference hours", "ITE factor", "Installation Hours", "Labour rate", "Labor Costs",
-					"Contingency", "Overhead Recovery", "Full Costs", "Total Cost", "Tender Price", "Target Price",
-					"Base price", "Per Service1", "per travel [m]1", "Each1", "Base cost", "Per Service2",
-					"per travel [m]2", "Each2", "Material costs", "Material cost (SL Currency)");
+			List<String> TotalCostHeaderFullGrid = Arrays.asList("Target Price", "Base price", "Per Service1", "per travel [m]1", "Each1", "Base cost", "Per Service2", "per travel [m]2", "Each2", "Material costs", "Material cost (SL Currency)", "Base hours", "Per Service3", "per travel [m]3", "Each3", "Reference hours", "ITE factor", "Installation Hours", "Labour rate", "Labor Costs", "Contingency", "Overhead Recovery", "Full Costs", "Total Cost", "Tender Price");
+			//"Base hours", "Per Service3", "per travel [m]3", "Each3", "Reference hours", "ITE factor", "Installation Hours", "Labour rate", "Labor Costs", "Contingency", "Overhead Recovery", "Full Costs", "Total Cost", "Tender Price", "Target Price", "Base price", "Per Service1", "per travel [m]1", "Each1", "Base cost", "Per Service2", "per travel [m]2", "Each2", "Material costs", "Material cost (SL Currency)"
 			List<String> numerals = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "€", "$", ".", " ");
 			int rotate = 0;
-//			System.out.println("Before rotate:\n " + TotalCostHeaderFullGrid);
+			
+//		System.out.println("Before rotate:\n " + TotalCostHeaderFullGrid);
+		int installhour_position=TotalCostHeaderFullGrid.indexOf("Installation Hours");
+		int totalsize=TotalCostHeaderFullGrid.size();
+/*		System.out.println(installhour_position+"/"+totalsize+"="+((totalsize-(totalsize-(installhour_position+1)))-18));
+		Collections.rotate(TotalCostHeaderFullGrid, ((totalsize-(totalsize-(installhour_position+1)))-18));
+		System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);*/
+
+		
 			List<WebElement> Elements_showtotalcostRowHeader = gettingWebElementsfromList(
 					By.xpath("//*[text()='Subtotal']/../../div"));
 //			System.out.println(Elements_showtotalcostRowHeader.size());
@@ -2026,7 +1944,7 @@ public class Keywords extends KTOCTRBUtils {
 						.findElements(By.xpath("./*"));
 //		int count2=0;
 				for (WebElement Element_showtotalcostRowHeader2 : Element_showtotalcostRowHeader1) {
-//				System.out.println(Element_showtotalcostRowHeader2.getAttribute("id")+"<==>"+Element_showtotalcostRowHeader2.getText());
+//		System.out.println(Element_showtotalcostRowHeader2.getAttribute("id")+"<==>"+Element_showtotalcostRowHeader2.getText());
 					String[] array = Element_showtotalcostRowHeader2.getText().split("");
 					if (!Element_showtotalcostRowHeader2.getText().isEmpty()
 							&& !Element_showtotalcostRowHeader2.getText().contains("Subtotal") && !array[0].isEmpty()
@@ -2044,12 +1962,12 @@ public class Keywords extends KTOCTRBUtils {
 						Float convertedvalue = null;
 						List<Float> ls_TotalCostRowRowValues = new LinkedList<>();
 						for (WebElement Element_showtotalcostRowHeader4 : Element_showtotalcostRowHeader3) {
-//					System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"//"+Element_showtotalcostRowHeader4.getText()+"//"+Element_showtotalcostRowHeader4.getAttribute("value"));
+//			System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"//"+Element_showtotalcostRowHeader4.getText()+"//"+Element_showtotalcostRowHeader4.getAttribute("value"));
 							if (Element_showtotalcostRowHeader4.getAttribute("value") == null) {
 								if (!Element_showtotalcostRowHeader4.getText().isEmpty()) {
 //					System.out.println("getText:"+Element_showtotalcostRowHeader4.getText());
 									if (!ls_TotalCostRowHeader.contains(Element_showtotalcostRowHeader4.getText())) {
-//					System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getText:"+Element_showtotalcostRowHeader4.getText());
+//			System.out.println("**"+Element_showtotalcostRowHeader4.getAttribute("id")+"_/Count="+count+"_/getText:"+Element_showtotalcostRowHeader4.getText());
 										count++;
 										if (Element_showtotalcostRowHeader4.getText().contains("h")) {
 											count1 = count;
@@ -2065,7 +1983,7 @@ public class Keywords extends KTOCTRBUtils {
 								}
 							} else if (!Element_showtotalcostRowHeader4.getAttribute("value").isEmpty()
 									&& Element_showtotalcostRowHeader4.getAttribute("value") != null) {
-//				System.out.println(Element_showtotalcostRowHeader4.getAttribute("id")+"_//getAttribute:"+Element_showtotalcostRowHeader4.getAttribute("value"));
+//			System.out.println("***"+Element_showtotalcostRowHeader4.getAttribute("id")+"_/Count="+count+"_/getAttribute:"+Element_showtotalcostRowHeader4.getAttribute("value"));
 								String getvalue = null;
 								if (frontlineAssigned.equals("FRANCE")) { // || frontlineAssigned.equals("CANADA")
 									getvalue = Element_showtotalcostRowHeader4.getAttribute("value")
@@ -2082,7 +2000,7 @@ public class Keywords extends KTOCTRBUtils {
 								if ((Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW")
 										|| Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new")
 										|| Element_showtotalcostRowHeader2.getText().equals("Process Cost"))
-										&& count == 15) {
+										&& count == 1) {
 									ls_TotalCostRowRowValues.add(count, 0f);
 									ls_TotalCostRowRowValues.add(count + 1, 0f);
 									ls_TotalCostRowRowValues.add(count + 2, 0f);
@@ -2091,12 +2009,16 @@ public class Keywords extends KTOCTRBUtils {
 							}
 						}
 						count = 0;
-						if (count1 != 7) {
+//						System.out.println(installhour_position+"/"+totalsize+"="+((totalsize-(totalsize-(installhour_position+1)))-count1));
+						Collections.rotate(TotalCostHeaderFullGrid, ((totalsize-(totalsize-(installhour_position+1)))-count1));
+//						System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);
+/*						if (count1 != 7) {
 							if (rotate == 0) {
 								Collections.rotate(TotalCostHeaderFullGrid, 20);
 								rotate++;
-//								System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);
+								System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);
 							}
+			// commenting the below due to column has value				
 							if (Element_showtotalcostRowHeader2.getText().equals("SBU_ROPES_BASE_NEW")
 									|| Element_showtotalcostRowHeader2.getText().equals("FreightCost_SBU_Ropes_new")
 									|| Element_showtotalcostRowHeader2.getText().equals("Process Cost")) {
@@ -2105,19 +2027,19 @@ public class Keywords extends KTOCTRBUtils {
 								ls_TotalCostRowRowValues.add(11, 0f);
 								ls_TotalCostRowRowValues.add(12, 0f);
 							}
-						}
+						}*/
 						for (int j = 0; j < ls_TotalCostRowRowValues.size(); j++) {
 							/*
 							 * if(count1 != 7 && (rotate ==0 || rotate ==1) && (j==1 || j==20 || j==21 ||
 							 * j==22 || j==23 || j==24)) {
 							 * System.out.println("HI:"+TotalCostHeaderFullGrid.get(j)); } else {
 							 */
+//			System.out.println(TotalCostHeaderFullGrid.get(j));
 							ls_TotalCostHeader.add(TotalCostHeaderFullGrid.get(j));
-//								System.out.println(TotalCostHeaderFullGrid.get(j));
 //							}
 						}
 						for (int i = 0; i < ls_TotalCostRowRowValues.size(); i++) {
-//							System.out.println(i+". "+ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i)+"="+ls_TotalCostRowRowValues.get(i));
+//					System.out.println(i+". "+ls_TotalCostRowHeader.get(countRowHeader)+"_"+ls_TotalCostHeader.get(i)+"="+ls_TotalCostRowRowValues.get(i));
 							hm_DetailBreakdownDataFullGrid.put(
 									ls_TotalCostRowHeader.get(countRowHeader) + "_" + ls_TotalCostHeader.get(i),
 									ls_TotalCostRowRowValues.get(i));
@@ -2183,7 +2105,7 @@ public class Keywords extends KTOCTRBUtils {
 											|| Element_showtotalcostRowHeader2.getText()
 													.equals("FreightCost_SBU_Ropes_new")
 											|| Element_showtotalcostRowHeader2.getText().equals("Process Cost"))
-											&& count == 15) {
+											&& count == 1) {
 										ls_TotalCostRowRowValues.add(count, 0f);
 										ls_TotalCostRowRowValues.add(count + 1, 0f);
 										ls_TotalCostRowRowValues.add(count + 2, 0f);
@@ -2225,7 +2147,7 @@ public class Keywords extends KTOCTRBUtils {
 							}
 							hm_DetailBreakdownDataSizeFullGrid.put(ls_TotalCostRowHeader.get(countRowHeader),
 									ls_TotalCostRowRowValues.size());
-//						System.out.println(ls_TotalCostRowHeader.get(countRowHeader)+"="+ls_TotalCostRowRowValues.size());
+//			System.out.println(ls_TotalCostRowHeader.get(countRowHeader)+"="+ls_TotalCostRowRowValues.size());
 							countRowHeader++;
 						}
 					}
@@ -2257,7 +2179,7 @@ public class Keywords extends KTOCTRBUtils {
 			for (Map.Entry<String, Float> entry : hm_DetailBreakdownDataFullGrid.entrySet()) {
 				String key = entry.getKey();
 				Float value = entry.getValue();
-//			    System.out.println(key+"=="+value);
+//	System.out.println(key+"=="+value);
 				if (key.contains("_Target Price")) {
 					Float totalTargetPrice12 = value;
 					totalTargetPrice = totalTargetPrice + totalTargetPrice12;
@@ -2302,7 +2224,7 @@ public class Keywords extends KTOCTRBUtils {
 			validateDetailBreakdownTabCheckTotalValuesinFullGrid();
 		} catch (Exception e) {
 //			e.printStackTrace();
-			Assert.fail("Validate Detail Breakdown Tab (FullGrid) GetData from FullGrid Failed due to: " + e);
+			Assert.fail("Validate Detail Breakdown Tab (FullGrid) GetData from FullGrid1 Failed due to: " + e); 
 		}
 	}
 
@@ -2531,6 +2453,7 @@ public class Keywords extends KTOCTRBUtils {
 
 	public void validateDetailBreakdownTabCheckTotalValuesinFullGrid() throws Exception {
 		try {
+			validateDetailBreakdownTabGetDatafromGrid();
 			Float subtotal_TargetPrice = hm_DetailBreakdownData.get("Target Price");
 			Float subtotal_Materialcosts = hm_DetailBreakdownData.get("Material costs");
 			Float subtotal_MaterialcostSLCurrency = hm_DetailBreakdownData.get("Material cost (SL Currency)");
@@ -2638,7 +2561,7 @@ public class Keywords extends KTOCTRBUtils {
 				isDetailBreakdowndata = false;
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			Assert.fail("Check TotalValues in Detail Breakdown Tab (FullGrid) Failed due to: " + e);
 		}
 	}
@@ -2654,10 +2577,10 @@ public class Keywords extends KTOCTRBUtils {
 		try {
 			salesoffice = changeSalesOffice;
 			supervisor_ResponsiblePerson = supervisor_ResponsiblePersontoChange;
-			regionalDiscount = regionalDiscounttoChange;
+			/*regionalDiscount = regionalDiscounttoChange;
 			if (isMultipleEquipment) {
 				regionalDiscount_MultipleEqup = regionalDiscounttoChange_MultipleEqup;
-			}
+			}*/
 			gotoConfigurationPage();
 			selectProjectTree();
 			checkSalesOfficeisSelected();
@@ -2848,6 +2771,7 @@ public class Keywords extends KTOCTRBUtils {
 /*			WebElement element_enderVersionProbability = gettingWebElement(txt_probability);
 			element_enderVersionProbability.clear();
 			element_enderVersionProbability.sendKeys(StageProbability_probability);*/
+			scrollIntoView_Javascript(gettingWebElement(btn_stageProbability));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_stageProbability);
 
@@ -3272,6 +3196,7 @@ public class Keywords extends KTOCTRBUtils {
 			scrollto_NewDicount.clear();
 			scrollto_NewDicount.sendKeys(discount);
 			System.out.println("Discount entered as: " + discount);
+			wait.until(ExpectedConditions.attributeContains(scrollto_NewDicount, "value", discount));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(btn_discountOK); // *[@data-ctcwgtname='pbOK']
 			discountformaximumDiscountLimitExceeded = discount;
@@ -3281,6 +3206,7 @@ public class Keywords extends KTOCTRBUtils {
 				waitForpresenceOfElementLocated(grid_discountisApplied);
 	//			System.out.println("Discount applied to GRID");	
 			}
+			maximumDiscountLimitExceeded = true;
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Selecting Discount Failed due to: " + e);
@@ -3337,6 +3263,9 @@ public class Keywords extends KTOCTRBUtils {
 	 * PriceOverview tab
 	 * @author CON_SVIJAY02
 	 */
+	public Float TargetPriceforCheckingMaximumDiscountLimitExceeded;
+	public Float FirstmaintenanceforCheckingMaximumDiscountLimitExceeded;
+	public Float DiscountforCheckingMaximumDiscountLimitExceeded;
 	public void checkingTargetPrice() throws Exception {
 		try {
 			Float arrary[] = new Float[2];
@@ -3369,6 +3298,7 @@ public class Keywords extends KTOCTRBUtils {
 							} else {
 								String element_readDiscount = getText_Element.replaceAll("[% ]", "");
 								Discount = Float.valueOf(element_readDiscount);
+								DiscountforCheckingMaximumDiscountLimitExceeded = Discount;
 //				System.out.println("****Discount:" + Discount);
 							}
 						}
@@ -3404,11 +3334,15 @@ public class Keywords extends KTOCTRBUtils {
 			}
 			if (arrary[0] > arrary[1]) {
 				TargetPrice = arrary[0];
+				TargetPriceforCheckingMaximumDiscountLimitExceeded = TargetPrice;
 				Firstmaintenance = arrary[1];
+				FirstmaintenanceforCheckingMaximumDiscountLimitExceeded = Firstmaintenance;
 //System.out.println("CONDTION_1 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
 			} else {
 				TargetPrice = arrary[1];
+				TargetPriceforCheckingMaximumDiscountLimitExceeded = TargetPrice;
 				Firstmaintenance = arrary[0];
+				FirstmaintenanceforCheckingMaximumDiscountLimitExceeded = Firstmaintenance;
 //System.out.println("CONDTION_2 TargetPrice: "+TargetPrice+", Firstmaintenance:"+Firstmaintenance);
 			}
 //System.out.println("istenderPrice=>"+istenderPrice);			
@@ -3424,21 +3358,6 @@ public class Keywords extends KTOCTRBUtils {
 				String condition = null;
 				if (!roundoff.format(DiscountFinal).equals(roundoff.format(Discount))) {
 					Float difference = DiscountFinal - Discount;
-					/*
-					 * System.out.println(roundoff.format(difference));
-					 * 
-					 * String[] diff = String.valueOf(difference).split("\\.", 2);//.split("\\.");
-					 * System.out.println(roundoff.format(difference %
-					 * 1)+"====="+diff[0]+"/"+diff[1]); if(diff[0].contains("-")) {
-					 * if(difference<=0.02f) {
-					 * 
-					 * }
-					 * 
-					 * } else {
-					 * 
-					 * }
-					 */
-
 					if (roundoff.format(difference).equals(roundoff.format(-.00f))
 							|| roundoff.format(difference).equals(roundoff.format(-.01f))) {
 						DiscountFinal = DiscountFinal + 0.01f;
@@ -3467,12 +3386,6 @@ public class Keywords extends KTOCTRBUtils {
 				}
 				istenderPrice = false;
 			} else {
-				/*
-				 * Float TargetMinusMaintenance = TargetPrice - Firstmaintenance; Float
-				 * TargetplusDiscount = TargetMinusMaintenance - (TargetMinusMaintenance *
-				 * (Discount / 100)); Float TargetPriceFinal = TargetplusDiscount +
-				 * Firstmaintenance;
-				 */
 				Float TenderPriceFinal = ((TargetPrice - Firstmaintenance) - ((TargetPrice - Firstmaintenance) * (Discount / 100)) + Firstmaintenance);
 				System.out.println("TargetPrice:" + TargetPrice);
 				System.out.println("Firstmaintenance:" + Firstmaintenance);
@@ -3484,19 +3397,6 @@ public class Keywords extends KTOCTRBUtils {
 				if (!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice))) { // if(!roundoff.format(TenderPriceFinal).equals(roundoff.format(TenderPrice)))
 																								// {
 					Float difference = TenderPriceFinal - TenderPrice;
-
-					/*
-					 * String[] diff = String.valueOf(difference).split("\\.", 2);//.split("\\.");
-					 * System.out.println(roundoff.format(difference %
-					 * 1)+"====="+diff[0]+"/"+diff[1]); if(diff[0].contains("-")) { Float
-					 * a=Float.valueOf(diff[1]); System.out.println(roundoff.format(a));
-					 * if(difference<=0.02f) { TenderPriceFinal=TenderPriceFinal-difference;
-					 * System.out.println(TenderPriceFinal); }
-					 * 
-					 * } else { if(difference<=0.02f) {
-					 * TenderPriceFinal=TenderPriceFinal-difference;
-					 * System.out.println(TenderPriceFinal); } }
-					 */
 //				System.out.println(roundoff.format(difference)+"=="+difference+"=="+TenderPriceFinal);
 					if (roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
 						TenderPriceFinal = TenderPriceFinal + 0.01f;
@@ -3855,9 +3755,11 @@ public class Keywords extends KTOCTRBUtils {
 	 * @throws Exception
 	 * @author CON_SVIJAY02
 	 */
-	public void maximumDiscountLimitExceedPopup() {
+	boolean flag_maximumDiscountLimitExceedYes = true;
+	public void maximumDiscountLimitExceedPopup_Yes(String discount) {
 		try {
 			By maximumDiscountorDiscountPencil = By.xpath("//*[contains(text(),'Maximum discount limit exceeded.') or text()='" + discountformaximumDiscountLimitExceeded + ".00 %']");
+			Float read_targetPrice = null; Float read_discount = null; Float read_projectPricing = null;
 			waitForVisibilityOfElementLocated(maximumDiscountorDiscountPencil); //header_maximumDiscountLimitExceedPopup
 //			System.out.println(gettingWebElement(maximumDiscountorDiscountPencil).getAttribute("id")+"_"+gettingWebElement(maximumDiscountorDiscountPencil).getText());
 				if(gettingWebElement(maximumDiscountorDiscountPencil).getText().contains("Maximum discount limit exceeded.")) {
@@ -3880,13 +3782,13 @@ public class Keywords extends KTOCTRBUtils {
 							projectPricingString = b[0].replaceAll("[€ , $]", "");
 							projectPricingString = projectPricingString.replaceAll(",", ".");
 						}
-						Float projectPricing = Float.valueOf(projectPricingString.trim());
-						System.out.println("*** Project Pricing = "+projectPricing);
+						read_projectPricing = Float.valueOf(projectPricingString.trim());
+//						System.out.println("*** Project Pricing = "+read_projectPricing);
 		//				System.out.println("b1"+b[1]);
 						String c[] = b[1].split("Target price:");
 						String discountString = c[0].replaceAll("[ %]", "");
-						Float discount = Float.valueOf(discountString.trim());
-						System.out.println("*** Discount = "+discount);
+						read_discount = Float.valueOf(discountString.trim());
+//						System.out.println("*** Discount = "+read_discount);
 						String d[] = c[1].split("Main details of project:");
 						String targetPriceString = null;
 						if (frontlineAssigned.equals("FRANCE")) {
@@ -3896,12 +3798,26 @@ public class Keywords extends KTOCTRBUtils {
 							targetPriceString = d[0].replaceAll("[€ , $]", "");
 							targetPriceString = targetPriceString.replaceAll(",", ".");
 						}
-						Float targetPrice = Float.valueOf(targetPriceString.trim());
-						System.out.println("*** Target Price = "+targetPrice);
+						read_targetPrice = Float.valueOf(targetPriceString.trim());
+//						System.out.println("*** Target Price = "+read_targetPrice);
 						String e[] = d[1].split("Billing Plan");
 						String billingPlan = e[1].replaceAll("[ :]", "");
 						billingPlan = billingPlan.trim();
-						System.out.println("*** Billing Plan = "+billingPlan);
+//						System.out.println("*** Billing Plan = "+billingPlan);
+					}
+					// projectprice = target price * (1-disount/100)
+					Float calculated_projectprice = ((TargetPriceforCheckingMaximumDiscountLimitExceeded - FirstmaintenanceforCheckingMaximumDiscountLimitExceeded) * (1 - (Float.valueOf(discount) / 100)) + FirstmaintenanceforCheckingMaximumDiscountLimitExceeded);
+					System.out.println("Calculated Projectprice: "+roundoff.format(calculated_projectprice)+" / read_projectPricing:"+roundoff.format(read_projectPricing));
+					Boolean check_projectprice = roundoff.format(calculated_projectprice).toString().equals(roundoff.format(read_projectPricing).toString());
+					System.out.println("*** is calculated_projectprice vs read_projectPricing equal: "+check_projectprice);
+					System.out.println("TargetPrice in table: "+roundoff.format(TargetPriceforCheckingMaximumDiscountLimitExceeded)+" / read_targetPrice: "+roundoff.format(read_targetPrice));
+					Boolean check_targetprice = roundoff.format(TargetPriceforCheckingMaximumDiscountLimitExceeded).toString().equals(roundoff.format(read_targetPrice).toString());
+					System.out.println("*** is targetPrice in table vs read_targetPrice equal: "+check_targetprice);
+					System.out.println("Discount entered: "+Float.valueOf(discount)+" / read_discount: "+read_discount);
+					Boolean check_discount = Float.valueOf(discount).toString().equals(read_discount.toString());
+					System.out.println("*** is Discount entered vs read_discount equal: "+check_discount);
+					if (!check_projectprice || !check_targetprice || !check_discount) {
+						flag_maximumDiscountLimitExceedYes = false;
 					}
 		//			waitForinvisibilityOfElementLocated(elementtoInvisible);			
 					scrollIntoView_Javascript(gettingWebElement(btn_maximumDiscountLimitExceed_SEND));
@@ -3916,9 +3832,51 @@ public class Keywords extends KTOCTRBUtils {
 			waitForElementToBeClickable(lnk_toWord);
 		} catch (Exception e) {
 //				e.printStackTrace();
-				Assert.fail("Maximum Discount Limit Exceed Failed");
+				Assert.fail("Maximum Discount Limit Exceed_Yes Failed");
 		}
 	}
+	
+	/**
+	 ** Reuse method, it will get Project Pricing, Discount, Target Price & Billing Plan data from Maximum DiscountLimit Exceeded pop-up
+	 * @throws Exception
+	 * @author CON_SVIJAY02
+	 */
+	boolean flag_maximumDiscountLimitExceedNo = true;
+	public void maximumDiscountLimitExceedPopup_No() {
+		try {
+			By maximumDiscountorDiscountPencil = By.xpath("//*[contains(text(),'Maximum discount limit exceeded.') or text()='" + discountformaximumDiscountLimitExceeded + ".00 %']");
+			Float previous_targetPrice = TargetPriceforCheckingMaximumDiscountLimitExceeded; 
+			Float previous_firstmaintenance = FirstmaintenanceforCheckingMaximumDiscountLimitExceeded;
+			Float previous_discount = DiscountforCheckingMaximumDiscountLimitExceeded;
+			Float previous_TenderPrice = TenderPrice;
+			waitForVisibilityOfElementLocated(maximumDiscountorDiscountPencil); //header_maximumDiscountLimitExceedPopup
+//			System.out.println(gettingWebElement(maximumDiscountorDiscountPencil).getAttribute("id")+"_"+gettingWebElement(maximumDiscountorDiscountPencil).getText());
+				if(gettingWebElement(maximumDiscountorDiscountPencil).getText().contains("Maximum discount limit exceeded.")) {
+					waitForinvisibilityOfElementLocated(elementtoInvisible);
+					clickonButton(btn_maximumDiscountLimitExceedPopup_No);
+				}
+				waitForElementToBeClickable(lnk_toWord);
+				GetTargetPrice();
+				System.out.println("Previous_targetPrice:"+previous_targetPrice+" / Current_targetPrice:"+TargetPriceforCheckingMaximumDiscountLimitExceeded);
+				Boolean check_targetprice = previous_targetPrice.toString().equals(TargetPriceforCheckingMaximumDiscountLimitExceeded.toString());
+				System.out.println("*** is Target Price equal: "+check_targetprice);
+				System.out.println("previous_discount:"+previous_discount+" / Current_discount:"+DiscountforCheckingMaximumDiscountLimitExceeded);
+				Boolean check_discount = previous_discount.toString().equals(DiscountforCheckingMaximumDiscountLimitExceeded.toString());
+				System.out.println("*** is Discount equal: "+check_discount);
+				System.out.println("previous_firstmaintenance:"+previous_firstmaintenance+" / Current_firstmaintenance:"+FirstmaintenanceforCheckingMaximumDiscountLimitExceeded);
+				Boolean check_firstmaintenance = previous_firstmaintenance.toString().equals(FirstmaintenanceforCheckingMaximumDiscountLimitExceeded.toString());
+				System.out.println("*** is Firstmaintenance equal: "+check_firstmaintenance);
+				System.out.println("Previous_TenderPrice:"+previous_TenderPrice+" / Current_TenderPrice:"+TenderPrice);
+				Boolean check_TenderPrice = previous_TenderPrice.toString().equals(TenderPrice.toString());
+				System.out.println("*** is TenderPrice Price equal: "+check_TenderPrice);
+				if (!check_discount || !check_targetprice || !check_TenderPrice || !check_firstmaintenance) {
+					flag_maximumDiscountLimitExceedNo = false;
+				}
+			} catch (Exception e) {
+//					e.printStackTrace();
+					Assert.fail("Maximum Discount Limit Exceed_No Failed");
+			}
+		}
 	
 	/**
 	 ** Reuse method, it will get data from StartParameter in Equipment Data tab
@@ -3948,28 +3906,6 @@ public class Keywords extends KTOCTRBUtils {
 			System.out.println("----------------------");
 //			Float.valueOf(split_MaintenanceData1[0]);
 			clickonButton(element_Close);
-//-----------------------------------------Comment in readTestData-----------------------------------------Comment for getMaintenanceDatafromPage
-		/*	hm_ITEfactorforSalesOfficeData.put(salesoffice, check_showtotal_ITEfactor);
-			hm_ITEfactorforSalesOfficeData.put(changeSalesOffice, check_showtotal_ITEfactortoChange);
-			hm_ITEfactorforSalesOfficeData.put("MultipleEqup_"+salesoffice, check_showtotal_ITEfactor_MultipleEqup);
-			hm_ITEfactorforSalesOfficeData.put("MultipleEqup_"+changeSalesOffice, check_showtotal_ITEfactortoChange_MultipleEqup);
-			hm_RegionalDiscountforSalesOfficeData.put(salesoffice, regionalDiscount);
-			hm_RegionalDiscountforSalesOfficeData.put(changeSalesOffice, regionalDiscounttoChange);	
-			hm_LabourRateforSalesOfficeData.put(salesoffice, LabourRate);
-			hm_LabourRateforSalesOfficeData.put(changeSalesOffice, LabourRatetoChange);
-			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+salesoffice, LabourRate_MultipleEqup);
-			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+changeSalesOffice, LabourRatetoChange_MultipleEqup);
-//-----------------------------------------Comment in Keywords-----------------------------------------
-			line 978 = regionalDiscount = hm_RegionalDiscountforSalesOfficeData.get(selectedSalesOffice);
-			
-			line 1629 = if (!isMultipleEquipment) {
-							check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get(selectedSalesOffice);
-							LabourRate = hm_LabourRateforSalesOfficeData.get(selectedSalesOffice);
-						} else {
-							check_showtotal_ITEfactor = hm_ITEfactorforSalesOfficeData.get("MultipleEqup_" + selectedSalesOffice);
-							LabourRate = hm_LabourRateforSalesOfficeData.get("MultipleEqup_" + selectedSalesOffice);
-			line 1635 = } */
-//-----------------------------------------------------------------------------------------------------
 			regionalDiscount = 0f;
 			check_showtotal_ITEfactor = 0f;
 			LabourRate = 0f;
@@ -3991,6 +3927,7 @@ public class Keywords extends KTOCTRBUtils {
 			By element_LaborRate = By.xpath("//*[@data-ctcname='LaborRate_ID_T']");
 			By element_ITEFactor = By.xpath("//*[@data-ctcname='ITEFactor_ID_T']");
 			By element_RegionalDiscount = By.xpath("//*[@data-ctcname='RegionalDiscount_ID_T']");
+			By tab_projectOverview = By.xpath("//*[text()='Project Overview']");
 			waitForVisibilityOfElementLocated(tab_automationTest);
 			scrollIntoView_Javascript(gettingWebElement(tab_automationTest));
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
@@ -4007,91 +3944,61 @@ public class Keywords extends KTOCTRBUtils {
 				value_LaborRate = value_LaborRate.replace(",", "");
 			}
 			value_RegionalDiscount = value_RegionalDiscount.replaceAll("[%  ]", "");
-			Float converted_LaborRate = Float.valueOf(value_LaborRate);
-			Float converted_ITEFactor = Float.valueOf(value_ITEFactor);
-			Float converted_RegionalDiscount = Float.valueOf(value_RegionalDiscount);
-			System.out.println("Read LaborRate from Maintenance(AutomationTest tab): "+converted_LaborRate);
-			System.out.println("Read ITEFactor from Maintenance(AutomationTest tab): "+converted_ITEFactor);
-			System.out.println("Read RegionalDiscount from Maintenance(AutomationTest tab): "+converted_RegionalDiscount);
+			Float converted_LaborRate = Float.valueOf(value_LaborRate.trim());
+			LabourRate = converted_LaborRate;
+			Float converted_ITEFactor = Float.valueOf(value_ITEFactor.trim());
+			check_showtotal_ITEfactor = converted_ITEFactor;
+			Float converted_RegionalDiscount = Float.valueOf(value_RegionalDiscount.trim());
+			regionalDiscount = converted_RegionalDiscount;
+			System.out.println("*** Read LaborRate from Maintenance(AutomationTest tab): "+converted_LaborRate);
+			System.out.println("*** Read ITEFactor from Maintenance(AutomationTest tab): "+converted_ITEFactor);
+			System.out.println("*** Read RegionalDiscount from Maintenance(AutomationTest tab): "+converted_RegionalDiscount);
+			scrollIntoView_Javascript(gettingWebElement(tab_projectOverview));
+			waitForVisibilityOfElementLocated(tab_projectOverview);
+			scrollIntoView_Javascript(gettingWebElement(tab_projectOverview));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+			clickonButton(tab_projectOverview);
 		} catch (Exception e) {
-			e.printStackTrace();
-//			Assert.fail("Get MaintenanceData from Automation Test Tab Failed");
+//			e.printStackTrace();
+			Assert.fail("Get MaintenanceData from AutomationTest Tab Failed");
 	}
 }
-	
-	/**
-	 ** Reuse method, it will connect to sqlserver and get Maintenance Data
-	 * @throws Exception
-	 * @author CON_SVIJAY02
-	 */
-	public HashMap<String, String> hm_sqlServerData = new HashMap<String, String>();
-	public void connecttoDataBaseandGetMaintenanceData() {
-		try {	
-			  Connection connection=null;
-			  try {
-		     	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-				connection = DriverManager.getConnection("jdbc:sqlserver://EUDSQLKTOCA3N2:1433", "CAMOS_SQL", "QAZWSXedc123");
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-			  Statement statement = connection.createStatement();
-			  ResultSet results = statement.executeQuery("select top 5 camosguid, CountryGUID, ProductType_Class, Factor from [camos.ktoc.trb].dbo.cMat_Country_ITE_C"); //top 5 camosguid, CountryGUID, ProductType_Class, Factor from [camos.ktoc.trb].dbo.cMat_Country_ITE_C 
-			  ResultSetMetaData resultsetmetadata = results.getMetaData();
-			  int columnsNumber = resultsetmetadata.getColumnCount();
-			  while (results.next()) {
-			      for (int i = 1; i <= columnsNumber; i++) {
-			          String columnValue = results.getString(i);
-//			          System.out.println(rsmd.getColumnName(i)+" => "+columnValue);
-			          hm_sqlServerData.put(resultsetmetadata.getColumnName(i), columnValue);
-			      }
-			  }
-			  connection.close();
-		} catch (Exception e) {
-		e.printStackTrace();
-	//	Assert.fail("Connect to SQLServer and Get MaintenanceData Failed");
-	}
-}	
-	/**
-	 ** Reuse method, it will read Data from XML file
-	 * @throws Exception
-	 * @author CON_SVIJAY02
-	 */
-	public HashMap<String, String> hm_xmlData = new HashMap<String, String>();
-	public void getDatafromXMLfile() {
-		try {	
-			Document document = null;
-			String xmlPath = "C:/VJ/KTOC/TRB/T-0002466613-20190211100059.xml";
-			try {
-				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-				factory.setNamespaceAware(true);
-				DocumentBuilder builder = factory.newDocumentBuilder();
-				document = builder.parse(new File(xmlPath));
-			} catch (ParserConfigurationException e) {
-				e.printStackTrace();
-			} catch (SAXException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			document.getDocumentElement().normalize();
-			NodeList elementsByTagName = document.getElementsByTagName("*");
-			for (int i = 0; i < elementsByTagName.getLength(); i++) {
-				Node node = elementsByTagName.item(i);
-					if (node.getNodeType() == Node.ELEMENT_NODE) {
-					    Element element = (Element) node;
-					    String[] array = element.getTagName().toString().split(":");
-					    String keyValue = array[0];
-					    keyValue = keyValue.replace("[", "");
-//					    System.out.println(keyValue+" = " + element.getAttribute("value"));
-					    hm_xmlData.put(keyValue, element.getAttribute("value"));
-					 }
-			}
-		} catch (Exception e) {
-		e.printStackTrace();
-	//	Assert.fail("Get Data from XML file Failed");
-	}
-}	
 
+	/**
+	 ** Reuse method, it will click on MinimumTenderPrice Icon
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	public void clickonMinimumTenderPriceIcon() throws Exception {
+		try {
+			waitForVisibilityOfElementLocated(tab_priceOverview); //By.xpath("//*[text()='Price overview']")
+			waitForElementToBeClickable(By.xpath("//*[@data-ctcwgtname='nPricingOverview']/div"));
+			wait.until(ExpectedConditions.visibilityOf(gettingWebElementsfromList(icon_additionalDiscount).get(2)));
+			scrollIntoView_Javascript(gettingWebElementsfromList(icon_additionalDiscount).get(2));
+			waitForinvisibilityOfElementLocated(elementtoInvisible);
+//	System.out.println(gettingWebElementsfromList(icon_additionalDiscount).get(2).getAttribute("id"));
+//			gettingWebElementsfromList(icon_additionalDiscount).get(2).click();
+			int count = 0;
+			for(WebElement additionaldiscount:gettingWebElementsfromList(icon_additionalDiscount)) {
+				count++;
+//				System.out.println(additionaldiscount.getAttribute("id"));
+				if (count == 2) {
+//					additionaldiscount.click();
+					click_Javascript(additionaldiscount);
+					break;
+				}
+			  }
+			System.out.println("MinimumTenderPrice Icon CLICKED");
+			waitForVisibilityOfElementLocated(grid_RegionalDiscountValues); // header_RegionalDiscount
+//		System.out.println("header RegionalDiscount is visible");
+		} catch (Exception e) {
+//			e.printStackTrace();
+			Assert.fail("Click on MinimumTenderPrice Icon Failed");
+		}
+	}
+	
+	
+	
 	public static String GetAdditionalDiscountGridTargetPriceBaseValues(String TreeValue) {
 		int Linevalue = 0;
 		switch (TreeValue) {
@@ -4251,7 +4158,7 @@ public class Keywords extends KTOCTRBUtils {
 			WaitTillClickable("xpath", SalesForceData.BusinessType);
 			SelectDropDownValues("xpath", SalesForceData.BusinessType, "Modernization (TRB)");
 			WaitTillClickable("xpath", SalesForceData.OpportunityName);
-			Thread.sleep(5000);
+//			Thread.sleep(5000);
 			EnterTextbyChar("xpath", SalesForceData.OpportunityName, OpportunityName, 1);
 			// WaitTillElementToBeClickable("xpath", SalesForceData.AccountNameField);
 //			EnterTextbyChar("xpath", SalesForceData.AccountNameField, AccountName, 1);

@@ -19,7 +19,7 @@ public class pg_SF_HomePage {
 	public static By lnk_toClassic=By.xpath("//*[text()='Switch to Salesforce Classic']");
 	public static By txt_classicHomeSearchbox=By.id("phSearchInput");
 	//Salesforce TenderPage
-	public static By header_flTender = By.xpath("//*[@title='FL Tenders' and starts-with(text(),'FL Tenders')]");
+	public static By header_flTender = By.xpath("//*[@class='title' and text()='Tenders & Orders']"); //*[@title='FL Tenders' and starts-with(text(),'FL Tenders')]
 	public static By btn_flTender = By.xpath("//*[@title='New FL Tender' and text()='New FL Tender']");
 	//getSalesPriceFromSalesForce
 	public static By frameforwait = By.tagName("iframe");

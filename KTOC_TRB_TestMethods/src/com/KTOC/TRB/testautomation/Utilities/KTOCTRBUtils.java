@@ -181,8 +181,8 @@ public class KTOCTRBUtils {
 				groupName = excelReader.GetData("France").get("GroupName");
 				template_2  = excelReader.GetData("France").get("TemplateName2");
 				equipmentinService_Escalator  = excelReader.GetData("France").get("EquipmentinService_Escalator");
-				regionalDiscount_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount_MultipleEqup"));
-				regionalDiscounttoChange_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount_MultipleEqup"));
+//------		regionalDiscount_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount_MultipleEqup"));
+//				regionalDiscounttoChange_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount_MultipleEqup"));
 				//-----for multiEquipment-----
 				equipment_ADDorChange  = excelReader.GetData("France").get("Equipment_ADDorChange");
 				customerid  = excelReader.GetData("France").get("CustomerID");	
@@ -202,7 +202,7 @@ public class KTOCTRBUtils {
 				isFirstMaintenancetoEdit = excelReader.GetData("France").get("isFirstMaintenancetoEdit");
 				isFirstMaintenancetoEdittoChange1 = excelReader.GetData("France").get("isFirstMaintenancetoEdittoChange_1");
 				isFirstMaintenancetoEdittoChange2 = excelReader.GetData("France").get("isFirstMaintenancetoEdittoChange_2");
-//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------				
+/*-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------				
 				regionalDiscount = Float.valueOf(excelReader.GetData("France").get("RegionalDiscount"));
 				regionalDiscounttoChange = Float.valueOf(excelReader.GetData("France").get("changeRegionalDiscount"));
 				check_showtotal_ITEfactor = Float.valueOf(excelReader.GetData("France").get("ITEfactor"));
@@ -213,7 +213,7 @@ public class KTOCTRBUtils {
 				LabourRatetoChange = Float.valueOf(excelReader.GetData("France").get("changeLabourRate"));
 				LabourRate_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("LabourRate_MultipleEqup"));
 				LabourRatetoChange_MultipleEqup = Float.valueOf(excelReader.GetData("France").get("changeLabourRate__MultipleEqup"));
-//----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------				
+//----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------*/				
 				StageProbability_Stage = excelReader.GetData("France").get("StageProbabilityStage");
 				StageProbability_Description = excelReader.GetData("France").get("StageProbabilityDescription");
 				StageProbability_probability = excelReader.GetData("France").get("StageProbabilityProbability");
@@ -298,7 +298,7 @@ public class KTOCTRBUtils {
 				frontlineAssigned=frontline;
 				break;
 			}
-//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------			
+/*-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------			
 			hm_ITEfactorforSalesOfficeData.put(salesoffice, check_showtotal_ITEfactor);
 			hm_ITEfactorforSalesOfficeData.put(changeSalesOffice, check_showtotal_ITEfactortoChange);
 			hm_ITEfactorforSalesOfficeData.put("MultipleEqup_"+salesoffice, check_showtotal_ITEfactor_MultipleEqup);
@@ -309,7 +309,7 @@ public class KTOCTRBUtils {
 			hm_LabourRateforSalesOfficeData.put(changeSalesOffice, LabourRatetoChange);
 			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+salesoffice, LabourRate_MultipleEqup);
 			hm_LabourRateforSalesOfficeData.put("MultipleEqup_"+changeSalesOffice, LabourRatetoChange_MultipleEqup);
-//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------			
+//-----------------------------------------Comment for getMaintenanceDatafromPage-----------------------------------------*/			
 			ls_allEquipmentIDs.add(equipmentid);
 			ls_allEquipmentIDs.add(equipmentid_2);
 		} catch (Exception e) {

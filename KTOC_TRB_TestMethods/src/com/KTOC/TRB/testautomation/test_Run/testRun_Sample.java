@@ -32,20 +32,19 @@ public class testRun_Sample {
 //	Keywords.selectTemplateToBeUploaded();
 	Keywords.verifyTenderConsistency();
 	Keywords.getTenderNumber();
-
-	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.pricingIconClick();
+	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");	
 //	Keywords.checkingTargetPriceFullGrid(); //fullGrid
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("65000", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("2800", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("7", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("64750", "2");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("3200", "6");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("64500", "3");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("3700", "9");
 	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
@@ -56,7 +55,7 @@ public class testRun_Sample {
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
 	Keywords.verifyTargetPriceDisplayedCorrectly(); //"0"
 	//8 & 9 Verify ITEFactorValue and LaborRateValue IsTakenFromSalesOffice
-	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("canada", EXCEL_PATH);
+	Keywords.gotoConfigurationPageandChangeThePrimarySalesOffice("france", EXCEL_PATH);
 //	Keywords.validateDetailBreakdownTabFullGrid();//fullGrid
 	Keywords.validateDetailBreakdownTab();
 	Keywords.gotoConfigurationPageandChangeTheSalesOffice();
@@ -69,12 +68,12 @@ public class testRun_Sample {
 	KTOCTRBUtils.readTestData("france", EXCEL_PATH);
 	Keywords.addMultipleEquipments();
 	Keywords.addEquipmentIDElevator();
+	Keywords.selectTemplateToBeUploaded();
 	Keywords.checkHandOverDateIsGreaterThanInstallationDate();
 	Keywords.checkSalesOfficeisSelected();
-	Keywords.additionalfieldsinProjectOverviewforCanada();
+//	Keywords.additionalfieldsinProjectOverviewforCanada();
 	Keywords.selectSupervisor();
 	Keywords.selectEquipmentInService();
-	Keywords.selectTemplateToBeUploaded();
 	Keywords.verifyTenderConsistency();
 	Keywords.getTenderNumber();
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
@@ -82,14 +81,14 @@ public class testRun_Sample {
 //	Keywords.getMaintenanceDatafromPage();
 	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("23000", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("2300", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("7", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("22500", "4");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("2250", "4");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("22250", "3");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("2500", "3");
 	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();
@@ -109,7 +108,7 @@ public class testRun_Sample {
 
 //*****selectMultipleEquipment*************************
 	//11.CheckingMaximumDiscountLimitExceeded
-	Keywords.CheckingMaximumDiscountLimitExceeded("101");
+	Keywords.CheckingMaximumDiscountLimitExceeded("25");
 	//12.CheckTenderLetterIsgeneratedCorrectlyWithAllThecomponents
 	Keywords.goToDocumentsTabandClickTheTender();
 	Keywords.verifySuccessfulMessageDisplayed();
