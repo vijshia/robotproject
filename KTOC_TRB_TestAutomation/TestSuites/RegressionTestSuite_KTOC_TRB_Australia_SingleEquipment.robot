@@ -3,7 +3,7 @@ Library    com.KTOC.TRB.testautomation.Keywords.Keywords
 Test Setup       Launch Browser    ${country}    ${excelpath}
 Test Teardown    Close Browser  
 *** Variable ***
-${country}    france
+${country}    australia
 ${excelpath}    \\TestData\\KTOCTRB_AutomationTestData.xlsx
 ${withoutfirstmaintenance}    0
 &{withfirstmaintenance}    firstmaintenance_1=3    firstmaintenance_2=6    firstmaintenance_3=3
