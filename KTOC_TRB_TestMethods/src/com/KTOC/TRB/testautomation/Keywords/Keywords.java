@@ -1921,12 +1921,11 @@ public class Keywords extends KTOCTRBUtils {
 			//"Base hours", "Per Service3", "per travel [m]3", "Each3", "Reference hours", "ITE factor", "Installation Hours", "Labour rate", "Labor Costs", "Contingency", "Overhead Recovery", "Full Costs", "Total Cost", "Tender Price", "Target Price", "Base price", "Per Service1", "per travel [m]1", "Each1", "Base cost", "Per Service2", "per travel [m]2", "Each2", "Material costs", "Material cost (SL Currency)"
 			List<String> numerals = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "€", "$", ".", " ");
 			int rotate = 0;
-			
 //		System.out.println("Before rotate:\n " + TotalCostHeaderFullGrid);
-		int installhour_position=TotalCostHeaderFullGrid.indexOf("Installation Hours");
-		int totalsize=TotalCostHeaderFullGrid.size();
+			int installhour_position=TotalCostHeaderFullGrid.indexOf("Installation Hours");
+			int totalsize=TotalCostHeaderFullGrid.size();
 /*		System.out.println(installhour_position+"/"+totalsize+"="+((totalsize-(totalsize-(installhour_position+1)))-18));
-		Collections.rotate(TotalCostHeaderFullGrid, ((totalsize-(totalsize-(installhour_position+1)))-18));
+			Collections.rotate(TotalCostHeaderFullGrid, ((totalsize-(totalsize-(installhour_position+1)))-18));
 		System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);*/
 
 		
