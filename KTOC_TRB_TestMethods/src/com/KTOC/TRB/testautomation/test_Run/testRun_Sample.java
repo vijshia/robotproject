@@ -108,7 +108,7 @@ public class testRun_Sample {
 
 //*****selectMultipleEquipment*************************
 	//11.CheckingMaximumDiscountLimitExceeded
-	Keywords.CheckingMaximumDiscountLimitExceeded("25");
+	Keywords.CheckingMaximumDiscountLimitExceeded("25", "0"); 
 	//12.CheckTenderLetterIsgeneratedCorrectlyWithAllThecomponents
 	Keywords.goToDocumentsTabandClickTheTender();
 	Keywords.verifySuccessfulMessageDisplayed();

@@ -1,5 +1,5 @@
 *** Settings ***
-Library    com.KTOC.TRB.testautomation.Keywords.Keywords     
+Library    com.KTOC.TRB.testautomation.Keywords.Keywords   
 Test Setup       Launch Browser    ${country}    ${excelpath}
 Test Teardown    Close Browser  
 *** Variable ***
@@ -53,30 +53,48 @@ ${withoutfirstmaintenance}    0
     01_Logon To Salesforce
     02_Verify Creating Opportunity and Mapping It With FLTender
     03_Verify Tender Created Successfully for Elevator
+    08_Validate TenderPrice With FirstMaintenance for Elevator
+    09_Check TenderPrice With FirstMaintenance for Elevator
     14_Check Regional Factor At SalesOffice Level for Elevator
-    15_Check Regional Factor When SalesOffice Is Changed for Elevator
     21_Check TenderLetter Is generated Correctly With All The components
     22_Close KTOC
     23_Verify Total SalesPrice With SF Product Information  
-06. Verify ITEFactor value and LaborRate value is taken from SalesOffice for Elevator
+06. Check RegionalFactor at SalesOffice Level by Changing the SalesOffice for Elevator
     01_Logon To Salesforce
     02_Verify Creating Opportunity and Mapping It With FLTender
     03_Verify Tender Created Successfully for Elevator
+    08_Validate TenderPrice With FirstMaintenance for Elevator
+    09_Check TenderPrice With FirstMaintenance for Elevator
+    15_Check Regional Factor When SalesOffice Is Changed for Elevator
+07. Verify ITEFactor value and LaborRate value is taken from SalesOffice for Elevator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    03_Verify Tender Created Successfully for Elevator
+    04_Validate TenderPrice Without FirstMaintenance for Elevator
+    05_Check TenderPrice Without FirstMaintenance for Elevator
     16_Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator
-    17_Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator
     21_Check TenderLetter Is generated Correctly With All The components
     22_Close KTOC
     23_Verify Total SalesPrice With SF Product Information 
-07. Check Price Calculated Correctly when the Tender Currency is different from SLCurrency for Elevator
+08. Verify ITEFactor value and LaborRate value by Changing the SalesOffice for Elevator
     01_Logon To Salesforce
     02_Verify Creating Opportunity and Mapping It With FLTender
     03_Verify Tender Created Successfully for Elevator
+    04_Validate TenderPrice Without FirstMaintenance for Elevator
+    05_Check TenderPrice Without FirstMaintenance for Elevator
+    17_Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator
+09. Check Price Calculated Correctly when the Tender Currency is different from SLCurrency for Elevator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    03_Verify Tender Created Successfully for Elevator
+    04_Validate TenderPrice Without FirstMaintenance for Elevator
+    05_Check TenderPrice Without FirstMaintenance for Elevator
     18_Check Cost Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator
     19_Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator
     21_Check TenderLetter Is generated Correctly With All The components
     22_Close KTOC
     23_Verify Total SalesPrice With SF Product Information
-08. Checking Maximum Discount Limit Exceeded
+10. Checking Maximum Discount Limit Exceeded
     01_Logon To Salesforce
     02_Verify Creating Opportunity and Mapping It With FLTender
     03_Verify Tender Created Successfully for Elevator
@@ -139,7 +157,7 @@ ${withoutfirstmaintenance}    0
 19_Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator    
     VerifyPriceCalculatedSuccessfully TobecheckedinFrance
 20_Checking Maximum DiscountLimit Exceeded    
-    Checking Maximum Discount Limit Exceeded    &{discount}[discount_3]
+    Checking Maximum Discount Limit Exceeded    &{discount}[discount_3]    ${withoutfirstmaintenance}
 21_Check TenderLetter Is generated Correctly With All The components
     Go To Documents Taband Click The Tender
     Verify Successful Message Displayed
@@ -148,4 +166,3 @@ ${withoutfirstmaintenance}    0
 23_Verify Total SalesPrice With SF Product Information
     Compare Sales Pricebetween Tender Pageand Salesforce
     Hand Shake
-#23.VerifyOrderCreatedSuccessfullyForElevator

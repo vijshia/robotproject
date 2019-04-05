@@ -58,7 +58,7 @@ Suite Teardown    Close Browser
 19.Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator    
     VerifyPriceCalculatedSuccessfully TobecheckedinFrance
 20.Checking Maximum DiscountLimit Exceeded    
-    Checking Maximum Discount Limit Exceeded    60
+    Checking Maximum Discount Limit Exceeded    60    0
 21.Check TenderLetter Is generated Correctly With All The components
     Go To Documents Taband Click The Tender
     Verify Successful Message Displayed

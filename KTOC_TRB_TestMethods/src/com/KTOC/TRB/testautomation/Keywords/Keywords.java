@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -647,12 +648,13 @@ public class Keywords extends KTOCTRBUtils {
 	 * @author CON_SVIJAY02
 	 */
 	public Boolean maximumDiscountLimitExceeded = true;
-	public void CheckingMaximumDiscountLimitExceeded(String discount) throws Exception {
+	public void CheckingMaximumDiscountLimitExceeded(String discount, String FirstMaintenance) throws Exception {
 		maximumDiscountLimitExceeded = false;
 		pricingIconClick();
 		waitForVisibilityOfElementLocated(tab_priceOverview);
 		waitForinvisibilityOfElementLocated(elementtoInvisible);
 		clickonButton(tab_priceOverview);
+		selectingFirstMaintenance(FirstMaintenance);
 		GetTargetPrice();
 		selectingDiscount(discount);
 		maximumDiscountLimitExceedPopup_Yes(discount);
@@ -1178,10 +1180,10 @@ public class Keywords extends KTOCTRBUtils {
 						+ " / testdata_regionalDiscount:" + regionalDiscount);
 			} else {
 				isRegionaldiscountoncomponent_testdata = read_Regionaldiscountoncomponent_percentage1
-						.equals(regionalDiscount_MultipleEqup);
+						.equals(regionalDiscount); //regionalDiscount_MultipleEqup
 				System.out.println("read_" + ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 1)
 						+ "_Regional discount on component (%)=" + read_Regionaldiscountoncomponent_percentage1
-						+ " / testdata_regionalDiscount:" + regionalDiscount_MultipleEqup);
+						+ " / testdata_regionalDiscount:" + regionalDiscount);
 			}
 			System.out.println("***is read_" + ls_RegionalDiscountRowHeader.get(ls_RegionalDiscountRowHeader.size() - 1)
 					+ "_Regional discount on component (%) VS testdata_regionalDiscount equal:"
@@ -1713,7 +1715,7 @@ public class Keywords extends KTOCTRBUtils {
 					}
 				}
 				System.out.println(condition2
-						+ " Added in ITEfactor hence CalculatedLabourrate VS ActualLabourRate shown in Application is: "
+						+ " Added in ITEfactor hence CalculatedLabourrate VS ActualLabourRate in Application is: "
 						+ roundoff.format(LabourRate).equals(roundoff.format(showtotal_Labourrate)) + " ***");
 			}
 			if (!roundoff.format(check_showtotal_ITEfactor).equals(roundoff.format(showtotal_ITEfactor))
@@ -1920,15 +1922,14 @@ public class Keywords extends KTOCTRBUtils {
 			List<String> TotalCostHeaderFullGrid = Arrays.asList("Target Price", "Base price", "Per Service1", "per travel [m]1", "Each1", "Base cost", "Per Service2", "per travel [m]2", "Each2", "Material costs", "Material cost (SL Currency)", "Base hours", "Per Service3", "per travel [m]3", "Each3", "Reference hours", "ITE factor", "Installation Hours", "Labour rate", "Labor Costs", "Contingency", "Overhead Recovery", "Full Costs", "Total Cost", "Tender Price");
 			//"Base hours", "Per Service3", "per travel [m]3", "Each3", "Reference hours", "ITE factor", "Installation Hours", "Labour rate", "Labor Costs", "Contingency", "Overhead Recovery", "Full Costs", "Total Cost", "Tender Price", "Target Price", "Base price", "Per Service1", "per travel [m]1", "Each1", "Base cost", "Per Service2", "per travel [m]2", "Each2", "Material costs", "Material cost (SL Currency)"
 			List<String> numerals = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "€", "$", ".", " ");
-			int rotate = 0;
+//			int rotate = 0;
 //		System.out.println("Before rotate:\n " + TotalCostHeaderFullGrid);
 			int installhour_position=TotalCostHeaderFullGrid.indexOf("Installation Hours");
 			int totalsize=TotalCostHeaderFullGrid.size();
-/*		System.out.println(installhour_position+"/"+totalsize+"="+((totalsize-(totalsize-(installhour_position+1)))-18));
-			Collections.rotate(TotalCostHeaderFullGrid, ((totalsize-(totalsize-(installhour_position+1)))-18));
+		/*System.out.println(installhour_position+"/"+totalsize+"="+((totalsize-(totalsize-(installhour_position+1)))-25));
+			Collections.rotate(TotalCostHeaderFullGrid, ((totalsize-(totalsize-(installhour_position+1)))-25));
 		System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);*/
 
-		
 			List<WebElement> Elements_showtotalcostRowHeader = gettingWebElementsfromList(
 					By.xpath("//*[text()='Subtotal']/../../div"));
 //			System.out.println(Elements_showtotalcostRowHeader.size());
@@ -2113,7 +2114,10 @@ public class Keywords extends KTOCTRBUtils {
 								}
 							}
 							count = 0;
-							if (count1 != 7) {
+//							System.out.println(installhour_position+"/"+totalsize+"="+((totalsize-(totalsize-(installhour_position+1)))-count1));
+							Collections.rotate(TotalCostHeaderFullGrid, ((totalsize-(totalsize-(installhour_position+1)))-count1));
+//							System.out.println("After rotate:\n " + TotalCostHeaderFullGrid);
+							/*if (count1 != 7) {
 								if (rotate == 0) {
 									Collections.rotate(TotalCostHeaderFullGrid, 20);
 									rotate++;
@@ -2127,7 +2131,7 @@ public class Keywords extends KTOCTRBUtils {
 									ls_TotalCostRowRowValues.add(11, 0f);
 									ls_TotalCostRowRowValues.add(12, 0f);
 								}
-							}
+							}*/
 							for (int j = 0; j < ls_TotalCostRowRowValues.size(); j++) {
 								/*
 								 * if(count1 != 7 && (rotate ==0 || rotate ==1) && (j==1 || j==20 || j==21 ||
@@ -4557,7 +4561,16 @@ public class Keywords extends KTOCTRBUtils {
 
 	public void CloseBrowser() {
 		try {
-			driver.quit();
+			Final_SalesPrice = 0f;
+			TenderPrice = 0f;
+			allTenderPrice = 0f;
+			showInstallationCalculation = 0;
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			/*js.executeScript("window.sessionStorage.clear();");
+			js.executeScript("window.localStorage.clear();");*/
+			js.executeScript(String.format("window.sessionStorage.clear();"));
+			js.executeScript(String.format("window.localStorage.clear();"));
+			driver.close();
 		} catch (Exception e) {
 			Assert.fail("Failed closing KTOC.");
 		}
