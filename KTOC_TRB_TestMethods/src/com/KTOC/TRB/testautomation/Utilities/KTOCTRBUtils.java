@@ -23,6 +23,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 public class KTOCTRBUtils {
@@ -105,8 +107,9 @@ public class KTOCTRBUtils {
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
-	public void LaunchBrowser(String frontline, String excelpath) throws Exception {
-		readTestData(frontline, excelpath);
+	public void LaunchBrowser(String frontline, Map<String, String> testdatafromPYfile) throws Exception { //Map<String, String> testdatafromPYfile
+		readTestDatafrom_PYTHON_File(frontline, testdatafromPYfile);
+//		readTestData(frontline, excelpath);
 		try {
 			if (operatingSystem.equalsIgnoreCase("ios")) {
 				ChromeOptions chromeOptions = new ChromeOptions();
@@ -316,6 +319,126 @@ public class KTOCTRBUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/**
+	 * 
+	 * @param frontline: Frontline to getdata
+	 * @param EXCELPATH: Path of the testdata file
+	 * @throws Exception: For exception handling
+	 * @author CON_SVIJAY02
+	 */
+	protected String Excel_ValuetoStore;
+	public void readTestDatafrom_PYTHON_File(String frontline, Map<String, String> testdatafromPYfile) throws Exception{
+		try {
+			frontline = frontline.toUpperCase();
+			for (Entry<String, String> entestdatafromPY : testdatafromPYfile.entrySet()) {
+				if(entestdatafromPY.getKey().equals("OperatingSystem")) {
+//					System.out.println("OperatingSystem=>"+entestdatafromPY.getValue());
+					operatingSystem = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("Browser")) {
+//					System.out.println("Browser=>"+entestdatafromPY.getValue());
+					browser = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("UserName")) {
+//					System.out.println("UserName=>"+entestdatafromPY.getValue());
+					username = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("Password")) {
+//					System.out.println("Password=>"+entestdatafromPY.getValue());
+					password = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("Opportunity_CreateorSearch")) {
+//					System.out.println("opportunityCreateorSearch=>"+entestdatafromPY.getValue());
+					opportunityCreateorSearch = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("OpportunityName")) {
+//					System.out.println("opportunity=>"+entestdatafromPY.getValue());
+					opportunity = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("ProductRelease")) {
+//					System.out.println("ProductRelease=>"+entestdatafromPY.getValue());
+					ProductRelease = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("EquipmentID")) {
+//					System.out.println("equipmentid=>"+entestdatafromPY.getValue());
+					equipmentid = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("EquipmentID_2")) {
+//					System.out.println("equipmentid_2=>"+entestdatafromPY.getValue());
+					equipmentid_2 = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("GroupName")) {
+//					System.out.println("groupName=>"+entestdatafromPY.getValue());
+					groupName = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("TemplateName2")) {
+//					System.out.println("template_2=>"+entestdatafromPY.getValue());
+					template_2 = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("EquipmentinService_Escalator")) {
+//					System.out.println("equipmentinService_Escalator=>"+entestdatafromPY.getValue());
+					equipmentinService_Escalator = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("Equipment_ADDorChange")) {
+//					System.out.println("equipment_ADDorChange=>"+entestdatafromPY.getValue());
+					equipment_ADDorChange = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("CustomerID")) {
+//					System.out.println("customerid=>"+entestdatafromPY.getValue());
+					customerid = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("SalesOffice")) {
+			/*System.out.println("***salesoffice=>"+entestdatafromPY.getValue());
+					if(entestdatafromPY.getValue().equalsIgnoreCase("Montreal")) {
+						salesoffice = "Montréal";
+			System.out.println("**salesoffice_assigned=>"+salesoffice);
+					}else if(entestdatafromPY.getValue().equalsIgnoreCase("Quebec City")) {
+						salesoffice = "Québec City";
+//						System.out.println("**salesoffice_assigned=>"+salesoffice);
+					}*/
+					salesoffice = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("ChangeSalesOffice")) {
+//					System.out.println("changeSalesOffice=>"+entestdatafromPY.getValue());
+					changeSalesOffice = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("EquipmentinService")) {
+//					System.out.println("equipmentinService=>"+entestdatafromPY.getValue());
+					equipmentinService = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("Supervisor")) {
+//					System.out.println("supervisor_ResponsiblePerson=>"+entestdatafromPY.getValue());
+					supervisor_ResponsiblePerson = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("changeSupervisor")) {
+//					System.out.println("supervisor_ResponsiblePersontoChange=>"+entestdatafromPY.getValue());
+					supervisor_ResponsiblePersontoChange = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("TemplateName")) {
+//					System.out.println("template=>"+entestdatafromPY.getValue());
+					template = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("isFirstMaintenancetoEdit")) {
+//					System.out.println("isFirstMaintenancetoEdit=>"+entestdatafromPY.getValue());
+					isFirstMaintenancetoEdit = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("isFirstMaintenancetoEdittoChange_1")) {
+//					System.out.println("isFirstMaintenancetoEdittoChange1=>"+entestdatafromPY.getValue());
+					isFirstMaintenancetoEdittoChange1 = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("isFirstMaintenancetoEdittoChange_2")) {
+//					System.out.println("isFirstMaintenancetoEdittoChange2=>"+entestdatafromPY.getValue());
+					isFirstMaintenancetoEdittoChange2 = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("StageProbabilityStage")) {
+//					System.out.println("StageProbability_Stage=>"+entestdatafromPY.getValue());
+					StageProbability_Stage = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("StageProbabilityDescription")) {
+//					System.out.println("StageProbability_Description=>"+entestdatafromPY.getValue());
+					StageProbability_Description = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("StageProbabilityProbability")) {
+//					System.out.println("StageProbability_probability=>"+entestdatafromPY.getValue());
+					StageProbability_probability = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("SeismicArea")) {
+//					System.out.println("value_seismicArea=>"+entestdatafromPY.getValue());
+					value_seismicArea = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("WeeklyTeamCostforZone")) {
+//					System.out.println("weeklyTeamCostforZone=>"+entestdatafromPY.getValue());
+					weeklyTeamCostforZone = entestdatafromPY.getValue();
+				}else if(entestdatafromPY.getKey().equals("WeeklyTeamCostforRoomandBoard")) {
+//					System.out.println("weeklyTeamCostforRoomandBoard=>"+entestdatafromPY.getValue());
+					weeklyTeamCostforRoomandBoard = entestdatafromPY.getValue();
+				}
+			}
+			/*operatingSystem	= testdatafromPYfile.get("OperatingSystem");*/
+			frontlineAssigned=frontline;
+//			System.out.println("*** frontlineAssigned: "+frontlineAssigned);
+			ls_allEquipmentIDs.add(equipmentid);
+			ls_allEquipmentIDs.add(equipmentid_2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	/**
 	 **Reuse method, it will wait till the element identified by switching in to frame 

@@ -2,21 +2,22 @@
 <projectConfiguration>
     <configVersion>2</configVersion>
     <relativeTo>WORKSPACE</relativeTo>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.Keywords.Keywords" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.CreateProductPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.LogOnPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_SF_HomePage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_SF_Login" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TBR_HomePage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TBR_PricingPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TRB_DocumentsPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TRB_ProjectOverview" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.SalesForceData" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.TenderPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.VersionPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
-    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0503_TD4.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.Keywords.Keywords" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.CreateProductPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.LogOnPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_SF_HomePage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_SF_Login" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TBR_HomePage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TBR_PricingPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TRB_DocumentsPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.pg_TRB_ProjectOverview" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.SalesForceData" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.TenderPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.ObjectRepository.VersionPage" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
+    <referencedLibrary type="JAVA" name="com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils" path="C:/Users/con_svijay02/KTOC-TRB-Automation/KTOC_TRB_TestAutomation/KTOC_TRB_JAR_0412_TD1.jar"/>
     <pythonpath>
-        <path location="C:\Python27\Lib\site-packages"/>
+        <path location=""/>
+        <path location="C:\Users\con_svijay02\AppData\Local\Programs\Python\Python37-32\Lib\site-packages"/>
     </pythonpath>
     <classpath>
         <path location="C:\Users\con_svijay02\Downloads\selenium-java-3.12.0\client-combined-3.12.0.jar"/>
@@ -99,6 +100,6 @@
     <isValidatedFileSizeCheckingEnabled>true</isValidatedFileSizeCheckingEnabled>
     <validatedFileMaxSize>1024</validatedFileMaxSize>
     <isReferencedLibrariesAutoReloadEnabled>true</isReferencedLibrariesAutoReloadEnabled>
-    <isReferencedLibrariesAutoDiscoveringEnabled>false</isReferencedLibrariesAutoDiscoveringEnabled>
+    <isReferencedLibrariesAutoDiscoveringEnabled>true</isReferencedLibrariesAutoDiscoveringEnabled>
     <isLibrariesAutoDiscoveringSummaryWindowEnabled>false</isLibrariesAutoDiscoveringSummaryWindowEnabled>
 </projectConfiguration>

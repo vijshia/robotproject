@@ -1,0 +1,107 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+TESTDATA_FRANCE = {
+    "OperatingSystem" 	: "windows",
+    "Browser" 			: "FF",
+    "UserName" 			: "s.vijay@kone.com.qap",
+    "Password" 			: "Vijay1234",
+
+	"Opportunity_CreateorSearch" 	: "Search",
+	"OpportunityName" 				: "AutomationKTOC SFA",
+	"ProductRelease" 				: "1723",
+	"EquipmentID" 					: "10503512",
+	"EquipmentID_2" 				: "11234846",
+	"Equipment_ADDorChange" 		: "Change",
+	"CustomerID" 					: "A10137873",
+	"SalesOffice" 					: "VB FRRW",
+	"ChangeSalesOffice" 			: "VB FRPP",
+    
+    "SeismicArea" 					: "2",
+    "WeeklyTeamCostforZone"			: "1",
+    "WeeklyTeamCostforRoomandBoard"	: "1",
+
+	"Supervisor" 					: "06114080",
+	"changeSupervisor" 				: "06151495",
+	"EquipmentinService" 			: "LIS Elevator",
+	"EquipmentinService_Escalator" 	: "EIS Escalator",
+	"TemplateName" 					: "AutomationSFA",
+	"TemplateName2" 				: "Automation_Template_forEscalator",
+	"GroupName" 					: "Automation_GroupName",
+	"isFirstMaintenancetoEdit" 		: "100",
+	"isFirstMaintenancetoEdittoChange_1" : "105",
+	"isFirstMaintenancetoEdittoChange_2" : "110",
+	"StageProbabilityStage" 		: "Budget Price",
+	"StageProbabilityDescription"	: "Automation Test Description",
+	"StageProbabilityProbability" 	: "22",
+}
+
+TESTDATA_AUSTRALIA = {
+    "OperatingSystem" 	: "windows",
+    "Browser" 			: "FF",
+    "UserName" 			: "s.vijay@kone.com.qap",
+    "Password" 			: "Vijay1234",
+
+	"Opportunity_CreateorSearch" 	: "Search",
+	"OpportunityName" 				: "AUTOMATION TRB 201",
+	"ProductRelease" 				: "1813",
+	"EquipmentID" 					: "30493722",
+	"EquipmentID_2" 				: "11234846",
+	"Equipment_ADDorChange" 		: "Change",
+	"CustomerID" 					: "A10137873",
+	"SalesOffice" 					: "AU21 - Sydney Region",
+	"ChangeSalesOffice" 			: "AU22 - Newcastle Region",
+
+    "SeismicArea" 					: "2",
+    "WeeklyTeamCostforZone"			: "1",
+    "WeeklyTeamCostforRoomandBoard"	: "1",
+    
+	"Supervisor" 					: "13012004",
+	"changeSupervisor" 				: "13010164",
+	"EquipmentinService" 			: "LIS Elevator",
+	"EquipmentinService_Escalator" 	: "EIS Escalator",
+	"TemplateName" 					: "AustraliaRopes_For Automation",
+	"TemplateName2" 				: "Automation_Template_forEscalator",
+	"GroupName" 					: "Automation_GroupName",
+	"isFirstMaintenancetoEdit" 		: "130",
+	"isFirstMaintenancetoEdittoChange_1" : "135",
+	"isFirstMaintenancetoEdittoChange_2" : "140",
+	"StageProbabilityStage" 		: "Budget Price",
+	"StageProbabilityDescription"	: "Automation Test Description",
+	"StageProbabilityProbability" 	: "22",
+}
+
+TESTDATA_CANADA = {
+    "OperatingSystem" 	: "windows",
+    "Browser" 			: "FF",
+    "UserName" 			: "s.vijay@kone.com.qap",
+    "Password" 			: "Vijay1234",
+
+	"Opportunity_CreateorSearch" 	: "Search",
+	"OpportunityName" 				: "AUTOMATION TRB CKQ",
+	"ProductRelease" 				: "1723",
+	"EquipmentID" 					: "20291426",
+	"EquipmentID_2" 				: "20291427",
+	"Equipment_ADDorChange" 		: "Change",
+	"CustomerID" 					: "N194322",
+	"SalesOffice" 					: "Montreal",
+	"ChangeSalesOffice" 			: "Sherbrooke",
+
+    "SeismicArea" 					: "2",
+    "WeeklyTeamCostforZone"			: "1",
+    "WeeklyTeamCostforRoomandBoard"	: "1",
+
+	"Supervisor" 					: "07006025",
+	"changeSupervisor" 				: "07003313",
+	"EquipmentinService" 			: "LIS Elevator",
+	"EquipmentinService_Escalator" 	: "EIS Escalator",
+	"TemplateName" 					: "AutomationCKQ",
+	"TemplateName2" 				: "Automation_Template_forEscalator",
+	"GroupName" 					: "Automation_GroupName",
+	"isFirstMaintenancetoEdit" 		: "165",
+	"isFirstMaintenancetoEdittoChange_1" : "175",
+	"isFirstMaintenancetoEdittoChange_2" : "185",
+	"StageProbabilityStage" 		: "Budget Price",
+	"StageProbabilityDescription"	: "Automation Test Description",
+	"StageProbabilityProbability" 	: "22",
+}

@@ -1,7 +1,8 @@
 *** Settings ***
 Library    com.KTOC.TRB.testautomation.Keywords.Keywords   
-Test Setup       Launch Browser    ${country}    ${excelpath}
+Test Setup       Launch Browser    ${country}    &{TESTDATA_FRANCE}
 Test Teardown    Close Browser  
+Variables    ../TestData/KTOCTRB_AutomationTestData_PY.py
 *** Variable ***
 ${country}    france
 ${excelpath}    \\TestData\\KTOCTRB_AutomationTestData.xlsx
@@ -9,6 +10,9 @@ ${withoutfirstmaintenance}    0
 &{withfirstmaintenance}    firstmaintenance_1=3    firstmaintenance_2=6    firstmaintenance_3=3
 &{discount}    discount_1=5    discount_2=7    discount_3=25
 &{tenderprice}    tenderprice_1=2900    tenderprice_2=3200    tenderprice_3=3800
+&{withfirstmaintenance_Escalator}    firstmaintenance_1=3    firstmaintenance_2=6    firstmaintenance_3=3
+&{discount_Escalator}    discount_1=5    discount_2=7
+&{tenderprice_Escalator}    tenderprice_1=2900    tenderprice_2=3200    tenderprice_3=3800
 
 *** Test Cases ***
 01. Validate TenderPrice Without FirstMaintenance for Elevator
@@ -60,6 +64,13 @@ ${withoutfirstmaintenance}    0
     21_Check TenderLetter Is generated Correctly With All The components
     22_Close KTOC
     23_Verify Total SalesPrice With SF Product Information  
+# 06. Check RegionalFactor at SalesOffice Level by Changing the SalesOffice for Elevator
+    # 01_Logon To Salesforce
+    # 02_Verify Creating Opportunity and Mapping It With FLTender
+    # 03_Verify Tender Created Successfully for Elevator
+    # 08_Validate TenderPrice With FirstMaintenance for Elevator
+    # 09_Check TenderPrice With FirstMaintenance for Elevator
+    # 15_Check Regional Factor When SalesOffice Is Changed for Elevator    
 06. Verify ITEFactor value and LaborRate value is taken from SalesOffice for Elevator
     01_Logon To Salesforce
     02_Verify Creating Opportunity and Mapping It With FLTender
@@ -71,6 +82,13 @@ ${withoutfirstmaintenance}    0
     21_Check TenderLetter Is generated Correctly With All The components
     22_Close KTOC
     23_Verify Total SalesPrice With SF Product Information 
+# 08. Verify ITEFactor value and LaborRate value by Changing the SalesOffice for Elevator
+    # 01_Logon To Salesforce
+    # 02_Verify Creating Opportunity and Mapping It With FLTender
+    # 03_Verify Tender Created Successfully for Elevator
+    # 04_Validate TenderPrice Without FirstMaintenance for Elevator
+    # 05_Check TenderPrice Without FirstMaintenance for Elevator
+    # 17_Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator    
 07. Check Price Calculated Correctly when the Tender Currency is different from SLCurrency for Elevator
     01_Logon To Salesforce
     02_Verify Creating Opportunity and Mapping It With FLTender
@@ -89,6 +107,91 @@ ${withoutfirstmaintenance}    0
     20_Checking Maximum DiscountLimit Exceeded
     21_Check TenderLetter Is generated Correctly With All The components
     22_Close KTOC
+09. Validate TenderPrice Without FirstMaintenance for Escalator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    24_Verify Tender Created Successfully for Escalator
+    04_Validate TenderPrice Without FirstMaintenance for Escalator
+    05_Check TenderPrice Without FirstMaintenance for Elevator
+    21_Check TenderLetter Is generated Correctly With All The components
+    22_Close KTOC
+    23_Verify Total SalesPrice With SF Product Information
+10. Validate Discount Without FirstMaintenance for Escalator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    24_Verify Tender Created Successfully for Escalator
+    06_Validate Discount Without FirstMaintenance for Escalator
+    07_Check Discount Without FirstMaintenance for Elevator
+    21_Check TenderLetter Is generated Correctly With All The components
+    22_Close KTOC
+    23_Verify Total SalesPrice With SF Product Information
+11. Validate TenderPrice With FirstMaintenance for Escalator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    24_Verify Tender Created Successfully for Escalator
+    08_Validate TenderPrice With FirstMaintenance for Escalator
+    09_Check TenderPrice With FirstMaintenance for Elevator
+    21_Check TenderLetter Is generated Correctly With All The components
+    22_Close KTOC
+    23_Verify Total SalesPrice With SF Product Information    
+12. Validate Discount With FirstMaintenance for Escalator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    24_Verify Tender Created Successfully for Escalator
+    10_Validate Discount With FirstMaintenance for Escalator
+    11_Check Discount With FirstMaintenance for Elevator
+    12_Change and Validate Discount With FirstMaintenance for Escalator
+    13_Check Changed Discount With FirstMaintenance for Elevator
+    21_Check TenderLetter Is generated Correctly With All The components
+    22_Close KTOC
+    23_Verify Total SalesPrice With SF Product Information    
+13. Check RegionalFactor at SalesOffice Level for Escalator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    24_Verify Tender Created Successfully for Escalator
+    08_Validate TenderPrice With FirstMaintenance for Escalator
+    09_Check TenderPrice With FirstMaintenance for Elevator
+    14_Check Regional Factor At SalesOffice Level for Elevator
+    15_Check Regional Factor When SalesOffice Is Changed for Elevator
+    21_Check TenderLetter Is generated Correctly With All The components
+    22_Close KTOC
+    23_Verify Total SalesPrice With SF Product Information  
+# 16. Check RegionalFactor at SalesOffice Level by Changing the SalesOffice for Escalator
+    # 01_Logon To Salesforce
+    # 02_Verify Creating Opportunity and Mapping It With FLTender
+    # 24_Verify Tender Created Successfully for Escalator
+    # 08_Validate TenderPrice With FirstMaintenance for Escalator
+    # 09_Check TenderPrice With FirstMaintenance for Elevator
+    # 15_Check Regional Factor When SalesOffice Is Changed for Elevator    
+14. Verify ITEFactor value and LaborRate value is taken from SalesOffice for Escalator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    24_Verify Tender Created Successfully for Escalator
+    04_Validate TenderPrice Without FirstMaintenance for Escalator
+    05_Check TenderPrice Without FirstMaintenance for Elevator
+    16_Verify ITEFactorValue and LaborRateValue IsTaken From SalesOffice for Elevator
+    17_Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator
+    21_Check TenderLetter Is generated Correctly With All The components
+    22_Close KTOC
+    23_Verify Total SalesPrice With SF Product Information 
+# 18. Verify ITEFactor value and LaborRate value by Changing the SalesOffice for Escalator
+    # 01_Logon To Salesforce
+    # 02_Verify Creating Opportunity and Mapping It With FLTender
+    # 24_Verify Tender Created Successfully for Escalator
+    # 04_Validate TenderPrice Without FirstMaintenance for Escalator
+    # 05_Check TenderPrice Without FirstMaintenance for Elevator
+    # 17_Verify ITEFactorValue and LaborRateValue IsTaken From Changed SalesOffice for Elevator    
+15. Check Price Calculated Correctly when the Tender Currency is different from SLCurrency for Escalator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    24_Verify Tender Created Successfully for Escalator
+    04_Validate TenderPrice Without FirstMaintenance for Escalator
+    05_Check TenderPrice Without FirstMaintenance for Elevator
+    18_Check Cost Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator
+    19_Check Price Calculated Correctly When The Tender Currency Is Different From SLCurrency for Elevator
+    21_Check TenderLetter Is generated Correctly With All The components
+    22_Close KTOC
+    23_Verify Total SalesPrice With SF Product Information   
     
 *** Keywords ***
 01_Logon To Salesforce
@@ -154,3 +257,26 @@ ${withoutfirstmaintenance}    0
 23_Verify Total SalesPrice With SF Product Information
     Compare Sales Pricebetween Tender Pageand Salesforce
     Hand Shake
+24_Verify Tender Created Successfully for Escalator
+    Navigateto KTOCTRB
+    Add Multiple Equipments
+    Add Equipment ID Elevator
+    Select Template To Be Uploaded
+    Check Hand Over Date Is Greater Than Installation Date
+    Check Sales Officeis Selected
+    Additionalfieldsin Project Overviewfor Canada
+    Select Supervisor
+    Select Equipment In Service
+    Verify Tender Consistency
+    Get Tender Number
+    Pricing Icon Click        
+04_Validate TenderPrice Without FirstMaintenance for Escalator
+    Check Tender Price After Discount Update    &{discount_Escalator}[discount_1]    ${withoutfirstmaintenance}
+06_Validate Discount Without FirstMaintenance for Escalator    
+    Verify Discount By Changing The Tender Price    &{tenderprice_Escalator}[tenderprice_1]    ${withoutfirstmaintenance}
+08_Validate TenderPrice With FirstMaintenance for Escalator
+    Check Tender Price After Discount Update    &{discount_Escalator}[discount_2]    &{withfirstmaintenance_Escalator}[firstmaintenance_1]
+10_Validate Discount With FirstMaintenance for Escalator
+    Verify Discount By Changing The Tender Price    &{tenderprice_Escalator}[tenderprice_2]    &{withfirstmaintenance_Escalator}[firstmaintenance_2]
+12_Change and Validate Discount With FirstMaintenance for Escalator    
+    Verify Discount By Changing The Tender Price    &{tenderprice_Escalator}[tenderprice_3]    &{withfirstmaintenance_Escalator}[firstmaintenance_3]

@@ -1,5 +1,6 @@
 package com.KTOC.TRB.testautomation.test_Run;
 
+import java.util.Map;
 import com.KTOC.TRB.testautomation.Keywords.Keywords;
 import com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils;
 
@@ -15,7 +16,9 @@ public class testRun_Sample {
 	KTOCTRBUtils KTOCTRBUtils=new KTOCTRBUtils();
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 //	String EXCEL_PATH = "C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestMethods\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
-	Keywords.LaunchBrowser("france", EXCEL_PATH);
+	Map<String, String> testdatafromPYfile = null;
+	
+	Keywords.LaunchBrowser("canada", testdatafromPYfile);
 	//1.LogonToSalesforce
 	Keywords.logintoSalesforce();
 	//2.VerifyCreatingOpportunityandMappingItWithFLTender
@@ -34,17 +37,17 @@ public class testRun_Sample {
 	Keywords.getTenderNumber();
 	Keywords.pricingIconClick();
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
-	Keywords.CheckTenderPriceAfterDiscountUpdate("6", "0");	
+	Keywords.CheckTenderPriceAfterDiscountUpdate("5", "0");	
 //	Keywords.checkingTargetPriceFullGrid(); //fullGrid
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("2800", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("63000", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("7", "3");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("3200", "6");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("62000", "6");
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("3700", "9");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("61000", "9");
 	Keywords.GetTargetPrice();
 	//6.CheckRegionalFactorAtSalesOfficeLevel
 	Keywords.verifyRegionalDiscountDisplayedCorrectly();

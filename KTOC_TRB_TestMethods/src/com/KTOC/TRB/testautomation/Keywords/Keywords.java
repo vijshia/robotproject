@@ -357,7 +357,15 @@ public class Keywords extends KTOCTRBUtils {
 
 	public void checkSalesOfficeisSelected() throws Exception {
 		try {
-			By value_salesOffice = By.xpath("//div[text()='" + salesoffice + "']");
+			By value_salesOffice;
+			if(salesoffice.equals("Montreal") || salesoffice.contains("Montr")) {
+				value_salesOffice = By.xpath("//div[text()='Montréal']");
+			} else if(salesoffice.equals("Quebec City") || salesoffice.contains("bec City")) {
+				value_salesOffice = By.xpath("//div[text()='Québec City']");
+			} else {
+				value_salesOffice = By.xpath("//div[text()='"+salesoffice+"']");
+			}
+//		System.out.println("***checkSalesOfficeisSelected_salesoffice="+salesoffice+"|"+value_salesOffice);
 			waitForinvisibilityOfElementLocated(elementtoInvisible);
 			clickonButton(dd_salesOffice); // *[@data-ctcwgtname='SalesOffice']/button
 //			System.out.println("SalesOffice drop down clicked");
@@ -465,9 +473,9 @@ public class Keywords extends KTOCTRBUtils {
 			} else if (frontlineAssigned.equals("AUSTRALIA")) {
 				dd_SalesOffice = a[0].trim();
 			} else if (frontlineAssigned.equals("CANADA")) {
-				if (salesoffice.equals("Montréal")) {
+				if (salesoffice.equals("Montreal") || salesoffice.contains("Montr")) {
 					dd_SalesOffice = "CA25";
-				} else if (salesoffice.equals("Québec City")) {
+				} else if (salesoffice.equals("Quebec City") || salesoffice.contains("bec City")) {
 					dd_SalesOffice = "CA21";
 				} else if (salesoffice.equals("Sherbrooke")) {
 					dd_SalesOffice = "CA22";
@@ -658,6 +666,8 @@ public class Keywords extends KTOCTRBUtils {
 		GetTargetPrice();
 		selectingDiscount(discount);
 		maximumDiscountLimitExceedPopup_Yes(discount);
+		System.out.println("************ Checking MaximumDiscount Limit Exceeded (Yes) Completed ****************");
+		System.out.println();
 		maximumDiscountLimitExceeded = false;
 		selectingDiscount(discount);
 		maximumDiscountLimitExceedPopup_No();
@@ -688,6 +698,7 @@ public class Keywords extends KTOCTRBUtils {
 //		getRegionalDiscount(firstMaintenance);
 		waitForinvisibilityOfElementLocated(elementtoInvisible);
 		gettingWebElementsfromList(icon_additionalDiscount).get(3).click();
+		scrollIntoView_Javascript(gettingWebElement(lnk_toWord));
 		try {
 			if (!isgetRegionalDiscount) {
 				isgetRegionalDiscount = true;
@@ -2804,6 +2815,7 @@ public class Keywords extends KTOCTRBUtils {
 				}
 				By icon_Close = By.xpath("//*[@data-ctcwgtname='ToolBar' and @data-ctctype='Toolbar']/div[1]");
 				waitForVisibilityOfElementLocated(icon_Close);
+				scrollIntoView_Javascript(gettingWebElement(icon_Close));
 				waitForinvisibilityOfElementLocated(elementtoInvisible);
 				clickonButton(icon_Close);
 				System.out.println("Close icon CLICKED");
@@ -2857,7 +2869,7 @@ public class Keywords extends KTOCTRBUtils {
 			 */
 			if (isMultipleEquipment) {
 				addAllTenderPrice();
-				System.out.println("allTender Price:" + allTenderPrice + " / Final_SalesPrice:" + Final_SalesPrice);
+				System.out.println("Calculated allSalesPrice Price:" + allTenderPrice + " / Final_SalesPrice:" + Final_SalesPrice);
 				System.out.println("*** is TRB allTenderPrice VS Salesforce TenderPrice equal:"
 						+ allTenderPrice.equals(Final_SalesPrice));
 				if (!allTenderPrice.equals(Final_SalesPrice)) {
@@ -2866,7 +2878,7 @@ public class Keywords extends KTOCTRBUtils {
 					Assert.fail("Failed due to TenderPrice not equal in Get SalesPrice from SalesForce");
 				}
 			} else {
-				System.out.println("Tender Price:" + TenderPrice + " / Final_SalesPrice:" + Final_SalesPrice);
+				System.out.println("Calculated SalesPrice:" + TenderPrice + " / Final_SalesPrice:" + Final_SalesPrice);
 				System.out.println("is TRB TenderPrice VS Salesforce TenderPrice equal:"
 						+ TenderPrice.equals(Final_SalesPrice) + " ***");
 				if (!TenderPrice.equals(Final_SalesPrice)) {
@@ -3494,7 +3506,7 @@ public class Keywords extends KTOCTRBUtils {
 
 	private Float getFloatFromString(String value) {
 		String replaced = value;
-		if (replaced.contains("�")) {
+		if (replaced.contains("€")) {
 			replaced = replaced.replaceAll("[.]", "").replaceAll(",", "."); // hd it wk
 		}
 		replaced = replaced.replaceAll("[^0-9.]", "");
@@ -3811,16 +3823,67 @@ public class Keywords extends KTOCTRBUtils {
 					// projectprice = target price * (1-disount/100)
 					Float calculated_projectprice = ((TargetPriceforCheckingMaximumDiscountLimitExceeded - FirstmaintenanceforCheckingMaximumDiscountLimitExceeded) * (1 - (Float.valueOf(discount) / 100)) + FirstmaintenanceforCheckingMaximumDiscountLimitExceeded);
 					System.out.println("Calculated Projectprice: "+roundoff.format(calculated_projectprice)+" / read_projectPricing:"+roundoff.format(read_projectPricing));
+					String condition = null;
+					if (!roundoff.format(calculated_projectprice).toString().equals(roundoff.format(read_projectPricing).toString())) { 
+						Float difference = calculated_projectprice - read_projectPricing;
+						if (roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+							calculated_projectprice = calculated_projectprice + 0.01f;
+							condition = "+0.01";
+//					System.out.println(roundoff.format(calculated_projectprice));
+						} else if (roundoff.format(difference).equals(roundoff.format(-.02f))) {
+							calculated_projectprice = calculated_projectprice + 0.02f;
+							condition = "+0.02";
+						} else {
+							if (roundoff.format(difference).equals(roundoff.format(.00f))) {
+								calculated_projectprice = calculated_projectprice - difference;
+								condition = "-"+difference;
+							} else {
+								calculated_projectprice = calculated_projectprice - 0.01f;
+							if (roundoff.format(calculated_projectprice).equals(roundoff.format(read_projectPricing))) {
+								condition = "-0.01";
+							} else {
+								calculated_projectprice = calculated_projectprice - 0.01f;
+								condition = "-0.02";
+							}
+						}
+						}
+					}
 					Boolean check_projectprice = roundoff.format(calculated_projectprice).toString().equals(roundoff.format(read_projectPricing).toString());
-					System.out.println("*** is calculated_projectprice vs read_projectPricing equal: "+check_projectprice);
+					System.out.println("*** "+condition+ " Added in calculated_projectprice, now calculated_projectprice vs read_projectPricing is equal: "+check_projectprice);
 					System.out.println("TargetPrice in table: "+roundoff.format(TargetPriceforCheckingMaximumDiscountLimitExceeded)+" / read_targetPrice: "+roundoff.format(read_targetPrice));
+					String condition1 = null;
+					if (!roundoff.format(TargetPriceforCheckingMaximumDiscountLimitExceeded).toString().equals(roundoff.format(read_targetPrice).toString())) { 
+						Float difference = TargetPriceforCheckingMaximumDiscountLimitExceeded - read_targetPrice;
+						if (roundoff.format(difference).equals(roundoff.format(-.00f)) || roundoff.format(difference).equals(roundoff.format(-.01f))) {
+							TargetPriceforCheckingMaximumDiscountLimitExceeded = TargetPriceforCheckingMaximumDiscountLimitExceeded + 0.01f;
+							condition1 = "+0.01";
+//					System.out.println(roundoff.format(TargetPriceforCheckingMaximumDiscountLimitExceeded));
+						} else if (roundoff.format(difference).equals(roundoff.format(-.02f))) {
+							TargetPriceforCheckingMaximumDiscountLimitExceeded = TargetPriceforCheckingMaximumDiscountLimitExceeded + 0.02f;
+							condition1 = "+0.02";
+						} else {
+							if (roundoff.format(difference).equals(roundoff.format(.00f))) {
+								TargetPriceforCheckingMaximumDiscountLimitExceeded = TargetPriceforCheckingMaximumDiscountLimitExceeded - difference;
+								condition1 = "-"+difference;
+							} else {
+								TargetPriceforCheckingMaximumDiscountLimitExceeded = TargetPriceforCheckingMaximumDiscountLimitExceeded - 0.01f;
+							if (roundoff.format(TargetPriceforCheckingMaximumDiscountLimitExceeded).equals(roundoff.format(read_targetPrice))) {
+								condition1 = "-0.01";
+							} else {
+								TargetPriceforCheckingMaximumDiscountLimitExceeded = TargetPriceforCheckingMaximumDiscountLimitExceeded - 0.01f;
+								condition1 = "-0.02";
+							}
+						}
+						}
+					}
 					Boolean check_targetprice = roundoff.format(TargetPriceforCheckingMaximumDiscountLimitExceeded).toString().equals(roundoff.format(read_targetPrice).toString());
-					System.out.println("*** is targetPrice in table vs read_targetPrice equal: "+check_targetprice);
+					System.out.println("*** "+condition1+ " Added in targetPrice, now targetPrice in table vs read_targetPrice is equal: "+check_targetprice);
 					System.out.println("Discount entered: "+Float.valueOf(discount)+" / read_discount: "+read_discount);
 					Boolean check_discount = Float.valueOf(discount).toString().equals(read_discount.toString());
 					System.out.println("*** is Discount entered vs read_discount equal: "+check_discount);
 					if (!check_projectprice || !check_targetprice || !check_discount) {
 						flag_maximumDiscountLimitExceedYes = false;
+						screenshotCapture("Maximum Discount Limit Exceed_Yes failed due to Projectprice or Targetprice or Discount not equal");
 					}
 		//			waitForinvisibilityOfElementLocated(elementtoInvisible);			
 					scrollIntoView_Javascript(gettingWebElement(btn_maximumDiscountLimitExceed_SEND));

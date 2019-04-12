@@ -1,15 +1,15 @@
 package com.KTOC.TRB.testautomation.test_Run;
 
 import com.KTOC.TRB.testautomation.Keywords.Keywords;
-import com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils;
+//import com.KTOC.TRB.testautomation.Utilities.KTOCTRBUtils;
 
 public class testRun {
 
 	public static void main(String[] args) {
-		KTOCTRBUtils obj=new KTOCTRBUtils();
+//		KTOCTRBUtils obj=new KTOCTRBUtils();
 		Keywords obj1=new Keywords();
 		try {
-			obj.LaunchBrowser("windows", "ff");
+//			obj.LaunchBrowser("windows", "ff");
 			/*obj1.LogonToSalesforce();	
 			obj1.CreateOpportunity();*/
 			obj1.MapContactWithOpportunity();
