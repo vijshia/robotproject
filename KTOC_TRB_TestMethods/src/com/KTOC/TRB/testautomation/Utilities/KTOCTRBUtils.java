@@ -320,7 +320,6 @@ public class KTOCTRBUtils {
 		}
 	}
 	
-	
 	/**
 	 * 
 	 * @param frontline: Frontline to getdata
@@ -376,14 +375,6 @@ public class KTOCTRBUtils {
 //					System.out.println("customerid=>"+entestdatafromPY.getValue());
 					customerid = entestdatafromPY.getValue();
 				}else if(entestdatafromPY.getKey().equals("SalesOffice")) {
-			/*System.out.println("***salesoffice=>"+entestdatafromPY.getValue());
-					if(entestdatafromPY.getValue().equalsIgnoreCase("Montreal")) {
-						salesoffice = "Montréal";
-			System.out.println("**salesoffice_assigned=>"+salesoffice);
-					}else if(entestdatafromPY.getValue().equalsIgnoreCase("Quebec City")) {
-						salesoffice = "Québec City";
-//						System.out.println("**salesoffice_assigned=>"+salesoffice);
-					}*/
 					salesoffice = entestdatafromPY.getValue();
 				}else if(entestdatafromPY.getKey().equals("ChangeSalesOffice")) {
 //					System.out.println("changeSalesOffice=>"+entestdatafromPY.getValue());
@@ -466,7 +457,13 @@ public class KTOCTRBUtils {
 			    }
 			  };
 			}
-	
+	/**
+	 **Reuse method, it will return sibiling to the element avail or not
+	 * @param element: element to be identified
+	 * @param by: sibiling locator
+	 * @return: returns true if sibiling is available
+	 * @author CON_SVIJAY02
+	 */
 	public boolean isSiblingPresent(WebElement element, By by) {
 	    try {
 	    	element.findElements(by);
@@ -475,6 +472,7 @@ public class KTOCTRBUtils {
 	        return false;
 	    }
 	}
+	
 	/**
 	 **Reuse method, it will try continuously till element is clicked
 	 * @param locator: Locator of the element to be identified
@@ -528,6 +526,7 @@ public class KTOCTRBUtils {
 			e.printStackTrace();
 		} return value;
 	}
+	
 	/**
 	 **Reuse method, it will enter value in a text box
 	 * @param locator: Locator of the element to be identified
@@ -769,7 +768,22 @@ public class KTOCTRBUtils {
 	 */
 	public void logHTML(Object log) {
 		System.out.println("*HTML* " + log);
-	}
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

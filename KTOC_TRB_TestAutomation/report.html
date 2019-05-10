@@ -5,8 +5,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 3.0.4 (Jython 2.7.0 on java1.8.0_181)" name="Generator">
-<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJEBoACtnfgA5cYYAERsiAEx2lAAbKkQAcazBACZCVwAcM1cAK0ucAAMDBQAnQncASG+FABkoVQAyWmgA6f8SgvH/Ij99+GLyIinyJfn/Yi//KSLzUy9iZogpIld3/4JVVTkid7vyUjNVNVJEAGOZ6Z7pXwAABpmZkRiLAAAGiJZpmGAAAEEt3SXdxAAATC7o/u3EAAC8MRZpjasAAAY1VVVTYAAABKqqqqpAAAAADKqq4AAAAAAAv4sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMADAADgAwAA4AcAAOAHAADgBwAAwAcAAOAHAADgDwAA8A8AAPg/AAD+fwAA">
+<meta content="Robot Framework 3.0.4 (Python 2.7.13rc1 on win32)" name="Generator">
+<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all" type="text/css">
 /* Generic and misc styles */
 body {
@@ -27,6 +27,11 @@ th, td {
 }
 br {
     mso-data-placement: same-cell; /* maintain line breaks in Excel */
+}
+hr {
+    background: #ccc;
+    height: 1px;
+    border: 0;
 }
 a, a:link, a:visited {
     text-decoration: none;
@@ -516,7 +521,7 @@ a:link, a:visited {
 .doc pre {
     font-size: 1.1em;
     letter-spacing: 0.05em;
-    background: #eee;
+    background: #f4f4f4;
 }
 .doc code {
     padding: 0 0.2em;
@@ -654,6 +659,8 @@ window.model = (function () {
         };
         suite.searchTestsByTag = function (tag) {
             return suite.searchTests(function (test) {
+                if (tag.info == "critical" || tag.info == "non-critical")
+                    return containsTagPattern(test.tags, tag.label);
                 if (tag.combined)
                     return containsTagPattern(test.tags, tag.combined);
                 return containsTag(test.tags, tag.label);
@@ -1018,8 +1025,16 @@ window.util = function () {
         var base = window.output ? window.output.baseMillis : 0;
         return new Date(base + millis);
     }
-    function createGeneratedAgoString(generatedMillis) {
-        generatedMillis = timestamp(generatedMillis);
+    function createGeneratedString(timestamp) {
+        var date = new Date(timestamp);
+        var dt = dateTimeFromDate(date).slice(0, 17);  // drop millis
+        var offset = date.getTimezoneOffset();
+        var sign = offset > 0 ? '-' : '+';
+        var hours = Math.floor(Math.abs(offset) / 60);
+        var mins = Math.abs(offset) % 60;
+        return dt + ' GMT' + sign + padTo(hours, 2) + ':' + padTo(mins, 2);
+    }
+    function createGeneratedAgoString(timestamp) {
         function timeString(time, shortUnit) {
             var unit = {y: 'year', d: 'day', h: 'hour', m: 'minute',
                         s: 'second'}[shortUnit];
@@ -1030,7 +1045,7 @@ window.util = function () {
             // Not a perfect algorithm but ought to be enough
             return days - Math.floor(years / 4);
         }
-        var generated = Math.round(generatedMillis / 1000);
+        var generated = Math.round(timestamp / 1000);
         var current = Math.round(new Date().getTime() / 1000);
         var elapsed = current - generated;
         var prefix = '';
@@ -1089,6 +1104,7 @@ window.util = function () {
         dateTimeFromDate: dateTimeFromDate,
         formatElapsed: formatElapsed,
         timestamp: timestamp,
+        createGeneratedString: createGeneratedString,
         createGeneratedAgoString: createGeneratedAgoString,
         parseQueryString: parseQueryString
     };
@@ -1389,6 +1405,7 @@ function setTitle(suiteName, type) {
     document.title = util.unescape(title);
 }
 function addHeader() {
+    var generated = util.timestamp(window.output.generated);
     $.tmpl('<h1>${title}</h1>' +
            '<div id="generated">' +
              '<span>Generated<br>${generated}</span><br>' +
@@ -1397,8 +1414,8 @@ function addHeader() {
            '<div id="top-right-header">' +
              '<div id="report-or-log-link"><a href="#"></a></div>' +
            '</div>', {
-        generated: window.output.generatedTimestamp,
-        ago: util.createGeneratedAgoString(window.output.generatedMillis),
+        generated: util.createGeneratedString(generated),
+        ago: util.createGeneratedAgoString(generated),
         title: document.title
     }).appendTo($('#header'));
 }
@@ -1533,20 +1550,30 @@ function stopPropagation(event) {
 <script type="text/javascript">
 storage = function () {
     var prefix = 'robot-framework-';
+    var storage;
     function init(user) {
         prefix += user + '-';
+        storage = getStorage();
+    }
+    function getStorage() {
+        // Use localStorage if it's accessible, normal object otherwise.
+        // Inspired by https://stackoverflow.com/questions/11214404
+        try {
+            localStorage.setItem(prefix, prefix);
+            localStorage.removeItem(prefix);
+            return localStorage;
+        } catch (exception) {
+            return {};
+        }
     }
     function get(name, defaultValue) {
-        if (!localStorage)
-            return defaultValue;
-        var value = localStorage[prefix + name];
+        var value = storage[prefix + name];
         if (typeof value === 'undefined')
             return defaultValue;
         return value;
     }
     function set(name, value) {
-        if (localStorage)
-            localStorage[prefix + name] = value;
+        storage[prefix + name] = value;
     }
     return {init: init, get: get, set: set};
 }();
@@ -1555,22 +1582,22 @@ storage = function () {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[0,0,1548520],[[4,5,4,0,[],[0,343,1548139],[[6,7,8,0,[],[0,378,1548041],[],[[9,0,1,0,[],[0,1100,216966,10],[]],[11,0,1,0,[],[1,218070,156135],[]],[12,0,1,0,[],[1,374208,142984],[]],[13,0,1,0,[],[1,517196,149428],[]],[14,0,1,0,[],[1,666628,182613],[]],[15,0,1,0,[],[0,849246,126493,16],[]],[17,0,1,0,[],[0,975742,425432,18],[]],[19,0,1,0,[],[1,1401180,147226],[]]],[],[8,5,8,5]]],[],[],[8,5,8,5]]],[],[],[8,5,8,5]];
+window.output["suite"] = [1,2,3,0,[],[0,0,390],[],[[4,0,1,0,[],[0,163,10,5],[]],[6,0,1,0,[],[0,186,21,5],[]],[7,0,1,0,[],[0,215,14,5],[]],[8,0,1,0,[],[0,235,13,5],[]],[9,0,1,0,[],[0,266,13,5],[]],[10,0,1,0,[],[0,298,12,5],[]],[11,0,1,0,[],[0,327,12,5],[]],[12,0,1,0,[],[0,351,19,5],[]]],[],[8,0,8,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*KTOC TRB TestAutomation","*C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestAutomation","*.","*TestSuites","*C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestAutomation\\TestSuites","*RegressionTestSuite KTOC TRB Canada SingleEquipment","*C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestAutomation\\TestSuites\\RegressionTestSuite_KTOC_TRB_Canada_SingleEquipment.robot","*TestSuites/RegressionTestSuite_KTOC_TRB_Canada_SingleEquipment.robot","*01. Validate TenderPrice Without FirstMaintenance for Elevator","eNqFjTEOwkAMBL+y3XV5QHqC0iGFD1i5TXTI2HD4EM9PpFQ0UI60OzOqchWdQoKnz8xHFLceixRtlUhnBiZRvi61zMRS/X7w4HXnYd8xIzcivMdN3tKp2NqNf7xfR1xpmfVImAf4bKIoht/5lDYWJkTc","*02. Validate Discount Without FirstMaintenance for Elevator","*03. Validate TenderPrice With FirstMaintenance for Elevator","*04. Validate Discount With FirstMaintenance for Elevator","*05. Check RegionalFactor at SalesOffice Level for Elevator","*06. Verify ITEFactor value and LaborRate value is taken from SalesOffice for Elevator","eNqFjkEKwkAUQ6+SXXXTA3QpVii40uL+t5PW0c+MHf+ox3dcCoKQRXghIZ0qZ9GjibF9jbyZj6HBJF5zIqqTqHclw5ZWGDaJcnXxGdDLgF1BdHCZsNjgIg+pVcJcd39mv4pYdX07yWgxoejAiYlh5DnmdP+QvQzFprK1RogG5kUUPvw8VVVv/u9MGA==","*07. Check Price Calculated Correctly when the Tender Currency is different from SLCurrency for Elevator","eNptVF2L2zgUfc+vEPPQ7MJESP5MXPqwTaYlsEzLprsDZWCQpetEHVtyJTlttvS/75WdybRsTcDO0b3nnvulbdvCXrS7IALcfJXQB21NRRqh28EBmb+1wZKNlUMHJngSRE2EUWTdavlIPoBR4MgbNAZF1AAk2IpYt6e2B/NZUA8tGD109KaFSDC6bU0AFyOB+iHi2YK8aMNLpY9Eq1dXxyzP84fiishWeP/qSjYh4Y9D4lfsc5kQeXx0ecrAu4YxfvViH14S7YmxAR0wkKhbICKQ3mok/i0pEpqtVqtlVmY84WyVXWdlQnlRFMuScV7yZZn/TmqQYvDoiDwHzA5+IWzfXzTh5xjY1l5ixTzRYfZ60K0i2jRYjSM4PyY4TylPKJtfEwdHfcZKWQCrUwSD7gCBhPHlguULtvzA8wp/LKUJLz7OZ7uTD9CdWQ/WB7TO129L1M9uPyKD7hHhjHKeYaSSJmmOqPXUiJH6Thtlv3jC2QQLJw8Ii04V2YQ8a0WaaPVJHMWPKF1S9sCXfD7bOI34Wc2vOt5oB439St9M78l+tha9qHWrg8ZKfRMytn9rPMTSrcEFX5HgBrgmtUOp4G5H6WeuC/rPk6IipWxS6aXTfbgxsefqiaSz/1Yxhvd6DHpaH0A++jjerT+f7xGxalR3oWVYu0gczw8gVIsMPzn1zkbW7aYiPGVpckEb3ISKrKv7v1Gmv5fWPPij/iROLLn/o+83glI6GeOI3Vqz60Gubde3WpjwPs4puHdO77X5Kd4XqCeJ4wI9pdeLPfxphdoFh9u7P1U4+q4TLZ60IjT4XZG77e3m3d3uGZoq+j/4knvsPI6oxQsh1vIiw0OYBugvkOFJQRxaO8SufdMxCanxiD0rq0jK4oPuY3/O/79fk8Ec8B7BXr13mH54DQdx1NZVRGnfae/HWwY3UDen77Nd7KA1JNa7lmmSJiu1yFVZLrKiLBZ1IbOFKBTg7qQJyGT+H5Npmo4=","*08. Checking Maximum Discount Limit Exceeded"]);
+window.output["strings"] = window.output["strings"].concat(["*","*RegressionTestSuite KTOC TRB France SingleEquipment","*C:\\Users\\con_svijay02\\KTOC-TRB-Automation\\KTOC_TRB_TestAutomation\\TestSuites\\RegressionTestSuite_KTOC_TRB_France_SingleEquipment.robot","*TestSuites/RegressionTestSuite_KTOC_TRB_France_SingleEquipment.robot","*01. Validate TenderPrice Without FirstMaintenance for Elevator","*Setup failed:\nNo keyword with name 'Launch Browser' found.\n\nAlso teardown failed:\nNo keyword with name 'Close Browser' found.","*02. Validate Discount Without FirstMaintenance for Elevator","*03. Validate TenderPrice With FirstMaintenance for Elevator","*04. Validate Discount With FirstMaintenance for Elevator","*05. Check RegionalFactor at SalesOffice Level for Elevator","*06. Verify ITEFactor value and LaborRate value is taken from SalesOffice for Elevator","*07. Check Price Calculated Correctly when the Tender Currency is different from SLCurrency for Elevator","*08. Checking Maximum Discount Limit Exceeded"]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:25:47","fail":3,"label":"Critical Tests","pass":5},{"elapsed":"00:25:47","fail":3,"label":"All Tests","pass":5}],[],[{"elapsed":"00:25:49","fail":3,"id":"s1","label":"KTOC TRB TestAutomation","name":"KTOC TRB TestAutomation","pass":5},{"elapsed":"00:25:48","fail":3,"id":"s1-s1","label":"KTOC TRB TestAutomation.TestSuites","name":"TestSuites","pass":5},{"elapsed":"00:25:48","fail":3,"id":"s1-s1-s1","label":"KTOC TRB TestAutomation.TestSuites.RegressionTestSuite KTOC TRB Canada SingleEquipment","name":"RegressionTestSuite KTOC TRB Canada SingleEquipment","pass":5}]];
+window.output["stats"] = [[{"elapsed":"00:00:00","fail":8,"label":"Critical Tests","pass":0},{"elapsed":"00:00:00","fail":8,"label":"All Tests","pass":0}],[],[{"elapsed":"00:00:00","fail":8,"id":"s1","label":"RegressionTestSuite KTOC TRB France SingleEquipment","name":"RegressionTestSuite KTOC TRB France SingleEquipment","pass":0}]];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1555065948621;
+window.output["baseMillis"] = 1557484327209;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 1549391;
+window.output["generated"] = 443;
 </script>
 <script type="text/javascript">
 window.settings = {"background":{"fail":"#f66","nonCriticalFail":"#9e9","pass":"#9e9"},"logURL":"log.html","title":""};
