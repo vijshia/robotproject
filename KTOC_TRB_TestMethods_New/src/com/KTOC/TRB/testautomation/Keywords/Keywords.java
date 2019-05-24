@@ -3885,8 +3885,7 @@ public class Keywords extends KTOCTRBUtils {
 				}
 			  }
 			System.out.println("MinimumTenderPrice Icon CLICKED");
-			WaitTillVisible("xpath", grid_RegionalDiscountValues_New); // header_RegionalDiscount
-//		System.out.println("header RegionalDiscount is visible");
+			WaitTillVisible("xpath", grid_discount_New); 
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Click on MinimumTenderPrice Icon Failed");

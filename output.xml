@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20190513 11:39:51.661" generator="Robot 3.0.4 (Python 2.7.13rc1 on win32)">
+<suite source="C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites\KTOC_TRB_France_SingleEquipment_CMD.robot" id="s1" name="KTOC TRB France SingleEquipment CMD">
+<test id="s1-t1" name="01. Validate TenderPrice Without FirstMaintenance for Elevator">
+<kw name="01_Logon To Salesforce">
+<kw name="Launch Browser">
+<arguments>
+<arg>${country}</arg>
+<arg>&amp;{TESTDATA_FRANCE}</arg>
+</arguments>
+<msg timestamp="20190513 11:39:51.766" level="FAIL">No keyword with name 'Launch Browser' found.</msg>
+<status status="FAIL" endtime="20190513 11:39:51.766" starttime="20190513 11:39:51.766"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.766" starttime="20190513 11:39:51.764"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.767" critical="yes" starttime="20190513 11:39:51.759">No keyword with name 'Launch Browser' found.</status>
+</test>
+<test id="s1-t2" name="02. Validate Discount Without FirstMaintenance for Elevator">
+<kw name="01_Logon To Salesforce">
+<kw name="Launch Browser">
+<arguments>
+<arg>${country}</arg>
+<arg>&amp;{TESTDATA_FRANCE}</arg>
+</arguments>
+<msg timestamp="20190513 11:39:51.775" level="FAIL">No keyword with name 'Launch Browser' found.</msg>
+<status status="FAIL" endtime="20190513 11:39:51.775" starttime="20190513 11:39:51.775"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.775" starttime="20190513 11:39:51.772"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.776" critical="yes" starttime="20190513 11:39:51.771">No keyword with name 'Launch Browser' found.</status>
+</test>
+<test id="s1-t3" name="03. Validate TenderPrice With FirstMaintenance for Elevator">
+<kw name="01_Logon To Salesforce">
+<kw name="Launch Browser">
+<arguments>
+<arg>${country}</arg>
+<arg>&amp;{TESTDATA_FRANCE}</arg>
+</arguments>
+<msg timestamp="20190513 11:39:51.796" level="FAIL">No keyword with name 'Launch Browser' found.</msg>
+<status status="FAIL" endtime="20190513 11:39:51.796" starttime="20190513 11:39:51.796"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.796" starttime="20190513 11:39:51.793"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.797" critical="yes" starttime="20190513 11:39:51.792">No keyword with name 'Launch Browser' found.</status>
+</test>
+<test id="s1-t4" name="04. Validate Discount With FirstMaintenance for Elevator">
+<kw name="01_Logon To Salesforce">
+<kw name="Launch Browser">
+<arguments>
+<arg>${country}</arg>
+<arg>&amp;{TESTDATA_FRANCE}</arg>
+</arguments>
+<msg timestamp="20190513 11:39:51.829" level="FAIL">No keyword with name 'Launch Browser' found.</msg>
+<status status="FAIL" endtime="20190513 11:39:51.829" starttime="20190513 11:39:51.829"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.829" starttime="20190513 11:39:51.827"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.830" critical="yes" starttime="20190513 11:39:51.810">No keyword with name 'Launch Browser' found.</status>
+</test>
+<test id="s1-t5" name="05. Check RegionalFactor at SalesOffice Level for Elevator">
+<kw name="01_Logon To Salesforce">
+<kw name="Launch Browser">
+<arguments>
+<arg>${country}</arg>
+<arg>&amp;{TESTDATA_FRANCE}</arg>
+</arguments>
+<msg timestamp="20190513 11:39:51.853" level="FAIL">No keyword with name 'Launch Browser' found.</msg>
+<status status="FAIL" endtime="20190513 11:39:51.854" starttime="20190513 11:39:51.853"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.854" starttime="20190513 11:39:51.851"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.855" critical="yes" starttime="20190513 11:39:51.850">No keyword with name 'Launch Browser' found.</status>
+</test>
+<test id="s1-t6" name="06. Verify ITEFactor value and LaborRate value is taken from SalesOffice for Elevator">
+<kw name="01_Logon To Salesforce">
+<kw name="Launch Browser">
+<arguments>
+<arg>${country}</arg>
+<arg>&amp;{TESTDATA_FRANCE}</arg>
+</arguments>
+<msg timestamp="20190513 11:39:51.884" level="FAIL">No keyword with name 'Launch Browser' found.</msg>
+<status status="FAIL" endtime="20190513 11:39:51.884" starttime="20190513 11:39:51.884"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.884" starttime="20190513 11:39:51.881"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.885" critical="yes" starttime="20190513 11:39:51.867">No keyword with name 'Launch Browser' found.</status>
+</test>
+<test id="s1-t7" name="07. Check Price Calculated Correctly when the Tender Currency is different from SLCurrency for Elevator">
+<kw name="01_Logon To Salesforce">
+<kw name="Launch Browser">
+<arguments>
+<arg>${country}</arg>
+<arg>&amp;{TESTDATA_FRANCE}</arg>
+</arguments>
+<msg timestamp="20190513 11:39:51.920" level="FAIL">No keyword with name 'Launch Browser' found.</msg>
+<status status="FAIL" endtime="20190513 11:39:51.920" starttime="20190513 11:39:51.920"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.920" starttime="20190513 11:39:51.917"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.921" critical="yes" starttime="20190513 11:39:51.901">No keyword with name 'Launch Browser' found.</status>
+</test>
+<test id="s1-t8" name="08. Checking Maximum Discount Limit Exceeded">
+<kw name="01_Logon To Salesforce">
+<kw name="Launch Browser">
+<arguments>
+<arg>${country}</arg>
+<arg>&amp;{TESTDATA_FRANCE}</arg>
+</arguments>
+<msg timestamp="20190513 11:39:51.952" level="FAIL">No keyword with name 'Launch Browser' found.</msg>
+<status status="FAIL" endtime="20190513 11:39:51.952" starttime="20190513 11:39:51.952"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.952" starttime="20190513 11:39:51.950"></status>
+</kw>
+<status status="FAIL" endtime="20190513 11:39:51.954" critical="yes" starttime="20190513 11:39:51.936">No keyword with name 'Launch Browser' found.</status>
+</test>
+<status status="FAIL" endtime="20190513 11:39:51.979" starttime="20190513 11:39:51.671"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="8" pass="0">Critical Tests</stat>
+<stat fail="8" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="8" id="s1" name="KTOC TRB France SingleEquipment CMD" pass="0">KTOC TRB France SingleEquipment CMD</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20190513 11:39:51.751" level="ERROR">Error in file 'C:\Users\con_svijay02\KTOC-TRB-Automation\KTOC_TRB_TestAutomation\TestSuites\KTOC_TRB_France_SingleEquipment_CMD.robot': Importing test library 'com.KTOC.TRB.testautomation.Keywords.Keywords' failed: ImportError: No module named com.KTOC.TRB.testautomation.Keywords
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\WINDOWS\SYSTEM32\python27.zip
+  c:\python27\DLLs
+  c:\python27\lib
+  c:\python27\lib\plat-win
+  c:\python27\lib\lib-tk
+  c:\python27
+  c:\python27\lib\site-packages</msg>
+</errors>
+</robot>
