@@ -35,6 +35,7 @@ public class pg_TBR_HomePage {
 	//selectTemplateToBeUploaded
 	public static By lnk_openTemplates = By.xpath("//div[text()='Open Templates']");
 	public static By lnk_binaryTemplates = By.xpath("(//*[@data-ctcname='Template_Open_I'])[last()-1]");
+	public static By lnk_XMLTemplates = By.xpath("(//*[@data-ctcname='Template_Open_I'])[last()]");
 	public static By txt_searchTemplate = By.xpath("//*[@data-ctcname='Template_Search_T']");
 	public static By radio_sharedTemplate = By.xpath("//*[@data-ctcname='Shared_Template_AllOrg_R']");
 	//verifyTenderConsistency
@@ -66,6 +67,7 @@ public class pg_TBR_HomePage {
 		//selectTemplateToBeUploaded (re-work)
 		public static String lnk_openTemplates_New = "//div[text()='Open Templates']";
 		public static String lnk_binaryTemplates_New = "(//*[@data-ctcname='Template_Open_I'])[last()-1]";
+		public static String lnk_XMLTemplates_New = "(//*[@data-ctcname='Template_Open_I'])[last()]";
 		public static String txt_searchTemplate_New = "//*[@data-ctcname='Template_Search_T']";
 		public static String radio_sharedTemplate_New = "//*[@data-ctcname='Shared_Template_AllOrg_R']";
 		//verifyTenderConsistency (re-work)

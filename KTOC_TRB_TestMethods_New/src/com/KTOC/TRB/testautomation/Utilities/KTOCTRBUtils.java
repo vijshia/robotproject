@@ -107,9 +107,9 @@ public class KTOCTRBUtils {
 	 * @throws Exception: For exception handling
 	 * @author CON_SVIJAY02
 	 */
-	public void LaunchBrowser(String frontline, String excelpath) throws Exception { //Map<String, String> testdatafromPYfile
-//		readTestDatafrom_PYTHON_File(frontline, testdatafromPYfile);
-		readTestData(frontline, excelpath);
+	public void LaunchBrowser(String frontline, Map<String, String> testdatafromPYfile) throws Exception { //Map<String, String> testdatafromPYfile       String excelpath
+		readTestDatafrom_PYTHON_File(frontline, testdatafromPYfile);
+//		readTestData(frontline, excelpath);
 		try {
 			if (operatingSystem.equalsIgnoreCase("ios")) {
 				ChromeOptions chromeOptions = new ChromeOptions();

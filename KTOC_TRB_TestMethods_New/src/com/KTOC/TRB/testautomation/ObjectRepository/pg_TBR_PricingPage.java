@@ -94,4 +94,7 @@ public class pg_TBR_PricingPage {
 	
 	//handShake (re-work)
 	public static String icon_pricing_New = "//*[@data-ctcwgtname='MainNavigationMenu']/div[3]/img";
+	
+	//getMinimumTenderPrice
+	public static String header_MinimumTenderPrice_New = "//*[text()='Minimum Tender Price']";
 }

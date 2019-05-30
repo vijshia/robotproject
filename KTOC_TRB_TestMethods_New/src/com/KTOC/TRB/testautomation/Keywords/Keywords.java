@@ -530,9 +530,9 @@ public class Keywords extends KTOCTRBUtils {
 			ClickOnElement("xpath", lnk_openTemplates_New);
 			System.out.println("Open Templates clicked");
 			if (!isMultipleEquipment) {
-				waitForElementToBeClickable(lnk_binaryTemplates); // (//*[@data-ctcwgtname='ic_Constant__Closed'])[last()-1]
+				waitForElementToBeClickable(lnk_XMLTemplates); // lnk_binaryTemplates
 				waitForinvisibilityOfElementLocated(elementtoInvisible);
-				ClickOnElement("xpath", lnk_binaryTemplates_New);
+				ClickOnElement("xpath", lnk_XMLTemplates_New); //lnk_binaryTemplates_New
 			}
 			WebElement element_TemplateSearch = gettingWebElement(txt_searchTemplate);
 			wait.until(ExpectedConditions.visibilityOf(element_TemplateSearch)); // *[@data-ctcwgtname='SearchString']
@@ -3885,7 +3885,7 @@ public class Keywords extends KTOCTRBUtils {
 				}
 			  }
 			System.out.println("MinimumTenderPrice Icon CLICKED");
-			WaitTillVisible("xpath", grid_discount_New); 
+			WaitTillVisible("xpath", header_MinimumTenderPrice_New); 
 		} catch (Exception e) {
 //			e.printStackTrace();
 			Assert.fail("Click on MinimumTenderPrice Icon Failed");
