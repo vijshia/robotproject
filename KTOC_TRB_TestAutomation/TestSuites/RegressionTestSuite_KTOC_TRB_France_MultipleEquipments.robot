@@ -192,6 +192,15 @@ ${withoutfirstmaintenance}    0
     21_Check TenderLetter Is generated Correctly With All The components
     22_Close KTOC
     23_Verify Total SalesPrice With SF Product Information   
+16. Checking TenderPrice in Minimumtenderprice tab for Elevator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    03_Verify Tender Created Successfully for Elevator
+    04_Validate TenderPrice Without FirstMaintenance for Elevator
+    25_Navigate to MinimumTenderPrice Tab
+    05_Check TenderPrice Without FirstMaintenance for Elevator
+    21_Check TenderLetter Is generated Correctly With All The components
+    22_Close KTOC    
     
 *** Keywords ***
 01_Logon To Salesforce
@@ -280,3 +289,5 @@ ${withoutfirstmaintenance}    0
     Verify Discount By Changing The Tender Price    &{tenderprice_Escalator}[tenderprice_2]    &{withfirstmaintenance_Escalator}[firstmaintenance_2]
 12_Change and Validate Discount With FirstMaintenance for Escalator    
     Verify Discount By Changing The Tender Price    &{tenderprice_Escalator}[tenderprice_3]    &{withfirstmaintenance_Escalator}[firstmaintenance_3]
+25_Navigate to MinimumTenderPrice Tab
+    Clickon Minimum Tender Price Icon    

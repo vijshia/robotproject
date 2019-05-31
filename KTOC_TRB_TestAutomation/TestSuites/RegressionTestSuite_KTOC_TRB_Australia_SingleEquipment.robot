@@ -104,6 +104,15 @@ ${withoutfirstmaintenance}    0
     20_Checking Maximum DiscountLimit Exceeded
     21_Check TenderLetter Is generated Correctly With All The components
     22_Close KTOC
+09. Checking TenderPrice in Minimumtenderprice tab for Elevator
+    01_Logon To Salesforce
+    02_Verify Creating Opportunity and Mapping It With FLTender
+    03_Verify Tender Created Successfully for Elevator
+    04_Validate TenderPrice Without FirstMaintenance for Elevator
+    24_Navigate to MinimumTenderPrice Tab
+    05_Check TenderPrice Without FirstMaintenance for Elevator
+    21_Check TenderLetter Is generated Correctly With All The components
+    22_Close KTOC        
     
 *** Keywords ***
 01_Logon To Salesforce
@@ -169,3 +178,5 @@ ${withoutfirstmaintenance}    0
 23_Verify Total SalesPrice With SF Product Information
     Compare Sales Pricebetween Tender Pageand Salesforce
     Hand Shake
+24_Navigate to MinimumTenderPrice Tab
+    Clickon Minimum Tender Price Icon    
