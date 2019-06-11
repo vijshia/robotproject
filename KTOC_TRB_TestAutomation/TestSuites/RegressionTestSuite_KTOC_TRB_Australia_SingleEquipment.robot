@@ -8,8 +8,8 @@ ${country}    australia
 ${excelpath}    \\TestData\\KTOCTRB_AutomationTestData.xlsx
 ${withoutfirstmaintenance}    0
 &{withfirstmaintenance}    firstmaintenance_1=3    firstmaintenance_2=6    firstmaintenance_3=3
-&{discount}    discount_1=5    discount_2=7    discount_3=60
-&{tenderprice}    tenderprice_1=12000    tenderprice_2=11000    tenderprice_3=10000
+&{discount}    discount_1=3    discount_2=4    discount_3=60
+&{tenderprice}    tenderprice_1=16200    tenderprice_2=16300    tenderprice_3=16100
 
 *** Test Cases ***
 01. Validate TenderPrice Without FirstMaintenance for Elevator

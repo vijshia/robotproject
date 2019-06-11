@@ -60,7 +60,7 @@ TESTDATA_AUSTRALIA = {
 	"changeSupervisor" 				: "13010164",
 	"EquipmentinService" 			: "LIS Elevator",
 	"EquipmentinService_Escalator" 	: "EIS Escalator",
-	"TemplateName" 					: "AustraliaRopes_For Automation",
+	"TemplateName" 					: "AustraliaRopes_For Automation_XML",
 	"TemplateName2" 				: "Automation_Template_forEscalator",
 	"GroupName" 					: "Automation_GroupName",
 	"isFirstMaintenancetoEdit" 		: "130",

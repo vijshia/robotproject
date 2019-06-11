@@ -17,8 +17,8 @@ public class testRun_Sample {
 	String EXCEL_PATH = "\\src\\com\\KTOC\\TRB\\testautomation\\TestData\\KTOCTRB_AutomationTestData.xlsx";
 	Map<String, String> testdatafromPYfile = null;
 	
-//	Keywords.LaunchBrowser("france", EXCEL_PATH);
-	Keywords.LaunchBrowser("france", testdatafromPYfile);
+	Keywords.LaunchBrowser("australia", EXCEL_PATH);
+//	Keywords.LaunchBrowser("france", testdatafromPYfile);
 	//1.LogonToSalesforce
 	Keywords.logintoSalesforce();
 	//2.VerifyCreatingOpportunityandMappingItWithFLTender
@@ -38,9 +38,9 @@ public class testRun_Sample {
 	Keywords.pricingIconClick();
 	//4 ValidateTenderPriceandDiscountWithoutFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("5", "0");	
-		Keywords.clickonMinimumTenderPriceIcon();
+//		Keywords.clickonMinimumTenderPriceIcon();
 	Keywords.GetTargetPrice();
-	Keywords.VerifyDiscountByChangingTheTenderPrice("63000", "0");
+	Keywords.VerifyDiscountByChangingTheTenderPrice("16200", "0");
 	Keywords.GetTargetPrice();
 	//5 ValidateTenderPriceandDiscountWithFirstMaintenance(Australia1st,France2nd,Canada1st)
 	Keywords.CheckTenderPriceAfterDiscountUpdate("7", "3");
